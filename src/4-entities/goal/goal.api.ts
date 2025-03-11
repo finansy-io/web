@@ -8,7 +8,6 @@ export class GoalApi {
 			payload,
 		} = props;
 
-		// try-catch чтобы выводить в консоль ZodError
 		try {
 			const response = await HttpClient.get({
 				url: `board-goals/${boardGoalId}/goals`,
