@@ -1,7 +1,8 @@
 import {useState} from 'react';
+import {PageHeader} from '@pages/ui';
 import {GoalImageField, goalNameMaxLength} from '@widgets/goal';
 import {GoalModel} from '@entities/goal';
-import {AmountField, Button, DatePicker, PageHeader, SelectWithSearch, StatusPopup, TextField} from '@shared/ui';
+import {AmountField, Button, DatePicker, SelectWithSearch, StatusPopup, TextField} from '@shared/ui';
 import {APP_PATH, APP_TEXT, CURRENCY, CURRENCY_OPTIONS} from '@shared/constants';
 import {cn, DateService, useResponsive} from '@shared/lib';
 

@@ -1,4 +1,4 @@
-import {AppLayout, FullScreenPageLayout} from '@pages/ui';
+import {AppLayout, PageFullScreenLayout} from '@pages/ui';
 import {PrivateRoute} from '@shared/lib';
 import {APP_PATH} from '@shared/constants';
 import {PortfolioListPage} from '../ui/PortfolioListPage.tsx';
@@ -41,7 +41,7 @@ const portfolioWalletEditRoute = {
 export const portfolioRoutes = [
 	{element: <AppLayout />, children: [portfolioListRoute]},
 	{
-		element: <FullScreenPageLayout />,
+		element: <PageFullScreenLayout />,
 		children: [
 			portfolioCreateRoute,
 			portfolioInfoRoute,

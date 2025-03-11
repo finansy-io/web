@@ -1,6 +1,6 @@
 import {MouseEvent, useEffect, useRef, useState} from 'react';
 import {TextFieldProps} from '../props/TextField.types.ts';
-import {cn, useResponsive} from '@shared/lib';
+import {cn, useKeyClick, useResponsive} from '@shared/lib';
 import {Icon} from '@shared/ui';
 
 // SearchField
@@ -29,6 +29,18 @@ export function TextField(props: TextFieldProps) {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const showHidePasswordIconRef = useRef<HTMLDivElement>(null);
 
+	// Когда мобилка и планшет, enter клик закрывает клавиатуру
+	useKeyClick({
+		key: 'Enter',
+		onKeyUp: () => {
+			inputRef.current?.blur();
+			setIsFocused?.(false);
+		},
+		disabled: isDesktop,
+		deps: [isFocused],
+	});
+
+	// Синхронизируем isFocused state с input state
 	useEffect(() => {
 		if (isFocused && inputRef.current !== document.activeElement) {
 			inputRef.current?.focus();
@@ -39,8 +51,9 @@ export function TextField(props: TextFieldProps) {
 	}, [isFocused]);
 
 	function focusInput(event?: MouseEvent<HTMLDivElement>) {
-		// Проверяем, был ли клик по иконке show / hide password
+		// Если был ли клик по иконке show / hide password - не фокусируем input
 		if (showHidePasswordIconRef.current?.contains(event?.target as Node)) return;
+
 		inputRef.current?.focus();
 		setIsFocused?.(true);
 	}

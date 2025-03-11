@@ -13,7 +13,7 @@ import {
 	usePopupState,
 } from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
-import {cn} from '@shared/lib';
+import {cn, useResponsive} from '@shared/lib';
 
 export function AppLayout() {
 	const isDesktop = false;
@@ -151,6 +151,8 @@ export function AppHeader() {
 
 	const [dataFilter, setDataFilter] = useState('24h');
 
+	const {isDesktop} = useResponsive();
+
 	return (
 		<header role='app-header' className='flex items-center justify-between p-4'>
 			<Button type='circle' onClick={openUserPopup} icon={<Icon type='user' />} className='w-fit' />
@@ -159,8 +161,9 @@ export function AppHeader() {
 				<>
 					<div
 						className={cn(
-							'flex items-center gap-2 text-xl font-medium transition duration-200',
+							'flex items-center gap-2 text-xl font-medium transition duration-200 active:text-primary-grey',
 							portfolioPopupProps.isOpen && 'text-primary-grey',
+							isDesktop && 'cursor-pointer hover:text-primary-grey',
 						)}
 						onClick={openPortfolioPopup}
 					>
@@ -180,7 +183,6 @@ export function AppHeader() {
 									)}
 								/>
 							}
-							className='rounded-full bg-light-grey p-2'
 							onClick={openPortfolioSettingsPopup}
 						/>
 					</div>

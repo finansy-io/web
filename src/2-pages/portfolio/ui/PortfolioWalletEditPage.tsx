@@ -1,7 +1,7 @@
 import {useState} from 'react';
-import {PageWidgetsWrapper} from '@pages/ui';
+import {PageHeader, PageWidgetsWrapper} from '@pages/ui';
 import {walletNameMaxLength} from '@widgets/portfolio';
-import {Details, PageHeader, TextEditButton} from '@shared/ui';
+import {Details, TextEditButton} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 import {checkIfTextChanged} from '@shared/lib';
 

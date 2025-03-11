@@ -2,13 +2,12 @@ import {type ApiProps, responseValidator} from './goal.types.ts';
 import {HttpClient} from '@shared/api';
 
 export class GoalApi {
-	static async fetchItems(props: ApiProps['fetchItemList']) {
+	static async fetchItems(props: ApiProps['fetchItems']) {
 		const {
 			params: {boardGoalId},
 			payload,
 		} = props;
 
-		// try-catch чтобы выводить в консоль ZodError
 		try {
 			const response = await HttpClient.get({
 				url: `board-goals/${boardGoalId}/goals`,

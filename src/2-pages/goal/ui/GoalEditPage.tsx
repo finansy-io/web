@@ -1,7 +1,6 @@
 import {useParams} from 'react-router-dom';
-import {PageWidgetsWrapper} from '@pages/ui';
+import {PageHeader, PageWidgetsWrapper} from '@pages/ui';
 import {GoalDelete, GoalEditDetails, GoalImageField} from '@widgets/goal';
-import {PageHeader} from '@shared/ui';
 import {APP_PATH} from '@shared/constants';
 
 export function GoalEditPage() {

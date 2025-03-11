@@ -152,7 +152,13 @@ export function Button(props: Props) {
 
 	if (type === 'icon' && icon) {
 		return (
-			<button {...buttonProps} className={gcn('flex items-center justify-center')}>
+			<button
+				{...buttonProps}
+				className={gcn(
+					'flex items-center justify-center transition duration-200 active:text-primary-grey',
+					isDesktop && 'hover:text-primary-grey',
+				)}
+			>
 				{icon}
 			</button>
 		);
