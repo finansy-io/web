@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react';
 import {type FundWithdrawPageProps} from '../types/MoneyActionPage.types.ts';
 import {MoneyActionPageHelpers} from '../lib/MoneyActionPage.helpers.ts';
-import {AmountField, type AmountFieldOption, Button, DatePicker, PageHeader, StatusPopup} from '@shared/ui';
+import {PageHeader} from '@pages/ui';
+import {AmountField, type AmountFieldOption, Button, DatePicker, StatusPopup} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 import {cn, DateService, TextHelpers, useResponsive} from '@shared/lib';
 

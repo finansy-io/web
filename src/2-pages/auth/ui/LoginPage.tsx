@@ -1,8 +1,10 @@
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {AuthLayout} from './AuthLayout.tsx';
+
+import {PageHeader} from '@pages/ui';
 import {AuthModel} from '@entities/auth';
-import {Button, PageHeader, TextField} from '@shared/ui';
+import {Button, TextField} from '@shared/ui';
 import {cn, useKeyClick, useResponsive} from '@shared/lib';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 

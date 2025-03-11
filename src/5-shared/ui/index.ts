@@ -16,7 +16,6 @@ export * from './loading-wrapper/ui/LoadingWrapper.tsx';
 export * from './delete-item/ui/DeleteItem.tsx';
 export * from './delete-item/config/DeleteItem.config.ts';
 export * from './edit-button-field/ui/EditButtonField.tsx';
-export * from './page-header/ui/PageHeader.tsx';
 export * from './icon/ui/Icon.tsx';
 export * from './popup/ui/Popup.tsx';
 export * from './popup/helpers/popup.helpers.ts';

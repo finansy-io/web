@@ -1,7 +1,9 @@
-import {APP_PATH, APP_TEXT} from '@shared/constants';
+import {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {PageHeader} from '@pages/ui';
+import {portfolioNameMaxLength} from '@widgets/portfolio';
 import {
 	Button,
-	PageHeader,
 	Popup,
 	PopupHelpers,
 	Spinner,
@@ -10,10 +12,8 @@ import {
 	TextField,
 	usePopupState,
 } from '@shared/ui';
-import {portfolioNameMaxLength} from '@widgets/portfolio';
 import {cn, useResponsive} from '@shared/lib';
-import {useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {APP_PATH, APP_TEXT} from '@shared/constants';
 
 const hints = ['Memecoins', 'Altcoins', 'AI agents', 'Long term', 'Flipping'];
 

@@ -1,6 +1,7 @@
 import {useState} from 'react';
+import {PageHeader} from '@pages/ui';
 import {portfolioNameMaxLength} from '@widgets/portfolio';
-import {Button, PageHeader, Spinner, StatusPopup, StatusPopupHelpers, TextField} from '@shared/ui';
+import {Button, Spinner, StatusPopup, StatusPopupHelpers, TextField} from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 import {cn, useResponsive} from '@shared/lib';
 import {useNavigate} from 'react-router-dom';

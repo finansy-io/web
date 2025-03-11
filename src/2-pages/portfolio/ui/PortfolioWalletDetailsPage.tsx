@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import {PageWidgetsWrapper} from '@pages/ui';
-import {type ButtonConfig, DeleteItem, deleteItemConfirmation, Details, Icon, PageHeader} from '@shared/ui';
+import {PageHeader, PageWidgetsWrapper} from '@pages/ui';
+import {type ButtonConfig, DeleteItem, deleteItemConfirmation, Details, Icon} from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 
 // move into WalletDetailsWidget
