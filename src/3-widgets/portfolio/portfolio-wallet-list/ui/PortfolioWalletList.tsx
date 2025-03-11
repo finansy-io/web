@@ -1,26 +1,25 @@
+import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {WalletModel} from '@entities/wallet';
 import {Icon, Item, List, TextField} from '@shared/ui';
-import {useDebouncedSearch} from '@shared/lib';
+import {useDebounce} from '@shared/lib';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
-
-const wallets = [
-	{name: 'Phantom мемасы', description: '0x812731...12L1bb2sk'},
-	{name: 'Metamask долгосрок ETH', description: '0x8193921...2348H6lsk'},
-	{name: 'Краткосрок флиппинг', description: '0x7613921...2Lq8H6lsk'},
-];
 
 export function PortfolioWalletList() {
 	const navigate = useNavigate();
 
-	const {debouncedSearch, onDebouncedSearchChange} = useDebouncedSearch({callbackFn: () => alert('request')});
+	const [search, setSearch] = useState('');
+	const [debouncedSearch] = useDebounce(search);
 
-	const isLoading = false;
+	const {wallets, isWalletsLoading, hasNextWalletsPage, fetchNextWalletsPage} = WalletModel.useItems({
+		filter: {search: debouncedSearch},
+	});
 
 	return (
 		<>
-			<TextField value={debouncedSearch} onChange={onDebouncedSearchChange} placeholder={APP_TEXT.search} isSearch />
+			<TextField value={search} onChange={setSearch} placeholder={APP_TEXT.search} isSearch />
 			<List
-				isLoading={isLoading}
+				isLoading={isWalletsLoading}
 				items={wallets}
 				renderItem={(wallet) => (
 					<Item
@@ -29,6 +28,8 @@ export function PortfolioWalletList() {
 						onClick={() => navigate(APP_PATH.portfolio.getItemWalletDetailsPath('1'))}
 					/>
 				)}
+				hasNextPage={hasNextWalletsPage}
+				fetchNextPage={fetchNextWalletsPage}
 			/>
 		</>
 	);
