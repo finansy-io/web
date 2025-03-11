@@ -1,8 +1,7 @@
 import {useEffect, useState} from 'react';
 import {AuthLayout} from './AuthLayout.tsx';
-import {PageHeader} from '@pages/ui';
 import {AuthModel} from '@entities/auth';
-import {Button, StatusPopup, TextField} from '@shared/ui';
+import {Button, StatusPopup, TextField, Header} from '@shared/ui';
 import {cn, useKeyClick} from '@shared/lib';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 
@@ -68,7 +67,7 @@ export function SignupPage() {
 	return (
 		<>
 			<AuthLayout>
-				<PageHeader title={APP_TEXT.createAccount} backPath={APP_PATH.login} withNoSpace />
+				<Header title={APP_TEXT.createAccount} backPath={APP_PATH.login} withNoSpace />
 
 				<div className='flex w-full flex-col gap-4'>
 					<TextField

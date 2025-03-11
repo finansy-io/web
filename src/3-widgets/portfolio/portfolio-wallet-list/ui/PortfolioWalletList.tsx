@@ -20,6 +20,7 @@ export function PortfolioWalletList() {
 			<TextField value={search} onChange={setSearch} placeholder={APP_TEXT.search} isSearch />
 			<List
 				isLoading={isWalletsLoading}
+				loadingItemWithRightName={false}
 				items={wallets}
 				renderItem={(wallet) => (
 					<Item

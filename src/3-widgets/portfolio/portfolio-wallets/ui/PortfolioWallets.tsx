@@ -1,6 +1,5 @@
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 import {Card, Icon, Item, LinkTitleInCard, List} from '@shared/ui';
-import {useNavigate} from 'react-router-dom';
 import {GoalModel} from '@entities/goal';
 
 const wallets = [
@@ -10,8 +9,6 @@ const wallets = [
 ];
 
 export function PortfolioWallets() {
-	const navigate = useNavigate();
-
 	const {isGoalsLoading} = GoalModel.useItems();
 
 	const isLoading = isGoalsLoading;
@@ -35,7 +32,9 @@ export function PortfolioWallets() {
 						image={<Icon type='wallet' withBackground />}
 						name={wallet.name}
 						description={wallet.description}
-						onClick={() => navigate(APP_PATH.portfolio.getItemWalletDetailsPath('1'))}
+						onClick={({navigate}) => {
+							navigate(APP_PATH.portfolio.getItemWalletDetailsPath('1'), {state: {from: APP_PATH.portfolio.list}});
+						}}
 					/>
 				)}
 			/>

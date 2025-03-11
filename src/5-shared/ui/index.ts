@@ -28,6 +28,8 @@ export * from './card/ui/Card.tsx';
 export * from './management/ui/Management.tsx';
 export * from './management/type/Management.types.ts';
 export * from './details/ui/Details.tsx';
+export * from './details/types/Details.types.ts';
+export * from './header/ui/Header.tsx';
 
 // new pattern -> get rid of index.ts
 

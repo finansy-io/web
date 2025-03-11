@@ -1,12 +1,11 @@
-import {ReactElement} from 'react';
 import {useParams} from 'react-router-dom';
 import {getButtonConfigs} from '../config/GoalImage.config.tsx';
 import {GoalModel} from '@entities/goal';
-import {Button, LoadingWrapper} from '@shared/ui';
-import {APP_TEXT, CURRENCY_SYMBOL} from '@shared/constants';
+import {Button, Header, LoadingWrapper} from '@shared/ui';
+import {APP_PATH, APP_TEXT, CURRENCY_SYMBOL} from '@shared/constants';
 import {TextHelpers} from '@shared/lib';
 
-export function GoalImage({pageHeader}: {pageHeader: ReactElement}) {
+export function GoalImage() {
 	const {id} = useParams();
 	const {goalDetails, isGoalDetailsLoading} = GoalModel.useItemDetails({id});
 
@@ -16,7 +15,7 @@ export function GoalImage({pageHeader}: {pageHeader: ReactElement}) {
 
 	return (
 		<div className='flex h-[310px] flex-col bg-secondary-grey'>
-			{pageHeader}
+			<Header backPath={APP_PATH.goal.list} className='flex-grow' />
 
 			<div className='flex flex-col gap-2 px-4 py-2'>
 				<LoadingWrapper isLoading={isLoading} className='mb-5 h-6 w-14'>

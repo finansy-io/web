@@ -1,4 +1,4 @@
-## backPath in PageHeader
+## backPath in Header
 Везде где точно известем backPath - прокидывали его и все ок, где нет - просто на шаг назад
 
 ## Box component

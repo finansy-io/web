@@ -1,7 +1,8 @@
-import {useParams} from 'react-router-dom';
-import {PageHeader, PageWidgetsWrapper} from '@pages/ui';
 import {GoalDelete, GoalEditDetails, GoalImageField} from '@widgets/goal';
+import {PageWidgetsWrapper} from '@pages/ui';
+import {Header} from '@shared/ui';
 import {APP_PATH} from '@shared/constants';
+import {useParams} from 'react-router-dom';
 
 export function GoalEditPage() {
 	const {id} = useParams();
@@ -9,7 +10,7 @@ export function GoalEditPage() {
 	return (
 		<>
 			<GoalImageField>
-				<PageHeader backPath={APP_PATH.goal.getItemDetailsPath(id)} />
+				<Header backPath={APP_PATH.goal.getItemDetailsPath(id)} />
 			</GoalImageField>
 			<PageWidgetsWrapper withTopSpace>
 				<GoalEditDetails />

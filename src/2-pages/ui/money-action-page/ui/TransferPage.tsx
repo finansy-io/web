@@ -1,8 +1,7 @@
 import {useEffect, useState} from 'react';
 import {MoneyActionPageHelpers} from '../lib/MoneyActionPage.helpers.ts';
 import {TransferPageProps} from '../types/MoneyActionPage.types.ts';
-import {PageHeader} from '@pages/ui';
-import {AmountField, AmountFieldOption, Button, DatePicker, Icon, StatusPopup} from '@shared/ui';
+import {AmountField, AmountFieldOption, Button, DatePicker, Icon, StatusPopup, Header} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 import {cn, DateService, isEqual, useResponsive} from '@shared/lib';
 
@@ -72,7 +71,7 @@ export function TransferPage(props: TransferPageProps) {
 
 	return (
 		<>
-			<PageHeader title={APP_TEXT.transfer} backPath={backPath} />
+			<Header title={APP_TEXT.transfer} backPath={backPath} />
 
 			<div className='flex-1 px-4'>
 				<div className='relative flex flex-col gap-2'>

@@ -1,7 +1,7 @@
 import {ReactElement, ReactNode} from 'react';
 import type {ButtonConfig} from '@shared/ui';
 
-export type PageHeaderProps = {
+export type HeaderProps = {
 	title?: string;
 	image?: ReactElement;
 	description?: ReactNode;
