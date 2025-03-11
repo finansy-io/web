@@ -1,30 +1,22 @@
-import {DeleteItem, deleteItemConfirmation, Details, Icon} from '@shared/ui';
-import {APP_TEXT} from '@shared/constants';
 import {useState} from 'react';
-
-const detailsFields = [
-	{
-		label: 'Address',
-		node: (
-			<div className='flex items-center gap-1.5' onClick={() => alert('Copied')}>
-				<div>0x8193921...2348H6lsk</div>
-				<div>
-					<Icon type='copy' />
-				</div>
-			</div>
-		),
-	},
-];
+import {getDetailsFields} from '../config/PortfolioWalletDetails.config.tsx';
+import {DeleteItem, deleteItemConfirmation, Details} from '@shared/ui';
+import {useCopy} from '@shared/lib';
+import {APP_TEXT} from '@shared/constants';
 
 export function PortfolioWalletDetails() {
-	const isLoading = false;
+	const [isSuccess, setIsSuccess] = useState(false);
 
-	const [isSuccess, setIsSuccess] = useState<boolean>(false);
+	const {isCopied, copy} = useCopy();
 
 	function handleDelete() {
 		setIsSuccess(true);
 	}
 
+	const details = {
+		address: '0x6C7eA518F0eb7066e56CFe667D87c0cD900E034B',
+	};
+	const isLoading = false;
 	const isPending = false;
 	const isError = false;
 	const walletName = 'Metamask memes';
@@ -32,7 +24,7 @@ export function PortfolioWalletDetails() {
 
 	return (
 		<>
-			<Details detailsFields={detailsFields} isLoading={isLoading} />
+			<Details details={details} detailsFields={getDetailsFields(isCopied, copy)} isLoading={isLoading} />
 			<DeleteItem
 				confirmationTitle={walletName}
 				confirmationText={deleteItemConfirmation.disconnectWallet(portfolioName)}

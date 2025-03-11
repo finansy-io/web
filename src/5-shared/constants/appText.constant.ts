@@ -12,6 +12,7 @@ export const APP_TEXT = {
 	goalName: 'Goal name',
 	walletName: 'Wallet name',
 	wallet: 'Wallet',
+	noData: 'No data',
 	walletAddress: 'Wallet address',
 	address: 'Address',
 	goals: 'Goals',

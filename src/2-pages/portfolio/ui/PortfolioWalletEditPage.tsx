@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {PageWidgetsWrapper} from '@pages/ui';
 import {walletNameMaxLength} from '@widgets/portfolio';
-import {Details, TextEditButton, Header} from '@shared/ui';
+import {Details, TextEditButton, Header, type DetailsField} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 import {checkIfTextChanged} from '@shared/lib';
 
@@ -19,7 +19,9 @@ export function PortfolioWalletEditPage() {
 	const detailsFields = [
 		{
 			label: APP_TEXT.name,
-			node: (
+			key: 'name',
+			type: 'custom',
+			customNode: () => (
 				<TextEditButton
 					entityName={APP_TEXT.name}
 					maxLength={walletNameMaxLength}
@@ -38,7 +40,9 @@ export function PortfolioWalletEditPage() {
 		},
 		{
 			label: APP_TEXT.address,
-			node: (
+			key: 'address',
+			type: 'custom',
+			customNode: () => (
 				<TextEditButton
 					entityName={APP_TEXT.address}
 					initialValue={initialAddress}
@@ -54,13 +58,17 @@ export function PortfolioWalletEditPage() {
 				</TextEditButton>
 			),
 		},
-	];
+	] as DetailsField[];
 
 	return (
 		<>
 			<Header />
 			<PageWidgetsWrapper>
-				<Details detailsFields={detailsFields} isLoading={isLoading} />
+				<Details
+					details={{name: initialName, address: initialAddress}}
+					detailsFields={detailsFields}
+					isLoading={isLoading}
+				/>
 			</PageWidgetsWrapper>
 		</>
 	);
