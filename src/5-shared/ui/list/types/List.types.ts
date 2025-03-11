@@ -9,4 +9,5 @@ export type ListProps<R> = {
 	fetchNextPage?: () => void;
 	hasNextPage?: boolean;
 	emptyTextKey?: EmptyTextKey;
+	loadingItemWithRightName?: boolean;
 };

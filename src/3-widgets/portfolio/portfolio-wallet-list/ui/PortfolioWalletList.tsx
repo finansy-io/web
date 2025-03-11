@@ -30,6 +30,7 @@ export function PortfolioWalletList() {
 				)}
 				hasNextPage={hasNextWalletsPage}
 				fetchNextPage={fetchNextWalletsPage}
+				loadingItemWithRightName={false}
 			/>
 		</>
 	);

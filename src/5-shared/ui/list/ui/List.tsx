@@ -5,10 +5,10 @@ import {Card, Item, LoadingItem} from '@shared/ui';
 import {InfiniteScroll} from '@shared/lib';
 
 export function List<R>(props: ListProps<R>) {
-	const {items, renderItem, isLoading, emptyTextKey, fetchNextPage, hasNextPage} = props;
+	const {items, renderItem, isLoading, emptyTextKey, fetchNextPage, hasNextPage, loadingItemWithRightName} = props;
 
 	if (isLoading) {
-		return <LoadingItem withRightName />;
+		return <LoadingItem withRightName={loadingItemWithRightName} />;
 	}
 
 	return (
