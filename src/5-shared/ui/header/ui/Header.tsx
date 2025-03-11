@@ -1,12 +1,12 @@
 import {useNavigate} from 'react-router-dom';
-import {PageHeaderProps} from '../types/PageHeader.types.ts';
+import {HeaderProps} from '../types/Header.types.ts';
 import {Button, Icon} from '@shared/ui';
 import {cn, isNumber, styleElement} from '@shared/lib';
 
 /** navigate(-1) не сработает, если страницу открыли в новой вкладке -> history.length = 0 */
 /** поэтому если есть возможность прокинуть backPath - лучше так и сделать */
 
-export function PageHeader(props: PageHeaderProps) {
+export function Header(props: HeaderProps) {
 	const {
 		title,
 		image,

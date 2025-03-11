@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {PageHeader} from '@pages/ui';
 import {portfolioNameMaxLength} from '@widgets/portfolio';
 import {
+	Header,
 	Button,
 	Popup,
 	PopupHelpers,
@@ -72,7 +72,7 @@ export function PortfolioCreatePage() {
 
 	return (
 		<>
-			<PageHeader title={APP_TEXT.createPortfolio} backPath={APP_PATH.portfolio.list} />
+			<Header title={APP_TEXT.createPortfolio} backPath={APP_PATH.portfolio.list} />
 
 			<div className='flex flex-grow flex-col gap-4 px-4'>
 				<div className='flex flex-col items-center gap-1 self-center' onClick={() => openPopup()}>

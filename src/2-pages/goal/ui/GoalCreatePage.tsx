@@ -1,8 +1,7 @@
 import {useState} from 'react';
-import {PageHeader} from '@pages/ui';
 import {GoalImageField, goalNameMaxLength} from '@widgets/goal';
 import {GoalModel} from '@entities/goal';
-import {AmountField, Button, DatePicker, SelectWithSearch, StatusPopup, TextField} from '@shared/ui';
+import {AmountField, Button, DatePicker, Header, SelectWithSearch, StatusPopup, TextField} from '@shared/ui';
 import {APP_PATH, APP_TEXT, CURRENCY, CURRENCY_OPTIONS} from '@shared/constants';
 import {cn, DateService, useResponsive} from '@shared/lib';
 
@@ -31,8 +30,8 @@ export function GoalCreatePage() {
 		});
 	}
 
-	const Header = (
-		<PageHeader
+	const PageHeader = (
+		<Header
 			title={cn(
 				activeStepIndex === 0 && APP_TEXT.customise,
 				activeStepIndex === 1 && APP_TEXT.selectCurrency,
@@ -47,12 +46,12 @@ export function GoalCreatePage() {
 
 	return (
 		<>
-			{activeStepIndex !== 0 && Header}
+			{activeStepIndex !== 0 && PageHeader}
 
 			<div className='flex-grow'>
 				{activeStepIndex === 0 && (
 					<>
-						<GoalImageField isCreatePage>{Header}</GoalImageField>
+						<GoalImageField isCreatePage>{PageHeader}</GoalImageField>
 						<div className='mt-4 px-4'>
 							<TextField
 								value={name}

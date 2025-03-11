@@ -1,10 +1,9 @@
 import {useState} from 'react';
-import {PageHeader} from '@pages/ui';
+import {useNavigate} from 'react-router-dom';
 import {portfolioNameMaxLength} from '@widgets/portfolio';
-import {Button, Spinner, StatusPopup, StatusPopupHelpers, TextField} from '@shared/ui';
+import {Button, Spinner, StatusPopup, StatusPopupHelpers, TextField, Header} from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 import {cn, useResponsive} from '@shared/lib';
-import {useNavigate} from 'react-router-dom';
 
 const hints = ['Phantom memes', 'Metamask memes', 'Long term altcoins', 'Cold wallet', 'Flipping'];
 
@@ -37,7 +36,7 @@ export function PortfolioWalletConnectPage() {
 
 	return (
 		<>
-			<PageHeader
+			<Header
 				title={activeStepIndex === 0 ? APP_TEXT.enterWalletName : APP_TEXT.enterWalletAddress}
 				subDescription={activeStepIndex === 1 && APP_TEXT.connectWalletDisclaimer}
 				backPath={APP_PATH.portfolio.list}

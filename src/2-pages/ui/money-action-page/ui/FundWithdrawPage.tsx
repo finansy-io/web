@@ -1,8 +1,7 @@
 import {useEffect, useState} from 'react';
 import {type FundWithdrawPageProps} from '../types/MoneyActionPage.types.ts';
 import {MoneyActionPageHelpers} from '../lib/MoneyActionPage.helpers.ts';
-import {PageHeader} from '@pages/ui';
-import {AmountField, type AmountFieldOption, Button, DatePicker, StatusPopup} from '@shared/ui';
+import {AmountField, type AmountFieldOption, Button, DatePicker, StatusPopup, Header} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 import {cn, DateService, TextHelpers, useResponsive} from '@shared/lib';
 
@@ -56,7 +55,7 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 
 	return (
 		<>
-			<PageHeader title={APP_TEXT[actionType]} backPath={backPath} />
+			<Header title={APP_TEXT[actionType]} backPath={backPath} />
 
 			<div className='flex-1 px-4'>
 				<AmountField

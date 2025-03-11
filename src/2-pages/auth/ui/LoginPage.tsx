@@ -1,10 +1,8 @@
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {AuthLayout} from './AuthLayout.tsx';
-
-import {PageHeader} from '@pages/ui';
 import {AuthModel} from '@entities/auth';
-import {Button, TextField} from '@shared/ui';
+import {Button, TextField, Header} from '@shared/ui';
 import {cn, useKeyClick, useResponsive} from '@shared/lib';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 
@@ -67,7 +65,7 @@ export function LoginPage() {
 
 	return (
 		<AuthLayout>
-			<PageHeader title={APP_TEXT.welcome} withBackButton={false} withNoSpace />
+			<Header title={APP_TEXT.welcome} withBackButton={false} withNoSpace />
 
 			<div className='flex w-full flex-col gap-4'>
 				<TextField

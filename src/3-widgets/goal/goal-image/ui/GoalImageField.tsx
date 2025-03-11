@@ -1,8 +1,8 @@
-import {ReactNode} from 'react';
-import {cn, useResponsive} from '@shared/lib';
-import {Icon, LoadingWrapper, Spinner, useUploadField} from '@shared/ui';
-import {GoalModel} from '@entities/goal';
 import {useParams} from 'react-router-dom';
+import {GoalModel} from '@entities/goal';
+import {Icon, LoadingWrapper, Spinner, useUploadField} from '@shared/ui';
+import {cn, useResponsive} from '@shared/lib';
+import {ReactNode} from 'react';
 
 export function GoalImageField({children, isCreatePage}: {children: ReactNode; isCreatePage?: boolean}) {
 	const {id} = useParams();

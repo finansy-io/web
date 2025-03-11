@@ -1,7 +1,7 @@
 import {useState} from 'react';
-import {PageHeader, PageWidgetsWrapper} from '@pages/ui';
+import {PageWidgetsWrapper} from '@pages/ui';
 import {walletNameMaxLength} from '@widgets/portfolio';
-import {Details, TextEditButton} from '@shared/ui';
+import {Details, TextEditButton, Header} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 import {checkIfTextChanged} from '@shared/lib';
 
@@ -58,8 +58,7 @@ export function PortfolioWalletEditPage() {
 
 	return (
 		<>
-			<PageHeader />
-
+			<Header />
 			<PageWidgetsWrapper>
 				<Details detailsFields={detailsFields} isLoading={isLoading} />
 			</PageWidgetsWrapper>
