@@ -2,7 +2,7 @@ import {type ApiProps, responseValidator} from './goal.types.ts';
 import {HttpClient} from '@shared/api';
 
 export class GoalApi {
-	static async fetchItems(props: ApiProps['fetchItemList']) {
+	static async fetchItems(props: ApiProps['fetchItems']) {
 		const {
 			params: {boardGoalId},
 			payload,

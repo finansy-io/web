@@ -90,7 +90,7 @@ export type MutationProps = {
 };
 
 export type ApiProps = {
-	fetchItemList: {
+	fetchItems: {
 		params: {boardGoalId: number};
 		payload: Props['useItems']['filter'];
 	};
