@@ -11,5 +11,6 @@ export * from './components/InfiniteScroll.tsx';
 export * from './hooks/useFilter.ts';
 export * from './hooks/useResponsive.ts';
 export * from './hooks/useKeyClick.ts';
+export * from './hooks/useDebouncedSearch.ts';
 
 export * from './services/date.service.ts';

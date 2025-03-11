@@ -1,6 +1,6 @@
-import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Icon, Item, List, TextField} from '@shared/ui';
+import {useDebouncedSearch} from '@shared/lib';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 
 const wallets = [
@@ -12,13 +12,13 @@ const wallets = [
 export function PortfolioWalletList() {
 	const navigate = useNavigate();
 
-	const [searchValue, setSearchValue] = useState('');
+	const {debouncedSearch, onDebouncedSearchChange} = useDebouncedSearch({callbackFn: () => alert('request')});
 
 	const isLoading = false;
 
 	return (
 		<>
-			<TextField value={searchValue} onChange={setSearchValue} placeholder={APP_TEXT.search} isSearch />
+			<TextField value={debouncedSearch} onChange={onDebouncedSearchChange} placeholder={APP_TEXT.search} isSearch />
 			<List
 				isLoading={isLoading}
 				items={wallets}
