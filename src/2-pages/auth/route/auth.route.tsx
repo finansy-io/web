@@ -13,7 +13,7 @@ const loginRoute = {
 const signupRoute = {
 	path: APP_PATH.signup,
 	element: (
-		<SuspenseWrapper withHeightScreen>
+		<SuspenseWrapper>
 			<SignupPage />
 		</SuspenseWrapper>
 	),

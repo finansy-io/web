@@ -7,7 +7,7 @@ const PageNotFound = lazy(() => import('../ui/PageNotFound.tsx'));
 export const pageNotFoundRoute = {
 	path: APP_PATH.pageNotFound,
 	element: (
-		<SuspenseWrapper withHeightScreen>
+		<SuspenseWrapper>
 			<PageNotFound />
 		</SuspenseWrapper>
 	),
