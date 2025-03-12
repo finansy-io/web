@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {PageWidgetsWrapper} from '@pages/ui';
+import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
 import {portfolioNameMaxLength} from '@widgets/portfolio';
 import {
-	Header,
 	Button,
+	Header,
 	Popup,
 	PopupHelpers,
 	Spinner,
@@ -13,7 +13,7 @@ import {
 	TextField,
 	usePopupState,
 } from '@shared/ui';
-import {cn, useResponsive} from '@shared/lib';
+import {cn} from '@shared/lib';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 
 const hints = ['Memecoins', 'Altcoins', 'AI agents', 'Long term', 'Flipping'];
@@ -50,10 +50,9 @@ export function PortfolioCreatePage() {
 
 	const [name, setName] = useState('');
 
-	const [isCreatePortfolioSuccess, setIsCreatePortfolioSuccess] = useState(false);
 	const [selectedEmojiConfig, setSelectedEmojiConfig] = useState(emojiConfigs[0]);
 
-	const {isMobile} = useResponsive();
+	const [isCreatePortfolioSuccess, setIsCreatePortfolioSuccess] = useState(false);
 
 	const isNameValidationPending = false;
 	const isNameValidationSuccess = false;
@@ -89,6 +88,7 @@ export function PortfolioCreatePage() {
 					maxLength={portfolioNameMaxLength}
 					placeholder={APP_TEXT.portfolioName}
 				/>
+
 				{!name && (
 					<div className='flex flex-wrap gap-2'>
 						{hints.map((hint, index) => (
@@ -105,7 +105,7 @@ export function PortfolioCreatePage() {
 				)}
 			</PageWidgetsWrapper>
 
-			<div className={cn('p-4 pt-0', !isMobile && 'w-96 self-center')}>
+			<PageActionButtonWrapper>
 				<Button
 					type='primary'
 					onClick={() => {
@@ -117,7 +117,7 @@ export function PortfolioCreatePage() {
 				>
 					{APP_TEXT.create}
 				</Button>
-			</div>
+			</PageActionButtonWrapper>
 
 			<StatusPopup
 				isOpen={isCreatePortfolioSuccess}
