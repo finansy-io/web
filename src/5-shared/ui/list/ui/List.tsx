@@ -6,7 +6,15 @@ import {InfiniteScroll} from '@shared/lib';
 import {APP_TEXT} from '@shared/constants';
 
 export function List<R>(props: ListProps<R>) {
-	const {items, renderItem, isLoading, emptyTextKey, fetchNextPage, hasNextPage, loadingItemWithRightName} = props;
+	const {
+		items,
+		renderItem,
+		isLoading,
+		emptyTextKey,
+		fetchNextPage,
+		hasNextPage,
+		loadingItemWithRightName = true,
+	} = props;
 
 	if (isLoading) {
 		return <LoadingItem withRightName={loadingItemWithRightName} />;

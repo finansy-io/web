@@ -37,6 +37,7 @@ export function PortfolioWallets() {
 						}}
 					/>
 				)}
+				loadingItemWithRightName={false}
 			/>
 		</Card>
 	);
