@@ -161,9 +161,9 @@ export function AppHeader() {
 				<>
 					<div
 						className={cn(
-							'flex items-center gap-2 text-xl font-medium transition duration-200 active:text-primary-grey',
+							'flex cursor-pointer items-center gap-2 text-xl font-medium transition duration-200 active:text-primary-grey',
 							portfolioPopupProps.isOpen && 'text-primary-grey',
-							isDesktop && 'cursor-pointer hover:text-primary-grey',
+							isDesktop && 'hover:text-primary-grey',
 						)}
 						onClick={openPortfolioPopup}
 					>
@@ -234,6 +234,7 @@ export function AppHeader() {
 					<Card
 						titleInCard={'Portfolios'}
 						rightTitleInCard={
+							//button styles, чтобы при наведении и клике все было консистентно
 							<div
 								className='-m-1 flex items-center gap-3 p-1'
 								onClick={() => {

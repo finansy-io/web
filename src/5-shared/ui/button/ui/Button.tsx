@@ -49,7 +49,7 @@ export function Button(props: Props) {
 			onClick({navigate});
 			setDisplayBoxShadow(true);
 		},
-		disabled: disabled || disabledPrimaryButtonEnterClick || type !== 'primary',
+		disabled: disabled || disabledPrimaryButtonEnterClick || type !== 'primary' || !isDesktop,
 		deps: [],
 	});
 
