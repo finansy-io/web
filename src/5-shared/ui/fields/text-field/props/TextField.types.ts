@@ -12,4 +12,5 @@ export type TextFieldProps = {
 	setIsFocused?: (value: boolean) => void;
 	isSearch?: boolean;
 	errorText?: ReactNode;
+	disabledEnterClick?: boolean;
 };

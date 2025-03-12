@@ -78,6 +78,7 @@ export function SignupPage() {
 						enterKeyHint='next'
 						isFocused={isEmailFocused}
 						setIsFocused={setIsEmailFocused}
+						disabledEnterClick
 					/>
 					<TextField
 						type='password'
@@ -87,6 +88,7 @@ export function SignupPage() {
 						enterKeyHint='done'
 						isFocused={isPasswordFocused}
 						setIsFocused={setIsPasswordFocused}
+						disabledEnterClick
 					/>
 				</div>
 

@@ -76,6 +76,7 @@ export function LoginPage() {
 					enterKeyHint='next'
 					isFocused={isEmailFocused}
 					setIsFocused={setIsEmailFocused}
+					disabledEnterClick
 				/>
 				<TextField
 					type='password'
@@ -85,6 +86,7 @@ export function LoginPage() {
 					enterKeyHint='done'
 					isFocused={isPasswordFocused}
 					setIsFocused={setIsPasswordFocused}
+					disabledEnterClick
 				/>
 
 				<Button type='text' className='text-left font-light' onClick={() => alert('Вспоминай, а то не войдешь 😁')}>

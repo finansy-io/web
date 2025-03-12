@@ -20,6 +20,7 @@ export function TextField(props: TextFieldProps) {
 		enterKeyHint = 'done',
 		isFocused,
 		setIsFocused,
+		disabledEnterClick,
 	} = props;
 
 	const {isDesktop} = useResponsive();
@@ -36,7 +37,7 @@ export function TextField(props: TextFieldProps) {
 			inputRef.current?.blur();
 			setIsFocused?.(false);
 		},
-		disabled: isDesktop,
+		disabled: isDesktop || disabledEnterClick,
 		deps: [isFocused],
 	});
 
