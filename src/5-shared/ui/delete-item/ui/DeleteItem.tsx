@@ -44,6 +44,7 @@ export function DeleteItem(props: DeleteItemProps) {
 						onClick={handleDelete}
 						isPending={isPending}
 						className='bg-red-100 text-red-600 shadow-none'
+						primaryButtonSpinnerClassName='text-red-600'
 					>
 						{actionButtonText ? actionButtonText : APP_TEXT.delete}
 					</Button>

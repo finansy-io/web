@@ -1,5 +1,6 @@
 export * from './components/PrivateRoute.tsx';
 export * from './components/InfiniteScroll.tsx';
+export * from './components/SuspenseWrapper.tsx';
 
 export * from './helpers/lodash.helpers.ts';
 export * from './helpers/text.helpers.ts';

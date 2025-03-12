@@ -1,9 +1,9 @@
-import {ReactNode, Suspense} from 'react';
+import {ReactNode} from 'react';
 import {Navigate} from 'react-router-dom';
 import {AuthApi} from '@entities/auth';
 import {APP_PATH} from '@shared/constants';
 import {setupInterceptor} from '@shared/api';
-import {Spinner} from '@shared/ui';
+import {SuspenseWrapper} from '@shared/lib';
 
 /**
  * Abstraction for DRY logic across routes
@@ -19,15 +19,5 @@ export function PrivateRoute({page}: {page: ReactNode}) {
 		setupInterceptor(AuthApi.getToken()!);
 	}
 
-	return (
-		<Suspense
-			fallback={
-				<div className='flex w-full items-center justify-center p-4'>
-					<Spinner className='size-8 text-primary-grey' />
-				</div>
-			}
-		>
-			{page}
-		</Suspense>
-	);
+	return <SuspenseWrapper>{page}</SuspenseWrapper>;
 }

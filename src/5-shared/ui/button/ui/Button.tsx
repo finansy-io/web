@@ -18,6 +18,7 @@ interface Props extends CommonButtonSettings {
 	isPending?: boolean;
 	disabledPrimaryButtonEnterClick?: boolean;
 	secondaryWithPrimaryStyles?: boolean;
+	primaryButtonSpinnerClassName?: string;
 }
 
 /** если меняются стили у кнопки, смотреть и за стилями для preloadSkeleton **/
@@ -34,6 +35,7 @@ export function Button(props: Props) {
 		isPending,
 		disabledPrimaryButtonEnterClick,
 		secondaryWithPrimaryStyles,
+		primaryButtonSpinnerClassName,
 	} = props;
 
 	const navigate = useNavigate();
@@ -86,7 +88,7 @@ export function Button(props: Props) {
 				{isPending ? (
 					<div className='flex items-center justify-center gap-2'>
 						<div className='relative'>
-							<Spinner className='absolute -left-7 top-1 text-white' />
+							<Spinner className={cn('absolute -left-7 top-1 text-white', primaryButtonSpinnerClassName)} />
 							{children}
 						</div>
 					</div>

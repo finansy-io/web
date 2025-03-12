@@ -5,7 +5,7 @@ import {Button, StatusPopup, TextField, Header} from '@shared/ui';
 import {cn, useKeyClick} from '@shared/lib';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 
-export function SignupPage() {
+export default function SignupPage() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
