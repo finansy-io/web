@@ -3,7 +3,7 @@ import {FundWithdrawPage} from '@pages/ui';
 import {GoalModel} from '@entities/goal';
 import {APP_PATH} from '@shared/constants';
 
-export function GoalDetailsFundPage() {
+export default function GoalDetailsFundPage() {
 	const {id} = useParams();
 
 	const {goalDetails, isGoalDetailsLoading} = GoalModel.useItemDetails({id});

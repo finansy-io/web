@@ -8,7 +8,7 @@ import {cn, DateService} from '@shared/lib';
 
 const hints = ['Mustang', 'House', 'Guitar', 'Maldives', 'TV', 'iPhone', 'Education'];
 
-export function GoalCreatePage() {
+export default function GoalCreatePage() {
 	const [activeStepIndex, setActiveStepIndex] = useState(0);
 
 	const [name, setName] = useState('');

@@ -3,7 +3,7 @@ import {TransferPage} from '@pages/ui';
 import {GoalModel} from '@entities/goal';
 import {APP_PATH} from '@shared/constants';
 
-export function GoalDetailsTransferPage() {
+export default function GoalDetailsTransferPage() {
 	const {id} = useParams();
 
 	const {goalDetails, isGoalDetailsLoading} = GoalModel.useItemDetails({id});

@@ -1,7 +1,7 @@
 import {PageWidgetsWrapper} from '@pages/ui';
 import {GoalManagement} from '@widgets/goal';
 
-export function GoalListPage() {
+export default function GoalListPage() {
 	return (
 		<PageWidgetsWrapper>
 			<GoalManagement />

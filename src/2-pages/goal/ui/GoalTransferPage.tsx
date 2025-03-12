@@ -2,7 +2,7 @@ import {TransferPage} from '@pages/ui';
 import {GoalModel} from '@entities/goal';
 import {APP_PATH} from '@shared/constants';
 
-export function GoalTransferPage() {
+export default function GoalTransferPage() {
 	const {goals, isGoalsLoading, hasNextGoalsPage, fetchNextGoalsPage} = GoalModel.useItems();
 
 	const {transferGoal, isTransferGoalPending, isTransferGoalSuccess, isTransferGoalError} = GoalModel.useTransfer({

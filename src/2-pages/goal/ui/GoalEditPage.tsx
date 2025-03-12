@@ -4,7 +4,7 @@ import {Header} from '@shared/ui';
 import {APP_PATH} from '@shared/constants';
 import {useParams} from 'react-router-dom';
 
-export function GoalEditPage() {
+export default function GoalEditPage() {
 	const {id} = useParams();
 
 	return (

@@ -1,17 +1,19 @@
+import {lazy} from 'react';
+import {PageFullScreenWrapper, AppLayout} from '@pages/ui';
 import {APP_PATH} from '@shared/constants';
 import {PrivateRoute} from '@shared/lib';
-import {PageFullScreenWrapper, AppLayout} from '@pages/ui';
-import {GoalCreatePage} from '../ui/GoalCreatePage.tsx';
-import {GoalDetailsPage} from '../ui/GoalDetailsPage.tsx';
-import {GoalListPage} from '../ui/GoalListPage.tsx';
-import {GoalTransferPage} from '../ui/GoalTransferPage.tsx';
-import {GoalFundPage} from '../ui/GoalFundPage.tsx';
-import {GoalWithdrawPage} from '../ui/GoalWithdrawPage.tsx';
-import {GoalEditPage} from '@pages/goal/ui/GoalEditPage.tsx';
-import {GoalTransactionsPage} from '@pages/goal/ui/GoalTransactionsPage.tsx';
-import {GoalDetailsFundPage} from '@pages/goal/ui/GoalDetailsFundPage.tsx';
-import {GoalDetailsWithdrawPage} from '@pages/goal/ui/GoalDetailsWithdrawPage.tsx';
-import {GoalDetailsTransferPage} from '@pages/goal/ui/GoalDetailsTransferPage.tsx';
+
+const GoalCreatePage = lazy(() => import('../ui/GoalCreatePage.tsx'));
+const GoalDetailsPage = lazy(() => import('../ui/GoalDetailsPage.tsx'));
+const GoalListPage = lazy(() => import('../ui/GoalListPage.tsx'));
+const GoalTransferPage = lazy(() => import('../ui/GoalTransferPage.tsx'));
+const GoalFundPage = lazy(() => import('../ui/GoalFundPage.tsx'));
+const GoalWithdrawPage = lazy(() => import('../ui/GoalWithdrawPage.tsx'));
+const GoalEditPage = lazy(() => import('../ui/GoalEditPage.tsx'));
+const GoalTransactionsPage = lazy(() => import('../ui/GoalTransactionsPage.tsx'));
+const GoalDetailsFundPage = lazy(() => import('../ui/GoalDetailsFundPage.tsx'));
+const GoalDetailsWithdrawPage = lazy(() => import('../ui/GoalDetailsWithdrawPage.tsx'));
+const GoalDetailsTransferPage = lazy(() => import('../ui/GoalDetailsTransferPage.tsx'));
 
 const goalListRoute = {
 	path: APP_PATH.goal.list,

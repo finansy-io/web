@@ -2,7 +2,7 @@ import {FundWithdrawPage} from '@pages/ui';
 import {GoalModel} from '@entities/goal';
 import {APP_PATH} from '@shared/constants';
 
-export function GoalWithdrawPage() {
+export default function GoalWithdrawPage() {
 	const {goals, isGoalsLoading, hasNextGoalsPage, fetchNextGoalsPage} = GoalModel.useItems();
 
 	const {withdrawGoal, isWithdrawGoalPending, isWithdrawGoalSuccess, isWithdrawGoalError} = GoalModel.useWithdraw({

@@ -1,7 +1,7 @@
 import {PageWidgetsWrapper} from '@pages/ui';
 import {GoalImage, GoalProgress, GoalTransactions} from '@widgets/goal';
 
-export function GoalDetailsPage() {
+export default function GoalDetailsPage() {
 	return (
 		<>
 			<GoalImage />

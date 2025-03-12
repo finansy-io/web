@@ -4,7 +4,7 @@ import {GoalTransactionsHistory} from '@widgets/goal';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 import {Header} from '@shared/ui';
 
-export function GoalTransactionsPage() {
+export default function GoalTransactionsPage() {
 	const {id} = useParams();
 
 	return (
