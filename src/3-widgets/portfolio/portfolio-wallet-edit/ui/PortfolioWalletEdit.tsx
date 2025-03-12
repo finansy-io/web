@@ -1,8 +1,6 @@
 import {useState} from 'react';
-import {walletNameMaxLength} from '@widgets/portfolio';
-import {Details, type DetailsField, StatusPopup, TextFieldEditButton} from '@shared/ui';
-import {APP_TEXT} from '@shared/constants';
-import {TextHelpers} from '@shared/lib';
+import {getDetailsFields, type DetailsFieldProps} from '../config/PortfolioWalletEdit.config.tsx';
+import {Details, StatusPopup} from '@shared/ui';
 
 export function PortfolioWalletEdit() {
 	const details = {
@@ -14,48 +12,18 @@ export function PortfolioWalletEdit() {
 
 	const isLoading = false;
 	const isError = false;
+	const isPending = false;
 
-	const detailsFields = [
-		{
-			label: APP_TEXT.name,
-			key: 'name',
-			type: 'custom',
-			customNode: () => (
-				<TextFieldEditButton
-					entityName={APP_TEXT.name}
-					maxLength={walletNameMaxLength}
-					initialValue={details.name}
-					handleUpdate={() => setIsSuccess(true)}
-					isPending={false}
-					isSuccess={isSuccess}
-					isError={false}
-				>
-					{details.name}
-				</TextFieldEditButton>
-			),
-		},
-		{
-			label: APP_TEXT.address,
-			key: 'address',
-			type: 'custom',
-			customNode: () => (
-				<TextFieldEditButton
-					entityName={APP_TEXT.address}
-					initialValue={details.address}
-					handleUpdate={() => setIsSuccess(true)}
-					isPending={false}
-					isSuccess={false}
-					isError={isSuccess}
-				>
-					{TextHelpers.getShortenWalletAddress(details.address)}
-				</TextFieldEditButton>
-			),
-		},
-	] as DetailsField[];
+	const detailsFieldProps: DetailsFieldProps = {
+		isPending,
+		isSuccess,
+		isError,
+		handleUpdate: (value: string) => setIsSuccess(!!value),
+	};
 
 	return (
 		<>
-			<Details details={details} detailsFields={detailsFields} isLoading={isLoading} />
+			<Details details={details} detailsFields={getDetailsFields(detailsFieldProps)} isLoading={isLoading} />
 
 			<StatusPopup isOpen={isSuccess} status='success' statusTextKey='updateWalletSuccess' />
 			<StatusPopup isOpen={isError} status='error' statusTextKey='updateWalletError' />
