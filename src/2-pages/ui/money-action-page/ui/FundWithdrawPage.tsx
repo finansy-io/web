@@ -1,9 +1,10 @@
 import {useEffect, useState} from 'react';
 import {type FundWithdrawPageProps} from '../types/MoneyActionPage.types.ts';
 import {MoneyActionPageHelpers} from '../lib/MoneyActionPage.helpers.ts';
-import {AmountField, type AmountFieldOption, Button, DatePicker, StatusPopup, Header} from '@shared/ui';
+import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
+import {AmountField, type AmountFieldOption, Button, DatePicker, Header, StatusPopup} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
-import {cn, DateService, TextHelpers, useResponsive} from '@shared/lib';
+import {DateService, TextHelpers} from '@shared/lib';
 
 export function FundWithdrawPage(props: FundWithdrawPageProps) {
 	const {
@@ -21,8 +22,6 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 		errorTextKey,
 		backPath,
 	} = props;
-
-	const {isMobile} = useResponsive();
 
 	const [activeOption, setActiveOption] = useState<AmountFieldOption | null>(null);
 	const [options, setOptions] = useState<AmountFieldOption[] | undefined>();
@@ -57,7 +56,7 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 		<>
 			<Header title={APP_TEXT[actionType]} backPath={backPath} />
 
-			<div className='flex-1 px-4'>
+			<PageWidgetsWrapper>
 				<AmountField
 					value={amount}
 					onChange={setAmount}
@@ -71,7 +70,7 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 					withPlus={actionType === 'fund'}
 					withMinus={actionType === 'withdraw'}
 				/>
-				<div className='mt-4 flex justify-between px-4 text-sm'>
+				<div className='flex justify-between px-4 text-sm'>
 					<div className='font-medium text-primary-grey'>{APP_TEXT.transactionDate}</div>
 					<DatePicker
 						onChange={(value) => (value ? setDate(value) : undefined)}
@@ -82,9 +81,9 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 						{new DateService(date).getLocalDateString()}
 					</DatePicker>
 				</div>
-			</div>
+			</PageWidgetsWrapper>
 
-			<div className={cn('p-4', !isMobile && 'w-96 self-center')}>
+			<PageActionButtonWrapper>
 				<Button
 					type='primary'
 					onClick={handleActionClick}
@@ -93,7 +92,7 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 				>
 					{APP_TEXT[actionType]}
 				</Button>
-			</div>
+			</PageActionButtonWrapper>
 
 			{activeOption && (
 				<StatusPopup

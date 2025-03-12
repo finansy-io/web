@@ -41,10 +41,8 @@ export function SelectWithSearch(props: SelectWithSearchProps) {
 	}
 
 	return (
-		<>
-			<div className='mb-4'>
-				<TextField value={search} onChange={setSearch} placeholder={APP_TEXT.search} isSearch />
-			</div>
+		<div className='flex flex-col gap-4'>
+			<TextField value={search} onChange={setSearch} placeholder={APP_TEXT.search} isSearch />
 
 			<Card>
 				{selectOptions
@@ -63,6 +61,6 @@ export function SelectWithSearch(props: SelectWithSearchProps) {
 						/>
 					))}
 			</Card>
-		</>
+		</div>
 	);
 }

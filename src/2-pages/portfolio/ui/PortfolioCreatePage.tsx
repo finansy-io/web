@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {PageWidgetsWrapper} from '@pages/ui';
 import {portfolioNameMaxLength} from '@widgets/portfolio';
 import {
 	Header,
@@ -51,17 +52,8 @@ export function PortfolioCreatePage() {
 
 	const [isCreatePortfolioSuccess, setIsCreatePortfolioSuccess] = useState(false);
 	const [selectedEmojiConfig, setSelectedEmojiConfig] = useState(emojiConfigs[0]);
-	const [inPopupEmojiConfig, setInPopupEmojiConfig] = useState(selectedEmojiConfig);
 
 	const {isMobile} = useResponsive();
-
-	const {popupProps, openPopup, closePopup} = usePopupState();
-
-	useEffect(() => {
-		if (popupProps.isOpen) return;
-
-		setInPopupEmojiConfig(emojiConfigs[0]);
-	}, [popupProps.isOpen]);
 
 	const isNameValidationPending = false;
 	const isNameValidationSuccess = false;
@@ -74,13 +66,8 @@ export function PortfolioCreatePage() {
 		<>
 			<Header title={APP_TEXT.createPortfolio} backPath={APP_PATH.portfolio.list} />
 
-			<div className='flex flex-grow flex-col gap-4 px-4'>
-				<div className='flex flex-col items-center gap-1 self-center' onClick={() => openPopup()}>
-					<div className='relative flex size-20 items-center justify-center rounded-full bg-secondary-violet text-2xl'>
-						<span>{selectedEmojiConfig.value}</span>
-					</div>
-					<div className='text-sm text-primary-violet'>{APP_TEXT.setImage}</div>
-				</div>
+			<PageWidgetsWrapper>
+				<EmojiField {...{selectedEmojiConfig, setSelectedEmojiConfig}} />
 
 				<TextField
 					value={name}
@@ -116,9 +103,9 @@ export function PortfolioCreatePage() {
 						))}
 					</div>
 				)}
-			</div>
+			</PageWidgetsWrapper>
 
-			<div className={cn('p-4', !isMobile && 'w-96 self-center')}>
+			<div className={cn('p-4 pt-0', !isMobile && 'w-96 self-center')}>
 				<Button
 					type='primary'
 					onClick={() => {
@@ -132,39 +119,6 @@ export function PortfolioCreatePage() {
 				</Button>
 			</div>
 
-			<Popup {...popupProps} title={APP_TEXT.setImage}>
-				<div className='flex flex-col gap-4'>
-					<div className='flex size-20 items-center justify-center self-center rounded-full bg-secondary-violet text-2xl'>
-						{inPopupEmojiConfig.value}
-					</div>
-
-					<div className='flex flex-wrap gap-2 text-xl'>
-						{emojiConfigs.map((emojiConfig) => (
-							<div
-								key={emojiConfig.id}
-								className={cn(
-									'size-10 rounded-full p-1 text-center transition duration-200 active:scale-95 active:brightness-90',
-									inPopupEmojiConfig.id === emojiConfig.id && 'bg-secondary-grey',
-								)}
-								onClick={() => setInPopupEmojiConfig(emojiConfig)}
-							>
-								{emojiConfig.value}
-							</div>
-						))}
-					</div>
-
-					<Button
-						type='primary'
-						onClick={() => {
-							closePopup();
-							PopupHelpers.runAfterPopupClosed(() => setSelectedEmojiConfig(inPopupEmojiConfig));
-						}}
-					>
-						{APP_TEXT.save}
-					</Button>
-				</div>
-			</Popup>
-
 			<StatusPopup
 				isOpen={isCreatePortfolioSuccess}
 				status='success'
@@ -172,6 +126,71 @@ export function PortfolioCreatePage() {
 				statusTextProps={{name}}
 			/>
 			<StatusPopup isOpen={isCreatePortfolioError} status='error' statusTextKey='createPortfolioError' />
+		</>
+	);
+}
+
+type EmojiConfig = {
+	value: any;
+	id: number;
+};
+type EmojiFieldProps = {
+	selectedEmojiConfig: EmojiConfig;
+	setSelectedEmojiConfig: (value: EmojiConfig) => void;
+};
+
+export function EmojiField({selectedEmojiConfig, setSelectedEmojiConfig}: EmojiFieldProps) {
+	const [inPopupEmojiConfig, setInPopupEmojiConfig] = useState(selectedEmojiConfig);
+
+	const {popupProps, openPopup, closePopup} = usePopupState();
+
+	useEffect(() => {
+		if (inPopupEmojiConfig.id === selectedEmojiConfig.id) return;
+		setInPopupEmojiConfig(selectedEmojiConfig);
+	}, [selectedEmojiConfig]);
+
+	return (
+		<>
+			<div
+				className='flex cursor-pointer flex-col items-center gap-1 self-center transition duration-200 active:scale-95 active:brightness-95'
+				onClick={openPopup}
+			>
+				<div className='relative flex size-20 items-center justify-center rounded-full bg-secondary-violet text-2xl'>
+					<span>{selectedEmojiConfig.value}</span>
+				</div>
+				<div className='text-sm text-primary-violet'>{APP_TEXT.setImage}</div>
+			</div>
+
+			<Popup {...popupProps} title={APP_TEXT.portfolioImage}>
+				<div className='flex size-20 items-center justify-center self-center rounded-full bg-secondary-violet text-2xl'>
+					{inPopupEmojiConfig.value}
+				</div>
+
+				<div className='flex flex-wrap gap-2 text-xl'>
+					{emojiConfigs.map((emojiConfig) => (
+						<div
+							key={emojiConfig.id}
+							className={cn(
+								'size-10 rounded-full p-1 text-center transition duration-200 active:scale-95 active:brightness-90',
+								inPopupEmojiConfig.id === emojiConfig.id && 'bg-secondary-grey',
+							)}
+							onClick={() => setInPopupEmojiConfig(emojiConfig)}
+						>
+							{emojiConfig.value}
+						</div>
+					))}
+				</div>
+
+				<Button
+					type='primary'
+					onClick={() => {
+						closePopup();
+						PopupHelpers.runAfterPopupClosed(() => setSelectedEmojiConfig(inPopupEmojiConfig));
+					}}
+				>
+					{APP_TEXT.save}
+				</Button>
+			</Popup>
 		</>
 	);
 }

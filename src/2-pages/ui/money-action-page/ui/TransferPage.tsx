@@ -1,9 +1,10 @@
 import {useEffect, useState} from 'react';
 import {MoneyActionPageHelpers} from '../lib/MoneyActionPage.helpers.ts';
 import {TransferPageProps} from '../types/MoneyActionPage.types.ts';
-import {AmountField, AmountFieldOption, Button, DatePicker, Icon, StatusPopup, Header} from '@shared/ui';
+import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
+import {AmountField, AmountFieldOption, Button, DatePicker, Header, Icon, StatusPopup} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
-import {cn, DateService, isEqual, useResponsive} from '@shared/lib';
+import {cn, DateService, isEqual} from '@shared/lib';
 
 export function TransferPage(props: TransferPageProps) {
 	const {
@@ -20,8 +21,6 @@ export function TransferPage(props: TransferPageProps) {
 		errorTextKey,
 		backPath,
 	} = props;
-
-	const {isMobile} = useResponsive();
 
 	const [fromActiveOption, setFromActiveOption] = useState<AmountFieldOption | null>(null);
 	const [toActiveOption, setToActiveOption] = useState<AmountFieldOption | null>(null);
@@ -73,7 +72,7 @@ export function TransferPage(props: TransferPageProps) {
 		<>
 			<Header title={APP_TEXT.transfer} backPath={backPath} />
 
-			<div className='flex-1 px-4'>
+			<PageWidgetsWrapper>
 				<div className='relative flex flex-col gap-2'>
 					<AmountField
 						value={fromGoalAmount}
@@ -128,7 +127,7 @@ export function TransferPage(props: TransferPageProps) {
 					/>
 				</div>
 
-				<div className='mt-4 flex justify-between px-4 text-sm'>
+				<div className='flex justify-between px-4 text-sm'>
 					<div className='font-medium text-primary-grey'>{APP_TEXT.transactionDate}</div>
 					<DatePicker
 						onChange={(value) => (value ? setDate(value) : undefined)}
@@ -139,9 +138,9 @@ export function TransferPage(props: TransferPageProps) {
 						{new DateService(date).getLocalDateString()}
 					</DatePicker>
 				</div>
-			</div>
+			</PageWidgetsWrapper>
 
-			<div className={cn('p-4', !isMobile && 'w-96 self-center')}>
+			<PageActionButtonWrapper>
 				<Button
 					type='primary'
 					onClick={handleTransferClick}
@@ -150,7 +149,7 @@ export function TransferPage(props: TransferPageProps) {
 				>
 					{APP_TEXT.transfer}
 				</Button>
-			</div>
+			</PageActionButtonWrapper>
 
 			<StatusPopup isOpen={isTransferSuccess} status='success' statusTextKey={successTextKey} />
 			<StatusPopup isOpen={isTransferError} status='error' statusTextKey={errorTextKey} />

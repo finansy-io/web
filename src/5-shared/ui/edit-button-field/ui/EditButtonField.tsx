@@ -91,7 +91,7 @@ export function EditButtonField<Value>(props: EditButtonFieldProps<Value>) {
 				)}
 
 				<Button
-					className='mt-6'
+					className='mt-2'
 					type='primary'
 					onClick={isNotEdit ? closePopup : handleUpdate!}
 					isPending={isPending}

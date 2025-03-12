@@ -25,6 +25,7 @@ export const APP_TEXT = {
 	congratulations: 'Поздравляем',
 	create: 'Create',
 	setImage: 'Set image',
+	portfolioImage: 'Portfolio image',
 	fund: 'Fund',
 	transfer: 'Transfer',
 	withdraw: 'Withdraw',

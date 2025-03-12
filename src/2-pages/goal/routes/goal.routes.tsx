@@ -1,6 +1,6 @@
 import {APP_PATH} from '@shared/constants';
 import {PrivateRoute} from '@shared/lib';
-import {PageFullScreenLayout, AppLayout} from '@pages/ui';
+import {PageFullScreenWrapper, AppLayout} from '@pages/ui';
 import {GoalCreatePage} from '../ui/GoalCreatePage.tsx';
 import {GoalDetailsPage} from '../ui/GoalDetailsPage.tsx';
 import {GoalListPage} from '../ui/GoalListPage.tsx';
@@ -71,7 +71,7 @@ const goalDetailsTransferRoute = {
 export const goalRoutes = [
 	{element: <AppLayout />, children: [goalListRoute]},
 	{
-		element: <PageFullScreenLayout />,
+		element: <PageFullScreenWrapper />,
 		children: [
 			goalDetailsRoute,
 			goalCreateRoute,

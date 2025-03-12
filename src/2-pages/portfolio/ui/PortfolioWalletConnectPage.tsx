@@ -1,9 +1,10 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
 import {portfolioNameMaxLength} from '@widgets/portfolio';
-import {Button, Spinner, StatusPopup, StatusPopupHelpers, TextField, Header} from '@shared/ui';
+import {Button, Header, Spinner, StatusPopup, StatusPopupHelpers, TextField} from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
-import {cn, useResponsive} from '@shared/lib';
+import {cn} from '@shared/lib';
 
 const hints = ['Phantom memes', 'Metamask memes', 'Long term altcoins', 'Cold wallet', 'Flipping'];
 
@@ -21,8 +22,6 @@ export function PortfolioWalletConnectPage() {
 
 	const [isConnectWalletSuccess, setIsConnectWalletSuccess] = useState(false);
 	const [isConnectWalletError] = useState(false);
-
-	const {isMobile} = useResponsive();
 
 	const isConnectWalletPending = false;
 
@@ -45,7 +44,7 @@ export function PortfolioWalletConnectPage() {
 				handleBackButtonClick={activeStepIndex === 0 ? undefined : () => setActiveStepIndex(activeStepIndex - 1)}
 			/>
 
-			<div className='flex-grow px-4'>
+			<PageWidgetsWrapper>
 				{activeStepIndex === 0 && (
 					<>
 						<TextField
@@ -107,9 +106,9 @@ export function PortfolioWalletConnectPage() {
 						placeholder={APP_TEXT.walletAddress}
 					/>
 				)}
-			</div>
+			</PageWidgetsWrapper>
 
-			<div className={cn('p-4', !isMobile && 'w-96 self-center')}>
+			<PageActionButtonWrapper>
 				<Button
 					type='primary'
 					onClick={
@@ -128,7 +127,7 @@ export function PortfolioWalletConnectPage() {
 				>
 					{activeStepIndex === 0 ? APP_TEXT.continue : APP_TEXT.connect}
 				</Button>
-			</div>
+			</PageActionButtonWrapper>
 
 			<StatusPopup
 				isOpen={isConnectWalletSuccess}
@@ -140,23 +139,3 @@ export function PortfolioWalletConnectPage() {
 		</>
 	);
 }
-
-// <Popup {...popupProps}>
-// 				<div className='flex flex-col gap-4 px-4'>
-// 					<div className=''>
-// 						Вы подключаете свои кошельки и получаете{' '}
-// 						<span className='font-medium text-primary-violet'>список всех своих активов в одном месте</span>.
-// 					</div>
-//
-// 					<div className='font-medium'>Важно</div>
-//
-// 					<div>Точка входа в актив считается в момент поступления на кошелек.</div>
-//
-// 					<div className='font-medium'>Пример</div>
-//
-// 					<div>
-// 						5 января 2023 Вы купили BTC на бирже Binance за 20 000$. 5 янв 2024, когда он стоил 100 000$ Вы перевели его
-// 						на кошелек trust wallet и подключили через finansy.io. Ваша цена покупки будет 100 000$.
-// 					</div>
-// 				</div>
-// 			</Popup>

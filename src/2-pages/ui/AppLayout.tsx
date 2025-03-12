@@ -190,7 +190,7 @@ export function AppHeader() {
 			)}
 
 			<Popup {...userPopupProps}>
-				<div className='mb-3 flex flex-col items-center gap-2'>
+				<div className='flex flex-col items-center gap-2'>
 					<div className='flex size-11 items-center justify-center rounded-full bg-secondary-violet text-primary-violet'>
 						<Icon type='user' />
 					</div>
@@ -201,90 +201,86 @@ export function AppHeader() {
 			</Popup>
 
 			<Popup {...portfolioPopupProps}>
-				<div className='flex flex-col gap-4'>
-					<div className='flex justify-between rounded-2xl'>
-						{tabConfigs.map(({name, path}, index) => (
-							<div
-								key={index}
-								className={cn(
-									'cursor-pointer rounded-3xl px-3 py-2 text-sm transition duration-200',
-									dataFilter === path ? 'bg-white' : 'bg-inherit text-primary-grey',
-								)}
-								onClick={() => setDataFilter(path)}
-							>
-								{name}
-							</div>
-						))}
-					</div>
-
-					<Item
-						image={<Icon type='portfolio' withBackground />}
-						name='Total portfolio'
-						description='35 assets'
-						rightName='25 653$'
-						rightDescription={
-							<div className='flex items-center gap-1.5 text-red-600'>
-								<div>-765$</div>
-								<div className='size-0.5 rounded-full bg-red-600' />
-								<div>32.21%</div>
-							</div>
-						}
-					/>
-
-					<Card
-						titleInCard={'Portfolios'}
-						rightTitleInCard={
-							//button styles, чтобы при наведении и клике все было консистентно
-							<div
-								className='-m-1 flex items-center gap-3 p-1'
-								onClick={() => {
-									closePortfolioPopup();
-									PopupHelpers.runAfterPopupClosed(() => navigate(APP_PATH.portfolio.create));
-								}}
-							>
-								<Icon type='plus' className='size-4' />
-							</div>
-						}
-					>
-						<List
-							items={portfolioConfigs}
-							renderItem={(portfolioConfig) => {
-								const checked = portfolioConfig.name === 'Portfolio 1';
-								return (
-									<Item
-										{...portfolioConfig}
-										imageIcon={checked && <Icon type='check' />}
-										className={checked && 'bg-light-grey'}
-									/>
-								);
-							}}
-						/>
-					</Card>
+				<div className='flex justify-between rounded-2xl'>
+					{tabConfigs.map(({name, path}, index) => (
+						<div
+							key={index}
+							className={cn(
+								'cursor-pointer rounded-3xl px-3 py-2 text-sm transition duration-200',
+								dataFilter === path ? 'bg-white' : 'bg-inherit text-primary-grey',
+							)}
+							onClick={() => setDataFilter(path)}
+						>
+							{name}
+						</div>
+					))}
 				</div>
+
+				<Item
+					image={<Icon type='portfolio' withBackground />}
+					name='Total portfolio'
+					description='35 assets'
+					rightName='25 653$'
+					rightDescription={
+						<div className='flex items-center gap-1.5 text-red-600'>
+							<div>-765$</div>
+							<div className='size-0.5 rounded-full bg-red-600' />
+							<div>32.21%</div>
+						</div>
+					}
+				/>
+
+				<Card
+					titleInCard={'Portfolios'}
+					rightTitleInCard={
+						//button styles, чтобы при наведении и клике все было консистентно
+						<div
+							className='-m-1 flex items-center gap-3 p-1'
+							onClick={() => {
+								closePortfolioPopup();
+								PopupHelpers.runAfterPopupClosed(() => navigate(APP_PATH.portfolio.create));
+							}}
+						>
+							<Icon type='plus' className='size-4' />
+						</div>
+					}
+				>
+					<List
+						items={portfolioConfigs}
+						renderItem={(portfolioConfig) => {
+							const checked = portfolioConfig.name === 'Portfolio 1';
+							return (
+								<Item
+									{...portfolioConfig}
+									imageIcon={checked && <Icon type='check' />}
+									className={checked && 'bg-light-grey'}
+								/>
+							);
+						}}
+					/>
+				</Card>
 			</Popup>
 
 			<Popup {...portfolioSettingsPopupProps}>
-				<div className='flex flex-col gap-4'>
-					{settingsConfigs.map((settingsConfig, index) => (
-						<List
-							key={index}
-							items={settingsConfig}
-							renderItem={(settingConfig) => (
-								<Item
-									{...settingConfig}
-									onClick={
-										settingConfig.onClick
-											? ({navigate}) => {
-													closePortfolioSettingsPopup();
-													PopupHelpers.runAfterPopupClosed(() => settingConfig.onClick!({navigate}));
-											  }
-											: undefined
-									}
-								/>
-							)}
-						/>
-					))}
-				</div>
+				{settingsConfigs.map((settingsConfig, index) => (
+					<List
+						key={index}
+						items={settingsConfig}
+						renderItem={(settingConfig) => (
+							<Item
+								{...settingConfig}
+								onClick={
+									settingConfig.onClick
+										? ({navigate}) => {
+												closePortfolioSettingsPopup();
+												PopupHelpers.runAfterPopupClosed(() => settingConfig.onClick!({navigate}));
+										  }
+										: undefined
+								}
+							/>
+						)}
+					/>
+				))}
 			</Popup>
 		</header>
 	);

@@ -29,11 +29,15 @@ export function Drawer(props: DrawerProps) {
 					style={{maxWidth: '496px', margin: '0 auto'}}
 					className='fixed bottom-0 left-0 right-0 max-h-[94vh] rounded-t-[28px] bg-light-grey outline-none transition-all duration-200'
 				>
-					<div className='mx-auto flex h-full w-full max-w-md flex-col p-2'>
-						<div className='mx-auto mb-4 h-[3px] w-10 rounded-full bg-[#BAC3CA]' />
-						<Title className={cn(title ? 'mb-4 text-center text-lg font-medium' : 'hidden')}>{title}</Title>
-						{/* Контейнер для cкролла */}
-						<div className='custom-scrollbar max-h-[84vh] flex-1 overflow-y-auto p-2 pt-0'>{children}</div>
+					<div className='mx-auto flex h-full w-full max-w-md flex-col gap-4 p-2'>
+						<div className='mx-auto h-[3px] w-10 rounded-full bg-[#BAC3CA]' />
+
+						<Title className={cn(title ? 'text-center text-lg font-medium' : 'hidden')}>{title}</Title>
+
+						{/* Wrapper for scroll and flex-gap */}
+						<div className='custom-scrollbar flex max-h-[84vh] flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0'>
+							{children}
+						</div>
 					</div>
 				</Content>
 			</Portal>

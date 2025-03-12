@@ -72,7 +72,7 @@ export function TextEditButton(props: TextEditButtonProps) {
 				/>
 
 				<Button
-					className='mt-6'
+					className='mt-2'
 					type='primary'
 					onClick={handleUpdate}
 					isPending={isPending}

@@ -88,11 +88,11 @@ export function GoalProgress() {
 						Мы гордимся Вами, желаем дальнейших успехов и пусть впереди будет еще больше целей, которые Вы легко
 						достигнете!
 					</div>
-
-					<Button className='mt-4' type='primary' onClick={closePopup}>
-						{APP_TEXT.kaif}
-					</Button>
 				</div>
+
+				<Button className='mt-2' type='primary' onClick={closePopup}>
+					{APP_TEXT.kaif}
+				</Button>
 			</Popup>
 		</Card>
 	);
