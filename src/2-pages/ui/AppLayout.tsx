@@ -286,9 +286,9 @@ export function AppHeader() {
 	);
 }
 
-const appTabConfigs: {name: string; path: string}[] = [
-	{name: APP_TEXT.portfolios, path: APP_PATH.portfolio.list},
-	{name: APP_TEXT.goals, path: APP_PATH.goal.list},
+const appTabConfigs: {label: string; path: string}[] = [
+	{label: APP_TEXT.portfolios, path: APP_PATH.portfolio.list},
+	{label: APP_TEXT.goals, path: APP_PATH.goal.list},
 ];
 
 export function AppTabs() {
@@ -297,7 +297,7 @@ export function AppTabs() {
 
 	return (
 		<div className='flex gap-2 px-4 pb-4'>
-			{appTabConfigs.map(({name, path}, index) => (
+			{appTabConfigs.map(({label, path}, index) => (
 				<div
 					key={index}
 					className={cn(
@@ -306,7 +306,7 @@ export function AppTabs() {
 					)}
 					onClick={() => navigate(path)}
 				>
-					{name}
+					{label}
 				</div>
 			))}
 		</div>

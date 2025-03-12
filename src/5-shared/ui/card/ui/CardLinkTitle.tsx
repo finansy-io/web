@@ -2,7 +2,7 @@ import {useNavigate} from 'react-router-dom';
 import {type LinkTitleInCardProps} from '../types/Card.types';
 import {Icon} from '@shared/ui';
 
-export function LinkTitleInCard(props: LinkTitleInCardProps) {
+export function CardLinkTitle(props: LinkTitleInCardProps) {
 	const {title, path} = props;
 
 	const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import {GoalDelete, GoalEditDetails, GoalImageField} from '@widgets/goal';
+import {GoalDelete, GoalEdit, GoalImageField} from '@widgets/goal';
 import {PageWidgetsWrapper} from '@pages/ui';
 import {Header} from '@shared/ui';
 import {APP_PATH} from '@shared/constants';
@@ -13,7 +13,7 @@ export default function GoalEditPage() {
 				<Header backPath={APP_PATH.goal.getItemDetailsPath(id)} />
 			</GoalImageField>
 			<PageWidgetsWrapper withTopSpace>
-				<GoalEditDetails />
+				<GoalEdit />
 				<GoalDelete />
 			</PageWidgetsWrapper>
 		</>

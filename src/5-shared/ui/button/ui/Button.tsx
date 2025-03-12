@@ -42,7 +42,7 @@ export function Button(props: Props) {
 
 	const [displayBoxShadow, setDisplayBoxShadow] = useState(true);
 
-	const {isDesktop} = useResponsive();
+	const {isMobile, isTablet, isDesktop} = useResponsive();
 
 	useKeyClick({
 		key: 'Enter',
@@ -51,7 +51,7 @@ export function Button(props: Props) {
 			onClick({navigate});
 			setDisplayBoxShadow(true);
 		},
-		disabled: disabled || disabledPrimaryButtonEnterClick || type !== 'primary' || !isDesktop,
+		disabled: disabled || disabledPrimaryButtonEnterClick || type !== 'primary' || isMobile || isTablet,
 		deps: [],
 	});
 

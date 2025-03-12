@@ -3,9 +3,7 @@ import {TextFieldProps} from '../props/TextField.types.ts';
 import {cn, useKeyClick, useResponsive} from '@shared/lib';
 import {Icon} from '@shared/ui';
 
-// SearchField
-//  более высокоуровневый компонент, вынести отдельно
-//  when isSearch and focused, pin search-input to the top with animation + cancel text at right
+//  when isSearch and focused, pin search-input to the top with animation + cancel text at right (separate component?)
 
 export function TextField(props: TextFieldProps) {
 	const {

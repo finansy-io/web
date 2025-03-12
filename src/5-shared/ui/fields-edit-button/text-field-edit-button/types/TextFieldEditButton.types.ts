@@ -1,15 +1,12 @@
 import {ReactNode} from 'react';
 
-export type TextEditButtonProps = {
+export type TextFieldEditButtonProps = {
 	children: ReactNode;
 	entityName: string;
 	maxLength?: number;
 	initialValue: string;
-	value: string;
-	onChange: (value: string) => void;
-	handleUpdate: () => void;
+	handleUpdate: (value: string) => void;
 	isLoading?: boolean;
-	isChanged: boolean;
 	isPending: boolean;
 	isSuccess: boolean;
 	isError: boolean;

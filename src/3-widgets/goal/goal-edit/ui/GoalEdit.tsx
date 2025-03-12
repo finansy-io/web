@@ -2,11 +2,11 @@ import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {goalNameMaxLength} from '@widgets/goal/util';
 import {GoalModel} from '@entities/goal';
-import {Card, EditButtonField, LoadingWrapper, StatusPopup} from '@shared/ui';
+import {Card, EditButtonField, LoadingWrapper, StatusPopup, TextFieldEditButton} from '@shared/ui';
 import {APP_TEXT, CURRENCY, CURRENCY_CODE, CURRENCY_OPTIONS, CURRENCY_SYMBOL} from '@shared/constants';
 import {DateService, isNull, TextHelpers} from '@shared/lib';
 
-export function GoalEditDetails() {
+export function GoalEdit() {
 	const {id} = useParams();
 
 	const {goalDetails, isGoalDetailsLoading} = GoalModel.useItemDetails({id});
@@ -53,6 +53,22 @@ export function GoalEditDetails() {
 		});
 	}
 
+	function handleNameUpdate(newName: string) {
+		if (!id) return;
+
+		updateGoal({
+			params: {
+				id,
+			},
+			payload: {
+				name: newName,
+				targetAmount: Number(targetAmount),
+				deadline: deadline ? new DateService(deadline).getPayloadDateFormat() : undefined,
+				currency,
+			},
+		});
+	}
+
 	const editButtonCommonProps = {
 		isPending: isUpdateGoalPending,
 		isSuccess: isUpdateGoalSuccess,
@@ -88,19 +104,15 @@ export function GoalEditDetails() {
 						<div className='font-medium text-primary-grey'>{APP_TEXT.name}</div>
 					</LoadingWrapper>
 					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
-						<EditButtonField<string>
-							type='text'
-							title={APP_TEXT.name}
-							initialValue={initialState.name}
-							value={name}
-							onChange={setName}
-							isChanged={goalDetails?.name !== name.trim()}
-							isRequired
-							maxLength={goalNameMaxLength}
+						<TextFieldEditButton
 							{...editButtonCommonProps}
+							entityName={APP_TEXT.name}
+							maxLength={goalNameMaxLength}
+							initialValue={goalDetails?.name}
+							handleUpdate={handleNameUpdate}
 						>
 							{goalDetails?.name}
-						</EditButtonField>
+						</TextFieldEditButton>
 					</LoadingWrapper>
 				</div>
 

@@ -1,7 +1,7 @@
 import {useParams} from 'react-router-dom';
 import {GoalModel} from '@entities/goal';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
-import {Card, Item, LinkTitleInCard, List} from '@shared/ui';
+import {Card, Item, CardLinkTitle, List} from '@shared/ui';
 import {DateService, TransactionHelpers} from '@shared/lib';
 
 export function GoalTransactions() {
@@ -16,7 +16,7 @@ export function GoalTransactions() {
 		<Card
 			titleInCard={
 				!isLoading && !goalTransactions?.length ? null : (
-					<LinkTitleInCard title={APP_TEXT.transactions} path={APP_PATH.goal.getItemTransactionsPath(id)} />
+					<CardLinkTitle title={APP_TEXT.transactions} path={APP_PATH.goal.getItemTransactionsPath(id)} />
 				)
 			}
 			isLoading={isLoading}

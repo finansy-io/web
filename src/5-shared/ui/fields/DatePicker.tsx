@@ -1,4 +1,4 @@
-import {Button, DateField, Icon, Popup, usePopupState} from '@shared/ui/index.ts';
+import {Button, DateField, Icon, Popup, usePopupState} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 import {ReactNode, useState} from 'react';
 import {DateService, isNull} from '@shared/lib';
