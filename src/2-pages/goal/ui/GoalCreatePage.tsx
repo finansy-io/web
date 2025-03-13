@@ -16,8 +16,6 @@ import {
 import {APP_PATH, APP_TEXT, CURRENCY, CURRENCY_OPTIONS} from '@shared/constants';
 import {cn, DateService} from '@shared/lib';
 
-const hints = ['Mustang', 'House', 'Guitar', 'Maldives', 'TV', 'iPhone', 'Education'];
-
 export default function GoalCreatePage() {
 	const [activeStepIndex, setActiveStepIndex] = useState(0);
 
@@ -62,7 +60,11 @@ export default function GoalCreatePage() {
 					<GoalImageField isCreatePage>{PageHeader}</GoalImageField>
 					<PageWidgetsWrapper withTopSpace>
 						<TextField value={name} onChange={setName} maxLength={goalNameMaxLength} placeholder={APP_TEXT.goalName} />
-						<TextFieldHints visible={!name} hints={hints} setTextFieldValue={setName} />
+						<TextFieldHints
+							visible={!name}
+							hints={['Mustang', 'House', 'Guitar', 'Maldives', 'TV', 'iPhone', 'Education']}
+							setTextFieldValue={setName}
+						/>
 					</PageWidgetsWrapper>
 				</>
 			)}

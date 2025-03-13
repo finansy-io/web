@@ -16,8 +16,6 @@ import {
 import {cn} from '@shared/lib';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 
-const hints = ['Memecoins', 'Altcoins', 'AI agents', 'Long term', 'Flipping'];
-
 const emojiConfigs = [
 	{value: '🦄'},
 	{value: '🕊'},
@@ -89,7 +87,11 @@ export function PortfolioCreatePage() {
 					placeholder={APP_TEXT.portfolioName}
 				/>
 
-				<TextFieldHints visible={!name} hints={hints} setTextFieldValue={setName} />
+				<TextFieldHints
+					visible={!name}
+					hints={['Memecoins', 'Altcoins', 'AI agents', 'Long term', 'Flipping']}
+					setTextFieldValue={setName}
+				/>
 			</PageWidgetsWrapper>
 
 			<PageActionButtonWrapper>

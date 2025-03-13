@@ -5,8 +5,6 @@ import {portfolioNameMaxLength} from '@widgets/portfolio';
 import {Button, Header, PopupHelpers, Spinner, StatusPopup, TextField, TextFieldHints} from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 
-const hints = ['Phantom memes', 'Metamask memes', 'Long term altcoins', 'Cold wallet', 'Flipping'];
-
 /**
  * Фронтовая логика валидации: 1 get запрос на лист с фильтром name={name}
  * */
@@ -65,7 +63,11 @@ export function PortfolioWalletConnectPage() {
 						maxLength={portfolioNameMaxLength}
 						placeholder={APP_TEXT.walletName}
 					/>
-					<TextFieldHints visible={!name} hints={hints} setTextFieldValue={setName} />
+					<TextFieldHints
+						visible={!name}
+						hints={['Phantom memes', 'Metamask memes', 'Long term altcoins', 'Cold wallet', 'Flipping']}
+						setTextFieldValue={setName}
+					/>
 				</PageWidgetsWrapper>
 			)}
 
