@@ -1,9 +1,8 @@
 import {useParams} from 'react-router-dom';
 import {getButtonConfigs} from '../config/GoalImage.config.tsx';
 import {GoalModel} from '@entities/goal';
-import {Button, Header, LoadingWrapper} from '@shared/ui';
-import {APP_PATH, APP_TEXT, CURRENCY_SYMBOL} from '@shared/constants';
-import {TextHelpers} from '@shared/lib';
+import {Button, Header, LoadingWrapper, TotalBalance} from '@shared/ui';
+import {APP_PATH, APP_TEXT} from '@shared/constants';
 
 export function GoalImage() {
 	const {id} = useParams();
@@ -22,11 +21,7 @@ export function GoalImage() {
 					{goalDetails && (
 						<>
 							<div className='text text-sm'>{goalDetails.name}</div>
-							<div className='text-3xl font-[600]'>
-								{`${TextHelpers.getAmount(goalDetails.balance.amount)} ${
-									CURRENCY_SYMBOL[goalDetails.balance.currency]
-								}`}
-							</div>
+							<TotalBalance totalBalance={goalDetails.balance} />
 						</>
 					)}
 				</LoadingWrapper>

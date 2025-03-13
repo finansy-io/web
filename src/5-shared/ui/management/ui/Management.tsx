@@ -1,7 +1,6 @@
 import {ManagementProps} from '../type/Management.types.ts';
-import {Button, Card, List, LoadingWrapper} from '@shared/ui';
-import {cn, TextHelpers} from '@shared/lib';
-import {CURRENCY_SYMBOL} from '@shared/constants';
+import {Button, Card, List, LoadingWrapper, TotalBalance} from '@shared/ui';
+import {cn} from '@shared/lib';
 
 export function Management<ListItem>(props: ManagementProps<ListItem>) {
 	const {
@@ -25,23 +24,7 @@ export function Management<ListItem>(props: ManagementProps<ListItem>) {
 				<div className='flex flex-col gap-1.5 p-4'>
 					<div className='flex items-center justify-between'>
 						<LoadingWrapper isLoading={isLoading} className='mb-1.5 mt-2 h-6 w-32'>
-							{totalBalance &&
-								(() => {
-									const [int, float] = TextHelpers.getAmount(totalBalance.amount).split('.');
-									return (
-										<div>
-											<span className='text-3xl font-[600]'>
-												<span>{int}</span>
-												{!float && <span> {CURRENCY_SYMBOL[totalBalance.currency]}</span>}
-											</span>
-											{float && (
-												<span className='text-xl font-bold'>
-													.{float} {CURRENCY_SYMBOL[totalBalance.currency]}
-												</span>
-											)}
-										</div>
-									);
-								})()}
+							<TotalBalance totalBalance={totalBalance} />
 						</LoadingWrapper>
 
 						{rightNode && (

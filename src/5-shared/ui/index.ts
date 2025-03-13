@@ -53,5 +53,7 @@ export * from './header/ui/Header.tsx';
 
 export * from './list/ui/List.tsx';
 
+export * from './total-balance/ui/TotalBalance.tsx';
+
 export * from './to-remove edit-button-field/ui/EditButtonField.tsx';
 export * from './to-remove preload-skeleton (loading wrapper)';
