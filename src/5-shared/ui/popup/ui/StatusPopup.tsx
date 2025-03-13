@@ -9,21 +9,19 @@ export function StatusPopup({isSuccess, isError, statusTextKey, statusTextProps}
 	const [isOpen, setIsOpen] = useState(false);
 	const [progress, setProgress] = useState(0);
 	const [isDismissible, setIsDismissible] = useState(false);
-	const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+	// Обновляем состояние попапа, когда изменяется статус
 	useEffect(() => {
 		setIsOpen(isSuccess || isError);
 	}, [isSuccess, isError]);
 
-	// Запускаем логику показа и скрытия попапа
+	// Логика показа и скрытия попапа с задержкой
 	useEffect(() => {
 		if (!isOpen) return;
 
-		setIsPopupOpen(true);
-
 		const timeoutId = setTimeout(() => {
 			setIsDismissible(true);
-			setIsPopupOpen(false);
+			setIsOpen(false);
 		}, statusDuration + 200);
 
 		return () => clearTimeout(timeoutId);
@@ -50,26 +48,19 @@ export function StatusPopup({isSuccess, isError, statusTextKey, statusTextProps}
 		return () => cancelAnimationFrame(animationFrameId);
 	}, [isOpen]);
 
-	const statusKeyWithSuffix = `${statusTextKey}${isSuccess ? 'Success' : 'Error'}` as const;
-
 	return (
 		<Drawer
-			isOpen={isPopupOpen}
+			isOpen={isOpen}
 			setIsOpen={setIsOpen}
-			isDismissible={isDismissible}
-			progressSheet={
-				<div className='mx-auto h-[3px] w-10 rounded-full bg-secondary-grey'>
-					<div className='h-full rounded-full bg-[#BAC3CA]' style={{width: `${progress}%`}} />
-				</div>
-			}
-		>
-			<div className='flex flex-col items-center'>
+			title={STATUS_POPUP_TEXT[`${statusTextKey}${isSuccess ? 'Success' : 'Error'}`](statusTextProps)}
+			statusDismissible={isDismissible}
+			statusProgress={progress}
+			statusIcon={
 				<Icon
 					type={isSuccess ? 'success' : 'error'}
-					className={cn('mb-4 mt-2 size-10', isSuccess && 'text-primary-violet', isError && 'text-error-red')}
+					className={cn('mt-2 size-10', isSuccess && 'text-primary-violet', isError && 'text-error-red')}
 				/>
-				<div className='text-lg font-medium'>{STATUS_POPUP_TEXT[statusKeyWithSuffix](statusTextProps)}</div>
-			</div>
-		</Drawer>
+			}
+		/>
 	);
 }
