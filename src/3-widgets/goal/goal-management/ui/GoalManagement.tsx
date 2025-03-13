@@ -69,7 +69,6 @@ export function GoalManagement() {
 			fetchNextListPage={fetchNextGoalsPage}
 			hasNextListPage={hasNextGoalsPage}
 			emptyListTextKey='goals'
-			isButtonsSpaceBetween
 		/>
 	);
 }

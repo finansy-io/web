@@ -17,7 +17,5 @@ export type ManagementProps<ListItem> = {
 	hasNextListPage: boolean;
 	fetchNextListPage: () => void;
 	emptyListTextKey: EmptyTextKey;
-	isButtonsSpaceBetween?: boolean;
 	rightNode?: ReactNode;
-	// settingsConfigs?: ManagementSettingsConfigs;
 };

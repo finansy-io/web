@@ -15,7 +15,6 @@ export function Management<ListItem>(props: ManagementProps<ListItem>) {
 		hasNextListPage,
 		fetchNextListPage,
 		emptyListTextKey,
-		isButtonsSpaceBetween,
 	} = props;
 
 	return (
@@ -41,7 +40,7 @@ export function Management<ListItem>(props: ManagementProps<ListItem>) {
 						</div>
 					</div>
 
-					<div className={cn('flex', isButtonsSpaceBetween ? 'justify-between' : 'gap-2')}>
+					<div className={cn('flex', buttonConfigs[0].type === 'circle' ? 'justify-between' : 'gap-2')}>
 						{buttonConfigs.map(({name, ...restButtonConfig}, index) => (
 							<Button key={index} isLoading={isLoading} {...restButtonConfig}>
 								{name}
