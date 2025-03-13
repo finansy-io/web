@@ -158,7 +158,7 @@ export function EmojiField({selectedEmojiConfig, setSelectedEmojiConfig}: EmojiF
 				<div className='relative flex size-20 items-center justify-center rounded-full bg-secondary-violet text-2xl'>
 					<span>{selectedEmojiConfig.value}</span>
 				</div>
-				<div className='text-sm text-primary-violet'>{APP_TEXT.setImage}</div>
+				<div className='text-sm text-primary-violet'>{APP_TEXT.setEmoji}</div>
 			</div>
 
 			<Popup {...popupProps} title={APP_TEXT.portfolioImage}>

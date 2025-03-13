@@ -24,7 +24,7 @@ export const APP_TEXT = {
 	eshe: 'Еще',
 	congratulations: 'Поздравляем',
 	create: 'Create',
-	setImage: 'Set image',
+	setEmoji: 'Set emoji',
 	portfolioImage: 'Portfolio image',
 	fund: 'Fund',
 	transfer: 'Transfer',
