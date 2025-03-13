@@ -1,9 +1,12 @@
-import {ReactNode} from 'react';
+import {ReactNode, ReactElement} from 'react';
 
 export type DrawerProps = {
-	title?: ReactNode;
-	children: ReactNode;
 	isOpen: boolean;
-	setIsOpen: (isOpen: boolean) => void;
-	onClose?: () => void;
+	setIsOpen: (open: boolean) => void;
+	title?: string;
+	children: ReactNode;
+	isDismissible?: boolean;
+	progressSheet?: ReactElement;
 };
+
+export type PopupProps = Omit<DrawerProps, 'isDismissible' | 'progressSheet'>;

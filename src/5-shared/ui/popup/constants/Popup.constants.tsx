@@ -1,3 +1,5 @@
+export const statusDuration = 1500;
+
 export const STATUS_POPUP_TEXT = {
 	createAccountSuccess: () => (
 		<>

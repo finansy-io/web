@@ -2,17 +2,7 @@ import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
 import {portfolioNameMaxLength} from '@widgets/portfolio';
-import {
-	Button,
-	Header,
-	Popup,
-	PopupHelpers,
-	Spinner,
-	StatusPopup,
-	StatusPopupHelpers,
-	TextField,
-	usePopupState,
-} from '@shared/ui';
+import {Button, Header, Popup, PopupHelpers, Spinner, StatusPopup, TextField, usePopupState} from '@shared/ui';
 import {cn} from '@shared/lib';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 
@@ -110,7 +100,7 @@ export function PortfolioCreatePage() {
 					type='primary'
 					onClick={() => {
 						setIsCreatePortfolioSuccess(true);
-						StatusPopupHelpers.runAfterStatusPopup(() => navigate(APP_PATH.portfolio.list));
+						PopupHelpers.runAfterStatusPopupClosed(() => navigate(APP_PATH.portfolio.list));
 					}}
 					disabled={!name || isNameValidationPending || isNameValidationError}
 					isPending={isCreatePortfolioPending}

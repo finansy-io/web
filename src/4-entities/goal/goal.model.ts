@@ -4,7 +4,7 @@ import {GoalApi} from './goal.api.ts';
 import {type MutationProps, type Props} from './goal.types.ts';
 import {AuthModel} from '@entities/auth';
 import {APP_PATH, TRANSACTION_TYPE} from '@shared/constants';
-import {StatusPopupHelpers} from '@shared/ui';
+import {PopupHelpers} from '@shared/ui';
 import {isUndefined} from '@shared/lib';
 
 export class GoalModel {
@@ -156,13 +156,13 @@ export class GoalModel {
 					return;
 				}
 
-				StatusPopupHelpers.runAfterStatusPopup(() => {
+				PopupHelpers.runAfterStatusPopupClosed(() => {
 					navigate(APP_PATH.goal.getItemDetailsPath(goal.id));
 				});
 			},
 
 			onError: () => {
-				StatusPopupHelpers.runAfterStatusPopup(() => {
+				PopupHelpers.runAfterStatusPopupClosed(() => {
 					navigate(APP_PATH.goal.list);
 				});
 			},
@@ -192,7 +192,7 @@ export class GoalModel {
 			},
 
 			onSuccess: (data: any) => {
-				StatusPopupHelpers.runAfterStatusPopup(() => {
+				PopupHelpers.runAfterStatusPopupClosed(() => {
 					void queryClient.invalidateQueries({queryKey: [`goal-details-${data.id}`]});
 				});
 			},
@@ -223,7 +223,7 @@ export class GoalModel {
 			},
 
 			onSuccess: () => {
-				StatusPopupHelpers.runAfterStatusPopup(() => {
+				PopupHelpers.runAfterStatusPopupClosed(() => {
 					void queryClient.invalidateQueries({queryKey: ['goal-items']});
 					navigate(APP_PATH.goal.list);
 				});
@@ -261,7 +261,7 @@ export class GoalModel {
 					return;
 				}
 
-				StatusPopupHelpers.runAfterStatusPopup(() => {
+				PopupHelpers.runAfterStatusPopupClosed(() => {
 					navigate(isFromListPage ? APP_PATH.goal.list : APP_PATH.goal.getItemDetailsPath(goal.id));
 				});
 			},
@@ -298,7 +298,7 @@ export class GoalModel {
 					return;
 				}
 
-				StatusPopupHelpers.runAfterStatusPopup(() => {
+				PopupHelpers.runAfterStatusPopupClosed(() => {
 					navigate(isFromListPage ? APP_PATH.goal.list : APP_PATH.goal.getItemDetailsPath(goal.id));
 				});
 			},
@@ -335,7 +335,7 @@ export class GoalModel {
 					return;
 				}
 
-				StatusPopupHelpers.runAfterStatusPopup(() => {
+				PopupHelpers.runAfterStatusPopupClosed(() => {
 					navigate(isFromListPage ? APP_PATH.goal.list : APP_PATH.goal.getItemDetailsPath(goal.id));
 				});
 			},

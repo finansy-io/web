@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
 import {portfolioNameMaxLength} from '@widgets/portfolio';
-import {Button, Header, Spinner, StatusPopup, StatusPopupHelpers, TextField} from '@shared/ui';
+import {Button, Header, Spinner, StatusPopup, PopupHelpers, TextField} from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 import {cn} from '@shared/lib';
 
@@ -116,7 +116,7 @@ export function PortfolioWalletConnectPage() {
 							? () => setActiveStepIndex(activeStepIndex + 1)
 							: () => {
 									setIsConnectWalletSuccess(true);
-									StatusPopupHelpers.runAfterStatusPopup(() => navigate(APP_PATH.portfolio.list));
+									PopupHelpers.runAfterStatusPopupClosed(() => navigate(APP_PATH.portfolio.list));
 							  }
 					}
 					disabled={

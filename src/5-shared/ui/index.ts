@@ -14,18 +14,16 @@ export * from './spinner/ui/Spinner.tsx';
 export * from './card/ui/Card.tsx';
 export * from './card/ui/CardLinkTitle.tsx';
 
-export * from './status-popup/ui/StatusPopup.tsx';
-export * from './status-popup/constants/StatusPopup.constants.tsx';
-export * from './status-popup/helpers/StatusPopup.helpers.ts';
-export * from './status-popup/types/StatusPopup.types.ts';
+export * from './popup/constants/Popup.constants.tsx';
+export * from './popup/helpers/Popup.helpers.ts';
+export * from './popup/hooks/usePopupState.ts';
+export {type StatusTextKey} from './popup/types/StatusPopup.types.ts';
+export * from './popup/ui/Popup.tsx';
+export * from './popup/ui/StatusPopup.tsx';
 
 export * from './loading-wrapper/ui/LoadingWrapper.tsx';
 
 export * from './icon/ui/Icon.tsx';
-
-export * from './popup/ui/Popup.tsx';
-export * from './popup/helpers/popup.helpers.ts';
-export * from './popup/hooks/usePopupState.ts';
 
 export * from './item/ui/Item.tsx';
 export * from './item/ui/LoadingItem.tsx';

@@ -1,4 +1,4 @@
-import {STATUS_POPUP_TEXT} from '@shared/ui';
+import {STATUS_POPUP_TEXT} from '../constants/Popup.constants.tsx';
 
 export type StatusTextKey = Extract<keyof typeof STATUS_POPUP_TEXT, string> extends `${infer Action}${
 	| 'Success'
@@ -10,5 +10,5 @@ export type StatusPopupProps = {
 	isSuccess: boolean;
 	isError: boolean;
 	statusTextKey: StatusTextKey;
-	statusTextProps?: any;
+	statusTextProps?: Record<string, unknown>;
 };

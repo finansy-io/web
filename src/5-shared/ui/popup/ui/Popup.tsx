@@ -1,3 +1,6 @@
+import {type PopupProps} from '../types/Popup.types.ts';
 import {Drawer} from './Drawer.tsx';
 
-export const Popup = Drawer;
+export function Popup(props: PopupProps) {
+	return <Drawer {...props} />;
+}
