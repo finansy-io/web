@@ -2,7 +2,17 @@ import {useState} from 'react';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
 import {GoalImageField, goalNameMaxLength} from '@widgets/goal';
 import {GoalModel} from '@entities/goal';
-import {AmountField, Button, DatePicker, Header, SelectWithSearch, StatusPopup, TextField} from '@shared/ui';
+import {
+	AmountField,
+	Button,
+	DatePicker,
+	Header,
+	SelectWithSearch,
+	StatusPopup,
+	TextField,
+	AmountFieldDetails,
+	TextFieldHints,
+} from '@shared/ui';
 import {APP_PATH, APP_TEXT, CURRENCY, CURRENCY_OPTIONS} from '@shared/constants';
 import {cn, DateService} from '@shared/lib';
 
@@ -52,20 +62,7 @@ export default function GoalCreatePage() {
 					<GoalImageField isCreatePage>{PageHeader}</GoalImageField>
 					<PageWidgetsWrapper withTopSpace>
 						<TextField value={name} onChange={setName} maxLength={goalNameMaxLength} placeholder={APP_TEXT.goalName} />
-						{!name && (
-							<div className='flex flex-wrap gap-2'>
-								{hints.map((hint, index) => (
-									<Button
-										type='secondary'
-										key={hint + index}
-										className='w-fit px-2.5 py-1.5 text-sm'
-										onClick={() => setName(hint)}
-									>
-										{hint}
-									</Button>
-								))}
-							</div>
-						)}
+						<TextFieldHints visible={!name} hints={hints} setTextFieldValue={setName} />
 					</PageWidgetsWrapper>
 				</>
 			)}
@@ -93,17 +90,19 @@ export default function GoalCreatePage() {
 							currency: currency as CURRENCY,
 						}}
 					/>
-					<div className='mt-4 flex justify-between px-4 text-sm'>
-						<div className='font-medium text-primary-grey'>{APP_TEXT.deadline}</div>
-						<DatePicker
-							onChange={setDeadline}
-							value={deadline}
-							minDate={new DateService().getTomorrowDate()}
-							title={APP_TEXT.deadline}
-						>
-							{deadline ? new DateService(deadline).getLocalDateString() : APP_TEXT.addDeadline}
-						</DatePicker>
-					</div>
+					<AmountFieldDetails
+						label={APP_TEXT.deadline}
+						field={
+							<DatePicker
+								onChange={setDeadline}
+								value={deadline}
+								minDate={new DateService().getTomorrowDate()}
+								title={APP_TEXT.deadline}
+							>
+								{deadline ? new DateService(deadline).getLocalDateString() : APP_TEXT.addDeadline}
+							</DatePicker>
+						}
+					/>
 				</PageWidgetsWrapper>
 			)}
 

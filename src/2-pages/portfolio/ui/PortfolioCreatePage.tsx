@@ -2,7 +2,17 @@ import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
 import {portfolioNameMaxLength} from '@widgets/portfolio';
-import {Button, Header, Popup, PopupHelpers, Spinner, StatusPopup, TextField, usePopupState} from '@shared/ui';
+import {
+	Button,
+	Header,
+	Popup,
+	PopupHelpers,
+	Spinner,
+	StatusPopup,
+	TextField,
+	TextFieldHints,
+	usePopupState,
+} from '@shared/ui';
 import {cn} from '@shared/lib';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 
@@ -79,20 +89,7 @@ export function PortfolioCreatePage() {
 					placeholder={APP_TEXT.portfolioName}
 				/>
 
-				{!name && (
-					<div className='flex flex-wrap gap-2'>
-						{hints.map((hint, index) => (
-							<Button
-								type='secondary'
-								key={index}
-								className='w-fit px-2.5 py-1.5 text-sm'
-								onClick={() => setName(hint)}
-							>
-								{hint}
-							</Button>
-						))}
-					</div>
-				)}
+				<TextFieldHints visible={!name} hints={hints} setTextFieldValue={setName} />
 			</PageWidgetsWrapper>
 
 			<PageActionButtonWrapper>

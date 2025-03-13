@@ -14,3 +14,9 @@ export type TextFieldProps = {
 	errorText?: ReactNode;
 	disabledEnterClick?: boolean;
 };
+
+export type TextFieldHintsProps = {
+	hints: string[];
+	setTextFieldValue: (value: string) => void;
+	visible: boolean;
+};

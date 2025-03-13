@@ -1,5 +1,5 @@
 import {MouseEvent, useEffect, useRef, useState} from 'react';
-import {TextFieldProps} from '../props/TextField.types.ts';
+import {TextFieldProps} from '../types/TextField.types.ts';
 import {cn, useKeyClick, useResponsive} from '@shared/lib';
 import {Icon} from '@shared/ui';
 

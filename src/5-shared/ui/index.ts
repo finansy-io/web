@@ -1,10 +1,18 @@
 export * from './fields/text-field/ui/TextField.tsx';
+export * from './fields/text-field/ui/TextFieldHints.tsx';
+
 export * from './fields/upload-field/useUploadField.tsx';
+
 export * from './fields/amount-field/ui/AmountField.tsx';
+export * from './fields/amount-field/ui/AmountFieldDetails.tsx';
 export * from './fields/amount-field/types/AmountField.types.ts';
+
 export * from './fields/date-field/ui/DateField.tsx';
+
 export * from './fields/select-in-card/ui/SelectInCard.tsx';
+
 export * from './fields/select-with-search/ui/SelectWithSearch.tsx';
+
 export * from './fields/DatePicker.tsx';
 
 export * from './fields-edit-button/text-field-edit-button/ui/TextFieldEditButton.tsx';

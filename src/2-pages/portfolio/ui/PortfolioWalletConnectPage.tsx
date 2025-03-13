@@ -2,9 +2,8 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
 import {portfolioNameMaxLength} from '@widgets/portfolio';
-import {Button, Header, Spinner, StatusPopup, PopupHelpers, TextField} from '@shared/ui';
+import {Button, Header, PopupHelpers, Spinner, StatusPopup, TextField, TextFieldHints} from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
-import {cn} from '@shared/lib';
 
 const hints = ['Phantom memes', 'Metamask memes', 'Long term altcoins', 'Cold wallet', 'Flipping'];
 
@@ -44,47 +43,34 @@ export function PortfolioWalletConnectPage() {
 				handleBackButtonClick={activeStepIndex === 0 ? undefined : () => setActiveStepIndex(activeStepIndex - 1)}
 			/>
 
-			<PageWidgetsWrapper>
-				{activeStepIndex === 0 && (
-					<>
-						<TextField
-							value={name}
-							onChange={setName}
-							description={
-								<>
-									{isNameValidationPending && (
-										<div className='flex items-center gap-1'>
-											<div className='text-primary-grey'>
-												<Spinner className='size-3 text-primary-grey' />
-											</div>
-											<div>Checking name</div>
+			{activeStepIndex === 0 && (
+				<PageWidgetsWrapper>
+					<TextField
+						value={name}
+						onChange={setName}
+						description={
+							<>
+								{isNameValidationPending && (
+									<div className='flex items-center gap-1'>
+										<div className='text-primary-grey'>
+											<Spinner className='size-3 text-primary-grey' />
 										</div>
-									)}
-									{isNameValidationSuccess && <div className='text-primary-violet'>Name is available</div>}
-								</>
-							}
-							errorText={isNameValidationError && 'Such name already exists'}
-							maxLength={portfolioNameMaxLength}
-							placeholder={APP_TEXT.walletName}
-						/>
-						{!name && (
-							<div className={cn('my-4 flex flex-wrap gap-2')}>
-								{hints.map((hint, index) => (
-									<Button
-										type='secondary'
-										key={index}
-										className='w-fit px-2.5 py-1.5 text-sm'
-										onClick={() => setName(hint)}
-									>
-										{hint}
-									</Button>
-								))}
-							</div>
-						)}
-					</>
-				)}
+										<div>Checking name</div>
+									</div>
+								)}
+								{isNameValidationSuccess && <div className='text-primary-violet'>Name is available</div>}
+							</>
+						}
+						errorText={isNameValidationError && 'Such name already exists'}
+						maxLength={portfolioNameMaxLength}
+						placeholder={APP_TEXT.walletName}
+					/>
+					<TextFieldHints visible={!name} hints={hints} setTextFieldValue={setName} />
+				</PageWidgetsWrapper>
+			)}
 
-				{activeStepIndex === 1 && (
+			{activeStepIndex === 1 && (
+				<PageWidgetsWrapper>
 					<TextField
 						value={address}
 						onChange={setAddress}
@@ -105,8 +91,8 @@ export function PortfolioWalletConnectPage() {
 						errorText={isAddressValidationError && (true ? 'Network is unsupported' : 'Such address already connected')}
 						placeholder={APP_TEXT.walletAddress}
 					/>
-				)}
-			</PageWidgetsWrapper>
+				</PageWidgetsWrapper>
+			)}
 
 			<PageActionButtonWrapper>
 				<Button

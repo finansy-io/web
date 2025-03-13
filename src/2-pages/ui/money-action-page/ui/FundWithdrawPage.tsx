@@ -2,7 +2,15 @@ import {useEffect, useState} from 'react';
 import {type FundWithdrawPageProps} from '../types/MoneyActionPage.types.ts';
 import {MoneyActionPageHelpers} from '../lib/MoneyActionPage.helpers.ts';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
-import {AmountField, type AmountFieldOption, Button, DatePicker, Header, StatusPopup} from '@shared/ui';
+import {
+	AmountField,
+	AmountFieldDetails,
+	type AmountFieldOption,
+	Button,
+	DatePicker,
+	Header,
+	StatusPopup,
+} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 import {DateService, TextHelpers} from '@shared/lib';
 
@@ -69,17 +77,19 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 					withPlus={actionType === 'fund'}
 					withMinus={actionType === 'withdraw'}
 				/>
-				<div className='flex justify-between px-4 text-sm'>
-					<div className='font-medium text-primary-grey'>{APP_TEXT.transactionDate}</div>
-					<DatePicker
-						onChange={(value) => (value ? setDate(value) : undefined)}
-						value={date}
-						title={APP_TEXT.transactionDate}
-						withReset={false}
-					>
-						{new DateService(date).getLocalDateString()}
-					</DatePicker>
-				</div>
+				<AmountFieldDetails
+					label={APP_TEXT.transactionDate}
+					field={
+						<DatePicker
+							onChange={(value) => (value ? setDate(value) : undefined)}
+							value={date}
+							title={APP_TEXT.transactionDate}
+							withReset={false}
+						>
+							{new DateService(date).getLocalDateString()}
+						</DatePicker>
+					}
+				/>
 			</PageWidgetsWrapper>
 
 			<PageActionButtonWrapper>
