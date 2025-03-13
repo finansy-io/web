@@ -106,7 +106,7 @@ export default function SignupPage() {
 				</div>
 			</AuthLayout>
 
-			<StatusPopup isOpen={isSignupSuccess} status='success' statusTextKey='createAccountSuccess' />
+			<StatusPopup isSuccess={isSignupSuccess} isError={isSignupError} statusTextKey='createAccount' />
 		</>
 	);
 }

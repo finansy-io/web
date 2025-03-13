@@ -120,12 +120,10 @@ export function PortfolioCreatePage() {
 			</PageActionButtonWrapper>
 
 			<StatusPopup
-				isOpen={isCreatePortfolioSuccess}
-				status='success'
-				statusTextKey='createPortfolioSuccess'
-				statusTextProps={{name}}
+				isSuccess={isCreatePortfolioSuccess}
+				isError={isCreatePortfolioError}
+				statusTextKey='createPortfolio'
 			/>
-			<StatusPopup isOpen={isCreatePortfolioError} status='error' statusTextKey='createPortfolioError' />
 		</>
 	);
 }

@@ -119,12 +119,11 @@ export default function GoalCreatePage() {
 			</PageActionButtonWrapper>
 
 			<StatusPopup
-				isOpen={isCreateGoalSuccess}
-				status='success'
-				statusTextKey='createGoalSuccess'
+				isSuccess={isCreateGoalSuccess}
+				isError={isCreateGoalError}
+				statusTextKey='createGoal'
 				statusTextProps={{name}}
 			/>
-			<StatusPopup isOpen={isCreateGoalError} status='error' statusTextKey='createGoalError' statusTextProps={{name}} />
 		</>
 	);
 }

@@ -32,8 +32,7 @@ export default function GoalDetailsTransferPage() {
 			isTransferPending={isTransferGoalPending}
 			isTransferSuccess={isTransferGoalSuccess}
 			isTransferError={isTransferGoalError}
-			successTextKey='transferGoalSuccess'
-			errorTextKey='transferGoalError'
+			statusTextKey='transferGoal'
 			backPath={APP_PATH.goal.getItemDetailsPath(id)}
 		/>
 	);

@@ -5,5 +5,5 @@ export type DrawerProps = {
 	children: ReactNode;
 	isOpen: boolean;
 	setIsOpen: (isOpen: boolean) => void;
-	handleClose?: () => void;
+	onClose?: () => void;
 };

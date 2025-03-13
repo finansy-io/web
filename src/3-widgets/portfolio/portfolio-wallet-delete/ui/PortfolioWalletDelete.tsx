@@ -23,8 +23,7 @@ export function PortfolioWalletDelete() {
 			isError={isError}
 			actionButtonText={APP_TEXT.disconnect}
 			handleDelete={handleDelete}
-			successStatusTextKey='disconnectWalletSuccess'
-			errorStatusTextKey='disconnectWalletError'
+			statusTextKey='disconnectWallet'
 		>
 			{`${APP_TEXT.disconnect} ${APP_TEXT.wallet.toLowerCase()}`}
 		</DeleteItem>

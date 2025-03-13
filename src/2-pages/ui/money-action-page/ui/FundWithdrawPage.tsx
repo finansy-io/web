@@ -18,8 +18,7 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 		isActionPending,
 		isActionSuccess,
 		isActionError,
-		successTextKey,
-		errorTextKey,
+		statusTextKey,
 		backPath,
 	} = props;
 
@@ -96,21 +95,13 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 
 			{activeOption && (
 				<StatusPopup
-					isOpen={isActionSuccess}
-					status='success'
-					statusTextKey={successTextKey}
+					isSuccess={isActionSuccess}
+					isError={isActionError}
+					statusTextKey={statusTextKey}
 					statusTextProps={{
 						name: activeOption.name,
 						amount: `${TextHelpers.getAmountWithCurrency(amount, activeOption.currency)}`,
 					}}
-				/>
-			)}
-			{activeOption && (
-				<StatusPopup
-					isOpen={isActionError}
-					status='error'
-					statusTextKey={errorTextKey}
-					statusTextProps={{name: activeOption.name}}
 				/>
 			)}
 		</>

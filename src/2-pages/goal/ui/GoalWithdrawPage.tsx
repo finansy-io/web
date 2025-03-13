@@ -20,8 +20,7 @@ export default function GoalWithdrawPage() {
 			isActionPending={isWithdrawGoalPending}
 			isActionSuccess={isWithdrawGoalSuccess}
 			isActionError={isWithdrawGoalError}
-			successTextKey='withdrawGoalSuccess'
-			errorTextKey='withdrawGoalError'
+			statusTextKey='withdrawGoal'
 			backPath={APP_PATH.goal.list}
 		/>
 	);

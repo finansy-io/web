@@ -24,9 +24,7 @@ export function PortfolioWalletEdit() {
 	return (
 		<>
 			<Details details={details} detailsFields={getDetailsFields(detailsFieldProps)} isLoading={isLoading} />
-
-			<StatusPopup isOpen={isSuccess} status='success' statusTextKey='updateWalletSuccess' />
-			<StatusPopup isOpen={isError} status='error' statusTextKey='updateWalletError' />
+			<StatusPopup isSuccess={isSuccess} isError={isError} statusTextKey='updateWallet' />
 		</>
 	);
 }

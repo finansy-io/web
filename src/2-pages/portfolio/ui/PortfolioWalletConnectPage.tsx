@@ -129,13 +129,7 @@ export function PortfolioWalletConnectPage() {
 				</Button>
 			</PageActionButtonWrapper>
 
-			<StatusPopup
-				isOpen={isConnectWalletSuccess}
-				status='success'
-				statusTextKey='connectWalletSuccess'
-				statusTextProps={{name}}
-			/>
-			<StatusPopup isOpen={isConnectWalletError} status='error' statusTextKey='connectWalletError' />
+			<StatusPopup isSuccess={isConnectWalletSuccess} isError={isConnectWalletError} statusTextKey='connectWallet' />
 		</>
 	);
 }

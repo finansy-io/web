@@ -18,8 +18,7 @@ export default function GoalFundPage() {
 			isActionPending={isFundGoalPending}
 			isActionSuccess={isFundGoalSuccess}
 			isActionError={isFundGoalError}
-			successTextKey='fundGoalSuccess'
-			errorTextKey='fundGoalError'
+			statusTextKey='fundGoal'
 			backPath={APP_PATH.goal.list}
 		/>
 	);

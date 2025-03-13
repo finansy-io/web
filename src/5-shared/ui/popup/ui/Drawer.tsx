@@ -5,14 +5,14 @@ import {cn} from '@shared/lib';
 const {Root, Trigger, Close, Overlay, Content, Portal, Title} = VaulDrawer;
 
 export function Drawer(props: DrawerProps) {
-	const {title, children, isOpen, setIsOpen, handleClose} = props;
+	const {title, children, isOpen, setIsOpen, onClose} = props;
 
 	return (
 		<Root
 			open={isOpen}
 			onOpenChange={(open) => {
 				setIsOpen(open);
-				if (!open) handleClose?.();
+				if (!open) onClose?.();
 			}}
 		>
 			<Trigger asChild>

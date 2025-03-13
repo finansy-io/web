@@ -4,6 +4,7 @@ export const STATUS_POPUP_TEXT = {
 			Your account has been <span className='text-primary-violet'>successfully</span> created
 		</>
 	),
+	createAccountError: () => 'Your account has not been created',
 
 	createGoalSuccess: ({name}: any = {}) => `Вы создали цель "${name}"`,
 	createGoalError: ({name}: any = {}) => `Some errors occur during creating goal "${name}"`,

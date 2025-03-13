@@ -17,8 +17,7 @@ export function TransferPage(props: TransferPageProps) {
 		isTransferPending,
 		isTransferSuccess,
 		isTransferError,
-		successTextKey,
-		errorTextKey,
+		statusTextKey,
 		backPath,
 	} = props;
 
@@ -151,8 +150,7 @@ export function TransferPage(props: TransferPageProps) {
 				</Button>
 			</PageActionButtonWrapper>
 
-			<StatusPopup isOpen={isTransferSuccess} status='success' statusTextKey={successTextKey} />
-			<StatusPopup isOpen={isTransferError} status='error' statusTextKey={errorTextKey} />
+			<StatusPopup isSuccess={isTransferSuccess} isError={isTransferError} statusTextKey={statusTextKey} />
 		</>
 	);
 }

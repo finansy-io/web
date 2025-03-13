@@ -15,8 +15,7 @@ export function DeleteItem(props: DeleteItemProps) {
 		isSuccess,
 		isError,
 		children,
-		successStatusTextKey,
-		errorStatusTextKey,
+		statusTextKey,
 	} = props;
 
 	const {popupProps, openPopup, closePopup} = usePopupState();
@@ -51,8 +50,7 @@ export function DeleteItem(props: DeleteItemProps) {
 				</div>
 			</Popup>
 
-			<StatusPopup isOpen={isSuccess} status='success' statusTextKey={successStatusTextKey} />
-			<StatusPopup isOpen={isError} status='error' statusTextKey={errorStatusTextKey} />
+			<StatusPopup isSuccess={isSuccess} isError={isError} statusTextKey={statusTextKey} />
 		</>
 	);
 }

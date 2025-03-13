@@ -1,5 +1,5 @@
 import {CURRENCY} from '@shared/constants';
-import type {StatusTextKey} from '@shared/ui';
+import {type StatusTextKey} from '@shared/ui';
 
 type ActionProps = {
 	params: {id: number | string};
@@ -31,8 +31,7 @@ type CommonProps = {
 	fetchNextOptions?: () => void;
 	hasNextOptions?: boolean;
 	isItemDataLoading: boolean;
-	successTextKey: StatusTextKey;
-	errorTextKey: StatusTextKey;
+	statusTextKey: StatusTextKey;
 	backPath: string;
 };
 

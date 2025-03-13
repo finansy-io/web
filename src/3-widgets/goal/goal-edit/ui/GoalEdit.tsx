@@ -194,8 +194,7 @@ export function GoalEdit() {
 				</div>
 			</Card>
 
-			<StatusPopup isOpen={isUpdateGoalSuccess} status='success' statusTextKey='updateGoalSuccess' />
-			<StatusPopup isOpen={isUpdateGoalError} status='error' statusTextKey='updateGoalError' />
+			<StatusPopup isSuccess={isUpdateGoalSuccess} isError={isUpdateGoalError} statusTextKey='updateGoal' />
 		</>
 	);
 }

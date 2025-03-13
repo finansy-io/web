@@ -11,6 +11,5 @@ export type DeleteItemProps = {
 	actionButtonText?: string;
 	handleDelete: () => void;
 	children: ReactNode;
-	successStatusTextKey: StatusTextKey;
-	errorStatusTextKey: StatusTextKey;
+	statusTextKey: StatusTextKey;
 };

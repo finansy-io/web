@@ -1,6 +1,6 @@
 import {Drawer as VaulDrawer} from 'vaul';
 import {useEffect, useState} from 'react';
-import {statusDuration} from '@shared/ui/status-popup/helpers/StatusPopup.helpers.ts';
+import {statusDuration} from '../helpers/StatusPopup.helpers.ts';
 import {StatusPopupProps} from '../types/StatusPopup.types.ts';
 import {STATUS_POPUP_TEXT} from '../constants/StatusPopup.constants.tsx';
 import {Icon} from '@shared/ui';
@@ -9,12 +9,19 @@ import {cn} from '@shared/lib';
 const {Root, Overlay, Content, Portal, Title} = VaulDrawer;
 
 export function StatusPopup(props: StatusPopupProps) {
-	const {isOpen, status, statusTextKey, statusTextProps} = props;
+	const {isSuccess, isError, statusTextKey, statusTextProps} = props;
+
+	const [isOpen, setIsOpen] = useState(false);
 
 	const [progress, setProgress] = useState(0);
 	const [isDismissible, setIsDismissible] = useState(false);
 	const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+	useEffect(() => {
+		setIsOpen(isSuccess || isError);
+	}, [isSuccess, isError]);
+
+	// progress sheet
 	useEffect(() => {
 		if (!isOpen) return;
 
@@ -52,6 +59,8 @@ export function StatusPopup(props: StatusPopupProps) {
 		};
 	}, [isOpen]);
 
+	const statusKeyWithSuffix = `${statusTextKey}${isSuccess ? 'Success' : 'Error'}` as const;
+
 	return (
 		<Root open={isPopupOpen} dismissible={isDismissible}>
 			<Portal>
@@ -71,15 +80,11 @@ export function StatusPopup(props: StatusPopupProps) {
 						</div>
 
 						<Icon
-							type={status}
-							className={cn(
-								'mb-4 mt-2 size-10',
-								status === 'success' && 'text-primary-violet',
-								status === 'error' && 'text-error-red',
-							)}
+							type={isSuccess ? 'success' : 'error'}
+							className={cn('mb-4 mt-2 size-10', isSuccess && 'text-primary-violet', isError && 'text-error-red')}
 						/>
 
-						<div className='text-lg font-medium'>{STATUS_POPUP_TEXT[statusTextKey](statusTextProps)}</div>
+						<div className='text-lg font-medium'>{STATUS_POPUP_TEXT[statusKeyWithSuffix](statusTextProps)}</div>
 					</div>
 				</Content>
 			</Portal>
