@@ -21,32 +21,33 @@ export function Management<ListItem>(props: ManagementProps<ListItem>) {
 	return (
 		<>
 			<Card>
-				<div className='flex flex-col gap-1.5 p-4'>
-					<div className='flex items-center justify-between'>
-						<LoadingWrapper isLoading={isLoading} className='mb-1.5 mt-2 h-6 w-32'>
-							<TotalBalance totalBalance={totalBalance} />
-						</LoadingWrapper>
-
-						{rightNode && (
-							<LoadingWrapper isLoading={isLoading} className='my-0.5 h-4 w-10'>
-								{rightNode}
+				<div className='flex flex-col gap-4 p-4 pb-2'>
+					<div className='flex flex-col gap-1.5'>
+						<div className='flex items-center justify-between'>
+							<LoadingWrapper isLoading={isLoading} className='mb-1.5 mt-2 h-6 w-32'>
+								<TotalBalance totalBalance={totalBalance} />
 							</LoadingWrapper>
-						)}
+
+							{rightNode && (
+								<LoadingWrapper isLoading={isLoading} className='my-0.5 h-4 w-10'>
+									{rightNode}
+								</LoadingWrapper>
+							)}
+						</div>
+						<div className='text-sm font-light text-primary-grey'>
+							<LoadingWrapper isLoading={isLoading} className='mb-1 h-[14px] w-16'>
+								{totalBalanceDescription}
+							</LoadingWrapper>
+						</div>
 					</div>
 
-					<div className='text-sm font-light text-primary-grey'>
-						<LoadingWrapper isLoading={isLoading} className='mb-1 h-[14px] w-16'>
-							{totalBalanceDescription}
-						</LoadingWrapper>
+					<div className={cn('flex', isButtonsSpaceBetween ? 'justify-between' : 'gap-2')}>
+						{buttonConfigs.map(({name, ...restButtonConfig}, index) => (
+							<Button key={index} isLoading={isLoading} {...restButtonConfig}>
+								{name}
+							</Button>
+						))}
 					</div>
-				</div>
-
-				<div className={cn('flex px-4 pb-2', isButtonsSpaceBetween ? 'justify-between' : 'gap-2')}>
-					{buttonConfigs.map(({name, ...restButtonConfig}, index) => (
-						<Button key={index} isLoading={isLoading} {...restButtonConfig}>
-							{name}
-						</Button>
-					))}
 				</div>
 
 				<div className='flex justify-between px-4 py-3 text-sm font-medium text-primary-grey'>
