@@ -1,7 +1,7 @@
 import {Fragment} from 'react';
 import {getEmptyText} from '../lib/List.lib.ts';
 import {ListProps} from '../types/List.types.ts';
-import {Card, Item, LoadingItem} from '@shared/ui';
+import {Item, LoadingItem} from '@shared/ui';
 import {InfiniteScroll} from '@shared/lib';
 import {APP_TEXT} from '@shared/constants';
 
@@ -21,7 +21,7 @@ export function List<R>(props: ListProps<R>) {
 	}
 
 	return (
-		<Card>
+		<div className='rounded-2xl bg-white'>
 			<InfiniteScroll fetchNextPage={fetchNextPage} hasNextPage={hasNextPage}>
 				{items?.length ? (
 					items.map((row, index) => <Fragment key={index}>{renderItem(row, index)}</Fragment>)
@@ -33,6 +33,6 @@ export function List<R>(props: ListProps<R>) {
 					/>
 				)}
 			</InfiniteScroll>
-		</Card>
+		</div>
 	);
 }
