@@ -5,6 +5,7 @@ export type DrawerProps = {
 	setIsOpen: (open: boolean) => void;
 	title?: ReactNode;
 	children?: ReactNode;
+	direction?: 'left' | 'bottom';
 
 	statusDismissible?: boolean;
 	statusProgress?: number;

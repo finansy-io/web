@@ -14,6 +14,7 @@ import {
 } from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 import {cn, useResponsive} from '@shared/lib';
+import {Drawer} from '@shared/ui/popup/ui/Drawer.tsx';
 
 export function AppLayout() {
 	const isDesktop = false;
@@ -154,7 +155,7 @@ export function AppHeader() {
 
 	const {isDesktop} = useResponsive();
 
-	const [isCopied, setIsCopied] = useState(false);
+	// const [isCopied, setIsCopied] = useState(false);
 
 	return (
 		<header role='app-header' className='flex items-center justify-between p-4'>
@@ -192,18 +193,18 @@ export function AppHeader() {
 				</>
 			)}
 
-			<Popup {...userPopupProps}>
-				<div className='flex flex-col items-center gap-2'>
+			<Drawer {...userPopupProps} direction='left'>
+				<div className='mb-2 flex flex-col items-center gap-2'>
 					<div className='flex size-14 items-center justify-center rounded-full bg-secondary-violet text-primary-violet'>
 						<Icon type='user' />
 					</div>
-					<div className='text-2xl font-medium'>{authUser?.email}</div>
-					<div className='flex items-center gap-1.5'>
-						<div className='text-sm text-primary-grey'>@usernickname</div>
-						<div onClick={() => setIsCopied(true)}>
-							<Icon type={isCopied ? 'check' : 'copy'} className='size-[14px] text-primary-grey' />
-						</div>
-					</div>
+					<div className='text-2xl font-medium'>{authUser?.email === 'toxa' ? 'Anton Maksimow' : authUser?.email}</div>
+					{/*<div className='flex items-center gap-1.5'>*/}
+					{/*	<div className='text-sm text-primary-grey'>@usernickname</div>*/}
+					{/*	<div onClick={() => setIsCopied(true)}>*/}
+					{/*		<Icon type={isCopied ? 'check' : 'copy'} className='size-[14px] text-primary-grey' />*/}
+					{/*	</div>*/}
+					{/*</div>*/}
 				</div>
 
 				<Item
@@ -251,7 +252,68 @@ export function AppHeader() {
 						isSingle
 					/>
 				</div>
-			</Popup>
+			</Drawer>
+
+			{/*<Popup {...userPopupProps}>*/}
+			{/*	<div className='flex flex-col items-center gap-2'>*/}
+			{/*		<div className='flex size-14 items-center justify-center rounded-full bg-secondary-violet text-primary-violet'>*/}
+			{/*			<Icon type='user' />*/}
+			{/*		</div>*/}
+			{/*		<div className='text-2xl font-medium'>{authUser?.email}</div>*/}
+			{/*		<div className='flex items-center gap-1.5'>*/}
+			{/*			<div className='text-sm text-primary-grey'>@usernickname</div>*/}
+			{/*			<div onClick={() => setIsCopied(true)}>*/}
+			{/*				<Icon type={isCopied ? 'check' : 'copy'} className='size-[14px] text-primary-grey' />*/}
+			{/*			</div>*/}
+			{/*		</div>*/}
+			{/*	</div>*/}
+
+			{/*	<Item*/}
+			{/*		image={<Icon type='createGoal' className='size-5' />}*/}
+			{/*		name={'Subscription'}*/}
+			{/*		description={'Kрипто-карась'}*/}
+			{/*		// rightName={<div className='font-light text-primary-grey'>Крипто-карась</div>}*/}
+			{/*		rightName={*/}
+			{/*			<Button type='secondary' onClick={() => {}}>*/}
+			{/*				Upgrade*/}
+			{/*			</Button>*/}
+			{/*		}*/}
+			{/*		isSingle*/}
+			{/*	/>*/}
+
+			{/*	<div className='rounded-2xl bg-white'>*/}
+			{/*		<Item*/}
+			{/*			image={<Icon type='language' className='size-5' />}*/}
+			{/*			name={'Language'}*/}
+			{/*			rightName={<div className='font-light text-primary-grey'>English</div>}*/}
+			{/*			onClick={() => {}}*/}
+			{/*		/>*/}
+			{/*		<Item*/}
+			{/*			image={<Icon type='theme' className='-mr-1' />}*/}
+			{/*			name={'Theme'}*/}
+			{/*			rightName={<div className='font-light text-primary-grey'>Light</div>}*/}
+			{/*			onClick={() => {}}*/}
+			{/*		/>*/}
+			{/*		<Item*/}
+			{/*			image={<Icon type='currency' />}*/}
+			{/*			name={'Currency'}*/}
+			{/*			rightName={<div className='font-light text-primary-grey'>USD</div>}*/}
+			{/*			onClick={() => {}}*/}
+			{/*		/>*/}
+			{/*	</div>*/}
+
+			{/*	<div className='rounded-2xl bg-white'>*/}
+			{/*		<Item image={<Icon type='support' className='size-5' />} name={'Get help'} onClick={() => {}} />*/}
+			{/*		<Item image={<Icon type='feedback' className='size-5' />} name={'Give feedback'} onClick={() => {}} />*/}
+			{/*		<Item*/}
+			{/*			image={<Icon type='logout' className='size-5 text-red-600' />}*/}
+			{/*			name={APP_TEXT.logOut}*/}
+			{/*			className='text-red-600'*/}
+			{/*			onClick={() => logout()}*/}
+			{/*			isSingle*/}
+			{/*		/>*/}
+			{/*	</div>*/}
+			{/*</Popup>*/}
 
 			<Popup {...portfolioPopupProps}>
 				<div className='flex justify-between rounded-2xl'>
