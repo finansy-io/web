@@ -242,8 +242,7 @@ export function AppHeader() {
 				</div>
 
 				<div className='rounded-2xl bg-white'>
-					<Item image={<Icon type='support' className='size-5' />} name={'Get help'} onClick={() => {}} />
-					<Item image={<Icon type='feedback' className='size-5' />} name={'Give feedback'} onClick={() => {}} />
+					<Item image={<Icon type='contactUs' className='size-5' />} name={'Contact us'} onClick={() => {}} />
 					<Item
 						image={<Icon type='logout' className='size-5 text-red-600' />}
 						name={APP_TEXT.logOut}

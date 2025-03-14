@@ -86,7 +86,7 @@ export const ICON_MAP = {
 	theme: ThemeIcon,
 	language: FaEarthAmericas,
 	support: BsFillQuestionCircleFill,
-	feedback: FeedbackIcon,
+	contactUs: ContactUsIcon,
 } as const;
 
 export type IconType = keyof typeof ICON_MAP;
@@ -141,7 +141,7 @@ function CurrencyIcon() {
 	);
 }
 
-function FeedbackIcon() {
+function ContactUsIcon() {
 	// Подбираем коэффициент масштабирования, чтобы визуальный размер совпадал с LanguageIcon
 	const scale = 1.43; // настроить по необходимости
 	return (

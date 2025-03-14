@@ -108,7 +108,8 @@ export function Button(props: Props) {
 			<button
 				{...buttonProps}
 				className={gcn(
-					'w-fit rounded-3xl bg-secondary-violet px-4 py-[10px] text-sm text-primary-violet hover:brightness-95',
+					'w-fit rounded-3xl bg-secondary-violet px-4 py-[10px] text-sm text-primary-violet',
+					isDesktop && 'hover:brightness-95',
 					secondaryWithPrimaryStyles && 'w-full py-3 text-base',
 					disabled && 'cursor-not-allowed bg-secondary-violet/20 text-white',
 				)}
