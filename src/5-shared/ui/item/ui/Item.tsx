@@ -43,7 +43,7 @@ export function Item(props: ItemProps) {
 				{leftNode && <div className='mr-4 flex flex-shrink-0 items-center'>{leftNode}</div>}
 
 				{image && (
-					<div className='relative my-0.5 mr-4 flex flex-shrink-0 items-center'>
+					<div className='relative my-0.5 mr-4 flex-shrink-0'>
 						{image}
 
 						{imageIcon && (

@@ -44,11 +44,10 @@ export function AppLayout() {
 
 const settingsConfigs = [
 	[
-		// {
-		// 	name: 'Connected wallets',
-		// 	image: <Icon type='wallet' withBackground />,
-		// 	rightNode: 'switch',
-		// },
+		{
+			name: 'Connected wallets',
+			image: <Icon type='wallet' withBackground />,
+		},
 		{
 			name: 'Hide balance',
 			image: <Icon type='hide' className='text-[18px]' withBackground />,
@@ -61,11 +60,11 @@ const settingsConfigs = [
 		},
 	],
 	[
-		// {
-		// 	name: APP_TEXT.share + ' ' + APP_TEXT.portfolio.toLowerCase(),
-		// 	image: <Icon type='share' withBackground />,
-		// 	onClick: () => console.log('delete portfolio'),
-		// },
+		{
+			name: APP_TEXT.share + ' ' + APP_TEXT.portfolio.toLowerCase(),
+			image: <Icon type='share' withBackground />,
+			onClick: () => console.log('delete portfolio'),
+		},
 		{
 			name: APP_TEXT.edit + ' ' + APP_TEXT.portfolio.toLowerCase(),
 			image: <Icon type='edit' withBackground />,
@@ -206,9 +205,14 @@ export function AppHeader() {
 
 				<Item
 					image={<Icon type='createGoal' className='size-5' />}
-					name={'Tariff plan'}
-					rightName={<div className='font-light text-primary-grey'>Крипто-карась</div>}
-					onClick={() => {}}
+					name={'Subscription'}
+					description={'Kрипто-карась'}
+					// rightName={<div className='font-light text-primary-grey'>Крипто-карась</div>}
+					rightName={
+						<Button type='secondary' onClick={() => {}}>
+							Upgrade
+						</Button>
+					}
 					isSingle
 				/>
 
