@@ -12,6 +12,7 @@ export type ManagementProps<ListItem> = {
 	totalBalanceDescription: ReactNode;
 	buttonConfigs: ButtonConfig[];
 	listTitle: ReactNode;
+	listRightTitle?: ReactNode;
 	listItems: ListItem[] | null;
 	renderListItem: (item: ListItem) => ReactNode;
 	hasNextListPage: boolean;

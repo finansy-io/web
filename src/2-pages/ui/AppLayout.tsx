@@ -45,10 +45,9 @@ export function AppLayout() {
 const settingsConfigs = [
 	[
 		// {
-		// 	name: APP_TEXT.currency,
-		// 	description: 'Coming soon...',
-		// 	image: <Icon type='dollar' className='text-[17px]' withBackground />,
-		// 	rightNode: <div className='text-primary-grey'>{CURRENCY_CODE[CURRENCY.USD]}</div>,
+		// 	name: 'Connected wallets',
+		// 	image: <Icon type='wallet' withBackground />,
+		// 	rightNode: 'switch',
 		// },
 		{
 			name: 'Hide balance',
@@ -153,6 +152,8 @@ export function AppHeader() {
 
 	const {isDesktop} = useResponsive();
 
+	const [isCopied, setIsCopied] = useState(false);
+
 	return (
 		<header role='app-header' className='flex items-center justify-between p-4'>
 			<Button type='circle' onClick={openUserPopup} icon={<Icon type='user' />} className='w-fit' />
@@ -191,13 +192,58 @@ export function AppHeader() {
 
 			<Popup {...userPopupProps}>
 				<div className='flex flex-col items-center gap-2'>
-					<div className='flex size-11 items-center justify-center rounded-full bg-secondary-violet text-primary-violet'>
+					<div className='flex size-14 items-center justify-center rounded-full bg-secondary-violet text-primary-violet'>
 						<Icon type='user' />
 					</div>
-					<div>{authUser?.email}</div>
+					<div className='text-2xl font-medium'>{authUser?.email}</div>
+					<div className='flex items-center gap-1.5'>
+						<div className='text-sm text-primary-grey'>@usernickname</div>
+						<div onClick={() => setIsCopied(true)}>
+							<Icon type={isCopied ? 'check' : 'copy'} className='size-[14px] text-primary-grey' />
+						</div>
+					</div>
 				</div>
 
-				<Item image={<Icon type='logout' withBackground />} name={APP_TEXT.logOut} onClick={() => logout()} />
+				<Item
+					image={<Icon type='createGoal' className='size-5' />}
+					name={'Tariff plan'}
+					rightName={<div className='font-light text-primary-grey'>Крипто-карась</div>}
+					onClick={() => {}}
+					isSingle
+				/>
+
+				<div className='rounded-2xl bg-white'>
+					<Item
+						image={<Icon type='language' className='size-5' />}
+						name={'Language'}
+						rightName={<div className='font-light text-primary-grey'>English</div>}
+						onClick={() => {}}
+					/>
+					<Item
+						image={<Icon type='theme' className='-mr-1' />}
+						name={'Theme'}
+						rightName={<div className='font-light text-primary-grey'>Light</div>}
+						onClick={() => {}}
+					/>
+					<Item
+						image={<Icon type='currency' />}
+						name={'Currency'}
+						rightName={<div className='font-light text-primary-grey'>USD</div>}
+						onClick={() => {}}
+					/>
+				</div>
+
+				<div className='rounded-2xl bg-white'>
+					<Item image={<Icon type='support' className='size-5' />} name={'Get help'} onClick={() => {}} />
+					<Item image={<Icon type='feedback' className='size-5' />} name={'Give feedback'} onClick={() => {}} />
+					<Item
+						image={<Icon type='logout' className='size-5 text-red-600' />}
+						name={APP_TEXT.logOut}
+						className='text-red-600'
+						onClick={() => logout()}
+						isSingle
+					/>
+				</div>
 			</Popup>
 
 			<Popup {...portfolioPopupProps}>

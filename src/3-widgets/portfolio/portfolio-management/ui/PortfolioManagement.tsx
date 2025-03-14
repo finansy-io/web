@@ -55,6 +55,12 @@ export function PortfolioManagement() {
 				}
 				buttonConfigs={buttonConfigs}
 				listTitle={APP_TEXT.assets}
+				listRightTitle={
+					<div className='flex items-center gap-2'>
+						<Icon type='selectChevron' className='size-2.5' />
+						<div className='font-normal'>By holdings</div>
+					</div>
+				}
 				listItems={goals}
 				renderListItem={(goal) => (
 					<Item

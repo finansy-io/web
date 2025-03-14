@@ -10,6 +10,7 @@ export function Management<ListItem>(props: ManagementProps<ListItem>) {
 		rightNode,
 		buttonConfigs,
 		listTitle,
+		listRightTitle,
 		listItems,
 		renderListItem,
 		hasNextListPage,
@@ -52,6 +53,7 @@ export function Management<ListItem>(props: ManagementProps<ListItem>) {
 				<div className='flex justify-between px-4 py-3 text-sm font-medium text-primary-grey'>
 					<LoadingWrapper isLoading={isLoading} className='my-0.5 h-4 w-10'>
 						<div>{listTitle}</div>
+						{listRightTitle && <div>{listRightTitle}</div>}
 					</LoadingWrapper>
 				</div>
 

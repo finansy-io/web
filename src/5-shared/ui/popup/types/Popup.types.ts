@@ -11,4 +11,6 @@ export type DrawerProps = {
 	statusIcon?: ReactElement;
 };
 
-export type PopupProps = Omit<DrawerProps, 'isDismissible' | 'progressSheet' | 'children'> & {children: ReactNode};
+export type PopupProps = Omit<DrawerProps, 'statusDismissible' | 'statusProgress' | 'statusIcon' | 'children'> & {
+	children: ReactNode;
+};
