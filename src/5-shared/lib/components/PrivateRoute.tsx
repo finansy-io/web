@@ -3,6 +3,7 @@ import {Navigate} from 'react-router-dom';
 import {AuthApi} from '@entities/auth';
 import {APP_PATH} from '@shared/constants';
 import {setupInterceptor} from '@shared/api';
+import {SuspenseWrapper} from '@shared/lib';
 
 /**
  * Abstraction for DRY logic across routes
@@ -18,5 +19,5 @@ export function PrivateRoute({page}: {page: ReactNode}) {
 		setupInterceptor(AuthApi.getToken()!);
 	}
 
-	return page;
+	return <SuspenseWrapper>{page}</SuspenseWrapper>;
 }

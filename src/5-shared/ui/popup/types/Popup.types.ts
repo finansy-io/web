@@ -1,9 +1,17 @@
-import {ReactNode} from 'react';
+import {ReactNode, ReactElement} from 'react';
 
 export type DrawerProps = {
-	title?: ReactNode;
-	children: ReactNode;
 	isOpen: boolean;
-	setIsOpen: (isOpen: boolean) => void;
-	handleClose?: () => void;
+	setIsOpen: (open: boolean) => void;
+	title?: ReactNode;
+	children?: ReactNode;
+	direction?: 'left' | 'bottom';
+
+	statusDismissible?: boolean;
+	statusProgress?: number;
+	statusIcon?: ReactElement;
+};
+
+export type PopupProps = Omit<DrawerProps, 'statusDismissible' | 'statusProgress' | 'statusIcon' | 'children'> & {
+	children: ReactNode;
 };

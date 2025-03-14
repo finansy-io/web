@@ -1,13 +1,22 @@
 import {useState} from 'react';
+import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
 import {GoalImageField, goalNameMaxLength} from '@widgets/goal';
 import {GoalModel} from '@entities/goal';
-import {AmountField, Button, DatePicker, Header, SelectWithSearch, StatusPopup, TextField} from '@shared/ui';
+import {
+	AmountField,
+	Button,
+	DatePicker,
+	Header,
+	SelectWithSearch,
+	StatusPopup,
+	TextField,
+	AmountFieldDetails,
+	TextFieldHints,
+} from '@shared/ui';
 import {APP_PATH, APP_TEXT, CURRENCY, CURRENCY_OPTIONS} from '@shared/constants';
-import {cn, DateService, useResponsive} from '@shared/lib';
+import {cn, DateService} from '@shared/lib';
 
-const hints = ['Mustang', 'House', 'Guitar', 'Maldives', 'TV', 'iPhone', 'Education'];
-
-export function GoalCreatePage() {
+export default function GoalCreatePage() {
 	const [activeStepIndex, setActiveStepIndex] = useState(0);
 
 	const [name, setName] = useState('');
@@ -16,8 +25,6 @@ export function GoalCreatePage() {
 	const [deadline, setDeadline] = useState<Date | null>(null);
 
 	const {createGoal, isCreateGoalPending, isCreateGoalSuccess, isCreateGoalError} = GoalModel.useCreateItem();
-
-	const {isMobile} = useResponsive();
 
 	function handleCreateClick() {
 		createGoal({
@@ -48,60 +55,46 @@ export function GoalCreatePage() {
 		<>
 			{activeStepIndex !== 0 && PageHeader}
 
-			<div className='flex-grow'>
-				{activeStepIndex === 0 && (
-					<>
-						<GoalImageField isCreatePage>{PageHeader}</GoalImageField>
-						<div className='mt-4 px-4'>
-							<TextField
-								value={name}
-								onChange={setName}
-								maxLength={goalNameMaxLength}
-								placeholder={APP_TEXT.goalName}
-							/>
-						</div>
-						{!name && (
-							<div className={cn('flex flex-wrap gap-2 p-4')}>
-								{hints.map((hint, index) => (
-									<Button
-										type='secondary'
-										key={hint + index}
-										className='w-fit px-2.5 py-1.5 text-sm'
-										onClick={() => setName(hint)}
-									>
-										{hint}
-									</Button>
-								))}
-							</div>
-						)}
-					</>
-				)}
-
-				{activeStepIndex === 1 && (
-					<div className='px-4'>
-						<SelectWithSearch
-							options={CURRENCY_OPTIONS}
-							onChange={(value) => {
-								setCurrency(value);
-								setTargetAmount('');
-							}}
-							value={currency}
+			{activeStepIndex === 0 && (
+				<>
+					<GoalImageField isCreatePage>{PageHeader}</GoalImageField>
+					<PageWidgetsWrapper withTopSpace>
+						<TextField value={name} onChange={setName} maxLength={goalNameMaxLength} placeholder={APP_TEXT.goalName} />
+						<TextFieldHints
+							visible={!name}
+							hints={['Mustang', 'House', 'Guitar', 'Maldives', 'TV', 'iPhone', 'Education']}
+							setTextFieldValue={setName}
 						/>
-					</div>
-				)}
+					</PageWidgetsWrapper>
+				</>
+			)}
 
-				{activeStepIndex === 2 && (
-					<div key={activeStepIndex} className='px-4'>
-						<AmountField
-							value={targetAmount}
-							onChange={setTargetAmount}
-							activeOption={{
-								name: CURRENCY_OPTIONS.find((option) => option.value === currency)?.description ?? '',
-								currency: currency as CURRENCY,
-							}}
-						/>
-						<div className='mt-4 flex justify-between px-4 text-sm'>
-							<div className='font-medium text-primary-grey'>{APP_TEXT.deadline}</div>
+			{activeStepIndex === 1 && (
+				<PageWidgetsWrapper>
+					<SelectWithSearch
+						options={CURRENCY_OPTIONS}
+						onChange={(value) => {
+							setCurrency(value);
+							setTargetAmount('');
+						}}
+						value={currency}
+					/>
+				</PageWidgetsWrapper>
+			)}
+
+			{activeStepIndex === 2 && (
+				<PageWidgetsWrapper>
+					<AmountField
+						value={targetAmount}
+						onChange={setTargetAmount}
+						activeOption={{
+							name: CURRENCY_OPTIONS.find((option) => option.value === currency)?.description ?? '',
+							currency: currency as CURRENCY,
+						}}
+					/>
+					<AmountFieldDetails
+						label={APP_TEXT.deadline}
+						field={
 							<DatePicker
 								onChange={setDeadline}
 								value={deadline}
@@ -110,12 +103,12 @@ export function GoalCreatePage() {
 							>
 								{deadline ? new DateService(deadline).getLocalDateString() : APP_TEXT.addDeadline}
 							</DatePicker>
-						</div>
-					</div>
-				)}
-			</div>
+						}
+					/>
+				</PageWidgetsWrapper>
+			)}
 
-			<div className={cn('p-4', !isMobile && 'w-96 self-center')}>
+			<PageActionButtonWrapper>
 				<Button
 					type='primary'
 					onClick={activeStepIndex === 2 ? handleCreateClick : () => setActiveStepIndex(activeStepIndex + 1)}
@@ -124,15 +117,14 @@ export function GoalCreatePage() {
 				>
 					{activeStepIndex === 2 ? APP_TEXT.create : APP_TEXT.continue}
 				</Button>
-			</div>
+			</PageActionButtonWrapper>
 
 			<StatusPopup
-				isOpen={isCreateGoalSuccess}
-				status='success'
-				statusTextKey='createGoalSuccess'
+				isSuccess={isCreateGoalSuccess}
+				isError={isCreateGoalError}
+				statusTextKey='createGoal'
 				statusTextProps={{name}}
 			/>
-			<StatusPopup isOpen={isCreateGoalError} status='error' statusTextKey='createGoalError' statusTextProps={{name}} />
 		</>
 	);
 }

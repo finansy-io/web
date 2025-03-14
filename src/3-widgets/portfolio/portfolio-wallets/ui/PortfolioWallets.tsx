@@ -1,5 +1,5 @@
 import {APP_PATH, APP_TEXT} from '@shared/constants';
-import {Card, Icon, Item, LinkTitleInCard, List} from '@shared/ui';
+import {Card, Icon, Item, CardLinkTitle, List} from '@shared/ui';
 import {GoalModel} from '@entities/goal';
 
 const wallets = [
@@ -17,7 +17,7 @@ export function PortfolioWallets() {
 		<Card
 			titleInCard={
 				!isLoading && !wallets?.length ? null : (
-					<LinkTitleInCard title={APP_TEXT.connectedWallets} path={APP_PATH.portfolio.wallets} />
+					<CardLinkTitle title={APP_TEXT.connectedWallets} path={APP_PATH.portfolio.wallets} />
 				)
 			}
 			isLoading={isLoading}
@@ -37,6 +37,7 @@ export function PortfolioWallets() {
 						}}
 					/>
 				)}
+				loadingItemWithRightName={false}
 			/>
 		</Card>
 	);

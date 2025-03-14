@@ -5,7 +5,7 @@ import {Button, StatusPopup, TextField, Header} from '@shared/ui';
 import {cn, useKeyClick} from '@shared/lib';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 
-export function SignupPage() {
+export default function SignupPage() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -78,6 +78,7 @@ export function SignupPage() {
 						enterKeyHint='next'
 						isFocused={isEmailFocused}
 						setIsFocused={setIsEmailFocused}
+						disabledEnterClick
 					/>
 					<TextField
 						type='password'
@@ -87,6 +88,7 @@ export function SignupPage() {
 						enterKeyHint='done'
 						isFocused={isPasswordFocused}
 						setIsFocused={setIsPasswordFocused}
+						disabledEnterClick
 					/>
 				</div>
 
@@ -104,7 +106,7 @@ export function SignupPage() {
 				</div>
 			</AuthLayout>
 
-			<StatusPopup isOpen={isSignupSuccess} status='success' statusTextKey='createAccountSuccess' />
+			<StatusPopup isSuccess={isSignupSuccess} isError={isSignupError} statusTextKey='createAccount' />
 		</>
 	);
 }

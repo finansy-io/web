@@ -3,7 +3,7 @@ import {FundWithdrawPage} from '@pages/ui';
 import {GoalModel} from '@entities/goal';
 import {APP_PATH} from '@shared/constants';
 
-export function GoalDetailsFundPage() {
+export default function GoalDetailsFundPage() {
 	const {id} = useParams();
 
 	const {goalDetails, isGoalDetailsLoading} = GoalModel.useItemDetails({id});
@@ -19,8 +19,7 @@ export function GoalDetailsFundPage() {
 			isActionPending={isFundGoalPending}
 			isActionSuccess={isFundGoalSuccess}
 			isActionError={isFundGoalError}
-			successTextKey='fundGoalSuccess'
-			errorTextKey='fundGoalError'
+			statusTextKey='fundGoal'
 			backPath={APP_PATH.goal.getItemDetailsPath(id)}
 		/>
 	);

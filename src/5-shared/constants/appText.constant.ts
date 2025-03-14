@@ -24,7 +24,8 @@ export const APP_TEXT = {
 	eshe: 'Еще',
 	congratulations: 'Поздравляем',
 	create: 'Create',
-	setImage: 'Set image',
+	setEmoji: 'Set emoji',
+	portfolioImage: 'Portfolio image',
 	fund: 'Fund',
 	transfer: 'Transfer',
 	withdraw: 'Withdraw',
@@ -80,7 +81,7 @@ export const APP_TEXT = {
 	connectWallet: 'Connect wallet',
 	connect: 'Connect',
 	connectWalletDisclaimer:
-		'Finansy requests only view permissions and does not have access to your wallet, to your private keys nor to the ability to move your assets',
+		'Finansy requests only view permissions and does not have access to your private keys nor the ability to move your assets',
 	connectedWallets: 'Connected wallets',
 	howItWorks: 'How it works',
 	assets: 'Assets',

@@ -15,8 +15,7 @@ export function DeleteItem(props: DeleteItemProps) {
 		isSuccess,
 		isError,
 		children,
-		successStatusTextKey,
-		errorStatusTextKey,
+		statusTextKey,
 	} = props;
 
 	const {popupProps, openPopup, closePopup} = usePopupState();
@@ -35,7 +34,7 @@ export function DeleteItem(props: DeleteItemProps) {
 				<div className='text-center'>
 					{confirmationText ? confirmationText : `${APP_TEXT.deleteGoalConfirmation} ${entityName?.toLowerCase()}?`}
 				</div>
-				<div className='mt-6 flex gap-2'>
+				<div className='mt-2 flex gap-2'>
 					<Button type='secondary' onClick={closePopup} secondaryWithPrimaryStyles>
 						{APP_TEXT.cancel}
 					</Button>
@@ -44,14 +43,14 @@ export function DeleteItem(props: DeleteItemProps) {
 						onClick={handleDelete}
 						isPending={isPending}
 						className='bg-red-100 text-red-600 shadow-none'
+						primaryButtonSpinnerClassName='text-red-600'
 					>
 						{actionButtonText ? actionButtonText : APP_TEXT.delete}
 					</Button>
 				</div>
 			</Popup>
 
-			<StatusPopup isOpen={isSuccess} status='success' statusTextKey={successStatusTextKey} />
-			<StatusPopup isOpen={isError} status='error' statusTextKey={errorStatusTextKey} />
+			<StatusPopup isSuccess={isSuccess} isError={isError} statusTextKey={statusTextKey} />
 		</>
 	);
 }

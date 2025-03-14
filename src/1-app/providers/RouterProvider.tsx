@@ -1,10 +1,9 @@
 import {createBrowserRouter, Navigate, RouterProvider as ReactRouterProvider} from 'react-router-dom';
-
 import {APP_PATH} from '@shared/constants';
 import {pageNotFoundRoute} from '@pages/not-found';
 import {goalRoutes} from '@pages/goal';
-import {authRoutes} from '@pages/auth/route/auth.route.tsx';
-import {portfolioRoutes} from '@pages/portfolio/routes/portfolio.routes.tsx';
+import {authRoutes} from '@pages/auth';
+import {portfolioRoutes} from '@pages/portfolio';
 
 const router = createBrowserRouter([
 	{

@@ -1,11 +1,9 @@
 import {MouseEvent, useEffect, useRef, useState} from 'react';
-import {TextFieldProps} from '../props/TextField.types.ts';
+import {TextFieldProps} from '../types/TextField.types.ts';
 import {cn, useKeyClick, useResponsive} from '@shared/lib';
 import {Icon} from '@shared/ui';
 
-// SearchField
-//  более высокоуровневый компонент, вынести отдельно
-//  when isSearch and focused, pin search-input to the top with animation + cancel text at right
+//  when isSearch and focused, pin search-input to the top with animation + cancel text at right (separate component?)
 
 export function TextField(props: TextFieldProps) {
 	const {
@@ -20,6 +18,7 @@ export function TextField(props: TextFieldProps) {
 		enterKeyHint = 'done',
 		isFocused,
 		setIsFocused,
+		disabledEnterClick,
 	} = props;
 
 	const {isDesktop} = useResponsive();
@@ -36,7 +35,7 @@ export function TextField(props: TextFieldProps) {
 			inputRef.current?.blur();
 			setIsFocused?.(false);
 		},
-		disabled: isDesktop,
+		disabled: isDesktop || disabledEnterClick,
 		deps: [isFocused],
 	});
 

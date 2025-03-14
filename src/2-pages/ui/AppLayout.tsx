@@ -14,6 +14,7 @@ import {
 } from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 import {cn, useResponsive} from '@shared/lib';
+import {Drawer} from '@shared/ui/popup/ui/Drawer.tsx';
 
 export function AppLayout() {
 	const isDesktop = false;
@@ -44,12 +45,13 @@ export function AppLayout() {
 
 const settingsConfigs = [
 	[
-		// {
-		// 	name: APP_TEXT.currency,
-		// 	description: 'Coming soon...',
-		// 	image: <Icon type='dollar' className='text-[17px]' withBackground />,
-		// 	rightNode: <div className='text-primary-grey'>{CURRENCY_CODE[CURRENCY.USD]}</div>,
-		// },
+		{
+			name: 'Connected wallets',
+			image: <Icon type='wallet' withBackground />,
+			onClick: ({navigate}) => {
+				navigate(APP_PATH.portfolio.wallets, {state: {from: APP_PATH.portfolio.list}});
+			},
+		},
 		{
 			name: 'Hide balance',
 			image: <Icon type='hide' className='text-[18px]' withBackground />,
@@ -62,11 +64,11 @@ const settingsConfigs = [
 		},
 	],
 	[
-		// {
-		// 	name: APP_TEXT.share + ' ' + APP_TEXT.portfolio.toLowerCase(),
-		// 	image: <Icon type='share' withBackground />,
-		// 	onClick: () => console.log('delete portfolio'),
-		// },
+		{
+			name: APP_TEXT.share + ' ' + APP_TEXT.portfolio.toLowerCase(),
+			image: <Icon type='share' withBackground />,
+			onClick: () => console.log('delete portfolio'),
+		},
 		{
 			name: APP_TEXT.edit + ' ' + APP_TEXT.portfolio.toLowerCase(),
 			image: <Icon type='edit' withBackground />,
@@ -153,6 +155,8 @@ export function AppHeader() {
 
 	const {isDesktop} = useResponsive();
 
+	// const [isCopied, setIsCopied] = useState(false);
+
 	return (
 		<header role='app-header' className='flex items-center justify-between p-4'>
 			<Button type='circle' onClick={openUserPopup} icon={<Icon type='user' />} className='w-fit' />
@@ -161,9 +165,9 @@ export function AppHeader() {
 				<>
 					<div
 						className={cn(
-							'flex items-center gap-2 text-xl font-medium transition duration-200 active:text-primary-grey',
+							'flex cursor-pointer items-center gap-2 text-xl font-medium transition duration-200 active:text-primary-grey',
 							portfolioPopupProps.isOpen && 'text-primary-grey',
-							isDesktop && 'cursor-pointer hover:text-primary-grey',
+							isDesktop && 'hover:text-primary-grey',
 						)}
 						onClick={openPortfolioPopup}
 					>
@@ -189,109 +193,217 @@ export function AppHeader() {
 				</>
 			)}
 
-			<Popup {...userPopupProps}>
-				<div className='mb-3 flex flex-col items-center gap-2'>
-					<div className='flex size-11 items-center justify-center rounded-full bg-secondary-violet text-primary-violet'>
+			<Drawer {...userPopupProps} direction='left'>
+				<div className='mb-2 flex flex-col items-center gap-2'>
+					<div className='flex size-14 items-center justify-center rounded-full bg-secondary-violet text-primary-violet'>
 						<Icon type='user' />
 					</div>
-					<div>{authUser?.email}</div>
+					<div className='text-2xl font-medium'>{authUser?.email === 'toxa' ? 'Anton Maksimow' : authUser?.email}</div>
+					{/*<div className='flex items-center gap-1.5'>*/}
+					{/*	<div className='text-sm text-primary-grey'>@usernickname</div>*/}
+					{/*	<div onClick={() => setIsCopied(true)}>*/}
+					{/*		<Icon type={isCopied ? 'check' : 'copy'} className='size-[14px] text-primary-grey' />*/}
+					{/*	</div>*/}
+					{/*</div>*/}
 				</div>
 
-				<Item image={<Icon type='logout' withBackground />} name={APP_TEXT.logOut} onClick={() => logout()} />
-			</Popup>
+				<Item
+					image={<Icon type='createGoal' className='size-5' />}
+					name={'Subscription'}
+					description={'Kрипто-карась'}
+					// rightName={<div className='font-light text-primary-grey'>Крипто-карась</div>}
+					rightName={
+						<Button type='secondary' onClick={() => {}}>
+							Upgrade
+						</Button>
+					}
+					isSingle
+				/>
+
+				<div className='rounded-2xl bg-white'>
+					<Item
+						image={<Icon type='language' className='size-5' />}
+						name={'Language'}
+						rightName={<div className='font-light text-primary-grey'>English</div>}
+						onClick={() => {}}
+					/>
+					<Item
+						image={<Icon type='theme' className='-mr-1' />}
+						name={'Theme'}
+						rightName={<div className='font-light text-primary-grey'>Light</div>}
+						onClick={() => {}}
+					/>
+					<Item
+						image={<Icon type='currency' />}
+						name={'Currency'}
+						rightName={<div className='font-light text-primary-grey'>USD</div>}
+						onClick={() => {}}
+					/>
+				</div>
+
+				<div className='rounded-2xl bg-white'>
+					<Item image={<Icon type='support' className='size-5' />} name={'Get help'} onClick={() => {}} />
+					<Item image={<Icon type='feedback' className='size-5' />} name={'Give feedback'} onClick={() => {}} />
+					<Item
+						image={<Icon type='logout' className='size-5 text-red-600' />}
+						name={APP_TEXT.logOut}
+						className='text-red-600'
+						onClick={() => logout()}
+						isSingle
+					/>
+				</div>
+			</Drawer>
+
+			{/*<Popup {...userPopupProps}>*/}
+			{/*	<div className='flex flex-col items-center gap-2'>*/}
+			{/*		<div className='flex size-14 items-center justify-center rounded-full bg-secondary-violet text-primary-violet'>*/}
+			{/*			<Icon type='user' />*/}
+			{/*		</div>*/}
+			{/*		<div className='text-2xl font-medium'>{authUser?.email}</div>*/}
+			{/*		<div className='flex items-center gap-1.5'>*/}
+			{/*			<div className='text-sm text-primary-grey'>@usernickname</div>*/}
+			{/*			<div onClick={() => setIsCopied(true)}>*/}
+			{/*				<Icon type={isCopied ? 'check' : 'copy'} className='size-[14px] text-primary-grey' />*/}
+			{/*			</div>*/}
+			{/*		</div>*/}
+			{/*	</div>*/}
+
+			{/*	<Item*/}
+			{/*		image={<Icon type='createGoal' className='size-5' />}*/}
+			{/*		name={'Subscription'}*/}
+			{/*		description={'Kрипто-карась'}*/}
+			{/*		// rightName={<div className='font-light text-primary-grey'>Крипто-карась</div>}*/}
+			{/*		rightName={*/}
+			{/*			<Button type='secondary' onClick={() => {}}>*/}
+			{/*				Upgrade*/}
+			{/*			</Button>*/}
+			{/*		}*/}
+			{/*		isSingle*/}
+			{/*	/>*/}
+
+			{/*	<div className='rounded-2xl bg-white'>*/}
+			{/*		<Item*/}
+			{/*			image={<Icon type='language' className='size-5' />}*/}
+			{/*			name={'Language'}*/}
+			{/*			rightName={<div className='font-light text-primary-grey'>English</div>}*/}
+			{/*			onClick={() => {}}*/}
+			{/*		/>*/}
+			{/*		<Item*/}
+			{/*			image={<Icon type='theme' className='-mr-1' />}*/}
+			{/*			name={'Theme'}*/}
+			{/*			rightName={<div className='font-light text-primary-grey'>Light</div>}*/}
+			{/*			onClick={() => {}}*/}
+			{/*		/>*/}
+			{/*		<Item*/}
+			{/*			image={<Icon type='currency' />}*/}
+			{/*			name={'Currency'}*/}
+			{/*			rightName={<div className='font-light text-primary-grey'>USD</div>}*/}
+			{/*			onClick={() => {}}*/}
+			{/*		/>*/}
+			{/*	</div>*/}
+
+			{/*	<div className='rounded-2xl bg-white'>*/}
+			{/*		<Item image={<Icon type='support' className='size-5' />} name={'Get help'} onClick={() => {}} />*/}
+			{/*		<Item image={<Icon type='feedback' className='size-5' />} name={'Give feedback'} onClick={() => {}} />*/}
+			{/*		<Item*/}
+			{/*			image={<Icon type='logout' className='size-5 text-red-600' />}*/}
+			{/*			name={APP_TEXT.logOut}*/}
+			{/*			className='text-red-600'*/}
+			{/*			onClick={() => logout()}*/}
+			{/*			isSingle*/}
+			{/*		/>*/}
+			{/*	</div>*/}
+			{/*</Popup>*/}
 
 			<Popup {...portfolioPopupProps}>
-				<div className='flex flex-col gap-4'>
-					<div className='flex justify-between rounded-2xl'>
-						{tabConfigs.map(({name, path}, index) => (
-							<div
-								key={index}
-								className={cn(
-									'cursor-pointer rounded-3xl px-3 py-2 text-sm transition duration-200',
-									dataFilter === path ? 'bg-white' : 'bg-inherit text-primary-grey',
-								)}
-								onClick={() => setDataFilter(path)}
-							>
-								{name}
-							</div>
-						))}
-					</div>
-
-					<Item
-						image={<Icon type='portfolio' withBackground />}
-						name='Total portfolio'
-						description='35 assets'
-						rightName='25 653$'
-						rightDescription={
-							<div className='flex items-center gap-1.5 text-red-600'>
-								<div>-765$</div>
-								<div className='size-0.5 rounded-full bg-red-600' />
-								<div>32.21%</div>
-							</div>
-						}
-					/>
-
-					<Card
-						titleInCard={'Portfolios'}
-						rightTitleInCard={
-							<div
-								className='-m-1 flex items-center gap-3 p-1'
-								onClick={() => {
-									closePortfolioPopup();
-									PopupHelpers.runAfterPopupClosed(() => navigate(APP_PATH.portfolio.create));
-								}}
-							>
-								<Icon type='plus' className='size-4' />
-							</div>
-						}
-					>
-						<List
-							items={portfolioConfigs}
-							renderItem={(portfolioConfig) => {
-								const checked = portfolioConfig.name === 'Portfolio 1';
-								return (
-									<Item
-										{...portfolioConfig}
-										imageIcon={checked && <Icon type='check' />}
-										className={checked && 'bg-light-grey'}
-									/>
-								);
-							}}
-						/>
-					</Card>
+				<div className='flex justify-between rounded-2xl'>
+					{tabConfigs.map(({name, path}, index) => (
+						<div
+							key={index}
+							className={cn(
+								'cursor-pointer rounded-3xl px-3 py-2 text-sm transition duration-200',
+								dataFilter === path ? 'bg-white' : 'bg-inherit text-primary-grey',
+							)}
+							onClick={() => setDataFilter(path)}
+						>
+							{name}
+						</div>
+					))}
 				</div>
+
+				<Item
+					image={<Icon type='portfolio' withBackground />}
+					name='Total portfolio'
+					description='35 assets'
+					rightName='25 653$'
+					rightDescription={
+						<div className='flex items-center gap-1.5 text-red-600'>
+							<div>-765$</div>
+							<div className='size-0.5 rounded-full bg-red-600' />
+							<div>32.21%</div>
+						</div>
+					}
+				/>
+
+				<Card
+					titleInCard={'Portfolios'}
+					rightTitleInCard={
+						//button styles, чтобы при наведении и клике все было консистентно
+						<div
+							className='-m-1 flex items-center gap-3 p-1'
+							onClick={() => {
+								closePortfolioPopup();
+								PopupHelpers.runAfterPopupClosed(() => navigate(APP_PATH.portfolio.create));
+							}}
+						>
+							<Icon type='plus' className='size-4' />
+						</div>
+					}
+				>
+					<List
+						items={portfolioConfigs}
+						renderItem={(portfolioConfig) => {
+							const checked = portfolioConfig.name === 'Portfolio 1';
+							return (
+								<Item
+									{...portfolioConfig}
+									imageIcon={checked && <Icon type='check' />}
+									className={checked && 'bg-light-grey'}
+								/>
+							);
+						}}
+					/>
+				</Card>
 			</Popup>
 
 			<Popup {...portfolioSettingsPopupProps}>
-				<div className='flex flex-col gap-4'>
-					{settingsConfigs.map((settingsConfig, index) => (
-						<List
-							key={index}
-							items={settingsConfig}
-							renderItem={(settingConfig) => (
-								<Item
-									{...settingConfig}
-									onClick={
-										settingConfig.onClick
-											? ({navigate}) => {
-													closePortfolioSettingsPopup();
-													PopupHelpers.runAfterPopupClosed(() => settingConfig.onClick!({navigate}));
-											  }
-											: undefined
-									}
-								/>
-							)}
-						/>
-					))}
-				</div>
+				{settingsConfigs.map((settingsConfig, index) => (
+					<List
+						key={index}
+						items={settingsConfig}
+						renderItem={(settingConfig) => (
+							<Item
+								{...settingConfig}
+								onClick={
+									settingConfig.onClick
+										? ({navigate}) => {
+												closePortfolioSettingsPopup();
+												PopupHelpers.runAfterPopupClosed(() => settingConfig.onClick!({navigate}));
+										  }
+										: undefined
+								}
+							/>
+						)}
+					/>
+				))}
 			</Popup>
 		</header>
 	);
 }
 
-const appTabConfigs: {name: string; path: string}[] = [
-	{name: APP_TEXT.portfolios, path: APP_PATH.portfolio.list},
-	{name: APP_TEXT.goals, path: APP_PATH.goal.list},
+const appTabConfigs: {label: string; path: string}[] = [
+	{label: APP_TEXT.portfolios, path: APP_PATH.portfolio.list},
+	{label: APP_TEXT.goals, path: APP_PATH.goal.list},
 ];
 
 export function AppTabs() {
@@ -300,7 +412,7 @@ export function AppTabs() {
 
 	return (
 		<div className='flex gap-2 px-4 pb-4'>
-			{appTabConfigs.map(({name, path}, index) => (
+			{appTabConfigs.map(({label, path}, index) => (
 				<div
 					key={index}
 					className={cn(
@@ -309,7 +421,7 @@ export function AppTabs() {
 					)}
 					onClick={() => navigate(path)}
 				>
-					{name}
+					{label}
 				</div>
 			))}
 		</div>

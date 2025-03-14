@@ -3,7 +3,7 @@ import {TransferPage} from '@pages/ui';
 import {GoalModel} from '@entities/goal';
 import {APP_PATH} from '@shared/constants';
 
-export function GoalDetailsTransferPage() {
+export default function GoalDetailsTransferPage() {
 	const {id} = useParams();
 
 	const {goalDetails, isGoalDetailsLoading} = GoalModel.useItemDetails({id});
@@ -32,8 +32,7 @@ export function GoalDetailsTransferPage() {
 			isTransferPending={isTransferGoalPending}
 			isTransferSuccess={isTransferGoalSuccess}
 			isTransferError={isTransferGoalError}
-			successTextKey='transferGoalSuccess'
-			errorTextKey='transferGoalError'
+			statusTextKey='transferGoal'
 			backPath={APP_PATH.goal.getItemDetailsPath(id)}
 		/>
 	);

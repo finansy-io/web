@@ -11,6 +11,7 @@ import {
 	FaChevronLeft,
 	FaChevronRight,
 	FaDollarSign,
+	FaEarthAmericas,
 	FaInfo,
 	FaPen,
 	FaPlus,
@@ -22,9 +23,12 @@ import {
 	FaWallet,
 	FaXmark,
 } from 'react-icons/fa6';
-import {FaCamera, FaSignOutAlt, FaEye, FaEyeSlash} from 'react-icons/fa';
+import {FaCamera, FaEye, FaEyeSlash, FaSignOutAlt} from 'react-icons/fa';
 import {cn} from '@shared/lib';
-import {BsThreeDotsVertical} from 'react-icons/bs';
+import {BsFillQuestionCircleFill, BsThreeDotsVertical} from 'react-icons/bs';
+import {AiFillDollarCircle} from 'react-icons/ai';
+import {IoIosColorPalette} from 'react-icons/io';
+import {HiMiniMegaphone} from 'react-icons/hi2';
 
 export const ICON_MAP = {
 	user: FaUser,
@@ -77,6 +81,87 @@ export const ICON_MAP = {
 	copy: FaRegCopy,
 
 	trendUp: TrendingUp,
+
+	currency: CurrencyIcon,
+	theme: ThemeIcon,
+	language: FaEarthAmericas,
+	support: BsFillQuestionCircleFill,
+	feedback: FeedbackIcon,
 } as const;
 
 export type IconType = keyof typeof ICON_MAP;
+
+function ThemeIcon() {
+	// Подбираем коэффициент масштабирования, чтобы визуальный размер совпадал с LanguageIcon
+	const scale = 1.7; // настроить по необходимости
+	return (
+		<span
+			style={{
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				width: 24,
+				height: 24,
+				overflow: 'hidden',
+				margin: '0 -2px',
+			}}
+		>
+			<IoIosColorPalette
+				style={{
+					transform: `scale(${scale})`,
+					transformOrigin: 'center',
+				}}
+			/>
+		</span>
+	);
+}
+
+function CurrencyIcon() {
+	// Подбираем коэффициент масштабирования, чтобы визуальный размер совпадал с LanguageIcon
+	const scale = 1.43; // настроить по необходимости
+	return (
+		<span
+			style={{
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				width: 24,
+				height: 24,
+				overflow: 'hidden',
+				margin: '0 -2px',
+			}}
+		>
+			<AiFillDollarCircle
+				style={{
+					transform: `scale(${scale})`,
+					transformOrigin: 'center',
+				}}
+			/>
+		</span>
+	);
+}
+
+function FeedbackIcon() {
+	// Подбираем коэффициент масштабирования, чтобы визуальный размер совпадал с LanguageIcon
+	const scale = 1.43; // настроить по необходимости
+	return (
+		<span
+			style={{
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				width: 24,
+				height: 24,
+				overflow: 'hidden',
+				margin: '0 -2px',
+			}}
+		>
+			<HiMiniMegaphone
+				style={{
+					transform: `scale(${scale})`,
+					transformOrigin: 'center',
+				}}
+			/>
+		</span>
+	);
+}

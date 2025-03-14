@@ -1,5 +1,5 @@
 import {PageWidgetsWrapper} from '@pages/ui';
-import {PortfolioWalletDetails, PortfolioWalletHeader} from '@widgets/portfolio';
+import {PortfolioWalletDelete, PortfolioWalletDetails, PortfolioWalletHeader} from '@widgets/portfolio';
 
 export function PortfolioWalletDetailsPage() {
 	return (
@@ -7,6 +7,7 @@ export function PortfolioWalletDetailsPage() {
 			<PortfolioWalletHeader />
 			<PageWidgetsWrapper>
 				<PortfolioWalletDetails />
+				<PortfolioWalletDelete />
 			</PageWidgetsWrapper>
 		</>
 	);

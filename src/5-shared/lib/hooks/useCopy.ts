@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-export function useCopy(timeout = 3000) {
+export function useCopy(timeout = 2000) {
 	const [isCopied, setIsCopied] = useState(false);
 
 	async function copy(text: string) {

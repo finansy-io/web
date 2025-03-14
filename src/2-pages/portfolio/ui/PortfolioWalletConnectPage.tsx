@@ -1,11 +1,9 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
 import {portfolioNameMaxLength} from '@widgets/portfolio';
-import {Button, Spinner, StatusPopup, StatusPopupHelpers, TextField, Header} from '@shared/ui';
+import {Button, Header, PopupHelpers, Spinner, StatusPopup, TextField, TextFieldHints} from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
-import {cn, useResponsive} from '@shared/lib';
-
-const hints = ['Phantom memes', 'Metamask memes', 'Long term altcoins', 'Cold wallet', 'Flipping'];
 
 /**
  * Фронтовая логика валидации: 1 get запрос на лист с фильтром name={name}
@@ -21,8 +19,6 @@ export function PortfolioWalletConnectPage() {
 
 	const [isConnectWalletSuccess, setIsConnectWalletSuccess] = useState(false);
 	const [isConnectWalletError] = useState(false);
-
-	const {isMobile} = useResponsive();
 
 	const isConnectWalletPending = false;
 
@@ -45,47 +41,38 @@ export function PortfolioWalletConnectPage() {
 				handleBackButtonClick={activeStepIndex === 0 ? undefined : () => setActiveStepIndex(activeStepIndex - 1)}
 			/>
 
-			<div className='flex-grow px-4'>
-				{activeStepIndex === 0 && (
-					<>
-						<TextField
-							value={name}
-							onChange={setName}
-							description={
-								<>
-									{isNameValidationPending && (
-										<div className='flex items-center gap-1'>
-											<div className='text-primary-grey'>
-												<Spinner className='size-3 text-primary-grey' />
-											</div>
-											<div>Checking name</div>
+			{activeStepIndex === 0 && (
+				<PageWidgetsWrapper>
+					<TextField
+						value={name}
+						onChange={setName}
+						description={
+							<>
+								{isNameValidationPending && (
+									<div className='flex items-center gap-1'>
+										<div className='text-primary-grey'>
+											<Spinner className='size-3 text-primary-grey' />
 										</div>
-									)}
-									{isNameValidationSuccess && <div className='text-primary-violet'>Name is available</div>}
-								</>
-							}
-							errorText={isNameValidationError && 'Such name already exists'}
-							maxLength={portfolioNameMaxLength}
-							placeholder={APP_TEXT.walletName}
-						/>
-						{!name && (
-							<div className={cn('my-4 flex flex-wrap gap-2')}>
-								{hints.map((hint, index) => (
-									<Button
-										type='secondary'
-										key={index}
-										className='w-fit px-2.5 py-1.5 text-sm'
-										onClick={() => setName(hint)}
-									>
-										{hint}
-									</Button>
-								))}
-							</div>
-						)}
-					</>
-				)}
+										<div>Checking name</div>
+									</div>
+								)}
+								{isNameValidationSuccess && <div className='text-primary-violet'>Name is available</div>}
+							</>
+						}
+						errorText={isNameValidationError && 'Such name already exists'}
+						maxLength={portfolioNameMaxLength}
+						placeholder={APP_TEXT.walletName}
+					/>
+					<TextFieldHints
+						visible={!name}
+						hints={['Phantom memes', 'Metamask memes', 'Long term altcoins', 'Cold wallet', 'Flipping']}
+						setTextFieldValue={setName}
+					/>
+				</PageWidgetsWrapper>
+			)}
 
-				{activeStepIndex === 1 && (
+			{activeStepIndex === 1 && (
+				<PageWidgetsWrapper>
 					<TextField
 						value={address}
 						onChange={setAddress}
@@ -106,10 +93,10 @@ export function PortfolioWalletConnectPage() {
 						errorText={isAddressValidationError && (true ? 'Network is unsupported' : 'Such address already connected')}
 						placeholder={APP_TEXT.walletAddress}
 					/>
-				)}
-			</div>
+				</PageWidgetsWrapper>
+			)}
 
-			<div className={cn('p-4', !isMobile && 'w-96 self-center')}>
+			<PageActionButtonWrapper>
 				<Button
 					type='primary'
 					onClick={
@@ -117,7 +104,7 @@ export function PortfolioWalletConnectPage() {
 							? () => setActiveStepIndex(activeStepIndex + 1)
 							: () => {
 									setIsConnectWalletSuccess(true);
-									StatusPopupHelpers.runAfterStatusPopup(() => navigate(APP_PATH.portfolio.list));
+									PopupHelpers.runAfterStatusPopupClosed(() => navigate(APP_PATH.portfolio.list));
 							  }
 					}
 					disabled={
@@ -128,35 +115,9 @@ export function PortfolioWalletConnectPage() {
 				>
 					{activeStepIndex === 0 ? APP_TEXT.continue : APP_TEXT.connect}
 				</Button>
-			</div>
+			</PageActionButtonWrapper>
 
-			<StatusPopup
-				isOpen={isConnectWalletSuccess}
-				status='success'
-				statusTextKey='connectWalletSuccess'
-				statusTextProps={{name}}
-			/>
-			<StatusPopup isOpen={isConnectWalletError} status='error' statusTextKey='connectWalletError' />
+			<StatusPopup isSuccess={isConnectWalletSuccess} isError={isConnectWalletError} statusTextKey='connectWallet' />
 		</>
 	);
 }
-
-// <Popup {...popupProps}>
-// 				<div className='flex flex-col gap-4 px-4'>
-// 					<div className=''>
-// 						Вы подключаете свои кошельки и получаете{' '}
-// 						<span className='font-medium text-primary-violet'>список всех своих активов в одном месте</span>.
-// 					</div>
-//
-// 					<div className='font-medium'>Важно</div>
-//
-// 					<div>Точка входа в актив считается в момент поступления на кошелек.</div>
-//
-// 					<div className='font-medium'>Пример</div>
-//
-// 					<div>
-// 						5 января 2023 Вы купили BTC на бирже Binance за 20 000$. 5 янв 2024, когда он стоил 100 000$ Вы перевели его
-// 						на кошелек trust wallet и подключили через finansy.io. Ваша цена покупки будет 100 000$.
-// 					</div>
-// 				</div>
-// 			</Popup>
