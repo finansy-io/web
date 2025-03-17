@@ -6,6 +6,8 @@ import {cn, isNumber, styleElement} from '@shared/lib';
 /** navigate(-1) не сработает, если страницу открыли в новой вкладке -> history.length = 0 */
 /** поэтому если есть возможность прокинуть backPath - лучше так и сделать */
 
+// не PageHeader, потому что может юзатся внутри @widgets и внутри @shared/ui (Popup мульти степовый, как в revolut)
+
 export function Header(props: HeaderProps) {
 	const {
 		title,
