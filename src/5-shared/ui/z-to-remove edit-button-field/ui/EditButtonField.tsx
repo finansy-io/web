@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {EditButtonFieldProps} from '../types/EditButtonField.types.ts';
-import {AmountField, Button, DateField, Icon, Popup, SelectWithSearch, TextField, usePopupState} from '@shared/ui';
+import {AmountField, Button, DateField, Icon, Popup, SelectWithSearchField, TextField, usePopupState} from '@shared/ui';
 import {APP_TEXT, CURRENCY} from '@shared/constants';
 
 export function EditButtonField<Value>(props: EditButtonFieldProps<Value>) {
@@ -83,7 +83,7 @@ export function EditButtonField<Value>(props: EditButtonFieldProps<Value>) {
 				)}
 
 				{type === 'select' && (
-					<SelectWithSearch
+					<SelectWithSearchField
 						options={options}
 						onChange={(value) => onChange(value as Value)}
 						value={value as CURRENCY}

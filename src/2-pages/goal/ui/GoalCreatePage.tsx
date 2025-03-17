@@ -7,7 +7,7 @@ import {
 	Button,
 	DatePicker,
 	Header,
-	SelectWithSearch,
+	SelectWithSearchField,
 	StatusPopup,
 	TextField,
 	AmountFieldDetails,
@@ -71,7 +71,7 @@ export default function GoalCreatePage() {
 
 			{activeStepIndex === 1 && (
 				<PageWidgetsWrapper>
-					<SelectWithSearch
+					<SelectWithSearchField
 						options={CURRENCY_OPTIONS}
 						onChange={(value) => {
 							setCurrency(value);

@@ -89,8 +89,6 @@ export const ICON_MAP = {
 	contactUs: ContactUsIcon,
 } as const;
 
-export type IconType = keyof typeof ICON_MAP;
-
 function ThemeIcon() {
 	// Подбираем коэффициент масштабирования, чтобы визуальный размер совпадал с LanguageIcon
 	const scale = 1.7; // настроить по необходимости

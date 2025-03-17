@@ -35,7 +35,7 @@ export function Management<ListItem>(props: ManagementProps<ListItem>) {
 							)}
 						</div>
 						<div className='text-sm font-light text-primary-grey'>
-							<LoadingWrapper isLoading={isLoading} className='mb-1 h-[14px] w-16'>
+							<LoadingWrapper isLoading={isLoading} className='my-0.5 h-[14px] w-16'>
 								{totalBalanceDescription}
 							</LoadingWrapper>
 						</div>

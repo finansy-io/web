@@ -6,7 +6,7 @@ export type SelectWithSearchOption = {
 	value: CURRENCY;
 };
 
-export type SelectWithSearchProps = {
+export type SelectWithSearchFieldProps = {
 	options?: SelectWithSearchOption[];
 	fetchOptions?: () => void;
 	onChange: (value: CURRENCY) => void;

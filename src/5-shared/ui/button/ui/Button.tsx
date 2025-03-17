@@ -57,13 +57,8 @@ export function Button(props: Props) {
 
 	function gcn(...buttonClassName: Array<ClassValue>) {
 		return cn(
-			'block',
-			disabled
-				? 'cursor-not-allowed'
-				: cn(
-						'active:brightness-90 duration-300 transition ease-in-out cursor-pointer',
-						isDesktop && 'hover:brightness-95',
-				  ),
+			'block duration-300 transition ease-in-out',
+			disabled ? 'cursor-not-allowed' : cn('active:brightness-90 cursor-pointer', isDesktop && 'hover:brightness-95'),
 			...buttonClassName,
 			className,
 		);
@@ -77,13 +72,14 @@ export function Button(props: Props) {
 	if (type === 'primary') {
 		return (
 			<button
-				{...buttonProps}
 				className={gcn(
 					'primaryButtonShadow block w-full rounded-3xl bg-primary-violet px-4 py-3 text-center text-white active:shadow-none',
-					disabled && 'bg-primary-violet/20 shadow-none',
-					isPending && 'cursor-not-allowed bg-primary-violet shadow-none',
-					!displayBoxShadow && 'shadow-none',
+					disabled && 'bg-primary-violet/20 !shadow-none',
+					isPending && 'cursor-not-allowed bg-primary-violet !shadow-none',
+					!displayBoxShadow && '!shadow-none',
+					className?.includes('shadow-none') && '!shadow-none',
 				)}
+				{...buttonProps}
 			>
 				{isPending ? (
 					<div className='flex items-center justify-center gap-2'>

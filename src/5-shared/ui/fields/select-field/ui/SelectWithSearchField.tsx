@@ -1,13 +1,10 @@
 import {useEffect, useState} from 'react';
-import {
-	type SelectWithSearchProps,
-	type SelectWithSearchOption,
-} from '@shared/ui/fields/select-with-search/types/SelectWithSearch.types.ts';
+import {type SelectWithSearchOption, SelectWithSearchFieldProps} from '../types/SelectWithSearchField.types.ts';
 import {Card, Icon, Item, TextField} from '@shared/ui';
 import {APP_TEXT, CURRENCY} from '@shared/constants';
 import {cn} from '@shared/lib';
 
-export function SelectWithSearch(props: SelectWithSearchProps) {
+export function SelectWithSearchField(props: SelectWithSearchFieldProps) {
 	const {options, onChange, value} = props;
 
 	const [selectOptions, setSelectOptions] = useState<(SelectWithSearchOption & {checked: boolean})[] | null>(null);
