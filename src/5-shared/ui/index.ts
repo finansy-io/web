@@ -44,7 +44,7 @@ export * from './spinner/ui/Spinner.tsx';
 
 export * from './total-balance/ui/TotalBalance.tsx';
 
-export * from './button/types/button.types.ts';
+export * from './button/types/Button.types.ts';
 export * from './button/ui/Button.tsx';
 
 export * from './management/type/Management.types.ts';

@@ -1,29 +1,12 @@
-import {ReactElement, ReactNode, useState} from 'react';
-import {NavigateFunction, useNavigate} from 'react-router-dom';
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {ClassValue} from 'clsx';
+import {type ButtonProps} from '../types/Button.types';
 import {cn, styleElement, useKeyClick, useResponsive} from '@shared/lib';
 import {LoadingWrapper, Spinner} from '@shared/ui';
 import '../styles/Button.css';
 
-export interface CommonButtonSettings {
-	icon?: ReactElement;
-	type: 'primary' | 'secondary' | 'text' | 'circle' | 'icon';
-	onClick: ({navigate}: {navigate: NavigateFunction}) => void;
-	className?: string;
-}
-interface Props extends CommonButtonSettings {
-	children?: ReactNode;
-	disabled?: boolean;
-	isLoading?: boolean;
-	isPending?: boolean;
-	disabledPrimaryButtonEnterClick?: boolean;
-	secondaryWithPrimaryStyles?: boolean;
-	primaryButtonSpinnerClassName?: string;
-}
-
-/** если меняются стили у кнопки, смотреть и за стилями для preloadSkeleton **/
-
-export function Button(props: Props) {
+export function Button(props: ButtonProps) {
 	const {
 		type = 'text',
 		children,
