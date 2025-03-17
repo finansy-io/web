@@ -9,8 +9,6 @@ export * from './fields/amount-field/types/AmountField.types.ts';
 
 export * from './fields/date-field/ui/DateField.tsx';
 
-export * from './fields/select-in-card/ui/SelectInCard.tsx';
-
 export * from './fields/select-with-search/ui/SelectWithSearch.tsx';
 
 export * from './fields/DatePicker.tsx';
@@ -21,6 +19,7 @@ export * from './spinner/ui/Spinner.tsx';
 
 export * from './card/ui/Card.tsx';
 export * from './card/ui/CardLinkTitle.tsx';
+export * from './card/ui/CardSelectTitle.tsx';
 
 export * from './popup/constants/Popup.constants.tsx';
 export * from './popup/helpers/Popup.helpers.ts';
@@ -55,5 +54,5 @@ export * from './list/ui/List.tsx';
 
 export * from './total-balance/ui/TotalBalance.tsx';
 
-export * from './to-remove edit-button-field/ui/EditButtonField.tsx';
-export * from './to-remove preload-skeleton (loading wrapper)';
+export * from '@shared/ui/z-to-remove edit-button-field/ui/EditButtonField.tsx';
+export * from './z-to-remove preload-skeleton (loading wrapper)';

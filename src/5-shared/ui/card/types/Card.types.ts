@@ -8,8 +8,3 @@ export type CardProps = {
 	children: ReactNode;
 	isLoading?: boolean;
 };
-
-export type LinkTitleInCardProps = {
-	title: ReactNode;
-	path: string;
-};

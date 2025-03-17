@@ -1,4 +1,4 @@
-export type SelectInCardProps<TValue> = {
+export type CardSelectTitleProps<TValue> = {
 	value: TValue;
 	onChange: (value: TValue) => void;
 	options: readonly {name: string; value: TValue}[];

@@ -1,8 +1,8 @@
 import {useNavigate} from 'react-router-dom';
-import {type LinkTitleInCardProps} from '../types/Card.types';
+import {type CardLinkTitleProps} from '../types/CardLinkTitle.types';
 import {Icon} from '@shared/ui';
 
-export function CardLinkTitle(props: LinkTitleInCardProps) {
+export function CardLinkTitle(props: CardLinkTitleProps) {
 	const {title, path} = props;
 
 	const navigate = useNavigate();

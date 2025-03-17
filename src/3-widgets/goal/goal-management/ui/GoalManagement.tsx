@@ -1,4 +1,4 @@
-import {Item, ItemImageWithProgress, Management, SelectInCard} from '@shared/ui';
+import {Item, ItemImageWithProgress, Management, CardSelectTitle} from '@shared/ui';
 import {buttonConfigs, goalStatusOptions} from '../config/GoalManagement.config.tsx';
 import {goalsDefaultFilter} from '@widgets/goal/util';
 import {GoalModel} from '@entities/goal';
@@ -32,7 +32,7 @@ export function GoalManagement() {
 				})(),
 			}))}
 			listTitle={
-				<SelectInCard<(typeof goalStatusOptions)[number]['value']>
+				<CardSelectTitle<(typeof goalStatusOptions)[number]['value']>
 					value={filter.status}
 					onChange={(value) => setFilter({...filter, status: value})}
 					options={goalStatusOptions}

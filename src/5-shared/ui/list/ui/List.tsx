@@ -5,6 +5,9 @@ import {Item, LoadingItem} from '@shared/ui';
 import {InfiniteScroll} from '@shared/lib';
 import {APP_TEXT} from '@shared/constants';
 
+// Реализация сортировки передается из-вне, т.к. у каких-то данных name есть, а у других нет
+// Паттерн -- стратегия -- sortStrategy(), filterStrategy()
+
 export function List<R>(props: ListProps<R>) {
 	const {
 		items,

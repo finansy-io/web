@@ -1,8 +1,8 @@
 import {Icon, Item, List, Popup, PreloadSkeleton, usePopupState} from '@shared/ui';
-import {SelectInCardProps} from '../types/SelectInCard.types.ts';
+import {type CardSelectTitleProps} from '../types/CardSelectTitle.types.ts';
 import {cn, useResponsive} from '@shared/lib';
 
-export function SelectInCard<TValue>(props: SelectInCardProps<TValue>) {
+export function CardSelectTitle<TValue>(props: CardSelectTitleProps<TValue>) {
 	const {value, onChange, options, isLoading, title} = props;
 
 	const {popupProps, openPopup, closePopup} = usePopupState();
