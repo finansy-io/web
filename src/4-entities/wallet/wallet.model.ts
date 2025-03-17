@@ -31,7 +31,7 @@ export class WalletModel {
 		// const filteredPages = data?.pages.filter((page) => page !== null);
 
 		return {
-			// wallets (not using): filteredPages?.length ? filteredPages.flatMap((page) => page && page.items) : null,
+			// wallets : filteredPages?.length ? filteredPages.flatMap((page) => page && page.items) : null,
 			wallets: [
 				{name: 'Phantom мемасы', description: '0x812731...12L1bb2sk'},
 				{name: 'Metamask долгосрок ETH', description: '0x8193921...2348H6lsk'},

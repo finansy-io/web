@@ -1,5 +1,5 @@
-import {Icon, Item, List, Popup, PreloadSkeleton, usePopupState} from '@shared/ui';
 import {type CardSelectTitleProps} from '../types/CardSelectTitle.types.ts';
+import {Icon, Item, List, LoadingWrapper, Popup, usePopupState} from '@shared/ui';
 import {cn, useResponsive} from '@shared/lib';
 
 export function CardSelectTitle<TValue>(props: CardSelectTitleProps<TValue>) {
@@ -9,24 +9,20 @@ export function CardSelectTitle<TValue>(props: CardSelectTitleProps<TValue>) {
 
 	const {isDesktop} = useResponsive();
 
-	if (isLoading) {
-		return <PreloadSkeleton className='my-0.5 h-4 w-10' />;
-	}
-
 	return (
 		<>
-			<div
-				className={cn(
-					'flex w-fit cursor-pointer items-center text-sm font-medium text-primary-grey',
-					isDesktop && 'hover:cursor-pointer',
-				)}
-				onClick={openPopup}
-			>
-				{options.find((option) => option.value === value)?.name + ' ' + title.toLowerCase()}
-				<div className='ml-2'>
+			<LoadingWrapper isLoading={!!isLoading} className='my-0.5 h-4 w-10'>
+				<div
+					className={cn(
+						'flex w-fit cursor-pointer items-center gap-1.5 text-sm font-medium text-primary-grey',
+						isDesktop && 'hover:cursor-pointer',
+					)}
+					onClick={openPopup}
+				>
+					{options.find((option) => option.value === value)?.name + ' ' + title.toLowerCase()}
 					<Icon type='selectChevron' className='size-2.5' />
 				</div>
-			</div>
+			</LoadingWrapper>
 
 			<Popup {...popupProps} title={title}>
 				<List

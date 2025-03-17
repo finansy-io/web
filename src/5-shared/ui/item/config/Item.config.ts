@@ -1,6 +1,11 @@
 import {ApexOptions} from 'apexcharts';
 
-export const options = {
+export const deleteItemConfirmation = {
+	disconnectWallet: (portfolioName: string) =>
+		`Are you sure you want to disconnect this wallet from portfolio "${portfolioName}"?`,
+};
+
+export const itemImageWithProgressOptions = {
 	chart: {
 		type: 'donut',
 		animations: {

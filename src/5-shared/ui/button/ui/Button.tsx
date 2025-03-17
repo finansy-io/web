@@ -2,8 +2,8 @@ import {ReactElement, ReactNode, useState} from 'react';
 import {NavigateFunction, useNavigate} from 'react-router-dom';
 import {ClassValue} from 'clsx';
 import {cn, styleElement, useKeyClick, useResponsive} from '@shared/lib';
-import {PreloadSkeleton, Spinner} from '@shared/ui';
-import './Button.css';
+import {LoadingWrapper, Spinner} from '@shared/ui';
+import '../styles/Button.css';
 
 export interface CommonButtonSettings {
 	icon?: ReactElement;
@@ -96,53 +96,57 @@ export function Button(props: Props) {
 	}
 
 	if (type === 'secondary') {
-		if (isLoading) {
-			return <PreloadSkeleton className='my-2 h-6 w-24 rounded-3xl' />;
-		}
+		// if (isLoading) {
+		// 	return <PreloadSkeleton className='my-2 h-6 w-24 rounded-3xl' />;
+		// }
 
 		return (
-			<button
-				{...buttonProps}
-				className={gcn(
-					'w-fit rounded-3xl bg-secondary-violet px-4 py-[10px] text-sm text-primary-violet',
-					isDesktop && 'hover:brightness-95',
-					secondaryWithPrimaryStyles && 'w-full py-3 text-base',
-					disabled && 'cursor-not-allowed bg-secondary-violet/20 text-white',
-				)}
-			>
-				<div className='flex items-center justify-center gap-2'>
-					{icon && <div>{styleElement(icon, 'size-[14px]')}</div>}
-					{children && <div>{children}</div>}
-				</div>
-			</button>
+			<LoadingWrapper isLoading={!!isLoading} className='my-2 h-6 w-24 rounded-3xl'>
+				<button
+					{...buttonProps}
+					className={gcn(
+						'w-fit rounded-3xl bg-secondary-violet px-4 py-[10px] text-sm text-primary-violet',
+						isDesktop && 'hover:brightness-95',
+						secondaryWithPrimaryStyles && 'w-full py-3 text-base',
+						disabled && 'cursor-not-allowed bg-secondary-violet/20 text-white',
+					)}
+				>
+					<div className='flex items-center justify-center gap-2'>
+						{icon && <div>{styleElement(icon, 'size-[14px]')}</div>}
+						{children && <div>{children}</div>}
+					</div>
+				</button>
+			</LoadingWrapper>
 		);
 	}
 
 	if (type === 'circle') {
-		if (isLoading) {
-			return (
-				<div className='flex w-[68px] flex-col items-center gap-y-3'>
-					<PreloadSkeleton isCircular className='size-11' />
-					<PreloadSkeleton className='h-[12px] w-12' />
-				</div>
-			);
-		}
-
 		return (
 			<button {...buttonProps} className={gcn('flex w-[68px] flex-col items-center active:scale-95')}>
-				{icon && (
+				<LoadingWrapper isLoading={!!isLoading} className='size-11' isCircular>
+					{icon && (
+						<div
+							className={cn(
+								'flex size-11 items-center justify-center rounded-full bg-secondary-violet  text-primary-violet',
+								disabled ? 'bg-secondary-violet/50 text-primary-violet/50' : 'bg-secondary-violet text-primary-violet',
+							)}
+						>
+							{styleElement(icon, 'size-4')}
+						</div>
+					)}
+				</LoadingWrapper>
+
+				{children && (
 					<div
 						className={cn(
-							'flex size-11 items-center justify-center rounded-full bg-secondary-violet  text-primary-violet',
-							disabled ? 'bg-secondary-violet/50 text-primary-violet/50' : 'bg-secondary-violet text-primary-violet',
+							'mt-2 text-xs',
+							isLoading && 'mt-3',
+							disabled ? 'text-primary-violet/50' : 'text-primary-violet',
 						)}
 					>
-						{styleElement(icon, 'size-4')}
-					</div>
-				)}
-				{children && (
-					<div className={cn('mt-2 text-xs', disabled ? 'text-primary-violet/50' : 'text-primary-violet')}>
-						{children}
+						<LoadingWrapper isLoading={!!isLoading} className='h-[12px] w-12'>
+							{children}
+						</LoadingWrapper>
 					</div>
 				)}
 			</button>

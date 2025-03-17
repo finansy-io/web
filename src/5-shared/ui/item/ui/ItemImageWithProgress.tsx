@@ -1,6 +1,6 @@
 import Chart from 'react-apexcharts';
 import {type ItemImageWithProgressProps} from '../types/ItemImageWithProgress.types.ts';
-import {options} from '../config/ItemImageWithProgress.config.ts';
+import {itemImageWithProgressOptions} from '../config/Item.config.ts';
 
 export const ItemImageWithProgress = ({image, current, target}: ItemImageWithProgressProps) => {
 	const series = [current, target - current];
@@ -10,7 +10,7 @@ export const ItemImageWithProgress = ({image, current, target}: ItemImageWithPro
 			{image}
 
 			<div className='absolute left-[-13px] top-[-13px] size-[66px]'>
-				<Chart options={options} series={series} type='donut' width='100%' height='100%' />
+				<Chart options={itemImageWithProgressOptions} series={series} type='donut' width='100%' height='100%' />
 			</div>
 		</div>
 	);

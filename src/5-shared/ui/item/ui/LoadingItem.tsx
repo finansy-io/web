@@ -1,4 +1,8 @@
-import {PreloadSkeleton} from '@shared/ui';
+import {PreloadSkeleton} from '../../loading-wrapper/ui/PreloadSkeleton.tsx';
+
+// Наследуется от PreloadSkeleton, но лежит рядом с /item
+// т.к. рендерится самостоятельно, прокидывается в слоты и не является враппером
+// Кейс схож и CardSelectTitle - там и card, и select, но лежит рядом с card.
 
 export function LoadingItem({withRightName}: {withRightName?: boolean}) {
 	return (

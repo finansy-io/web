@@ -5,4 +5,5 @@ export type LoadingWrapperProps = {
 	className: string;
 	children?: ReactNode;
 	loadingChildren?: ReactNode;
+	isCircular?: boolean;
 };
