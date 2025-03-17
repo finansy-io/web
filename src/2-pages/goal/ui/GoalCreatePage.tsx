@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
-import {GoalImageField, goalNameMaxLength} from '@widgets/goal';
+import {GoalImageField} from '@widgets/goal';
 import {GoalModel} from '@entities/goal';
 import {
 	AmountField,
@@ -13,7 +13,7 @@ import {
 	AmountFieldDetails,
 	TextFieldHints,
 } from '@shared/ui';
-import {APP_PATH, APP_TEXT, CURRENCY, CURRENCY_OPTIONS} from '@shared/constants';
+import {APP_PATH, APP_TEXT, CURRENCY, CURRENCY_OPTIONS, FORM} from '@shared/constants';
 import {cn, DateService} from '@shared/lib';
 
 export default function GoalCreatePage() {
@@ -59,7 +59,7 @@ export default function GoalCreatePage() {
 				<>
 					<GoalImageField isCreatePage>{PageHeader}</GoalImageField>
 					<PageWidgetsWrapper withTopSpace>
-						<TextField value={name} onChange={setName} maxLength={goalNameMaxLength} placeholder={APP_TEXT.goalName} />
+						<TextField value={name} onChange={setName} maxLength={FORM.nameMaxLength} placeholder={APP_TEXT.goalName} />
 						<TextFieldHints
 							visible={!name}
 							hints={['Mustang', 'House', 'Guitar', 'Maldives', 'TV', 'iPhone', 'Education']}

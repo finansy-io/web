@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
-import {portfolioNameMaxLength} from '@widgets/portfolio';
 import {
 	Button,
 	Header,
@@ -14,7 +13,7 @@ import {
 	usePopupState,
 } from '@shared/ui';
 import {cn} from '@shared/lib';
-import {APP_PATH, APP_TEXT} from '@shared/constants';
+import {APP_PATH, APP_TEXT, FORM} from '@shared/constants';
 
 const emojiConfigs = [
 	{value: '🦄'},
@@ -83,7 +82,7 @@ export function PortfolioCreatePage() {
 						</>
 					}
 					errorText={isNameValidationError && 'Such name already exists'}
-					maxLength={portfolioNameMaxLength}
+					maxLength={FORM.nameMaxLength}
 					placeholder={APP_TEXT.portfolioName}
 				/>
 

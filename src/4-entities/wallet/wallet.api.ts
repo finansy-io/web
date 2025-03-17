@@ -26,7 +26,7 @@ export class WalletApi {
 
 		// try {
 		// 	const response = await HttpClient.get({
-		// 		url: `portfolios/${portfolioId}/wallets`,
+		// 		url: `portfolios/${portfolioId}/wallets (not using)`,
 		// 		data: payload,
 		// 	});
 		//

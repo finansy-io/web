@@ -1,6 +1,5 @@
 import {Item, ItemImageWithProgress, Management, CardSelectTitle} from '@shared/ui';
-import {buttonConfigs, goalStatusOptions} from '../config/GoalManagement.config.tsx';
-import {goalsDefaultFilter} from '@widgets/goal/util';
+import {buttonConfigs, goalStatusOptions, goalsDefaultFilter} from '../config/GoalManagement.config.tsx';
 import {GoalModel} from '@entities/goal';
 import {TextHelpers, useFilter} from '@shared/lib';
 import {APP_PATH, APP_TEXT, CURRENCY_SYMBOL} from '@shared/constants';

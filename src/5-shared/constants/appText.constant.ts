@@ -82,7 +82,7 @@ export const APP_TEXT = {
 	connect: 'Connect',
 	connectWalletDisclaimer:
 		'Finansy requests only view permissions and does not have access to your private keys nor the ability to move your assets',
-	connectedWallets: 'Connected wallets',
+	connectedWallets: 'Connected wallets (not using)',
 	howItWorks: 'How it works',
 	assets: 'Assets',
 	walletDetails: 'Wallet details',

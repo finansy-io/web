@@ -99,7 +99,7 @@ export function LoginPage() {
 					type='primary'
 					onClick={handleLogin}
 					disabled={!email || !password}
-					className={cn(!displayBoxShadow && 'shadow-none')}
+					className={cn(!displayBoxShadow && '!shadow-none')}
 					isPending={isLoginPending}
 					disabledPrimaryButtonEnterClick
 				>
@@ -108,7 +108,7 @@ export function LoginPage() {
 				<Button
 					type='primary'
 					className={cn(
-						'bg-inherit text-sm text-primary-violet shadow-none  active:bg-secondary-violet',
+						'bg-inherit text-sm text-primary-violet !shadow-none  active:bg-secondary-violet',
 						isDesktop && 'hover:bg-secondary-violet',
 					)}
 					onClick={() => navigate(APP_PATH.signup)}

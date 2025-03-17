@@ -97,7 +97,7 @@ export default function SignupPage() {
 						type='primary'
 						onClick={handleSignup}
 						disabled={!email || !password}
-						className={cn(!displayBoxShadow && 'shadow-none')}
+						className={cn(!displayBoxShadow && '!	shadow-none')}
 						isPending={isSignupPending}
 						disabledPrimaryButtonEnterClick
 					>

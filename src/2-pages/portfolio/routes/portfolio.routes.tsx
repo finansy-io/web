@@ -1,26 +1,12 @@
 import {AppLayout, PageFullScreenWrapper} from '@pages/ui';
 import {PrivateRoute} from '@shared/lib';
 import {APP_PATH} from '@shared/constants';
-import {PortfolioListPage} from '../ui/PortfolioListPage.tsx';
+import {PortfolioManagementPage} from '../ui/PortfolioManagementPage.tsx';
 import {PortfolioCreatePage} from '../ui/PortfolioCreatePage.tsx';
-import {PortfolioWalletConnectPage} from '../ui/PortfolioWalletConnectPage.tsx';
-import {PortfolioWalletListPage} from '../ui/PortfolioWalletListPage.tsx';
-import {PortfolioWalletDetailsPage} from '../ui/PortfolioWalletDetailsPage.tsx';
-import {PortfolioWalletEditPage} from '../ui/PortfolioWalletEditPage.tsx';
 
-const portfolioListRoute = {
+const portfolioManagementRoute = {
 	path: APP_PATH.portfolio.list,
-	element: <PrivateRoute page={<PortfolioListPage />} />,
-};
-
-const portfolioInfoRoute = {
-	path: APP_PATH.portfolio.connectWallet,
-	element: <PrivateRoute page={<PortfolioWalletConnectPage />} />,
-};
-
-const portfolioConnectedWalletsRoute = {
-	path: APP_PATH.portfolio.wallets,
-	element: <PrivateRoute page={<PortfolioWalletListPage />} />,
+	element: <PrivateRoute page={<PortfolioManagementPage />} />,
 };
 
 const portfolioCreateRoute = {
@@ -28,26 +14,10 @@ const portfolioCreateRoute = {
 	element: <PrivateRoute page={<PortfolioCreatePage />} />,
 };
 
-const portfolioWalletDetailsRoute = {
-	path: `${APP_PATH.portfolio.wallets}/:id`,
-	element: <PrivateRoute page={<PortfolioWalletDetailsPage />} />,
-};
-
-const portfolioWalletEditRoute = {
-	path: `${APP_PATH.portfolio.wallets}/:id/edit`,
-	element: <PrivateRoute page={<PortfolioWalletEditPage />} />,
-};
-
 export const portfolioRoutes = [
-	{element: <AppLayout />, children: [portfolioListRoute]},
+	{element: <AppLayout />, children: [portfolioManagementRoute]},
 	{
 		element: <PageFullScreenWrapper />,
-		children: [
-			portfolioCreateRoute,
-			portfolioInfoRoute,
-			portfolioConnectedWalletsRoute,
-			portfolioWalletDetailsRoute,
-			portfolioWalletEditRoute,
-		],
+		children: [portfolioCreateRoute],
 	},
 ];
