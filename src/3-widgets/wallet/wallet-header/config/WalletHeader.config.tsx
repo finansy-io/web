@@ -8,7 +8,7 @@ export class WalletHeaderConfig {
 				name: APP_TEXT.edit,
 				type: 'secondary',
 				icon: <Icon type='edit' />,
-				onClick: ({navigate}) => navigate(APP_PATH.portfolio.getItemWalletEditPath('1')),
+				onClick: ({navigate}) => navigate(APP_PATH.wallet.getItemEditPath('1')),
 			},
 		] as ButtonConfig[];
 	}

@@ -50,7 +50,7 @@ const settingsConfigs = [
 			name: 'Connected wallets',
 			image: <Icon type='wallet' withBackground />,
 			onClick: ({navigate}) => {
-				navigate(APP_PATH.portfolio.wallets, {state: {from: APP_PATH.portfolio.list}});
+				navigate(APP_PATH.wallet.wallets, {state: {from: APP_PATH.portfolio.list}});
 			},
 		},
 		{

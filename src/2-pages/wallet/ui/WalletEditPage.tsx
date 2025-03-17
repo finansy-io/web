@@ -9,7 +9,7 @@ export function WalletEditPage() {
 
 	return (
 		<>
-			<Header backPath={APP_PATH.portfolio.getItemWalletDetailsPath(id)} />
+			<Header backPath={APP_PATH.wallet.getItemDetailsPath(id)} />
 			<PageWidgetsWrapper>
 				<WalletEdit />
 			</PageWidgetsWrapper>

@@ -6,6 +6,6 @@ export const buttonConfigs = [
 		name: APP_TEXT.connectWallet,
 		type: 'secondary',
 		icon: <Icon type='plus' />,
-		onClick: ({navigate}) => navigate(APP_PATH.portfolio.connectWallet),
+		onClick: ({navigate}) => navigate(APP_PATH.wallet.connectWallet),
 	},
 ] as ButtonConfig[];

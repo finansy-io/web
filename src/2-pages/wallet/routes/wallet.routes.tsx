@@ -7,22 +7,22 @@ import {WalletDetailsPage} from '../ui/WalletDetailsPage.tsx';
 import {WalletEditPage} from '../ui/WalletEditPage.tsx';
 
 const portfolioInfoRoute = {
-	path: APP_PATH.portfolio.connectWallet,
+	path: APP_PATH.wallet.connectWallet,
 	element: <PrivateRoute page={<WalletConnectPage />} />,
 };
 
 const portfolioConnectedWalletsRoute = {
-	path: APP_PATH.portfolio.wallets,
+	path: APP_PATH.wallet.wallets,
 	element: <PrivateRoute page={<WalletListPage />} />,
 };
 
 const portfolioWalletDetailsRoute = {
-	path: `${APP_PATH.portfolio.wallets}/:id`,
+	path: `${APP_PATH.wallet.wallets}/:id`,
 	element: <PrivateRoute page={<WalletDetailsPage />} />,
 };
 
 const portfolioWalletEditRoute = {
-	path: `${APP_PATH.portfolio.wallets}/:id/edit`,
+	path: `${APP_PATH.wallet.wallets}/:id/edit`,
 	element: <PrivateRoute page={<WalletEditPage />} />,
 };
 

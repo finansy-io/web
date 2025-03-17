@@ -12,7 +12,7 @@ export function WalletHeader() {
 		<Header
 			title={walletName}
 			buttonConfigs={WalletHeaderConfig.getButtonConfig()}
-			backPath={location.state?.from === APP_PATH.portfolio.list ? APP_PATH.portfolio.list : APP_PATH.portfolio.wallets}
+			backPath={location.state?.from === APP_PATH.portfolio.list ? APP_PATH.portfolio.list : APP_PATH.wallet.wallets}
 			image={<Icon type='wallet' withBackground />}
 		/>
 	);

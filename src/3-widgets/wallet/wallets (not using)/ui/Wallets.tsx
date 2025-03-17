@@ -17,7 +17,7 @@ export function Wallets() {
 		<Card
 			titleInCard={
 				!isLoading && !wallets?.length ? null : (
-					<CardLinkTitle title={APP_TEXT.connectedWallets} path={APP_PATH.portfolio.wallets} />
+					<CardLinkTitle title={APP_TEXT.connectedWallets} path={APP_PATH.wallet.wallets} />
 				)
 			}
 			isLoading={isLoading}
@@ -33,7 +33,7 @@ export function Wallets() {
 						name={wallet.name}
 						description={wallet.description}
 						onClick={({navigate}) => {
-							navigate(APP_PATH.portfolio.getItemWalletDetailsPath('1'), {state: {from: APP_PATH.portfolio.list}});
+							navigate(APP_PATH.wallet.getItemDetailsPath('1'), {state: {from: APP_PATH.portfolio.list}});
 						}}
 					/>
 				)}
