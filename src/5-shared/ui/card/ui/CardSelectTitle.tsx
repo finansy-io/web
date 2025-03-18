@@ -11,7 +11,7 @@ export function CardSelectTitle<TValue>(props: CardSelectTitleProps<TValue>) {
 
 	return (
 		<>
-			<LoadingWrapper isLoading={!!isLoading} className='my-0.5 h-4 w-10'>
+			<LoadingWrapper isLoading={!!isLoading} isTextSm>
 				<div
 					className={cn(
 						'flex w-fit cursor-pointer items-center gap-1.5 text-sm font-medium text-primary-grey',

@@ -10,7 +10,7 @@ export function Card(props: CardProps) {
 			{(title || rightTitle) && (
 				<div className={cn('flex pb-3', title && rightTitle && 'items-center justify-between')}>
 					{title && (
-						<LoadingWrapper isLoading={!!isLoading} className='my-0.5 h-4 w-10'>
+						<LoadingWrapper isLoading={!!isLoading} isTextSm>
 							<div className='font-semibold'>{title}</div>
 						</LoadingWrapper>
 					)}
@@ -23,7 +23,7 @@ export function Card(props: CardProps) {
 					<div className='flex items-center justify-between px-4 py-3 text-sm font-medium text-primary-grey'>
 						{titleInCard && (
 							<div>
-								<LoadingWrapper isLoading={!!isLoading} className='my-0.5 h-4 w-10'>
+								<LoadingWrapper isLoading={!!isLoading} isTextSm>
 									{titleInCard}
 								</LoadingWrapper>
 							</div>

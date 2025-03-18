@@ -8,10 +8,10 @@ export function Details<T>({details, detailsFields, isLoading}: DetailsProps<T>)
 		<Card>
 			{detailsFields.map(({label, key, ...restDetailsField}, index) => (
 				<div className='flex justify-between p-4 text-sm' key={index}>
-					<LoadingWrapper isLoading={isLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isLoading} isTextSm>
 						<div className='font-medium text-primary-grey'>{label}</div>
 					</LoadingWrapper>
-					<LoadingWrapper isLoading={isLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isLoading} isTextSm>
 						{getDetailsValue(get(details, key), restDetailsField)}
 					</LoadingWrapper>
 				</div>

@@ -19,7 +19,7 @@ export function GoalDelete() {
 			handleDelete={() => deleteGoal({params: {id: id!}})}
 			statusTextKey='deleteGoal'
 		>
-			<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+			<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 				{APP_TEXT.deleteGoal}
 			</LoadingWrapper>
 		</DeleteItem>

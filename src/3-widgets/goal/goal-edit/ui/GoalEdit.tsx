@@ -99,10 +99,10 @@ export function GoalEdit() {
 		<>
 			<Card>
 				<div className='flex justify-between p-4 text-sm'>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<div className='font-medium text-primary-grey'>{APP_TEXT.name}</div>
 					</LoadingWrapper>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<TextFieldEditButton
 							{...editButtonCommonProps}
 							entityName={APP_TEXT.name}
@@ -116,10 +116,10 @@ export function GoalEdit() {
 				</div>
 
 				<div className='flex justify-between p-4 text-sm'>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<div className='font-medium text-primary-grey'>{APP_TEXT.currency}</div>
 					</LoadingWrapper>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<EditButtonField<CURRENCY>
 							type='select'
 							title={APP_TEXT.currency}
@@ -137,10 +137,10 @@ export function GoalEdit() {
 				</div>
 
 				<div className='flex justify-between p-4 text-sm'>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<div className='font-medium text-primary-grey'>{APP_TEXT.targetAmount}</div>
 					</LoadingWrapper>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<EditButtonField<string>
 							type='amount'
 							title={APP_TEXT.targetAmount}
@@ -170,10 +170,10 @@ export function GoalEdit() {
 				</div>
 
 				<div className='flex justify-between p-4 text-sm'>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<div className='font-medium text-primary-grey'>{APP_TEXT.deadline}</div>
 					</LoadingWrapper>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<EditButtonField<Date | null>
 							type='date'
 							title={APP_TEXT.deadline}
