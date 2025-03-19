@@ -1,5 +1,4 @@
 import {Outlet, useLocation, useNavigate} from 'react-router-dom';
-import {useState} from 'react';
 import {AuthModel} from '@entities/auth';
 import {
 	Button,
@@ -46,38 +45,60 @@ export function AppLayout() {
 
 const settingsConfigs = [
 	[
+		// {
+		// 	name: 'Connected wallets',
+		// 	image: <Icon type='wallet' withBackground />,
+		// 	onClick: ({navigate}) => {
+		// 		navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.list}});
+		// 	},
+		// },
 		{
-			name: 'Connected wallets',
-			image: <Icon type='wallet' withBackground />,
-			onClick: ({navigate}) => {
-				navigate(APP_PATH.wallet.wallets, {state: {from: APP_PATH.portfolio.list}});
-			},
+			name: 'Currency',
+			image: <Icon type='currency' className='size-5 text-[18px]' />,
+			rightNode: <div className='font-light text-primary-grey'>USD</div>,
 		},
 		{
 			name: 'Hide balance',
-			image: <Icon type='hide' className='text-[18px]' withBackground />,
+			image: <Icon type='hide' className='size-5 text-[18px]' />,
 			rightNode: 'switch',
 		},
 		{
 			name: 'Include in total portfolio',
-			image: <Icon type='portfolio' withBackground />,
+			image: <Icon type='portfolio' className='size-5' />,
 			rightNode: 'switch',
 		},
+	],
+
+	[
+		{
+			name: 'Connected wallets',
+			image: <Icon type='wallet' className='size-5' />,
+			onClick: ({navigate}) => {
+				navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.list}});
+			},
+		},
+		// {
+		// 	name: 'Connected exchanges',
+		// 	image: <Icon type='wallet' className='size-5' />,
+		// 	onClick: ({navigate}) => {
+		// 		navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.list}});
+		// 	},
+		// },
 	],
 	[
 		{
 			name: APP_TEXT.share + ' ' + APP_TEXT.portfolio.toLowerCase(),
-			image: <Icon type='share' withBackground />,
+			image: <Icon type='share' className='size-5' />,
 			onClick: () => console.log('delete portfolio'),
 		},
 		{
 			name: APP_TEXT.edit + ' ' + APP_TEXT.portfolio.toLowerCase(),
-			image: <Icon type='edit' withBackground />,
+			image: <Icon type='edit' className='size-5' />,
 			onClick: () => console.log('edit portfolio'),
 		},
 		{
-			name: APP_TEXT.delete + ' ' + APP_TEXT.portfolio.toLowerCase(),
-			image: <Icon type='delete' className='bg-red-100 text-red-600' withBackground />,
+			name: <div className='text-red-600'>{APP_TEXT.delete + ' ' + APP_TEXT.portfolio.toLowerCase()}</div>,
+			image: <Icon type='delete' className='size-5 text-red-600' />,
 			onClick: () => console.log('delete portfolio'),
 		},
 	],
@@ -123,18 +144,18 @@ const portfolioConfigs = [
 		image: <Icon type='portfolio' withBackground />,
 	},
 ];
-const tabConfigs = [
-	{name: '24h', path: '24h'},
-	{name: '1w', path: '1w'},
-	{name: '1m', path: '1m'},
-	{name: '3m', path: '3m'},
-	{name: '6m', path: '6m'},
-	{name: '1y', path: '1y'},
-	{name: 'All', path: 'All'},
-];
+// const tabConfigs = [
+// 	{name: '24h', path: '24h'},
+// 	{name: '1w', path: '1w'},
+// 	{name: '1m', path: '1m'},
+// 	{name: '3m', path: '3m'},
+// 	{name: '6m', path: '6m'},
+// 	{name: '1y', path: '1y'},
+// 	{name: 'All', path: 'All'},
+// ];
 
 export function AppHeader() {
-	const location = useLocation();
+	// const location = useLocation();
 	const navigate = useNavigate();
 
 	const {logout} = AuthModel.useLogout();
@@ -152,7 +173,7 @@ export function AppHeader() {
 		closePopup: closePortfolioSettingsPopup,
 	} = usePopupState();
 
-	const [dataFilter, setDataFilter] = useState('24h');
+	// const [dataFilter, setDataFilter] = useState('24h');
 
 	const {isDesktop} = useResponsive();
 
@@ -160,7 +181,7 @@ export function AppHeader() {
 
 	return (
 		<header role='app-header' className='flex items-center justify-between p-4'>
-			<Button type='circle' onClick={openUserPopup} icon={<Icon type='user' />} className='w-fit' />
+			<Button type='circle' onClick={openUserPopup} icon={<Icon type='user' />} className='size-10' />
 
 			{location.pathname === APP_PATH.portfolio.list && (
 				<>
@@ -176,7 +197,7 @@ export function AppHeader() {
 						<Icon type='selectChevron' className='size-3 flex-shrink-0' />
 					</div>
 
-					<div className='flex size-11 items-center justify-center'>
+					<div className='flex size-10 items-center justify-center'>
 						<Button
 							type='icon'
 							icon={
@@ -197,7 +218,7 @@ export function AppHeader() {
 			<Drawer {...userPopupProps} direction='left'>
 				<div className='mb-2 flex flex-col items-center gap-2'>
 					<div className='flex size-14 items-center justify-center rounded-full bg-secondary-violet text-primary-violet'>
-						<Icon type='user' />
+						<Icon type='user' className='size-5' />
 					</div>
 					<div className='text-2xl font-medium'>{authUser?.email === 'toxa' ? 'Anton Maksimow' : authUser?.email}</div>
 					{/*<div className='flex items-center gap-1.5'>*/}
@@ -234,12 +255,6 @@ export function AppHeader() {
 						rightName={<div className='font-light text-primary-grey'>Light</div>}
 						onClick={() => {}}
 					/>
-					<Item
-						image={<Icon type='currency' />}
-						name={'Currency'}
-						rightName={<div className='font-light text-primary-grey'>USD</div>}
-						onClick={() => {}}
-					/>
 				</div>
 
 				<div className='rounded-2xl bg-white'>
@@ -254,21 +269,43 @@ export function AppHeader() {
 				</div>
 			</Drawer>
 
-			<Popup {...portfolioPopupProps}>
-				<div className='flex justify-between rounded-2xl'>
-					{tabConfigs.map(({name, path}, index) => (
-						<div
-							key={index}
-							className={cn(
-								'cursor-pointer rounded-3xl px-3 py-2 text-sm transition duration-200',
-								dataFilter === path ? 'bg-white' : 'bg-inherit text-primary-grey',
-							)}
-							onClick={() => setDataFilter(path)}
-						>
-							{name}
+			<Popup
+				{...portfolioPopupProps}
+				leftTitle={
+					<div className='flex items-center gap-1 text-sm font-normal'>
+						<div>24h</div>
+						<div>
+							<Icon type='selectChevron' className='size-2.5' />
 						</div>
-					))}
-				</div>
+					</div>
+				}
+				title={'Portfolios'}
+				rightTitle={
+					<div
+						className='-m-1 flex items-center gap-3 p-1'
+						onClick={() => {
+							closePortfolioPopup();
+							PopupHelpers.runAfterPopupClosed(() => navigate(APP_PATH.portfolio.create));
+						}}
+					>
+						<Icon type='plus' className='size-4' />
+					</div>
+				}
+			>
+				{/*<div className='flex justify-between rounded-2xl'>*/}
+				{/*	{tabConfigs.map(({name, path}, index) => (*/}
+				{/*		<div*/}
+				{/*			key={index}*/}
+				{/*			className={cn(*/}
+				{/*				'cursor-pointer rounded-3xl px-3 py-2 text-sm transition duration-200',*/}
+				{/*				dataFilter === path ? 'bg-white' : 'bg-inherit text-primary-grey',*/}
+				{/*			)}*/}
+				{/*			onClick={() => setDataFilter(path)}*/}
+				{/*		>*/}
+				{/*			{name}*/}
+				{/*		</div>*/}
+				{/*	))}*/}
+				{/*</div>*/}
 
 				<Item
 					image={<Icon type='portfolio' withBackground />}
@@ -284,21 +321,7 @@ export function AppHeader() {
 					}
 				/>
 
-				<Card
-					titleInCard={'Portfolios'}
-					rightTitleInCard={
-						//button styles, чтобы при наведении и клике все было консистентно
-						<div
-							className='-m-1 flex items-center gap-3 p-1'
-							onClick={() => {
-								closePortfolioPopup();
-								PopupHelpers.runAfterPopupClosed(() => navigate(APP_PATH.portfolio.create));
-							}}
-						>
-							<Icon type='plus' className='size-4' />
-						</div>
-					}
-				>
+				<Card>
 					<List
 						items={portfolioConfigs}
 						renderItem={(portfolioConfig) => {
@@ -315,7 +338,7 @@ export function AppHeader() {
 				</Card>
 			</Popup>
 
-			<Popup {...portfolioSettingsPopupProps}>
+			<Popup {...portfolioSettingsPopupProps} title='Portfolio 1'>
 				{settingsConfigs.map((settingsConfig, index) => (
 					<List
 						key={index}
@@ -341,7 +364,7 @@ export function AppHeader() {
 }
 
 const appTabConfigs: {label: string; path: string}[] = [
-	{label: APP_TEXT.portfolios, path: APP_PATH.portfolio.list},
+	{label: APP_TEXT.assets, path: APP_PATH.portfolio.list},
 	{label: APP_TEXT.goals, path: APP_PATH.goal.list},
 ];
 

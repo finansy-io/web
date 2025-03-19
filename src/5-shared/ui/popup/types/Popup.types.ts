@@ -3,7 +3,9 @@ import {ReactNode, ReactElement} from 'react';
 export type DrawerProps = {
 	isOpen: boolean;
 	setIsOpen: (open: boolean) => void;
+	leftTitle?: ReactNode;
 	title?: ReactNode;
+	rightTitle?: ReactNode;
 	children?: ReactNode;
 	direction?: 'left' | 'bottom';
 

@@ -6,34 +6,29 @@ import {WalletListPage} from '../ui/WalletListPage.tsx';
 import {WalletDetailsPage} from '../ui/WalletDetailsPage.tsx';
 import {WalletEditPage} from '../ui/WalletEditPage.tsx';
 
-const portfolioInfoRoute = {
+const connectWalletRoute = {
 	path: APP_PATH.wallet.connectWallet,
 	element: <PrivateRoute page={<WalletConnectPage />} />,
 };
 
-const portfolioConnectedWalletsRoute = {
-	path: APP_PATH.wallet.wallets,
+const walletsRoute = {
+	path: APP_PATH.wallet.list,
 	element: <PrivateRoute page={<WalletListPage />} />,
 };
 
-const portfolioWalletDetailsRoute = {
-	path: `${APP_PATH.wallet.wallets}/:id`,
+const walletDetailsRoute = {
+	path: `${APP_PATH.wallet.list}/:id`,
 	element: <PrivateRoute page={<WalletDetailsPage />} />,
 };
 
-const portfolioWalletEditRoute = {
-	path: `${APP_PATH.wallet.wallets}/:id/edit`,
+const walletEditRoute = {
+	path: `${APP_PATH.wallet.list}/:id/edit`,
 	element: <PrivateRoute page={<WalletEditPage />} />,
 };
 
 export const walletRoutes = [
 	{
 		element: <PageFullScreenWrapper />,
-		children: [
-			portfolioInfoRoute,
-			portfolioConnectedWalletsRoute,
-			portfolioWalletDetailsRoute,
-			portfolioWalletEditRoute,
-		],
+		children: [connectWalletRoute, walletsRoute, walletDetailsRoute, walletEditRoute],
 	},
 ];

@@ -28,9 +28,9 @@ export const APP_PATH = {
 
 	wallet: {
 		connectWallet: '/connect-wallet',
-		wallets: '/wallets',
+		list: '/wallets',
 
-		getItemDetailsPath: (id: any) => `${APP_PATH.wallet.wallets}/${id}`,
-		getItemEditPath: (id: any) => `${APP_PATH.wallet.wallets}/${id}/edit`,
+		getItemDetailsPath: (id: any) => `${APP_PATH.wallet.list}/${id}`,
+		getItemEditPath: (id: any) => `${APP_PATH.wallet.list}/${id}/edit`,
 	},
 };

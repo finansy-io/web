@@ -17,7 +17,7 @@ export function Wallets() {
 		<Card
 			titleInCard={
 				!isLoading && !wallets?.length ? null : (
-					<CardLinkTitle title={APP_TEXT.connectedWallets} path={APP_PATH.wallet.wallets} />
+					<CardLinkTitle title={APP_TEXT.connectedWallets} path={APP_PATH.wallet.list} />
 				)
 			}
 			isLoading={isLoading}
