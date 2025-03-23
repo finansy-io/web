@@ -36,7 +36,7 @@ export function PortfolioManagement() {
 					value={assetSorting}
 					onChange={setAssetSorting}
 					options={assetSortingOptions}
-					popupTitle={APP_TEXT.assetSorting}
+					popupTitle={APP_TEXT.sortBy}
 					isLoading={isLoading}
 					isCardRightTitle
 				/>

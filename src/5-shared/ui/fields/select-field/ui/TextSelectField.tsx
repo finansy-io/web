@@ -57,20 +57,3 @@ export function TextSelectField<Value>(props: SelectFieldProps<Value>) {
 		</>
 	);
 }
-
-//  1. TextSelectField - смерджить TextSelectField и TextSelectField и использовать его только для текста
-//  2. TitleSelectField - все другое, не получается отнаследоваться vs написать уникальный ParentSelectField??
-
-// рендерить кастомные popup-options
-//  - продумать options-type, чтобы делать spread в <Item />
-//  - тут сейчас data + value for select + props like Item
-
-// renderPopupLeftTitle,
-// renderPopupRightTitle,
-// popupPreSelectListChildren,
-// popupAfterSelectListChildren,
-// popupRightTitle?: ReactNode;
-// getRightTitle?: ({closePopup}: {closePopup: () => void}) => ReactNode;
-// renderPopupItem?: (option: any) => ReactNode;
-// popupChildren?: ReactNode;
-// when popupProps.isOpen - custom styles - при текущей имплементации не получится сделать

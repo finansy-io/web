@@ -4,11 +4,11 @@ import {type SettingsConfigs, TabConfigs} from '@shared/types';
 
 export const settingsConfigs = [
 	[
-		{
-			name: 'Currency',
-			image: <Icon type='currency' className='size-5 text-[18px]' />,
-			rightNode: <div className='font-light text-primary-grey'>USD</div>,
-		},
+		// {
+		// 	name: 'Currency',
+		// 	image: <Icon type='currency' className='size-5 text-[18px]' />,
+		// 	rightNode: <div className='font-light text-primary-grey'>USD</div>,
+		// },
 		{
 			name: 'Hide balance',
 			image: <Icon type='hide' className='size-5 text-[18px]' />,
