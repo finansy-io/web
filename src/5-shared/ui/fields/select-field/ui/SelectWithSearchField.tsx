@@ -4,6 +4,11 @@ import {Card, Icon, Item, TextField} from '@shared/ui';
 import {APP_TEXT, CURRENCY} from '@shared/constants';
 import {cn} from '@shared/lib';
 
+/**
+ * GoalCreate - choose currency
+ * GoalEdit - <EditButtonField<CURRENCY> type='select' />
+ */
+
 export function SelectWithSearchField(props: SelectWithSearchFieldProps) {
 	const {options, onChange, value} = props;
 

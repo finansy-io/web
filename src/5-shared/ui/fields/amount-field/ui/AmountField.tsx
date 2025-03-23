@@ -151,16 +151,11 @@ export function AmountField<Option extends AmountFieldOption>(props: AmountField
 						items={options ? options : null}
 						renderItem={(option) => (
 							<Item
-								className={cn(AmountFieldHelpers.isItemSelected<Option>(option, activeOption) && 'bg-light-grey')}
 								onClick={() => handleOptionSelect(option)}
 								image={option.image}
 								name={option.name}
 								description={AmountFieldHelpers.getDescription<Option>({getCustomDescription, option})}
-								rightNode={
-									AmountFieldHelpers.isItemSelected<Option>(option, activeOption) && (
-										<Icon type='check' className='flex size-4 self-center text-primary-violet' />
-									)
-								}
+								isChecked={AmountFieldHelpers.isItemSelected(option, activeOption)}
 							/>
 						)}
 						fetchNextPage={fetchNextOptions}

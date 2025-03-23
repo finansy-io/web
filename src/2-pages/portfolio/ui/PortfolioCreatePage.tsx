@@ -157,7 +157,7 @@ export function EmojiField({selectedEmojiConfig, setSelectedEmojiConfig}: EmojiF
 						<div
 							key={emojiConfig.id}
 							className={cn(
-								'size-10 rounded-full p-1 text-center transition duration-200 active:scale-95 active:brightness-90',
+								'size-10 cursor-pointer rounded-full p-1 text-center transition duration-200 active:scale-95 active:brightness-90',
 								inPopupEmojiConfig.id === emojiConfig.id && 'bg-secondary-grey',
 							)}
 							onClick={() => setInPopupEmojiConfig(emojiConfig)}
