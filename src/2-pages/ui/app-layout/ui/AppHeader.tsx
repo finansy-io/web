@@ -11,9 +11,9 @@ import {
 	Popup,
 	PopupHelpers,
 	Profit,
+	SelectTitle,
 	TextSelectField,
 	usePopupState,
-	SelectTitle,
 } from '@shared/ui';
 import {cn} from '@shared/lib';
 import {APP_PATH, APP_TEXT, PERIOD_OPTIONS} from '@shared/constants';
