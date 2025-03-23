@@ -25,7 +25,7 @@ import {
 } from 'react-icons/fa6';
 import {FaCamera, FaEye, FaEyeSlash, FaSignOutAlt} from 'react-icons/fa';
 import {cn} from '@shared/lib';
-import {BsFillQuestionCircleFill, BsThreeDotsVertical} from 'react-icons/bs';
+import {BsFillQuestionCircleFill, BsThreeDotsVertical, BsTriangleFill} from 'react-icons/bs';
 import {AiFillDollarCircle} from 'react-icons/ai';
 import {IoIosColorPalette} from 'react-icons/io';
 import {HiMiniMegaphone} from 'react-icons/hi2';
@@ -87,6 +87,13 @@ export const ICON_MAP = {
 	language: FaEarthAmericas,
 	support: BsFillQuestionCircleFill,
 	contactUs: ContactUsIcon,
+
+	profitUp: BsTriangleFill,
+	profitDown: ({className}: {className: string}) => (
+		<div className={cn('rotate-180 transform')}>
+			<BsTriangleFill className={className} />
+		</div>
+	),
 } as const;
 
 function ThemeIcon() {
