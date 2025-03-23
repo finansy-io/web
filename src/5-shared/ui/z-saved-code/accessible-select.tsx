@@ -34,7 +34,7 @@ export function AccessibleSelectInCard({
 					>
 						{value.name}
 						<div className='ml-1 size-4'>
-							<Icon type='selectChevron' />
+							<Icon type='chevronDown' />
 						</div>
 					</ListboxButton>
 

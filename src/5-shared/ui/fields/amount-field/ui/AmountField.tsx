@@ -89,7 +89,7 @@ export function AmountField<Option extends AmountFieldOption>(props: AmountField
 
 								<div className='truncate font-medium'>{activeOption?.name}</div>
 
-								{isMultipleOptions && <Icon type='selectChevron' className='size-3 flex-shrink-0' />}
+								{isMultipleOptions && <Icon type='chevronDown' className='size-3 flex-shrink-0' />}
 							</div>
 						</div>
 					</LoadingWrapper>

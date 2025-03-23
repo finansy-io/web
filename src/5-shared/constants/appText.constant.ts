@@ -75,6 +75,7 @@ export const APP_TEXT = {
 	overdue: 'Overdue',
 	portfolio: 'Portfolio',
 	period: 'Period',
+	assetSorting: 'Asset sorting',
 	portfolioName: 'Portfolio name',
 	portfolios: 'Portfolios',
 	createPortfolio: 'Create portfolio',

@@ -1,5 +1,6 @@
-import {Icon, type ManagementSettingsConfigs} from '@shared/ui';
+import {Icon} from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
+import {type SettingsConfigs, TabConfigs} from '@shared/types';
 
 export const settingsConfigs = [
 	[
@@ -36,6 +37,7 @@ export const settingsConfigs = [
 		// 	},
 		// },
 	],
+
 	[
 		{
 			name: APP_TEXT.share + ' ' + APP_TEXT.portfolio.toLowerCase(),
@@ -53,64 +55,12 @@ export const settingsConfigs = [
 			onClick: () => console.log('delete portfolio'),
 		},
 	],
-] as ManagementSettingsConfigs;
+] as SettingsConfigs;
 
-export const portfolioConfigs = [
-	{
-		name: 'Portfolio 1',
-		description: '10 assets',
-		rightName: '9 990 $',
-		rightDescription: (
-			<div className='flex items-center gap-1.5 text-red-600'>
-				<div>-7 631$</div>
-				<div className='size-0.5 rounded-full bg-red-600' />
-				<div>78.91%</div>
-			</div>
-		),
-		image: <Icon type='portfolio' withBackground />,
-	},
-	{
-		name: 'Portfolio 2',
-		description: '12 assets',
-		rightName: '8 865 $',
-		rightDescription: (
-			<div className='flex items-center gap-1.5 text-red-600'>
-				<div>-2 947$</div>
-				<div className='size-0.5 rounded-full bg-red-600' />
-				<div>56.78%</div>
-			</div>
-		),
-		image: <Icon type='portfolio' withBackground />,
-	},
-	{
-		name: 'Portfolio 3',
-		description: '11 assets',
-		rightName: '6 798 $',
-		rightDescription: (
-			<div className='flex items-center gap-1.5 text-red-600'>
-				<div>-765$</div>
-				<div className='size-0.5 rounded-full bg-red-600' />
-				<div>32.21%</div>
-			</div>
-		),
-		image: <Icon type='portfolio' withBackground />,
-	},
-];
-
-// const tabConfigs = [
-// 	{name: '24h', path: '24h'},
-// 	{name: '1w', path: '1w'},
-// 	{name: '1m', path: '1m'},
-// 	{name: '3m', path: '3m'},
-// 	{name: '6m', path: '6m'},
-// 	{name: '1y', path: '1y'},
-// 	{name: 'All', path: 'All'},
-// ];
-
-export const appTabConfigs: {label: string; path: string}[] = [
+export const appTabConfigs = [
 	{label: APP_TEXT.assets, path: APP_PATH.portfolio.list},
 	{label: APP_TEXT.goals, path: APP_PATH.goal.list},
-];
+] satisfies TabConfigs;
 
 export const sidebarConfigs = [
 	{

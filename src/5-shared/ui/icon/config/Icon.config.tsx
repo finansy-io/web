@@ -61,7 +61,7 @@ export const ICON_MAP = {
 
 	congratulations: ({className}: {className: string}) => <div className={className}>🎉</div>,
 
-	selectChevron: FaChevronDown,
+	chevronDown: FaChevronDown,
 
 	plus: FaPlus,
 	x: FaXmark,
