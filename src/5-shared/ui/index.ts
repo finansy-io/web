@@ -10,7 +10,9 @@ export * from './fields/amount-field/types/AmountField.types.ts';
 export * from './fields/date-field/ui/DateField.tsx';
 
 export * from './fields/select-field/ui/SelectWithSearchField.tsx';
-export * from './fields/select-field/ui/SelectField.tsx';
+export * from './fields/select-field/ui/TextSelectField.tsx';
+export * from './fields/select-field/helpers/SelectTitle.helpers.ts';
+export * from './fields/select-field/ui/SelectTitle.tsx';
 
 export * from './fields/DatePicker.tsx';
 

@@ -2,8 +2,20 @@ import {useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {settingsConfigs} from '../config/AppLayout.config.tsx';
 import {AuthModel} from '@entities/auth';
-import {Button, Icon, Item, LeftPopup, List, Popup, PopupHelpers, Profit, SelectField, usePopupState} from '@shared/ui';
-import {cn, useResponsive} from '@shared/lib';
+import {
+	Button,
+	Icon,
+	Item,
+	LeftPopup,
+	List,
+	Popup,
+	PopupHelpers,
+	Profit,
+	TextSelectField,
+	usePopupState,
+	SelectTitle,
+} from '@shared/ui';
+import {cn} from '@shared/lib';
 import {APP_PATH, APP_TEXT, PERIOD_OPTIONS} from '@shared/constants';
 
 export function AppHeader() {
@@ -27,25 +39,19 @@ export function AppHeader() {
 		closePopup: closePortfolioSettingsPopup,
 	} = usePopupState();
 
-	const {isDesktop} = useResponsive();
-
 	return (
 		<header role='app-header' className='flex items-center justify-between p-4'>
-			<Button type='circle' onClick={openUserPopup} icon={<Icon type='user' />} className='size-10' />
+			<Button type='icon' icon={<Icon type='user' withBackground className='size-10' />} onClick={openUserPopup} />
 
 			{location.pathname === APP_PATH.portfolio.list && (
 				<>
-					<div
-						className={cn(
-							'flex cursor-pointer items-center gap-2 text-xl font-medium transition duration-200 active:text-primary-grey',
-							portfolioPopupProps.isOpen && 'text-primary-grey',
-							isDesktop && 'hover:text-primary-grey',
-						)}
+					<SelectTitle
+						type='title'
+						value={selectedPortfolioValue}
+						options={portfolioOptions}
 						onClick={openPortfolioPopup}
-					>
-						<div>{portfolioOptions.find((option) => option.value === selectedPortfolioValue)?.name}</div>
-						<Icon type='chevronDown' className='size-3 flex-shrink-0' />
-					</div>
+						isPopupOpen={portfolioPopupProps.isOpen}
+					/>
 
 					<Button
 						className='size-10'
@@ -208,7 +214,7 @@ export function PortfolioSelectPopup(props: any) {
 			{...portfolioPopupProps}
 			title={'Portfolios'}
 			rightTitle={
-				<SelectField value={period} onChange={setPeriod} options={PERIOD_OPTIONS} popupTitle={APP_TEXT.period} />
+				<TextSelectField value={period} onChange={setPeriod} options={PERIOD_OPTIONS} popupTitle={APP_TEXT.period} />
 			}
 		>
 			<Item
@@ -225,11 +231,11 @@ export function PortfolioSelectPopup(props: any) {
 					return (
 						<Item
 							{...restPortfolioOption}
-							isChecked={value === selectedPortfolioValue}
 							onClick={() => {
 								closePortfolioPopup();
 								PopupHelpers.runAfterPopupClosed(() => setSelectedPortfolioValue(value));
 							}}
+							isChecked={value === selectedPortfolioValue}
 						/>
 					);
 				}}

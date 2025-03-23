@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {GoalModel} from '@entities/goal';
 import {buttonConfigs, assetSortingOptions} from '../config/PortfolioManagement.config.tsx';
-import {Item, Management, Profit, SelectField} from '@shared/ui';
+import {Item, Management, Profit, TextSelectField} from '@shared/ui';
 import {TextHelpers} from '@shared/lib';
 import {APP_TEXT, CURRENCY_SYMBOL, PERIOD_OPTIONS} from '@shared/constants';
 
@@ -20,7 +20,7 @@ export function PortfolioManagement() {
 			totalBalance={goalTotalBalance}
 			totalBalanceDescription={<Profit />}
 			rightNode={
-				<SelectField
+				<TextSelectField
 					value={period}
 					onChange={setPeriod}
 					options={PERIOD_OPTIONS}
@@ -32,7 +32,7 @@ export function PortfolioManagement() {
 			buttonConfigs={buttonConfigs}
 			listTitle={APP_TEXT.assets}
 			listRightTitle={
-				<SelectField
+				<TextSelectField
 					value={assetSorting}
 					onChange={setAssetSorting}
 					options={assetSortingOptions}

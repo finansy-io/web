@@ -1,8 +1,9 @@
 import {type SelectFieldProps} from '../types/SelectField.types.ts';
-import {Icon, Item, List, LoadingWrapper, Popup, PopupHelpers, usePopupState} from '@shared/ui';
-import {cn, useResponsive} from '@shared/lib';
+import {SelectTitle} from '../ui/SelectTitle.tsx';
+import {Item, List, Popup, PopupHelpers, usePopupState} from '@shared/ui';
+import {cn} from '@shared/lib';
 
-export function SelectField<Value>(props: SelectFieldProps<Value>) {
+export function TextSelectField<Value>(props: SelectFieldProps<Value>) {
 	const {
 		value,
 		onChange,
@@ -18,36 +19,23 @@ export function SelectField<Value>(props: SelectFieldProps<Value>) {
 
 	const {popupProps, openPopup, closePopup} = usePopupState();
 
-	const {isDesktop} = useResponsive();
-
 	return (
 		<>
-			<LoadingWrapper isLoading={!!isLoading} isTextSm>
-				<div
-					className={cn(
-						'flex w-fit items-center gap-1.5 text-sm font-normal text-black',
-						isDesktop && 'hover:cursor-pointer',
-						isCardRightTitle && 'gap-2',
-
-						isCardTitle && 'font-medium text-primary-grey',
-						isCardRightTitle && 'font-light text-primary-grey',
-						withBackground && 'rounded-2xl bg-light-grey p-2',
-					)}
-					onClick={openPopup}
-				>
-					{isCardRightTitle ? (
-						<>
-							<Icon type='chevronDown' className='size-2.5 flex-shrink-0' />
-							{children ? children : options.find((option) => option.value === value)?.name}
-						</>
-					) : (
-						<>
-							{children ? children : options.find((option) => option.value === value)?.name}
-							<Icon type='chevronDown' className='size-2.5 flex-shrink-0' />
-						</>
-					)}
-				</div>
-			</LoadingWrapper>
+			<SelectTitle
+				type='text'
+				className={cn(
+					isCardTitle && 'font-medium text-primary-grey',
+					isCardRightTitle && 'gap-2 font-light text-primary-grey',
+					withBackground && 'rounded-2xl bg-light-grey p-2',
+				)}
+				value={value}
+				options={options}
+				onClick={openPopup}
+				isLoading={isLoading}
+				isChevronRight={isCardRightTitle}
+			>
+				{children}
+			</SelectTitle>
 
 			<Popup {...popupProps} title={popupTitle}>
 				<List
@@ -60,6 +48,7 @@ export function SelectField<Value>(props: SelectFieldProps<Value>) {
 								PopupHelpers.runAfterPopupClosed(() => onChange(optionValue));
 							}}
 							isChecked={value === optionValue}
+							isNameText
 						/>
 					)}
 				/>
@@ -68,7 +57,7 @@ export function SelectField<Value>(props: SelectFieldProps<Value>) {
 	);
 }
 
-//  1. TextSelectField - смерджить SelectField и TextSelectField и использовать его только для текста
+//  1. TextSelectField - смерджить TextSelectField и TextSelectField и использовать его только для текста
 //  2. TitleSelectField - все другое, не получается отнаследоваться vs написать уникальный ParentSelectField??
 
 // рендерить кастомные popup-options
