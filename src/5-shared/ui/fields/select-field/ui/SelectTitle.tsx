@@ -10,11 +10,11 @@ type SelectTitleProps<Value> = {
 	options: SelectOptions<Value>;
 	onClick: () => void;
 
-	className?: string;
-	children?: ReactNode;
+	isPopupOpen: boolean;
 	isLoading?: boolean;
 	isChevronRight?: boolean;
-	isPopupOpen?: boolean;
+	className?: string;
+	children?: ReactNode;
 };
 
 export function SelectTitle<Value>(props: SelectTitleProps<Value>) {
@@ -29,7 +29,11 @@ export function SelectTitle<Value>(props: SelectTitleProps<Value>) {
 		return (
 			<LoadingWrapper isLoading={!!isLoading} isTextSm={type === 'text'}>
 				<div
-					className={cn('flex w-fit cursor-pointer items-center gap-1.5 text-sm font-normal text-black', className)}
+					className={cn(
+						'flex w-fit cursor-pointer items-center gap-1.5 text-sm font-normal text-black',
+						isPopupOpen && 'brightness-95',
+						className,
+					)}
 					onClick={onClick}
 				>
 					{isChevronRight ? (

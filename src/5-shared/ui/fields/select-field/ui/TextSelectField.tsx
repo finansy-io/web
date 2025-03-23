@@ -31,8 +31,9 @@ export function TextSelectField<Value>(props: SelectFieldProps<Value>) {
 				value={value}
 				options={options}
 				onClick={openPopup}
-				isLoading={isLoading}
+				isPopupOpen={popupProps.isOpen}
 				isChevronRight={isCardRightTitle}
+				isLoading={isLoading}
 			>
 				{children}
 			</SelectTitle>
