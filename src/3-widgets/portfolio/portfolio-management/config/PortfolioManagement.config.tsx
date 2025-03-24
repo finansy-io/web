@@ -1,5 +1,6 @@
-import {APP_PATH, APP_TEXT} from '@shared/constants';
 import {type ButtonConfig, Icon} from '@shared/ui';
+import {type SortingSelectOptions} from '@shared/types';
+import {APP_PATH, APP_TEXT} from '@shared/constants';
 
 export const buttonConfigs = [
 	{
@@ -11,9 +12,36 @@ export const buttonConfigs = [
 ] as ButtonConfig[];
 
 export const assetSortingOptions = [
-	{name: 'By holdings (highest / lowest)', value: 1},
-	{name: 'By invest amount (highest / lowest)', value: 2},
-	{name: 'By market cap (highest / lowest)', value: 3}, // в delta просто cap
-	{name: 'By percentage (gainers / losers)', value: 4}, // которые в процентах больше всего принесли, relative gainers
-	{name: 'By money (gainers / losers)', value: 5}, // которые в деньгах больше всего принесли, absolute gainers
-];
+	{
+		name: APP_TEXT.holdings,
+		descValue: 1,
+		ascValue: 2,
+	},
+	{
+		name: APP_TEXT.investAmount,
+		descValue: 3,
+		ascValue: 4,
+	},
+	{
+		name: APP_TEXT.marketCap,
+		descValue: 5,
+		ascValue: 6,
+	},
+	{
+		name: APP_TEXT.percentage,
+		descValue: 7,
+		ascValue: 8,
+	},
+	{
+		name: APP_TEXT.money,
+		descValue: 9,
+		ascValue: 10,
+	},
+	{
+		name: APP_TEXT.alphabetical,
+		descValue: 11,
+		ascValue: 12,
+		descDescription: APP_TEXT.aToZ,
+		ascDescription: APP_TEXT.zToA,
+	},
+] as SortingSelectOptions<number>;

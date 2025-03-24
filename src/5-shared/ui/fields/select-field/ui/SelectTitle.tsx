@@ -1,13 +1,13 @@
+import {ReactNode} from 'react';
+import {getSelectTitle} from '../helpers/SelectField.helpers.ts';
+import {SelectOption} from '../types/SelectField.types.ts';
 import {cn, useResponsive} from '@shared/lib';
 import {Icon, LoadingWrapper} from '@shared/ui';
-import {ReactNode} from 'react';
-import {SelectOptions} from '@shared/types';
-import {getSelectTitle} from '@shared/ui/fields/select-field/helpers/SelectTitle.helpers.ts';
 
 type SelectTitleProps<Value> = {
 	type: 'text' | 'title';
 	value: Value;
-	options: SelectOptions<Value>;
+	options: readonly SelectOption<Value>[];
 	onClick: () => void;
 
 	isPopupOpen: boolean;

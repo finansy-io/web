@@ -31,12 +31,6 @@ import {IoIosColorPalette} from 'react-icons/io';
 import {HiMiniMegaphone} from 'react-icons/hi2';
 
 export const ICON_MAP = {
-	user: FaUser,
-	logout: FaSignOutAlt,
-
-	show: FaEye,
-	hide: FaEyeSlash,
-
 	createGoal: FaStar,
 	fund: FaPlus,
 	withdraw: FaArrowDown,
@@ -61,13 +55,23 @@ export const ICON_MAP = {
 
 	congratulations: ({className}: {className: string}) => <div className={className}>🎉</div>,
 
-	chevronDown: FaChevronDown,
+	profitUp: BsTriangleFill,
+	profitDown: ({className}: {className: string}) => (
+		<div className={cn('rotate-180 transform')}>
+			<BsTriangleFill className={className} />
+		</div>
+	),
 
+	user: FaUser,
+	logout: FaSignOutAlt,
+	show: FaEye,
+	hide: FaEyeSlash,
 	plus: FaPlus,
 	x: FaXmark,
 	check: FaCheck,
 	calendar: FaCalendar,
 	search: Search,
+	chevronDown: FaChevronDown,
 	chevronLeft: FaChevronLeft,
 	chevronRight: FaChevronRight,
 	info: FaInfo,
@@ -77,23 +81,15 @@ export const ICON_MAP = {
 	share: FaShare,
 	delete: FaTrash,
 	portfolio: FaBriefcase,
-
 	copy: FaRegCopy,
-
 	trendUp: TrendingUp,
-
 	currency: CurrencyIcon,
 	theme: ThemeIcon,
 	language: FaEarthAmericas,
 	support: BsFillQuestionCircleFill,
 	contactUs: ContactUsIcon,
-
-	profitUp: BsTriangleFill,
-	profitDown: ({className}: {className: string}) => (
-		<div className={cn('rotate-180 transform')}>
-			<BsTriangleFill className={className} />
-		</div>
-	),
+	arrowUp: FaArrowUp,
+	arrowDown: FaArrowDown,
 } as const;
 
 function ThemeIcon() {

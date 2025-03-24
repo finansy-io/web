@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {GoalModel} from '@entities/goal';
 import {buttonConfigs, assetSortingOptions} from '../config/PortfolioManagement.config.tsx';
-import {Item, Management, Profit, TextSelectField} from '@shared/ui';
+import {getSelectTitle, Item, Management, Profit, TextSelectField} from '@shared/ui';
 import {TextHelpers} from '@shared/lib';
 import {APP_TEXT, CURRENCY_SYMBOL, PERIOD_OPTIONS} from '@shared/constants';
 
@@ -9,8 +9,9 @@ export function PortfolioManagement() {
 	const {goalTotalBalance, isGoalTotalBalanceLoading} = GoalModel.useTotalBalance();
 	const {goals, isGoalsLoading, hasNextGoalsPage, fetchNextGoalsPage} = GoalModel.useItems();
 
+	//move to user preferences
 	const [period, setPeriod] = useState(PERIOD_OPTIONS[0].value);
-	const [assetSorting, setAssetSorting] = useState(PERIOD_OPTIONS[0].value);
+	const [assetSorting, setAssetSorting] = useState<number>(assetSortingOptions[0].descValue);
 
 	const isLoading = isGoalTotalBalanceLoading || isGoalsLoading;
 
@@ -32,14 +33,15 @@ export function PortfolioManagement() {
 			buttonConfigs={buttonConfigs}
 			listTitle={APP_TEXT.assets}
 			listRightTitle={
-				<TextSelectField
+				<TextSelectField<number>
 					value={assetSorting}
 					onChange={setAssetSorting}
 					options={assetSortingOptions}
 					popupTitle={APP_TEXT.sortBy}
-					isLoading={isLoading}
 					isCardRightTitle
-				/>
+				>
+					{`${APP_TEXT.by} ${String(getSelectTitle(assetSorting, assetSortingOptions)).toLowerCase()}`}
+				</TextSelectField>
 			}
 			listItems={goals}
 			renderListItem={(goal) => (
