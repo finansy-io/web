@@ -12,7 +12,7 @@ import {
 	PopupHelpers,
 	Profit,
 	SelectTitle,
-	TextSelectField,
+	SelectTabs,
 	usePopupState,
 } from '@shared/ui';
 import {cn} from '@shared/lib';
@@ -212,14 +212,23 @@ export function PortfolioSelectPopup(props: any) {
 	return (
 		<Popup
 			{...portfolioPopupProps}
-			title={'Portfolios'}
+			title={APP_TEXT.portfolios}
 			rightTitle={
-				<TextSelectField value={period} onChange={setPeriod} options={PERIOD_OPTIONS} popupTitle={APP_TEXT.period} />
+				<Button
+					type='icon'
+					icon={<Icon type='plus' />}
+					onClick={() => {
+						closePortfolioPopup();
+						PopupHelpers.runAfterPopupClosed(() => navigate(APP_PATH.portfolio.create));
+					}}
+				/>
 			}
 		>
+			<SelectTabs value={period} onChange={setPeriod} options={PERIOD_OPTIONS} />
+
 			<Item
 				image={<Icon type='portfolio' withBackground />}
-				name='Total portfolio'
+				name={APP_TEXT.totalPortfolio}
 				description='35 assets'
 				rightName='25 653$'
 				rightDescription={<Profit />}
@@ -240,17 +249,6 @@ export function PortfolioSelectPopup(props: any) {
 					);
 				}}
 			/>
-
-			<Button
-				type='secondary'
-				onClick={() => {
-					closePortfolioPopup();
-					PopupHelpers.runAfterPopupClosed(() => navigate(APP_PATH.portfolio.create));
-				}}
-				className='w-full py-3 text-base'
-			>
-				{APP_TEXT.createPortfolio}
-			</Button>
 		</Popup>
 	);
 }

@@ -8,7 +8,7 @@ export function AppTabs() {
 
 	return (
 		<div className='flex gap-2 px-4 pb-4'>
-			{appTabConfigs.map(({label, path}, index) => (
+			{appTabConfigs.map(({name, path}, index) => (
 				<div
 					key={index}
 					className={cn(
@@ -17,7 +17,7 @@ export function AppTabs() {
 					)}
 					onClick={() => navigate(path)}
 				>
-					{label}
+					{name}
 				</div>
 			))}
 		</div>

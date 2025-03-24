@@ -75,6 +75,7 @@ export const APP_TEXT = {
 	achieved: 'Achieved',
 	overdue: 'Overdue',
 	portfolio: 'Portfolio',
+	totalPortfolio: 'Total portfolio',
 	period: 'Price change',
 	sortBy: 'Sort by',
 	by: 'By',

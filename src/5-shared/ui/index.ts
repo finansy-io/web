@@ -59,5 +59,7 @@ export * from './details/ui/Details.tsx';
 
 export * from './profit/ui/Profit.tsx';
 
+export * from './fields/select-field/ui/SelectTabs.tsx';
+
 //to remove
 export * from '@shared/ui/z-to-remove edit-button-field/ui/EditButtonField.tsx';

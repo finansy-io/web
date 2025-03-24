@@ -27,3 +27,9 @@ export type SelectFieldProps<Value> = {
 	isCardRightTitle?: boolean;
 	withBackground?: boolean;
 };
+
+export type SelectTabsProps<Value> = {
+	value: (value: Value) => void;
+	onChange: (value: Value) => void;
+	options: readonly DefaultSelectOption<Value>[];
+};

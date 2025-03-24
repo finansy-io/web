@@ -6,7 +6,5 @@ import {
 
 export type SettingsConfigs = ItemProps[][];
 
-export type TabConfigs = {label: string; path: string}[];
-
-export type SortingSelectOptions<Value> = readonly SortingSelectOption<Value>[];
-export type SelectOptions<Value> = readonly DefaultSelectOption<Value>[];
+export type SelectOptions<Value = number> = readonly DefaultSelectOption<Value>[];
+export type SortingSelectOptions<Value = number> = readonly SortingSelectOption<Value>[];

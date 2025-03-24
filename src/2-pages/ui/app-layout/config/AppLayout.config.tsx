@@ -1,6 +1,6 @@
 import {Icon} from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
-import {type SettingsConfigs, TabConfigs} from '@shared/types';
+import {type SettingsConfigs} from '@shared/types';
 
 export const settingsConfigs = [
 	[
@@ -58,9 +58,9 @@ export const settingsConfigs = [
 ] as SettingsConfigs;
 
 export const appTabConfigs = [
-	{label: APP_TEXT.assets, path: APP_PATH.portfolio.list},
-	{label: APP_TEXT.goals, path: APP_PATH.goal.list},
-] satisfies TabConfigs;
+	{name: APP_TEXT.assets, path: APP_PATH.portfolio.list},
+	{name: APP_TEXT.goals, path: APP_PATH.goal.list},
+] satisfies {name: string; path: string}[];
 
 export const sidebarConfigs = [
 	{
