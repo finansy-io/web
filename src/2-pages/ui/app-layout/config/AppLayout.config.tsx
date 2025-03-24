@@ -4,24 +4,6 @@ import {type SettingsConfigs} from '@shared/types';
 
 export const settingsConfigs = [
 	[
-		// {
-		// 	name: 'Currency',
-		// 	image: <Icon type='currency' className='size-5 text-[18px]' />,
-		// 	rightNode: <div className='font-light text-primary-grey'>USD</div>,
-		// },
-		{
-			name: 'Hide balance',
-			image: <Icon type='hide' className='size-5 text-[18px]' />,
-			rightNode: 'switch',
-		},
-		{
-			name: 'Include in total portfolio',
-			image: <Icon type='portfolio' className='size-5' />,
-			rightNode: 'switch',
-		},
-	],
-
-	[
 		{
 			name: 'Connected wallets',
 			image: <Icon type='wallet' className='size-5' />,
@@ -36,6 +18,27 @@ export const settingsConfigs = [
 		// 		navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.list}});
 		// 	},
 		// },
+	],
+
+	// [
+	// 	{
+	// 		name: 'Currency',
+	// 		image: <Icon type='currency' className='size-5 text-[18px]' />,
+	// 		rightNode: <div className='font-light text-primary-grey'>USD</div>,
+	// 	},
+	// ],
+
+	[
+		{
+			name: 'Hide balances',
+			image: <Icon type='hide' className='size-5 text-[18px]' />,
+			rightNode: 'switch',
+		},
+		{
+			name: 'Include in total portfolio',
+			image: <Icon type='portfolio' className='size-5' />,
+			rightNode: 'switch',
+		},
 	],
 
 	[
