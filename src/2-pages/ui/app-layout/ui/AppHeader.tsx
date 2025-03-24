@@ -83,7 +83,7 @@ export function AppHeader() {
 				}}
 			/>
 
-			<Popup {...portfolioSettingsPopupProps} title='Portfolio 1'>
+			<Popup {...portfolioSettingsPopupProps} title={APP_TEXT.portfolioSettings}>
 				{settingsConfigs.map((settingsConfig, index) => (
 					<List
 						key={index}

@@ -116,7 +116,12 @@ export function WalletConnectPage() {
 				</Button>
 			</PageActionButtonWrapper>
 
-			<StatusPopup isSuccess={isConnectWalletSuccess} isError={isConnectWalletError} statusTextKey='connectWallet' />
+			<StatusPopup
+				isSuccess={isConnectWalletSuccess}
+				isError={isConnectWalletError}
+				statusTextKey='connectWallet'
+				statusTextProps={{name}}
+			/>
 		</>
 	);
 }
