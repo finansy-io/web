@@ -1,9 +1,11 @@
 import {useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
-import {settingsConfigs} from '../config/AppLayout.config.tsx';
+import {getSettingsConfigs} from '../config/AppLayout.config.tsx';
 import {AuthModel} from '@entities/auth';
 import {
 	Button,
+	ConfirmationPopup,
+	getSelectTitle,
 	Icon,
 	Item,
 	LeftPopup,
@@ -11,8 +13,9 @@ import {
 	Popup,
 	PopupHelpers,
 	Profit,
-	SelectTitle,
 	SelectTabs,
+	SelectTitle,
+	StatusPopup,
 	usePopupState,
 } from '@shared/ui';
 import {cn} from '@shared/lib';
@@ -23,11 +26,13 @@ export function AppHeader() {
 
 	const [period, setPeriod] = useState(PERIOD_OPTIONS[0].value);
 	const [selectedPortfolioValue, setSelectedPortfolioValue] = useState(portfolioOptions[0].value);
+	const [isSuccess, setIsSuccess] = useState(false);
 
 	const {logout} = AuthModel.useLogout();
 	const {authUser} = AuthModel.useAuthUser();
 
 	const {popupProps: userPopupProps, openPopup: openUserPopup} = usePopupState();
+	const {popupProps: confirmationPopupProps, openPopup: openConfirmationPopup} = usePopupState();
 	const {
 		popupProps: portfolioPopupProps,
 		openPopup: openPortfolioPopup,
@@ -84,7 +89,7 @@ export function AppHeader() {
 			/>
 
 			<Popup {...portfolioSettingsPopupProps} title={APP_TEXT.portfolioSettings}>
-				{settingsConfigs.map((settingsConfig, index) => (
+				{getSettingsConfigs(openConfirmationPopup).map((settingsConfig, index) => (
 					<List
 						key={index}
 						items={settingsConfig}
@@ -104,6 +109,19 @@ export function AppHeader() {
 					/>
 				))}
 			</Popup>
+
+			<ConfirmationPopup
+				{...confirmationPopupProps}
+				title={getSelectTitle(selectedPortfolioValue, portfolioOptions)}
+				description={APP_TEXT.confirmation.deletePortfolio}
+				isActionPending={false}
+				onActionClick={() => {
+					setIsSuccess(true);
+					//change portfolio-selector to total portfolio, when all portfolios are deleted
+				}}
+			/>
+
+			<StatusPopup isSuccess={isSuccess} isError={false} statusTextKey='deletePortfolio' />
 		</header>
 	);
 }

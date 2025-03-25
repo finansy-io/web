@@ -1,14 +1,12 @@
 import {useEffect} from 'react';
 import {DeleteItemProps} from '../types/DeleteItem.types.ts';
-import {Button, Item, Popup, StatusPopup, usePopupState} from '@shared/ui';
+import {ConfirmationPopup, Item, StatusPopup, usePopupState} from '@shared/ui';
 import {cn} from '@shared/lib';
-import {APP_TEXT} from '@shared/constants';
 
 export function DeleteItem(props: DeleteItemProps) {
 	const {
 		confirmationTitle,
-		confirmationText,
-		entityName,
+		confirmationDescription,
 		isPending,
 		actionButtonText,
 		handleDelete,
@@ -30,25 +28,14 @@ export function DeleteItem(props: DeleteItemProps) {
 		<>
 			<Item name={children} className={cn('text-sm text-red-500')} onClick={openPopup} isSingle />
 
-			<Popup {...popupProps} title={confirmationTitle}>
-				<div className='text-center'>
-					{confirmationText ? confirmationText : `${APP_TEXT.deleteGoalConfirmation} ${entityName?.toLowerCase()}?`}
-				</div>
-				<div className='mt-2 flex gap-2'>
-					<Button type='secondary' onClick={closePopup} secondaryWithPrimaryStyles>
-						{APP_TEXT.cancel}
-					</Button>
-					<Button
-						type='primary'
-						onClick={handleDelete}
-						isPending={isPending}
-						className='bg-red-100 text-red-600 shadow-none'
-						primaryButtonSpinnerClassName='text-red-600'
-					>
-						{actionButtonText ? actionButtonText : APP_TEXT.delete}
-					</Button>
-				</div>
-			</Popup>
+			<ConfirmationPopup
+				{...popupProps}
+				title={confirmationTitle}
+				description={confirmationDescription}
+				onActionClick={handleDelete}
+				isActionPending={isPending}
+				actionButtonText={actionButtonText}
+			/>
 
 			<StatusPopup isSuccess={isSuccess} isError={isError} statusTextKey={statusTextKey} />
 		</>

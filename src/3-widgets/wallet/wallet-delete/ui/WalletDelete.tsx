@@ -1,6 +1,6 @@
-import {DeleteItem, deleteItemConfirmation} from '@shared/ui';
-import {APP_TEXT} from '@shared/constants';
 import {useState} from 'react';
+import {DeleteItem} from '@shared/ui';
+import {APP_TEXT} from '@shared/constants';
 
 export function WalletDelete() {
 	const [isSuccess, setIsSuccess] = useState(false);
@@ -17,7 +17,7 @@ export function WalletDelete() {
 	return (
 		<DeleteItem
 			confirmationTitle={walletName}
-			confirmationText={deleteItemConfirmation.disconnectWallet(portfolioName)}
+			confirmationDescription={APP_TEXT.confirmation.disconnectWallet(portfolioName)}
 			isPending={isPending}
 			isSuccess={isSuccess}
 			isError={isError}

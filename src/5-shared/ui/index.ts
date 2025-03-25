@@ -29,6 +29,7 @@ export {type StatusTextKey} from './popup/types/StatusPopup.types.ts';
 export * from './popup/ui/Popup.tsx';
 export * from './popup/ui/StatusPopup.tsx';
 export * from './popup/ui/LeftPopup.tsx';
+export * from './popup/ui/ConfirmationPopup.tsx';
 
 export * from './item/config/Item.config.ts';
 export * from './item/ui/Item.tsx';

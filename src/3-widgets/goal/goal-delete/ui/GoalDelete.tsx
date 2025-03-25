@@ -1,7 +1,7 @@
-import {APP_TEXT} from '@shared/constants';
-import {DeleteItem, LoadingWrapper} from '@shared/ui';
-import {GoalModel} from '@entities/goal';
 import {useParams} from 'react-router-dom';
+import {GoalModel} from '@entities/goal';
+import {DeleteItem, LoadingWrapper} from '@shared/ui';
+import {APP_TEXT} from '@shared/constants';
 
 export function GoalDelete() {
 	const {id} = useParams();
@@ -12,7 +12,7 @@ export function GoalDelete() {
 	return (
 		<DeleteItem
 			confirmationTitle={goalDetails?.name as string}
-			entityName={APP_TEXT.goal}
+			confirmationDescription={`${APP_TEXT.confirmation.deleteGoal} ${APP_TEXT.goal?.toLowerCase()}?`}
 			isPending={isDeleteGoalPending}
 			isSuccess={isDeleteGoalSuccess}
 			isError={isDeleteGoalError}

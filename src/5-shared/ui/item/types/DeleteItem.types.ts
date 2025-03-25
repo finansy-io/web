@@ -3,8 +3,7 @@ import {StatusTextKey} from '@shared/ui';
 
 export type DeleteItemProps = {
 	confirmationTitle: string;
-	confirmationText?: string;
-	entityName?: string;
+	confirmationDescription: string;
 	isPending: boolean;
 	isSuccess: boolean;
 	isError: boolean;

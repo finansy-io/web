@@ -58,8 +58,16 @@ export const APP_TEXT = {
 	logOut: 'Log out',
 	signUp: 'Sign up',
 	finansy: 'Finansy',
-	deleteGoalConfirmation: 'Are you sure you want to delete the',
-	disconnectWalletConfirmation: 'Are you sure you want to disconnect this wallet from portfolio?',
+
+	confirmation: {
+		deleteGoal: 'Are you sure you want to delete the',
+		deletePortfolio: 'Are you sure you want to delete this portfolio? All transactions will be deleted.',
+
+		disconnectWallet: (portfolioName: string) => {
+			return `Are you sure you want to disconnect this wallet from portfolio "${portfolioName}"?`;
+		},
+	},
+
 	createAccount: 'Create account',
 	cancel: 'Cancel',
 	confirm: 'Confirm',
@@ -103,4 +111,46 @@ export const APP_TEXT = {
 	lowToHigh: 'Low to high',
 	aToZ: 'A - Z',
 	zToA: 'Z - A',
+
+	statusPopupText: {
+		createAccountSuccess: () => (
+			<>
+				Your account has been <span className='text-primary-violet'>successfully</span> created
+			</>
+		),
+		createAccountError: () => 'Your account has not been created',
+
+		createGoalSuccess: ({name}: any = {}) => `Вы создали цель "${name}"`,
+		createGoalError: ({name}: any = {}) => `Some errors occur during creating goal "${name}"`,
+
+		updateGoalSuccess: () => 'Ваша цель была обновлена',
+		updateGoalError: () => 'Your goal has not been updated',
+
+		deleteGoalSuccess: () => 'Your goal has been deleted',
+		deleteGoalError: () => 'Your goal has not been deleted',
+
+		fundGoalSuccess: ({name, amount}: any = {}) => `Вы пополнили цель "${name}" на ${amount}`,
+		fundGoalError: ({name}: any = {}) => `Some errors occur during funding ${name}`,
+
+		withdrawGoalSuccess: ({name, amount}: any = {}) => `Вы вывели с цели "${name}" ${amount} `,
+		withdrawGoalError: ({name}: any = {}) => `Some errors occur during withdrawing ${name}`,
+
+		transferGoalSuccess: () => 'Your transfer has been completed',
+		transferGoalError: () => 'Some errors occur during transferring',
+
+		connectWalletSuccess: ({name}: any) => `Wallet "${name}" connected`,
+		connectWalletError: () => 'Some errors occur wallet connecting',
+
+		createPortfolioSuccess: ({name}: any) => `Portfolio "${name}" created`,
+		createPortfolioError: () => 'Some errors occur portfolio creating',
+
+		disconnectWalletSuccess: () => 'Your wallet has been disconnected',
+		disconnectWalletError: () => 'Your wallet has not been disconnect',
+
+		updateWalletSuccess: () => 'Your wallet has been updated',
+		updateWalletError: () => 'Your wallet has not been updated',
+
+		deletePortfolioSuccess: () => 'Your portfolio has been deleted',
+		deletePortfolioError: () => 'Your portfolio has not been deleted',
+	},
 } as const;
