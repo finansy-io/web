@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
 import {
 	Button,
@@ -42,10 +42,13 @@ const emojiConfigs = [
 	id: index,
 }));
 
-export function PortfolioCreatePage() {
+export default function PortfolioCreatePage() {
 	const navigate = useNavigate();
+	const location = useLocation();
 
-	const [name, setName] = useState('');
+	const isEditMode = location.pathname.includes('/edit');
+
+	const [name, setName] = useState(isEditMode ? 'Portfolio 1' : '');
 
 	const [selectedEmojiConfig, setSelectedEmojiConfig] = useState(emojiConfigs[0]);
 
@@ -100,10 +103,10 @@ export function PortfolioCreatePage() {
 						setIsCreatePortfolioSuccess(true);
 						PopupHelpers.runAfterStatusPopupClosed(() => navigate(APP_PATH.portfolio.list));
 					}}
-					disabled={!name || isNameValidationPending || isNameValidationError}
+					disabled={isEditMode ? name === 'Portfolio 1' : !name || isNameValidationPending || isNameValidationError}
 					isPending={isCreatePortfolioPending}
 				>
-					{APP_TEXT.create}
+					{isEditMode ? APP_TEXT.save : APP_TEXT.create}
 				</Button>
 			</PageActionButtonWrapper>
 
@@ -111,6 +114,7 @@ export function PortfolioCreatePage() {
 				isSuccess={isCreatePortfolioSuccess}
 				isError={isCreatePortfolioError}
 				statusTextKey='createPortfolio'
+				statusTextProps={{name}}
 			/>
 		</>
 	);
@@ -125,7 +129,7 @@ type EmojiFieldProps = {
 	setSelectedEmojiConfig: (value: EmojiConfig) => void;
 };
 
-export function EmojiField({selectedEmojiConfig, setSelectedEmojiConfig}: EmojiFieldProps) {
+function EmojiField({selectedEmojiConfig, setSelectedEmojiConfig}: EmojiFieldProps) {
 	const [inPopupEmojiConfig, setInPopupEmojiConfig] = useState(selectedEmojiConfig);
 
 	const {popupProps, openPopup, closePopup} = usePopupState();

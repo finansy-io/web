@@ -51,7 +51,9 @@ export function getSettingsConfigs(openConfirmationPopup: () => void) {
 			{
 				name: APP_TEXT.edit + ' ' + APP_TEXT.portfolio.toLowerCase(),
 				image: <Icon type='edit' className='size-5' />,
-				onClick: () => console.log('edit portfolio'),
+				onClick: ({navigate}) => {
+					navigate(APP_PATH.portfolio.getItemEditPath(1));
+				},
 			},
 			{
 				name: <div className='text-red-600'>{APP_TEXT.delete + ' ' + APP_TEXT.portfolio.toLowerCase()}</div>,

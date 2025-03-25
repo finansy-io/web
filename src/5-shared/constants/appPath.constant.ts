@@ -24,6 +24,9 @@ export const APP_PATH = {
 	portfolio: {
 		list: '/portfolio-list',
 		create: '/portfolio-create',
+		details: '/portfolio',
+
+		getItemEditPath: (id: any) => `${APP_PATH.portfolio.details}/${id}/edit`,
 	},
 
 	wallet: {
