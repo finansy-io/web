@@ -18,7 +18,9 @@ export function Drawer(props: DrawerProps) {
 	const {
 		isOpen,
 		setIsOpen,
+		leftTitle,
 		title,
+		rightTitle,
 		children,
 		statusDismissible,
 		statusProgress,
@@ -26,7 +28,7 @@ export function Drawer(props: DrawerProps) {
 		direction = 'bottom',
 	} = props;
 
-	const isLeft = direction === 'left';
+	const isLeftDrawer = direction === 'left';
 
 	return (
 		<Root direction={direction} open={isOpen} onOpenChange={setIsOpen} dismissible={statusDismissible}>
@@ -38,24 +40,24 @@ export function Drawer(props: DrawerProps) {
 			</Close>
 
 			<Portal>
-				<Overlay className={cn('fixed inset-0', !isLeft && 'bg-black/40')} />
+				<Overlay className={cn('fixed inset-0', !isLeftDrawer && 'bg-black/40')} />
 
 				<Content
-					style={isLeft ? undefined : {maxWidth: '496px', margin: '0 auto'}}
+					style={isLeftDrawer ? undefined : {maxWidth: '496px', margin: '0 auto'}}
 					className={cn(
 						'fixed bottom-0 left-0 right-0 outline-none transition-all duration-200',
-						isLeft
+						isLeftDrawer
 							? 'h-screen max-h-screen bg-light-grey/60 backdrop-blur-lg'
 							: 'max-h-[94vh] rounded-t-[28px] bg-light-grey',
 					)}
 				>
 					<div className='mx-auto flex h-full w-full max-w-md flex-col gap-4 p-2'>
-						{isLeft ? (
+						{isLeftDrawer ? (
 							<Button
 								type='icon'
 								onClick={() => setIsOpen(false)}
 								icon={<Icon type='x' className='size-5' />}
-								className='ml-2 mt-2 self-start'
+								className='self-start'
 							/>
 						) : (
 							<div
@@ -72,9 +74,21 @@ export function Drawer(props: DrawerProps) {
 
 						{statusIcon && <div className='flex items-center justify-center'>{statusIcon}</div>}
 
-						<Title className={cn('text-center text-lg font-medium', !title && 'hidden', !!statusProgress && 'mb-2')}>
-							{title}
-						</Title>
+						<div
+							className={cn(
+								title && 'relative',
+								(title || leftTitle || rightTitle) && 'flex h-7 items-center justify-between px-2',
+								!!statusProgress && 'mb-2',
+							)}
+						>
+							<div className='flex-shrink-0'>{leftTitle}</div>
+							<div className='flex-shrink-0'>{rightTitle}</div>
+
+							{/* Абсолютно позиционированный по центру Title */}
+							<div className='pointer-events-none absolute inset-0 flex items-center justify-center'>
+								<Title className={cn('text-center text-lg font-medium', !title && 'hidden')}>{title}</Title>
+							</div>
+						</div>
 
 						{children && (
 							<div className='flex max-h-[90vh] flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0'>{children}</div>

@@ -1,6 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import {ItemProps} from '../types/Item.types.ts';
 import {cn, isBoolean, styleElement, useResponsive} from '@shared/lib';
+import {Icon} from '@shared/ui';
 
 //if leftNode or rightNode is an icon => size-5
 
@@ -18,11 +19,15 @@ export function Item(props: ItemProps) {
 		onClick,
 		className,
 		isSingle,
+		isChecked,
 	} = props;
 
 	const navigate = useNavigate();
 
 	const {isDesktop} = useResponsive();
+
+	const showIconCheckmark = isChecked && image;
+	const showRightCheckmark = isChecked && !image;
 
 	return (
 		<div
@@ -36,7 +41,10 @@ export function Item(props: ItemProps) {
 			<div
 				className={cn(
 					'flex w-full rounded-2xl p-3 text-left duration-300',
-					onClick && (isDesktop ? 'group-hover:bg-light-grey' : 'group-active:bg-light-grey'),
+					onClick && isDesktop
+						? 'group-hover:bg-on-white-hover group-active:bg-on-white-active'
+						: 'group-active:bg-on-white-hover',
+					isChecked && 'bg-light-grey',
 					className,
 				)}
 			>
@@ -46,9 +54,10 @@ export function Item(props: ItemProps) {
 					<div className='relative my-0.5 mr-4 flex-shrink-0'>
 						{image}
 
-						{imageIcon && (
+						{(imageIcon || showIconCheckmark) && (
 							<div className='absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full bg-primary-violet text-white shadow-[0_0_0_2px_white_inset]'>
-								{isBoolean(imageIcon) ? null : styleElement(imageIcon, 'size-[10px]')}
+								{imageIcon && !isBoolean(imageIcon) && styleElement(imageIcon, 'size-2.5')}
+								{showIconCheckmark && <Icon type='check' className='size-2.5' />}
 							</div>
 						)}
 					</div>
@@ -68,7 +77,12 @@ export function Item(props: ItemProps) {
 					</div>
 				)}
 
-				{rightNode && <div className='ml-2 flex-shrink-0 self-center'>{rightNode}</div>}
+				{(rightNode || showRightCheckmark) && (
+					<div className='ml-2 flex-shrink-0 self-center'>
+						{rightNode}
+						{showRightCheckmark && <Icon type='check' className='flex size-4 self-center text-primary-violet' />}
+					</div>
+				)}
 			</div>
 		</div>
 	);

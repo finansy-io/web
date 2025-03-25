@@ -1,9 +1,8 @@
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {goalNameMaxLength} from '@widgets/goal/util';
 import {GoalModel} from '@entities/goal';
 import {Card, EditButtonField, LoadingWrapper, StatusPopup, TextFieldEditButton} from '@shared/ui';
-import {APP_TEXT, CURRENCY, CURRENCY_CODE, CURRENCY_OPTIONS, CURRENCY_SYMBOL} from '@shared/constants';
+import {APP_TEXT, FORM, CURRENCY, CURRENCY_CODE, CURRENCY_OPTIONS, CURRENCY_SYMBOL} from '@shared/constants';
 import {DateService, isNull, TextHelpers} from '@shared/lib';
 
 export function GoalEdit() {
@@ -100,14 +99,14 @@ export function GoalEdit() {
 		<>
 			<Card>
 				<div className='flex justify-between p-4 text-sm'>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<div className='font-medium text-primary-grey'>{APP_TEXT.name}</div>
 					</LoadingWrapper>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<TextFieldEditButton
 							{...editButtonCommonProps}
 							entityName={APP_TEXT.name}
-							maxLength={goalNameMaxLength}
+							maxLength={FORM.nameMaxLength}
 							initialValue={goalDetails?.name}
 							handleUpdate={handleNameUpdate}
 						>
@@ -117,10 +116,10 @@ export function GoalEdit() {
 				</div>
 
 				<div className='flex justify-between p-4 text-sm'>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<div className='font-medium text-primary-grey'>{APP_TEXT.currency}</div>
 					</LoadingWrapper>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<EditButtonField<CURRENCY>
 							type='select'
 							title={APP_TEXT.currency}
@@ -138,10 +137,10 @@ export function GoalEdit() {
 				</div>
 
 				<div className='flex justify-between p-4 text-sm'>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<div className='font-medium text-primary-grey'>{APP_TEXT.targetAmount}</div>
 					</LoadingWrapper>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<EditButtonField<string>
 							type='amount'
 							title={APP_TEXT.targetAmount}
@@ -171,10 +170,10 @@ export function GoalEdit() {
 				</div>
 
 				<div className='flex justify-between p-4 text-sm'>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<div className='font-medium text-primary-grey'>{APP_TEXT.deadline}</div>
 					</LoadingWrapper>
-					<LoadingWrapper isLoading={isGoalDetailsLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 						<EditButtonField<Date | null>
 							type='date'
 							title={APP_TEXT.deadline}

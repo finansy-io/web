@@ -34,3 +34,7 @@ export const goalStatusOptions = [
 	{name: APP_TEXT.achieved, value: 'ACHIEVED'},
 	{name: APP_TEXT.overdue, value: 'OVERDUE'},
 ] as const;
+
+export const goalsDefaultFilter = {
+	status: undefined as (typeof goalStatusOptions)[number]['value'],
+};

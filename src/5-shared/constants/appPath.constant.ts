@@ -23,11 +23,17 @@ export const APP_PATH = {
 
 	portfolio: {
 		list: '/portfolio-list',
-		connectWallet: '/connect-wallet',
-		wallets: '/portfolio-wallets',
 		create: '/portfolio-create',
+		details: '/portfolio',
 
-		getItemWalletDetailsPath: (id: any) => `${APP_PATH.portfolio.wallets}/${id}`,
-		getItemWalletEditPath: (id: any) => `${APP_PATH.portfolio.wallets}/${id}/edit`,
+		getItemEditPath: (id: any) => `${APP_PATH.portfolio.details}/${id}/edit`,
+	},
+
+	wallet: {
+		connectWallet: '/connect-wallet',
+		list: '/wallets',
+
+		getItemDetailsPath: (id: any) => `${APP_PATH.wallet.list}/${id}`,
+		getItemEditPath: (id: any) => `${APP_PATH.wallet.list}/${id}/edit`,
 	},
 };

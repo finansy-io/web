@@ -25,18 +25,12 @@ import {
 } from 'react-icons/fa6';
 import {FaCamera, FaEye, FaEyeSlash, FaSignOutAlt} from 'react-icons/fa';
 import {cn} from '@shared/lib';
-import {BsFillQuestionCircleFill, BsThreeDotsVertical} from 'react-icons/bs';
+import {BsFillQuestionCircleFill, BsThreeDotsVertical, BsTriangleFill} from 'react-icons/bs';
 import {AiFillDollarCircle} from 'react-icons/ai';
 import {IoIosColorPalette} from 'react-icons/io';
 import {HiMiniMegaphone} from 'react-icons/hi2';
 
 export const ICON_MAP = {
-	user: FaUser,
-	logout: FaSignOutAlt,
-
-	show: FaEye,
-	hide: FaEyeSlash,
-
 	createGoal: FaStar,
 	fund: FaPlus,
 	withdraw: FaArrowDown,
@@ -61,13 +55,23 @@ export const ICON_MAP = {
 
 	congratulations: ({className}: {className: string}) => <div className={className}>🎉</div>,
 
-	selectChevron: FaChevronDown,
+	profitUp: BsTriangleFill,
+	profitDown: ({className}: {className: string}) => (
+		<div className={cn('rotate-180 transform')}>
+			<BsTriangleFill className={className} />
+		</div>
+	),
 
+	user: FaUser,
+	logout: FaSignOutAlt,
+	show: FaEye,
+	hide: FaEyeSlash,
 	plus: FaPlus,
 	x: FaXmark,
 	check: FaCheck,
 	calendar: FaCalendar,
 	search: Search,
+	chevronDown: FaChevronDown,
 	chevronLeft: FaChevronLeft,
 	chevronRight: FaChevronRight,
 	info: FaInfo,
@@ -77,19 +81,16 @@ export const ICON_MAP = {
 	share: FaShare,
 	delete: FaTrash,
 	portfolio: FaBriefcase,
-
 	copy: FaRegCopy,
-
 	trendUp: TrendingUp,
-
 	currency: CurrencyIcon,
 	theme: ThemeIcon,
 	language: FaEarthAmericas,
 	support: BsFillQuestionCircleFill,
 	contactUs: ContactUsIcon,
+	arrowUp: FaArrowUp,
+	arrowDown: FaArrowDown,
 } as const;
-
-export type IconType = keyof typeof ICON_MAP;
 
 function ThemeIcon() {
 	// Подбираем коэффициент масштабирования, чтобы визуальный размер совпадал с LanguageIcon

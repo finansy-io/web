@@ -89,7 +89,7 @@ export function AmountField<Option extends AmountFieldOption>(props: AmountField
 
 								<div className='truncate font-medium'>{activeOption?.name}</div>
 
-								{isMultipleOptions && <Icon type='selectChevron' className='size-3 flex-shrink-0' />}
+								{isMultipleOptions && <Icon type='chevronDown' className='size-3 flex-shrink-0' />}
 							</div>
 						</div>
 					</LoadingWrapper>
@@ -123,7 +123,7 @@ export function AmountField<Option extends AmountFieldOption>(props: AmountField
 				</div>
 
 				<div className='mt-1 flex justify-between'>
-					<LoadingWrapper isLoading={!!isLoading} className='my-0.5 h-4 w-10'>
+					<LoadingWrapper isLoading={!!isLoading} isTextSm>
 						<div
 							className={cn(
 								'mr-4 min-w-40',
@@ -151,16 +151,11 @@ export function AmountField<Option extends AmountFieldOption>(props: AmountField
 						items={options ? options : null}
 						renderItem={(option) => (
 							<Item
-								className={cn(AmountFieldHelpers.isItemSelected<Option>(option, activeOption) && 'bg-light-grey')}
 								onClick={() => handleOptionSelect(option)}
 								image={option.image}
 								name={option.name}
 								description={AmountFieldHelpers.getDescription<Option>({getCustomDescription, option})}
-								rightNode={
-									AmountFieldHelpers.isItemSelected<Option>(option, activeOption) && (
-										<Icon type='check' className='flex size-4 self-center text-primary-violet' />
-									)
-								}
+								isChecked={AmountFieldHelpers.isItemSelected(option, activeOption)}
 							/>
 						)}
 						fetchNextPage={fetchNextOptions}

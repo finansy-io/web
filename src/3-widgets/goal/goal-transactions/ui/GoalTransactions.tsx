@@ -39,7 +39,7 @@ export function GoalTransactions() {
 							}
 							name={TransactionHelpers.getTransactionName(row)}
 							description={new DateService(new Date(row.date as string)).getLocalDateString()}
-							// TODO: написал 10 дек в финансы чат, row && itemDetails - должно быть только row
+							/** написал 10 дек в финансы чат, row && itemDetails - должно быть только row */
 							rightName={
 								row &&
 								goalDetails &&

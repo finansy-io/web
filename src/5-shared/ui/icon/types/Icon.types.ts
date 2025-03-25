@@ -1,4 +1,6 @@
-import {IconType} from '../config/Icon.config.tsx';
+import {ICON_MAP} from '../config/Icon.config.tsx';
+
+export type IconType = keyof typeof ICON_MAP;
 
 export type IconProps = {
 	type: IconType;

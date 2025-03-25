@@ -24,7 +24,7 @@ export function TextFieldEditButton(props: TextFieldEditButtonProps) {
 
 	return (
 		<>
-			<LoadingWrapper isLoading={!!isLoading} className='my-0.5 h-4 w-10'>
+			<LoadingWrapper isLoading={!!isLoading} isTextSm>
 				<Button type='text' onClick={openPopup} icon={<Icon type='edit' className='size-1' />}>
 					{children}
 				</Button>

@@ -1,5 +1,5 @@
 import {Fragment} from 'react';
-import {getEmptyText} from '../lib/List.lib.ts';
+import {getEmptyText} from '@shared/ui/list/helpers/List.helpers.ts';
 import {ListProps} from '../types/List.types.ts';
 import {Item, LoadingItem} from '@shared/ui';
 import {InfiniteScroll} from '@shared/lib';
