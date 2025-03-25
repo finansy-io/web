@@ -115,9 +115,9 @@ export function TextField(props: TextFieldProps) {
 					<div
 						ref={showHidePasswordIconRef}
 						className={cn(
-							'ml-2 flex size-5 shrink-0 cursor-pointer items-center justify-center rounded-full bg-field-helper transition duration-300',
+							'ml-2 flex size-5 shrink-0 cursor-pointer items-center justify-center rounded-full text-field-helper transition duration-300',
 							(isMobile || isTablet) && 'active:scale-95 active:brightness-95',
-							isDesktop && 'hover:bg-field-helper-hover active:bg-field-helper-active',
+							isDesktop && 'hover:text-field-helper-hover active:text-field-helper-active',
 						)}
 						onClick={() => setIsPasswordVisible(!isPasswordVisible)}
 					>
