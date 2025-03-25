@@ -41,7 +41,14 @@ export function Button(props: ButtonProps) {
 	function gcn(...buttonClassName: Array<ClassValue>) {
 		return cn(
 			'block duration-300 transition ease-in-out',
-			disabled ? 'cursor-not-allowed' : cn('active:brightness-90 cursor-pointer', isDesktop && 'hover:brightness-95'),
+			disabled && 'cursor-not-allowed',
+			!disabled &&
+				cn(
+					'cursor-pointer',
+					(isMobile || isTablet) && type !== 'primary' && type !== 'secondary' && 'active:scale-95',
+					isDesktop && type !== 'icon' && 'hover:brightness-95',
+					type !== 'icon' && 'active:brightness-90',
+				),
 			...buttonClassName,
 			className,
 		);
@@ -79,17 +86,12 @@ export function Button(props: ButtonProps) {
 	}
 
 	if (type === 'secondary') {
-		// if (isLoading) {
-		// 	return <PreloadSkeleton className='my-2 h-6 w-24 rounded-3xl' />;
-		// }
-
 		return (
 			<LoadingWrapper isLoading={!!isLoading} className='my-2 h-6 w-24 rounded-3xl'>
 				<button
 					{...buttonProps}
 					className={gcn(
 						'w-fit rounded-3xl bg-secondary-violet px-4 py-[10px] text-sm text-primary-violet',
-						isDesktop && 'hover:brightness-95',
 						secondaryWithPrimaryStyles && 'w-full py-3 text-base',
 						disabled && 'cursor-not-allowed bg-secondary-violet/20 text-white',
 					)}
@@ -105,7 +107,7 @@ export function Button(props: ButtonProps) {
 
 	if (type === 'circle') {
 		return (
-			<button {...buttonProps} className={gcn('flex w-[68px] flex-col items-center active:scale-95')}>
+			<button {...buttonProps} className={gcn('flex w-[68px] flex-col items-center')}>
 				<LoadingWrapper isLoading={!!isLoading} className='size-11' isCircular>
 					{icon && (
 						<div
@@ -141,8 +143,10 @@ export function Button(props: ButtonProps) {
 			<button
 				{...buttonProps}
 				className={gcn(
-					'flex items-center justify-center transition duration-200 active:text-primary-grey',
-					isDesktop && 'hover:text-primary-grey',
+					'flex items-center justify-center p-2 brightness-100 transition duration-200',
+					// isDesktop && 'hover:text-primary-grey',
+					(isMobile || isTablet) && 'active:text-primary-grey',
+					isDesktop && 'rounded-full hover:bg-on-grey-hover active:bg-on-grey-active',
 				)}
 			>
 				{icon}
@@ -155,8 +159,9 @@ export function Button(props: ButtonProps) {
 			<button
 				{...buttonProps}
 				className={gcn(
-					'w-fit text-sm font-medium text-primary-violet active:scale-95',
+					'w-fit text-sm font-medium text-primary-violet',
 					icon && 'flex items-center gap-2',
+					isDesktop && 'hover:text-on-violet-hover active:text-on-violet-active',
 				)}
 			>
 				{icon && styleElement(icon, 'size-3')}

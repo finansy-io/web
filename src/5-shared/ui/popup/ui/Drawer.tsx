@@ -57,7 +57,7 @@ export function Drawer(props: DrawerProps) {
 								type='icon'
 								onClick={() => setIsOpen(false)}
 								icon={<Icon type='x' className='size-5' />}
-								className='ml-2 mt-2 self-start'
+								className='self-start'
 							/>
 						) : (
 							<div

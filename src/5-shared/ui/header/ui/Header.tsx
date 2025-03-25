@@ -58,7 +58,7 @@ export function Header(props: HeaderProps) {
 						</div>
 					}
 					onClick={onBackButtonClick}
-					className={cn('ml-2 p-2', withNoSpace && 'm-0 pl-0')}
+					className={cn('ml-2', withNoSpace && 'm-0 -ml-2')}
 				/>
 			)}
 

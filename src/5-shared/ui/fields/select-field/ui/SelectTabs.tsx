@@ -1,17 +1,21 @@
 import {type SelectTabsProps} from '../types/SelectField.types.ts';
-import {cn} from '@shared/lib';
+import {cn, useResponsive} from '@shared/lib';
 
 export function SelectTabs<Value>(props: SelectTabsProps<Value>) {
 	const {value, onChange, options} = props;
 
+	const {isMobile, isTablet, isDesktop} = useResponsive();
+
 	return (
-		<div className='flex flex-wrap gap-1'>
+		<div className='flex flex-wrap justify-center gap-1'>
 			{options.map(({name, value: optionValue}, index) => (
 				<div
 					key={index}
 					className={cn(
-						'cursor-pointer rounded-3xl px-3 py-2 text-sm transition duration-200',
-						value === optionValue ? 'bg-white' : 'bg-inherit text-primary-grey',
+						'rounded-3xl px-3 py-2 text-sm transition duration-200',
+						value === optionValue ? 'bg-white' : 'cursor-pointer bg-inherit text-primary-grey',
+						(isMobile || isTablet) && 'active:text-black',
+						isDesktop && value !== optionValue && 'hover:bg-on-grey-hover active:bg-on-grey-active',
 					)}
 					onClick={() => onChange(optionValue)}
 				>

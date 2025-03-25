@@ -41,7 +41,9 @@ export function Item(props: ItemProps) {
 			<div
 				className={cn(
 					'flex w-full rounded-2xl p-3 text-left duration-300',
-					onClick && (isDesktop ? 'group-hover:bg-light-grey' : 'group-active:bg-light-grey'),
+					onClick && isDesktop
+						? 'group-hover:bg-on-white-hover group-active:bg-on-white-active'
+						: 'group-active:bg-on-white-hover',
 					isChecked && 'bg-light-grey',
 					className,
 				)}

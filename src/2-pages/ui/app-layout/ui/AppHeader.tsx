@@ -18,7 +18,7 @@ import {
 	StatusPopup,
 	usePopupState,
 } from '@shared/ui';
-import {cn} from '@shared/lib';
+import {cn, useResponsive} from '@shared/lib';
 import {APP_PATH, APP_TEXT, PERIOD_OPTIONS} from '@shared/constants';
 
 export function AppHeader() {
@@ -44,9 +44,19 @@ export function AppHeader() {
 		closePopup: closePortfolioSettingsPopup,
 	} = usePopupState();
 
+	const {isDesktop} = useResponsive();
+
 	return (
 		<header role='app-header' className='flex items-center justify-between p-4'>
-			<Button type='icon' icon={<Icon type='user' withBackground className='size-10' />} onClick={openUserPopup} />
+			<Button
+				type='icon'
+				icon={<Icon type='user' withBackground className='size-10' />}
+				onClick={openUserPopup}
+				className={cn(
+					'p-0 transition duration-200 hover:bg-inherit active:brightness-90',
+					isDesktop && 'hover:brightness-95',
+				)}
+			/>
 
 			{location.pathname === APP_PATH.portfolio.list && (
 				<>

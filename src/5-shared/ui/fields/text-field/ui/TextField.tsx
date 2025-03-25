@@ -21,7 +21,7 @@ export function TextField(props: TextFieldProps) {
 		disabledEnterClick,
 	} = props;
 
-	const {isDesktop} = useResponsive();
+	const {isMobile, isTablet, isDesktop} = useResponsive();
 
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -94,7 +94,11 @@ export function TextField(props: TextFieldProps) {
 
 				{value && type !== 'password' && (
 					<div
-						className='ml-2 flex size-5 shrink-0 transform cursor-pointer items-center justify-center rounded-full bg-field-helper transition duration-300 ease-in-out active:scale-95 active:brightness-95'
+						className={cn(
+							'ml-2 flex size-5 shrink-0 cursor-pointer items-center justify-center rounded-full bg-field-helper transition duration-300',
+							(isMobile || isTablet) && 'active:scale-95 active:brightness-95',
+							isDesktop && 'hover:bg-field-helper-hover active:bg-field-helper-active',
+						)}
 						onClick={() => onChange('')}
 					>
 						<Icon
@@ -110,8 +114,12 @@ export function TextField(props: TextFieldProps) {
 				{value && type === 'password' && (
 					<div
 						ref={showHidePasswordIconRef}
+						className={cn(
+							'ml-2 flex size-5 shrink-0 cursor-pointer items-center justify-center rounded-full bg-field-helper transition duration-300',
+							(isMobile || isTablet) && 'active:scale-95 active:brightness-95',
+							isDesktop && 'hover:bg-field-helper-hover active:bg-field-helper-active',
+						)}
 						onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-						className='ml-2 transform cursor-pointer text-field-helper transition duration-300 ease-in-out active:scale-95 active:brightness-95'
 					>
 						<Icon type={isPasswordVisible ? 'hide' : 'show'} className={isPasswordVisible ? 'size-[21px]' : 'size-5'} />
 					</div>
