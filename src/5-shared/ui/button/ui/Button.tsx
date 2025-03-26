@@ -147,8 +147,7 @@ export function Button(props: ButtonProps) {
 			<button
 				{...buttonProps}
 				className={gcn(
-					'flex items-center justify-center p-2 brightness-100 transition duration-200',
-					// isDesktop && 'hover:text-primary-grey',
+					'flex items-center justify-center p-2 text-black brightness-100 transition duration-200',
 					(isMobile || isTablet) && 'active:text-primary-grey',
 					isDesktop && 'rounded-full hover:bg-on-grey-hover active:bg-on-grey-active',
 				)}
