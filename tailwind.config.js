@@ -6,6 +6,7 @@ export default {
 		extend: {
 			colors: {
 				black: '#191C1F',
+				'black-hover': '#4D5257',
 
 				'primary-grey': '#75808A',
 				'secondary-grey': '#DFE3E7',

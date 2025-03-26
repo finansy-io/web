@@ -1,7 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import {HeaderProps} from '../types/Header.types.ts';
 import {Button, Icon} from '@shared/ui';
-import {cn, isNumber, styleElement} from '@shared/lib';
+import {cn, isNumber, styleElement, useResponsive} from '@shared/lib';
 
 /** navigate(-1) не сработает, если страницу открыли в новой вкладке -> history.length = 0 */
 /** поэтому если есть возможность прокинуть backPath - лучше так и сделать */
@@ -27,6 +27,8 @@ export function Header(props: HeaderProps) {
 	} = props;
 
 	const navigate = useNavigate();
+
+	const {isDesktop} = useResponsive();
 
 	function onBackButtonClick() {
 		if (handleBackButtonClick) return handleBackButtonClick();
@@ -58,7 +60,11 @@ export function Header(props: HeaderProps) {
 						</div>
 					}
 					onClick={onBackButtonClick}
-					className={cn('ml-2', withNoSpace && 'm-0 -ml-2')}
+					className={cn(
+						'ml-2',
+						withNoSpace && 'm-0 -ml-2',
+						isDesktop && 'hover:text-black-hover hover:bg-inherit active:bg-inherit active:text-primary-grey',
+					)}
 				/>
 			)}
 

@@ -89,7 +89,14 @@ export function LoginPage() {
 					disabledEnterClick
 				/>
 
-				<Button type='text' className='text-left font-light' onClick={() => alert('Вспоминай, а то не войдешь 😁')}>
+				<Button
+					type='text'
+					className={cn(
+						'text-left font-light',
+						isDesktop && 'hover:bg-inherit hover:text-on-violet-active active:bg-inherit active:underline',
+					)}
+					onClick={() => alert('Вспоминай, а то не войдешь 😁')}
+				>
 					{APP_TEXT.forgotPassword}
 				</Button>
 			</div>
