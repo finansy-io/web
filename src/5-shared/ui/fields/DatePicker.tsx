@@ -10,10 +10,11 @@ type DatePickerProps = {
 	children: ReactNode;
 	title: ReactNode;
 	withReset?: boolean;
+	isTextButtonOnGrey?: boolean;
 };
 
 export function DatePicker(props: DatePickerProps) {
-	const {value, onChange, children, minDate, title, withReset} = props;
+	const {value, onChange, children, minDate, title, withReset, isTextButtonOnGrey} = props;
 
 	const [localValue, setLocalValue] = useState(value);
 
@@ -47,6 +48,7 @@ export function DatePicker(props: DatePickerProps) {
 				type='text'
 				onClick={openPopup}
 				icon={!value ? <Icon type='fund' /> : <Icon type='edit' className='size-1' />}
+				isTextButtonOnGrey={isTextButtonOnGrey}
 			>
 				{children}
 			</Button>

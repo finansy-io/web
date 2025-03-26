@@ -100,6 +100,7 @@ export default function GoalCreatePage() {
 								value={deadline}
 								minDate={new DateService().getTomorrowDate()}
 								title={APP_TEXT.deadline}
+								isTextButtonOnGrey
 							>
 								{deadline ? new DateService(deadline).getLocalDateString() : APP_TEXT.addDeadline}
 							</DatePicker>

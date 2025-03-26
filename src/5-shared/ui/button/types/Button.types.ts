@@ -19,4 +19,5 @@ export interface ButtonProps extends CommonButtonSettings {
 	disabledPrimaryButtonEnterClick?: boolean;
 	secondaryWithPrimaryStyles?: boolean;
 	primaryButtonSpinnerClassName?: string;
+	isTextButtonOnGrey?: boolean;
 }

@@ -19,6 +19,7 @@ export function Button(props: ButtonProps) {
 		disabledPrimaryButtonEnterClick,
 		secondaryWithPrimaryStyles,
 		primaryButtonSpinnerClassName,
+		isTextButtonOnGrey,
 	} = props;
 
 	const navigate = useNavigate();
@@ -39,16 +40,19 @@ export function Button(props: ButtonProps) {
 	});
 
 	function gcn(...buttonClassName: Array<ClassValue>) {
+		const withBrightness = type === 'primary' || type === 'secondary' || type === 'circle';
+		const withScale = type === 'circle' || type === 'text';
+
 		return cn(
 			'block duration-300 transition ease-in-out',
-			disabled && 'cursor-not-allowed',
-			!disabled &&
-				cn(
-					'cursor-pointer',
-					(isMobile || isTablet) && type !== 'primary' && type !== 'secondary' && 'active:scale-95',
-					isDesktop && type !== 'icon' && 'hover:brightness-95',
-					type !== 'icon' && 'active:brightness-90',
-				),
+			disabled
+				? 'cursor-not-allowed'
+				: cn(
+						'cursor-pointer',
+						(isMobile || isTablet) && withScale && 'active:scale-95',
+						isDesktop && withBrightness && 'hover:brightness-95',
+						withBrightness && 'active:brightness-90',
+				  ),
 			...buttonClassName,
 			className,
 		);
@@ -161,7 +165,13 @@ export function Button(props: ButtonProps) {
 				className={gcn(
 					'w-fit text-sm font-medium text-primary-violet',
 					icon && 'flex items-center gap-2',
-					isDesktop && 'hover:text-on-violet-hover active:text-on-violet-active',
+					isDesktop &&
+						cn(
+							'-m-2 rounded-2xl p-2 transition duration-200',
+							isTextButtonOnGrey
+								? 'hover:bg-on-grey-hover active:bg-on-grey-active'
+								: 'hover:bg-on-white-hover active:bg-on-white-active',
+						),
 				)}
 			>
 				{icon && styleElement(icon, 'size-3')}

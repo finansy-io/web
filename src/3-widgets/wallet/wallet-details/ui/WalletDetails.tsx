@@ -1,9 +1,11 @@
 import {WalletDetailsConfig} from '../config/WalletDetails.config.tsx';
 import {Details} from '@shared/ui';
-import {useCopy} from '@shared/lib';
+import {useCopy, useResponsive} from '@shared/lib';
 
 export function WalletDetails() {
-	const {isCopied, copy} = useCopy();
+	const copyProps = useCopy();
+
+	const responsiveProps = useResponsive();
 
 	const details = {
 		address: '0x6C7eA518F0eb7066e56CFe667D87c0cD900E034B',
@@ -14,7 +16,7 @@ export function WalletDetails() {
 	return (
 		<Details
 			details={details}
-			detailsFields={WalletDetailsConfig.getDetailsFields(isCopied, copy)}
+			detailsFields={WalletDetailsConfig.getDetailsFields({...copyProps, ...responsiveProps})}
 			isLoading={isLoading}
 		/>
 	);

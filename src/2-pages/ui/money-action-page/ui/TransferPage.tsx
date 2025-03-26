@@ -143,6 +143,7 @@ export function TransferPage(props: TransferPageProps) {
 							value={date}
 							title={APP_TEXT.transactionDate}
 							withReset={false}
+							isTextButtonOnGrey
 						>
 							{new DateService(date).getLocalDateString()}
 						</DatePicker>

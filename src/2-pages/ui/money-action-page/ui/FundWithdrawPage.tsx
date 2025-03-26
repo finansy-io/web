@@ -85,6 +85,7 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 							value={date}
 							title={APP_TEXT.transactionDate}
 							withReset={false}
+							isTextButtonOnGrey
 						>
 							{new DateService(date).getLocalDateString()}
 						</DatePicker>
