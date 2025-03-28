@@ -3,9 +3,9 @@ import type {ButtonConfig} from '@shared/ui';
 
 export type HeaderProps = {
 	title?: string;
-	image?: ReactElement;
 	description?: ReactNode;
 	subDescription?: ReactNode;
+	image?: ReactElement;
 	backPath?: string;
 	handleBackButtonClick?: () => void;
 	withBackButton?: boolean;
@@ -14,8 +14,5 @@ export type HeaderProps = {
 	className?: string;
 	buttonConfigs?: ButtonConfig[];
 	isLoading?: boolean;
-
 	withNoSpace?: boolean;
-
-	// appleTitle?: string;
 };

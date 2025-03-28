@@ -18,6 +18,8 @@ export function Item(props: ItemProps) {
 		className,
 		isSingle,
 		isChecked,
+		isMenuItem: isMenuItemProp,
+		isDestructiveMenuItem,
 	} = props;
 
 	const navigate = useNavigate();
@@ -26,6 +28,8 @@ export function Item(props: ItemProps) {
 
 	const showIconCheckmark = isChecked && image;
 	const showRightCheckmark = isChecked && !image;
+
+	const isMenuItem = isMenuItemProp || isDestructiveMenuItem;
 
 	return (
 		<div
@@ -50,7 +54,7 @@ export function Item(props: ItemProps) {
 
 				{image && (
 					<div className='relative my-0.5 mr-4 flex-shrink-0'>
-						{image}
+						{isMenuItem ? styleElement(image, cn('size-5', isDestructiveMenuItem && 'text-red-600')) : image}
 
 						{(imageIcon || showIconCheckmark) && (
 							<div
@@ -68,7 +72,11 @@ export function Item(props: ItemProps) {
 				)}
 
 				<div className='min-w-0 flex-1 self-center'>
-					<div className={cn('truncate font-medium', isNameText && 'font-normal')}>{name}</div>
+					<div
+						className={cn('truncate font-medium', isNameText && 'font-normal', isDestructiveMenuItem && 'text-red-600')}
+					>
+						{name}
+					</div>
 					{description && <div className='truncate text-sm font-light text-primary-grey'>{description}</div>}
 				</div>
 
@@ -76,7 +84,7 @@ export function Item(props: ItemProps) {
 					<div
 						className={cn('ml-2 flex flex-shrink-0 flex-col items-end', description ? 'self-stretch' : 'self-center')}
 					>
-						{rightName && <div>{rightName}</div>}
+						{rightName && <div className={cn(isMenuItem && 'font-light text-primary-grey')}>{rightName}</div>}
 						{rightDescription && <div className='text-sm font-light text-primary-grey'>{rightDescription}</div>}
 					</div>
 				)}

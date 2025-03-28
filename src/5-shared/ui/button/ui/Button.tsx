@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {ClassValue} from 'clsx';
-import {type ButtonProps} from '../types/Button.types';
+import {type ButtonProps} from '../types/Button.types.ts';
 import {cn, styleElement, useKeyClick, useResponsive} from '@shared/lib';
 import {LoadingWrapper, Spinner} from '@shared/ui';
 import '../styles/Button.css';
@@ -63,6 +63,8 @@ export function Button(props: ButtonProps) {
 		disabled,
 	};
 
+	const isEditIcon = icon?.props.type === 'edit';
+
 	if (type === 'primary') {
 		return (
 			<button
@@ -101,7 +103,7 @@ export function Button(props: ButtonProps) {
 					)}
 				>
 					<div className='flex items-center justify-center gap-2'>
-						{icon && <div>{styleElement(icon, 'size-[14px]')}</div>}
+						{icon && <div>{styleElement(icon, isEditIcon ? 'size-3' : 'text-sm')}</div>}
 						{children && <div>{children}</div>}
 					</div>
 				</button>
@@ -120,7 +122,7 @@ export function Button(props: ButtonProps) {
 								disabled ? 'bg-secondary-violet/50 text-primary-violet/50' : 'bg-secondary-violet text-primary-violet',
 							)}
 						>
-							{styleElement(icon, 'size-4')}
+							{styleElement(icon, isEditIcon ? 'text-sm' : 'size-4')}
 						</div>
 					)}
 				</LoadingWrapper>
@@ -173,7 +175,7 @@ export function Button(props: ButtonProps) {
 						),
 				)}
 			>
-				{icon && styleElement(icon, 'size-3')}
+				{icon && styleElement(icon, isEditIcon ? 'size-3' : 'text-sm')}
 				<span>{children}</span>
 			</button>
 		);

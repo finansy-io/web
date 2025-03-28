@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {GoalModel} from '@entities/goal';
-import {Card, EditButtonField, LoadingWrapper, StatusPopup, TextFieldEditButton} from '@shared/ui';
+import {Card, EditButtonField, LoadingWrapper, StatusPopup, TextFieldButton} from '@shared/ui';
 import {APP_TEXT, FORM, CURRENCY, CURRENCY_CODE, CURRENCY_OPTIONS, CURRENCY_SYMBOL} from '@shared/constants';
 import {DateService, isNull, TextHelpers} from '@shared/lib';
 
@@ -103,7 +103,7 @@ export function GoalEdit() {
 						<div className='font-medium text-primary-grey'>{APP_TEXT.name}</div>
 					</LoadingWrapper>
 					<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
-						<TextFieldEditButton
+						<TextFieldButton
 							{...editButtonCommonProps}
 							entityName={APP_TEXT.name}
 							maxLength={FORM.nameMaxLength}
@@ -111,7 +111,7 @@ export function GoalEdit() {
 							handleUpdate={handleNameUpdate}
 						>
 							{goalDetails?.name}
-						</TextFieldEditButton>
+						</TextFieldButton>
 					</LoadingWrapper>
 				</div>
 

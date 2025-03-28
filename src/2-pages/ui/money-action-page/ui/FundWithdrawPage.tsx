@@ -7,7 +7,7 @@ import {
 	AmountFieldDetails,
 	type AmountFieldOption,
 	Button,
-	DatePicker,
+	DateFieldButton,
 	Header,
 	StatusPopup,
 } from '@shared/ui';
@@ -80,7 +80,7 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 				<AmountFieldDetails
 					label={APP_TEXT.transactionDate}
 					field={
-						<DatePicker
+						<DateFieldButton
 							onChange={(value) => (value ? setDate(value) : undefined)}
 							value={date}
 							title={APP_TEXT.transactionDate}
@@ -88,7 +88,7 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 							isTextButtonOnGrey
 						>
 							{new DateService(date).getLocalDateString()}
-						</DatePicker>
+						</DateFieldButton>
 					}
 				/>
 			</PageWidgetsWrapper>

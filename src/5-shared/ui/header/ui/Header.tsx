@@ -6,11 +6,11 @@ import {cn, isNumber, styleElement} from '@shared/lib';
 export function Header(props: HeaderProps) {
 	const {
 		title,
-		image,
 		description,
 		subDescription,
-		handleBackButtonClick,
+		image,
 		backPath,
+		handleBackButtonClick,
 		withBackButton = true,
 		withNoSpace,
 		stepsCount,
@@ -18,7 +18,6 @@ export function Header(props: HeaderProps) {
 		className,
 		buttonConfigs,
 		isLoading,
-		// appleTitle,
 	} = props;
 
 	const navigate = useNavigate();
@@ -89,22 +88,3 @@ export function Header(props: HeaderProps) {
 		</div>
 	);
 }
-
-// 	{appleTitle && (
-// 					<div className={cn('flex w-full items-center justify-between')}>
-// 						{/*{withBackButton && (*/}
-// 						{/*	<Button*/}
-// 						{/*		type={ButtonType.icon}*/}
-// 						{/*		icon={*/}
-// 						{/*			<div className='flex items-center justify-center'>*/}
-// 						{/*				<Icon type='backButton' className='size-5' />*/}
-// 						{/*			</div>*/}
-// 						{/*		}*/}
-// 						{/*		onClick={onBackButtonClick}*/}
-// 						{/*		isOnlyIcon*/}
-// 						{/*		className='p-2'*/}
-// 						{/*	/>*/}
-// 						{/*)}*/}
-// 						{appleTitle && <div className='absolute left-1/2 -translate-x-1/2 transform font-bold'>{appleTitle}</div>}
-// 					</div>
-// 				)}

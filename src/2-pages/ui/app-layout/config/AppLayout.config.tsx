@@ -7,14 +7,14 @@ export function getSettingsConfigs(openConfirmationPopup: () => void) {
 		[
 			{
 				name: 'Connected wallets',
-				image: <Icon type='wallet' className='size-5' />,
+				image: <Icon type='wallet' />,
 				onClick: ({navigate}) => {
 					navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.list}});
 				},
 			},
 			// {
 			// 	name: 'Connected exchanges',
-			// 	image: <Icon type='wallet' className='size-5' />,
+			// 	image: <Icon types='wallet' className='size-5' />,
 			// 	onClick: ({navigate}) => {
 			// 		navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.list}});
 			// 	},
@@ -24,7 +24,7 @@ export function getSettingsConfigs(openConfirmationPopup: () => void) {
 		// [
 		// 	{
 		// 		name: 'Currency',
-		// 		image: <Icon type='currency' className='size-5 text-[18px]' />,
+		// 		image: <Icon types='currency' className='size-5' />,
 		// 		rightNode: <div className='font-light text-primary-grey'>USD</div>,
 		// 	},
 		// ],
@@ -32,12 +32,12 @@ export function getSettingsConfigs(openConfirmationPopup: () => void) {
 		[
 			{
 				name: 'Hide balances',
-				image: <Icon type='hide' className='size-5 text-[18px]' />,
+				image: <Icon type='hide' />,
 				rightNode: 'switch',
 			},
 			{
 				name: 'Include in total portfolio',
-				image: <Icon type='portfolio' className='size-5' />,
+				image: <Icon type='portfolio' />,
 				rightNode: 'switch',
 			},
 		],
@@ -45,20 +45,21 @@ export function getSettingsConfigs(openConfirmationPopup: () => void) {
 		[
 			{
 				name: APP_TEXT.share + ' ' + APP_TEXT.portfolio.toLowerCase(),
-				image: <Icon type='share' className='size-5' />,
+				image: <Icon type='share' />,
 				onClick: () => console.log('share portfolio'),
 			},
 			{
 				name: APP_TEXT.edit + ' ' + APP_TEXT.portfolio.toLowerCase(),
-				image: <Icon type='edit' className='size-5' />,
+				image: <Icon type='edit' />,
 				onClick: ({navigate}) => {
 					navigate(APP_PATH.portfolio.getItemEditPath(1));
 				},
 			},
 			{
-				name: <div className='text-red-600'>{APP_TEXT.delete + ' ' + APP_TEXT.portfolio.toLowerCase()}</div>,
-				image: <Icon type='delete' className='size-5 text-red-600' />,
+				name: `${APP_TEXT.delete} ${APP_TEXT.portfolio.toLowerCase()}`,
+				image: <Icon type='delete' />,
 				onClick: openConfirmationPopup,
+				isDestructiveMenuItem: true,
 			},
 		],
 	] as SettingsConfigs;

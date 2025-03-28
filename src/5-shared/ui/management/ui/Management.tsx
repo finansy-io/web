@@ -1,4 +1,4 @@
-import {ManagementProps} from '../type/Management.types.ts';
+import {ManagementProps} from '@shared/ui/management/types/Management.types.ts';
 import {Button, Card, List, LoadingWrapper, TotalBalance} from '@shared/ui';
 import {cn} from '@shared/lib';
 

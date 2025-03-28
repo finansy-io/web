@@ -5,13 +5,12 @@ import {GoalModel} from '@entities/goal';
 import {
 	AmountField,
 	Button,
-	DatePicker,
+	DateFieldButton,
 	Header,
 	SelectWithSearchField,
 	StatusPopup,
 	TextField,
 	AmountFieldDetails,
-	TextFieldHints,
 } from '@shared/ui';
 import {APP_PATH, APP_TEXT, CURRENCY, CURRENCY_OPTIONS, FORM} from '@shared/constants';
 import {cn, DateService} from '@shared/lib';
@@ -59,11 +58,12 @@ export default function GoalCreatePage() {
 				<>
 					<GoalImageField isCreatePage>{PageHeader}</GoalImageField>
 					<PageWidgetsWrapper withTopSpace>
-						<TextField value={name} onChange={setName} maxLength={FORM.nameMaxLength} placeholder={APP_TEXT.goalName} />
-						<TextFieldHints
-							visible={!name}
+						<TextField
+							value={name}
+							onChange={setName}
+							maxLength={FORM.nameMaxLength}
+							placeholder={APP_TEXT.goalName}
 							hints={['Mustang', 'House', 'Guitar', 'Maldives', 'TV', 'iPhone', 'Education']}
-							setTextFieldValue={setName}
 						/>
 					</PageWidgetsWrapper>
 				</>
@@ -95,7 +95,7 @@ export default function GoalCreatePage() {
 					<AmountFieldDetails
 						label={APP_TEXT.deadline}
 						field={
-							<DatePicker
+							<DateFieldButton
 								onChange={setDeadline}
 								value={deadline}
 								minDate={new DateService().getTomorrowDate()}
@@ -103,7 +103,7 @@ export default function GoalCreatePage() {
 								isTextButtonOnGrey
 							>
 								{deadline ? new DateService(deadline).getLocalDateString() : APP_TEXT.addDeadline}
-							</DatePicker>
+							</DateFieldButton>
 						}
 					/>
 				</PageWidgetsWrapper>

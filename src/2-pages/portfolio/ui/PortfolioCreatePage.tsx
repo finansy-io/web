@@ -1,17 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
-import {
-	Button,
-	Header,
-	Popup,
-	PopupHelpers,
-	Spinner,
-	StatusPopup,
-	TextField,
-	TextFieldHints,
-	usePopupState,
-} from '@shared/ui';
+import {Button, Header, Popup, PopupHelpers, Spinner, StatusPopup, TextField, usePopupState} from '@shared/ui';
 import {cn} from '@shared/lib';
 import {APP_PATH, APP_TEXT, FORM} from '@shared/constants';
 
@@ -87,12 +77,7 @@ export default function PortfolioCreatePage() {
 					errorText={isNameValidationError && 'Such name already exists'}
 					maxLength={FORM.nameMaxLength}
 					placeholder={APP_TEXT.portfolioName}
-				/>
-
-				<TextFieldHints
-					visible={!name}
 					hints={['Memecoins', 'Altcoins', 'AI agents', 'Long term', 'Flipping']}
-					setTextFieldValue={setName}
 				/>
 			</PageWidgetsWrapper>
 

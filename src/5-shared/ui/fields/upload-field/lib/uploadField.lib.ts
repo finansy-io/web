@@ -1,4 +1,4 @@
-// type UploadPromise<T> = Promise<T> & {abort: () => void};
+// types UploadPromise<T> = Promise<T> & {abort: () => void};
 //
 // /**
 //  * соединить с функцией, которая знает URL куда отправлять (GoalModel.uploadImage())

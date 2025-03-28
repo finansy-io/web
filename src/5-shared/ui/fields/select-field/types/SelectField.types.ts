@@ -23,13 +23,7 @@ export type SelectFieldProps<Value> = {
 	popupTitle: ReactNode;
 	isLoading?: boolean;
 	children?: ReactNode;
-	isCardTitle?: boolean;
-	isCardRightTitle?: boolean;
 	withBackground?: boolean;
-};
-
-export type SelectTabsProps<Value> = {
-	value: (value: Value) => void;
-	onChange: (value: Value) => void;
-	options: readonly DefaultSelectOption<Value>[];
+	className?: string;
+	isChevronRight?: boolean;
 };
