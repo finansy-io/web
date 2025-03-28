@@ -1,12 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import {HeaderProps} from '../types/Header.types.ts';
 import {Button, Icon} from '@shared/ui';
-import {cn, isNumber, styleElement, useResponsive} from '@shared/lib';
-
-/** navigate(-1) не сработает, если страницу открыли в новой вкладке -> history.length = 0 */
-/** поэтому если есть возможность прокинуть backPath - лучше так и сделать */
-
-// не PageHeader, потому что может юзатся внутри @widgets и внутри @shared/ui (Popup мульти степовый, как в revolut)
+import {cn, isNumber, styleElement} from '@shared/lib';
 
 export function Header(props: HeaderProps) {
 	const {
@@ -27,8 +22,6 @@ export function Header(props: HeaderProps) {
 	} = props;
 
 	const navigate = useNavigate();
-
-	const {isDesktop} = useResponsive();
 
 	function onBackButtonClick() {
 		if (handleBackButtonClick) return handleBackButtonClick();
@@ -63,7 +56,7 @@ export function Header(props: HeaderProps) {
 					className={cn(
 						'ml-2',
 						withNoSpace && 'm-0 -ml-2',
-						isDesktop && 'hover:text-black-hover hover:bg-inherit active:bg-inherit active:text-primary-grey',
+						// isDesktop && 'hover:bg-inherit active:bg-inherit active:text-primary-grey',
 					)}
 				/>
 			)}

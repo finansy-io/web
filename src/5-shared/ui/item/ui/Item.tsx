@@ -3,8 +3,6 @@ import {ItemProps} from '../types/Item.types.ts';
 import {cn, isBoolean, styleElement, useResponsive} from '@shared/lib';
 import {Icon} from '@shared/ui';
 
-//if leftNode or rightNode is an icon => size-5
-
 export function Item(props: ItemProps) {
 	const {
 		image,
@@ -55,7 +53,13 @@ export function Item(props: ItemProps) {
 						{image}
 
 						{(imageIcon || showIconCheckmark) && (
-							<div className='absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full bg-primary-violet text-white shadow-[0_0_0_2px_white_inset]'>
+							<div
+								className={cn(
+									'absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full border-2 border-solid border-white bg-primary-violet text-white transition duration-200 group-active:border-on-grey-active',
+									isChecked && 'border-light-grey',
+									isDesktop && 'group-hover:border-light-grey',
+								)}
+							>
 								{imageIcon && !isBoolean(imageIcon) && styleElement(imageIcon, 'size-2.5')}
 								{showIconCheckmark && <Icon type='check' className='size-2.5' />}
 							</div>

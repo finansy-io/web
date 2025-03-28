@@ -260,6 +260,7 @@ export function PortfolioSelectPopup(props: any) {
 				description='35 assets'
 				rightName='25 653$'
 				rightDescription={<Profit />}
+				isSingle
 			/>
 
 			<List

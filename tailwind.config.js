@@ -26,7 +26,7 @@ export default {
 				'secondary-error-red': '#FDE3E5',
 
 				field: '#EDEFF2',
-				'field-state': '#DFE3E7',
+				'field-state': '#DFE3E7', //same as secondary-grey
 				'field-helper': '#75808A', //same as primary-grey
 				'field-helper-hover': '#636D75',
 				'field-helper-active': '#525A61',

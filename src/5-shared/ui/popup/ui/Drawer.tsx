@@ -22,6 +22,8 @@ export function Drawer(props: DrawerProps) {
 		title,
 		rightTitle,
 		children,
+		actionButtonNode,
+
 		statusDismissible,
 		statusProgress,
 		statusIcon,
@@ -90,8 +92,11 @@ export function Drawer(props: DrawerProps) {
 							</div>
 						</div>
 
-						{children && (
-							<div className='flex max-h-[90vh] flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0'>{children}</div>
+						{(children || actionButtonNode) && (
+							<div className='flex max-h-[90vh] flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0'>
+								{children}
+								{actionButtonNode && <div className='bg-light-grey py-2'>{actionButtonNode}</div>}
+							</div>
 						)}
 					</div>
 				</Content>

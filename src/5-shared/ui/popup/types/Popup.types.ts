@@ -7,6 +7,7 @@ export type DrawerProps = {
 	title?: ReactNode;
 	rightTitle?: ReactNode;
 	children?: ReactNode;
+	actionButtonNode?: ReactNode;
 
 	direction?: 'left' | 'bottom';
 	statusDismissible?: boolean;
@@ -16,7 +17,7 @@ export type DrawerProps = {
 
 export type PopupProps = Pick<
 	DrawerProps,
-	'isOpen' | 'setIsOpen' | 'leftTitle' | 'title' | 'rightTitle' | 'children'
+	'isOpen' | 'setIsOpen' | 'leftTitle' | 'title' | 'rightTitle' | 'children' | 'actionButtonNode'
 > & {
 	children: ReactNode;
 };

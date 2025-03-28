@@ -14,7 +14,7 @@ export function TextSelectField<Value>(props: SelectFieldProps<Value>) {
 
 	const [sortingValue, setSortingValue] = useState(value);
 
-	const {isDesktop} = useResponsive();
+	const {isMobile, isTablet, isDesktop} = useResponsive();
 
 	useEffect(() => {
 		if (value === sortingValue) return;
@@ -36,10 +36,12 @@ export function TextSelectField<Value>(props: SelectFieldProps<Value>) {
 					isCardTitle && 'font-medium text-primary-grey',
 					isCardRightTitle && 'gap-2 font-light text-primary-grey',
 					(isCardTitle || isCardRightTitle) && popupProps.isOpen && 'text-black',
+					(isCardTitle || isCardRightTitle) && (isMobile || isTablet) && 'active:text-black',
 					(isCardTitle || isCardRightTitle) &&
 						isDesktop &&
 						'-m-2 rounded-2xl p-2 hover:bg-on-white-hover active:bg-on-white-active',
 					withBackground && 'rounded-2xl bg-light-grey p-2',
+					withBackground && (isMobile || isTablet) && 'active:text-primary-grey',
 					withBackground && isDesktop && 'hover:bg-on-grey-hover active:bg-on-grey-active',
 				)}
 				options={options}
@@ -51,7 +53,23 @@ export function TextSelectField<Value>(props: SelectFieldProps<Value>) {
 				{children}
 			</SelectTitle>
 
-			<Popup {...popupProps} title={popupTitle}>
+			<Popup
+				{...popupProps}
+				title={popupTitle}
+				actionButtonNode={
+					options.some(isSortingOption) && (
+						<Button
+							type='primary'
+							onClick={() => {
+								PopupHelpers.runAfterPopupClosed(() => onChange(sortingValue));
+								closePopup();
+							}}
+						>
+							{APP_TEXT.done}
+						</Button>
+					)
+				}
+			>
 				<List
 					items={options}
 					renderItem={(option) => {
@@ -110,18 +128,6 @@ export function TextSelectField<Value>(props: SelectFieldProps<Value>) {
 						);
 					}}
 				/>
-
-				{options.some(isSortingOption) && (
-					<Button
-						type='primary'
-						onClick={() => {
-							PopupHelpers.runAfterPopupClosed(() => onChange(sortingValue));
-							closePopup();
-						}}
-					>
-						{APP_TEXT.done}
-					</Button>
-				)}
 			</Popup>
 		</>
 	);
