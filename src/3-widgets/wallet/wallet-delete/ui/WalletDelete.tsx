@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {DeleteItem} from '@shared/ui';
+import {DestructItem} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 
 export function WalletDelete() {
@@ -15,17 +15,17 @@ export function WalletDelete() {
 	}
 
 	return (
-		<DeleteItem
+		<DestructItem
 			confirmationTitle={walletName}
 			confirmationDescription={APP_TEXT.confirmation.disconnectWallet(portfolioName)}
 			isPending={isPending}
 			isSuccess={isSuccess}
 			isError={isError}
-			actionButtonText={APP_TEXT.disconnect}
-			handleDelete={handleDelete}
+			destructButtonText={APP_TEXT.disconnect}
+			onDestruct={handleDelete}
 			statusTextKey='disconnectWallet'
 		>
 			{`${APP_TEXT.disconnect} ${APP_TEXT.wallet.toLowerCase()}`}
-		</DeleteItem>
+		</DestructItem>
 	);
 }

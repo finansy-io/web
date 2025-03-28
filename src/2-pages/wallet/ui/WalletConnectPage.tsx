@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
-import {Button, Header, PopupHelpers, Spinner, StatusPopup, TextField, TextFieldHints} from '@shared/ui';
+import {Button, Header, PopupHelpers, Spinner, StatusPopup, TextField} from '@shared/ui';
 import {APP_PATH, APP_TEXT, FORM} from '@shared/constants';
 
 /**
@@ -61,11 +61,7 @@ export function WalletConnectPage() {
 						errorText={isNameValidationError && 'Such name already exists'}
 						maxLength={FORM.nameMaxLength}
 						placeholder={APP_TEXT.walletName}
-					/>
-					<TextFieldHints
-						visible={!name}
 						hints={['Phantom memes', 'Metamask memes', 'Long term altcoins', 'Cold wallet', 'Flipping']}
-						setTextFieldValue={setName}
 					/>
 				</PageWidgetsWrapper>
 			)}

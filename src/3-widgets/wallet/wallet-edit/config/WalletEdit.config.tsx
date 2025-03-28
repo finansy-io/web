@@ -1,6 +1,6 @@
 import {type WalletEditDetailsFieldProps} from '../types/WalletEdit.types.ts';
 import {APP_TEXT, FORM} from '@shared/constants';
-import {type DetailsField, TextFieldEditButton} from '@shared/ui';
+import {type DetailsField, TextFieldButton} from '@shared/ui';
 import {TextHelpers} from '@shared/lib';
 
 export class WalletEditConfig {
@@ -11,14 +11,14 @@ export class WalletEditConfig {
 				key: 'name',
 				type: 'custom',
 				customNode: (value: string) => (
-					<TextFieldEditButton
+					<TextFieldButton
 						entityName={APP_TEXT.name}
 						maxLength={FORM.nameMaxLength}
 						initialValue={value}
 						{...detailsFieldProps}
 					>
 						{value}
-					</TextFieldEditButton>
+					</TextFieldButton>
 				),
 			},
 			{
@@ -26,9 +26,9 @@ export class WalletEditConfig {
 				key: 'address',
 				type: 'custom',
 				customNode: (value: string) => (
-					<TextFieldEditButton entityName={APP_TEXT.address} initialValue={value} {...detailsFieldProps}>
+					<TextFieldButton entityName={APP_TEXT.address} initialValue={value} {...detailsFieldProps}>
 						{TextHelpers.getShortenWalletAddress(value)}
-					</TextFieldEditButton>
+					</TextFieldButton>
 				),
 			},
 		] as DetailsField[];

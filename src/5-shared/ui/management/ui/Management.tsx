@@ -1,4 +1,4 @@
-import {ManagementProps} from '../type/Management.types.ts';
+import {ManagementProps} from '@shared/ui/management/types/Management.types.ts';
 import {Button, Card, List, LoadingWrapper, TotalBalance} from '@shared/ui';
 import {cn} from '@shared/lib';
 
@@ -21,7 +21,7 @@ export function Management<ListItem>(props: ManagementProps<ListItem>) {
 	return (
 		<>
 			<Card>
-				<div className='flex flex-col gap-4 p-4 pb-2'>
+				<div className='flex flex-col gap-4 p-4 pb-3'>
 					<div className='flex flex-col gap-1.5'>
 						<div className='flex items-center justify-between'>
 							<LoadingWrapper isLoading={isLoading} className='mb-1.5 mt-2 h-6 w-32'>

@@ -13,10 +13,5 @@ export type TextFieldProps = {
 	isSearch?: boolean;
 	errorText?: ReactNode;
 	disabledEnterClick?: boolean;
-};
-
-export type TextFieldHintsProps = {
-	hints: string[];
-	setTextFieldValue: (value: string) => void;
-	visible: boolean;
+	hints?: string[];
 };

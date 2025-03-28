@@ -7,7 +7,7 @@ import {
 	AmountFieldDetails,
 	AmountFieldOption,
 	Button,
-	DatePicker,
+	DateFieldButton,
 	Header,
 	Icon,
 	StatusPopup,
@@ -138,14 +138,15 @@ export function TransferPage(props: TransferPageProps) {
 				<AmountFieldDetails
 					label={APP_TEXT.transactionDate}
 					field={
-						<DatePicker
+						<DateFieldButton
 							onChange={(value) => (value ? setDate(value) : undefined)}
 							value={date}
 							title={APP_TEXT.transactionDate}
 							withReset={false}
+							isTextButtonOnGrey
 						>
 							{new DateService(date).getLocalDateString()}
-						</DatePicker>
+						</DateFieldButton>
 					}
 				/>
 			</PageWidgetsWrapper>

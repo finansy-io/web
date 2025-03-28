@@ -20,4 +20,6 @@ export type ItemProps = {
 	isNameText?: boolean;
 	isSingle?: boolean;
 	isChecked?: boolean;
+	isMenuItem?: boolean;
+	isDestructiveMenuItem?: boolean;
 };

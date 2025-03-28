@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {ClassValue} from 'clsx';
-import {type ButtonProps} from '../types/Button.types';
+import {type ButtonProps} from '../types/Button.types.ts';
 import {cn, styleElement, useKeyClick, useResponsive} from '@shared/lib';
 import {LoadingWrapper, Spinner} from '@shared/ui';
 import '../styles/Button.css';
@@ -19,6 +19,7 @@ export function Button(props: ButtonProps) {
 		disabledPrimaryButtonEnterClick,
 		secondaryWithPrimaryStyles,
 		primaryButtonSpinnerClassName,
+		isTextButtonOnGrey,
 	} = props;
 
 	const navigate = useNavigate();
@@ -39,16 +40,19 @@ export function Button(props: ButtonProps) {
 	});
 
 	function gcn(...buttonClassName: Array<ClassValue>) {
+		const withBrightness = type === 'primary' || type === 'secondary' || type === 'circle';
+		const withScale = type === 'circle' || type === 'text';
+
 		return cn(
 			'block duration-300 transition ease-in-out',
-			disabled && 'cursor-not-allowed',
-			!disabled &&
-				cn(
-					'cursor-pointer',
-					(isMobile || isTablet) && type !== 'primary' && type !== 'secondary' && 'active:scale-95',
-					isDesktop && type !== 'icon' && 'hover:brightness-95',
-					type !== 'icon' && 'active:brightness-90',
-				),
+			disabled
+				? 'cursor-not-allowed'
+				: cn(
+						'cursor-pointer',
+						(isMobile || isTablet) && withScale && 'active:scale-95',
+						isDesktop && withBrightness && 'hover:brightness-95',
+						withBrightness && 'active:brightness-90',
+				  ),
 			...buttonClassName,
 			className,
 		);
@@ -58,6 +62,8 @@ export function Button(props: ButtonProps) {
 		onClick: disabled ? undefined : () => onClick({navigate}),
 		disabled,
 	};
+
+	const isEditIcon = icon?.props.type === 'edit';
 
 	if (type === 'primary') {
 		return (
@@ -97,7 +103,7 @@ export function Button(props: ButtonProps) {
 					)}
 				>
 					<div className='flex items-center justify-center gap-2'>
-						{icon && <div>{styleElement(icon, 'size-[14px]')}</div>}
+						{icon && <div>{styleElement(icon, isEditIcon ? 'size-3' : 'text-sm')}</div>}
 						{children && <div>{children}</div>}
 					</div>
 				</button>
@@ -116,7 +122,7 @@ export function Button(props: ButtonProps) {
 								disabled ? 'bg-secondary-violet/50 text-primary-violet/50' : 'bg-secondary-violet text-primary-violet',
 							)}
 						>
-							{styleElement(icon, 'size-4')}
+							{styleElement(icon, isEditIcon ? 'text-sm' : 'size-4')}
 						</div>
 					)}
 				</LoadingWrapper>
@@ -143,8 +149,7 @@ export function Button(props: ButtonProps) {
 			<button
 				{...buttonProps}
 				className={gcn(
-					'flex items-center justify-center p-2 brightness-100 transition duration-200',
-					// isDesktop && 'hover:text-primary-grey',
+					'flex items-center justify-center p-2 text-black brightness-100 transition duration-200',
 					(isMobile || isTablet) && 'active:text-primary-grey',
 					isDesktop && 'rounded-full hover:bg-on-grey-hover active:bg-on-grey-active',
 				)}
@@ -161,10 +166,16 @@ export function Button(props: ButtonProps) {
 				className={gcn(
 					'w-fit text-sm font-medium text-primary-violet',
 					icon && 'flex items-center gap-2',
-					isDesktop && 'hover:text-on-violet-hover active:text-on-violet-active',
+					isDesktop &&
+						cn(
+							'-m-2 rounded-2xl p-2 transition duration-200',
+							isTextButtonOnGrey
+								? 'hover:bg-on-grey-hover active:bg-on-grey-active'
+								: 'hover:bg-on-white-hover active:bg-on-white-active',
+						),
 				)}
 			>
-				{icon && styleElement(icon, 'size-3')}
+				{icon && styleElement(icon, isEditIcon ? 'size-3' : 'text-sm')}
 				<span>{children}</span>
 			</button>
 		);

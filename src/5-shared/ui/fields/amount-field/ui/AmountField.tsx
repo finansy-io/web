@@ -67,8 +67,9 @@ export function AmountField<Option extends AmountFieldOption>(props: AmountField
 	return (
 		<>
 			<div
+				role='amount-field'
 				className={cn(
-					'rounded-2xl bg-field p-4 duration-300 focus-within:bg-field-state',
+					'flex flex-col gap-1 rounded-2xl bg-field p-4 duration-300 focus-within:bg-field-state',
 					isDesktop && 'hover:bg-field-state',
 					!!errorText && '!bg-secondary-error-red',
 				)}
@@ -122,7 +123,7 @@ export function AmountField<Option extends AmountFieldOption>(props: AmountField
 					</div>
 				</div>
 
-				<div className='mt-1 flex justify-between'>
+				<div className='flex justify-between'>
 					<LoadingWrapper isLoading={!!isLoading} isTextSm>
 						<div
 							className={cn(

@@ -3,8 +3,6 @@ import {ItemProps} from '../types/Item.types.ts';
 import {cn, isBoolean, styleElement, useResponsive} from '@shared/lib';
 import {Icon} from '@shared/ui';
 
-//if leftNode or rightNode is an icon => size-5
-
 export function Item(props: ItemProps) {
 	const {
 		image,
@@ -20,6 +18,8 @@ export function Item(props: ItemProps) {
 		className,
 		isSingle,
 		isChecked,
+		isMenuItem: isMenuItemProp,
+		isDestructiveMenuItem,
 	} = props;
 
 	const navigate = useNavigate();
@@ -28,6 +28,8 @@ export function Item(props: ItemProps) {
 
 	const showIconCheckmark = isChecked && image;
 	const showRightCheckmark = isChecked && !image;
+
+	const isMenuItem = isMenuItemProp || isDestructiveMenuItem;
 
 	return (
 		<div
@@ -52,10 +54,16 @@ export function Item(props: ItemProps) {
 
 				{image && (
 					<div className='relative my-0.5 mr-4 flex-shrink-0'>
-						{image}
+						{isMenuItem ? styleElement(image, cn('size-5', isDestructiveMenuItem && 'text-red-600')) : image}
 
 						{(imageIcon || showIconCheckmark) && (
-							<div className='absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full bg-primary-violet text-white shadow-[0_0_0_2px_white_inset]'>
+							<div
+								className={cn(
+									'absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full border-2 border-solid border-white bg-primary-violet text-white transition duration-200 group-active:border-on-grey-active',
+									isChecked && 'border-light-grey',
+									isDesktop && 'group-hover:border-light-grey',
+								)}
+							>
 								{imageIcon && !isBoolean(imageIcon) && styleElement(imageIcon, 'size-2.5')}
 								{showIconCheckmark && <Icon type='check' className='size-2.5' />}
 							</div>
@@ -64,7 +72,11 @@ export function Item(props: ItemProps) {
 				)}
 
 				<div className='min-w-0 flex-1 self-center'>
-					<div className={cn('truncate font-medium', isNameText && 'font-normal')}>{name}</div>
+					<div
+						className={cn('truncate font-medium', isNameText && 'font-normal', isDestructiveMenuItem && 'text-red-600')}
+					>
+						{name}
+					</div>
 					{description && <div className='truncate text-sm font-light text-primary-grey'>{description}</div>}
 				</div>
 
@@ -72,7 +84,7 @@ export function Item(props: ItemProps) {
 					<div
 						className={cn('ml-2 flex flex-shrink-0 flex-col items-end', description ? 'self-stretch' : 'self-center')}
 					>
-						{rightName && <div>{rightName}</div>}
+						{rightName && <div className={cn(isMenuItem && 'font-light text-primary-grey')}>{rightName}</div>}
 						{rightDescription && <div className='text-sm font-light text-primary-grey'>{rightDescription}</div>}
 					</div>
 				)}

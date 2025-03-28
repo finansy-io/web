@@ -34,7 +34,7 @@ export const UploadField = forwardRef<UploadFieldRef, UploadFieldProps>((props, 
 		setIsUploading(false);
 
 		// For integration with BE
-		// type T = any;
+		// types T = any;
 
 		// const url = '';
 		// const uploadingPromise = upload<T>(file, url, {onProgress: setProgress});

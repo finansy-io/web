@@ -13,16 +13,44 @@ import {
 	Popup,
 	PopupHelpers,
 	Profit,
-	SelectTabs,
+	SelectTabsField,
 	SelectTitle,
 	StatusPopup,
 	usePopupState,
 } from '@shared/ui';
 import {cn, useResponsive} from '@shared/lib';
 import {APP_PATH, APP_TEXT, PERIOD_OPTIONS} from '@shared/constants';
+import {DefaultSelectOption} from '@shared/ui/fields/select-field/types/SelectField.types.ts';
 
 export function AppHeader() {
 	const location = useLocation();
+
+	const portfolioOptions = [
+		{
+			name: 'Portfolio 1',
+			description: '10 assets',
+			rightName: '9 990 $',
+			rightDescription: <Profit />,
+			image: <Icon type='portfolio' withBackground />,
+			value: 1,
+		},
+		{
+			name: 'Portfolio 2',
+			description: '12 assets',
+			rightName: '8 865 $',
+			rightDescription: <Profit />,
+			image: <Icon type='portfolio' withBackground />,
+			value: 2,
+		},
+		{
+			name: 'Portfolio 3',
+			description: '11 assets',
+			rightName: '6 798 $',
+			rightDescription: <Profit />,
+			image: <Icon type='portfolio' withBackground />,
+			value: 3,
+		},
+	];
 
 	const [period, setPeriod] = useState(PERIOD_OPTIONS[0].value);
 	const [selectedPortfolioValue, setSelectedPortfolioValue] = useState(portfolioOptions[0].value);
@@ -114,6 +142,7 @@ export function AppHeader() {
 										  }
 										: undefined
 								}
+								isMenuItem
 							/>
 						)}
 					/>
@@ -136,33 +165,6 @@ export function AppHeader() {
 	);
 }
 
-const portfolioOptions = [
-	{
-		name: 'Portfolio 1',
-		description: '10 assets',
-		rightName: '9 990 $',
-		rightDescription: <Profit />,
-		image: <Icon type='portfolio' withBackground />,
-		value: 1,
-	},
-	{
-		name: 'Portfolio 2',
-		description: '12 assets',
-		rightName: '8 865 $',
-		rightDescription: <Profit />,
-		image: <Icon type='portfolio' withBackground />,
-		value: 2,
-	},
-	{
-		name: 'Portfolio 3',
-		description: '11 assets',
-		rightName: '6 798 $',
-		rightDescription: <Profit />,
-		image: <Icon type='portfolio' withBackground />,
-		value: 3,
-	},
-];
-
 export function UserSettingsPopup(props: any) {
 	const {userPopupProps, authUser, logout} = props;
 
@@ -178,48 +180,39 @@ export function UserSettingsPopup(props: any) {
 				{/*<div className='flex items-center gap-1.5'>*/}
 				{/*	<div className='text-sm text-primary-grey'>@usernickname</div>*/}
 				{/*	<div onClick={() => setIsCopied(true)}>*/}
-				{/*		<Icon type={isCopied ? 'check' : 'copy'} className='size-[14px] text-primary-grey' />*/}
+				{/*		<Icon types={isCopied ? 'check' : 'copy'} className='size-[14px] text-primary-grey' />*/}
 				{/*	</div>*/}
 				{/*</div>*/}
 			</div>
 
 			<Item
-				image={<Icon type='createGoal' className='size-5' />}
+				image={<Icon type='createGoal' />}
 				name={'Subscription'}
 				description={'Kрипто-карась'}
 				// rightName={<div className='font-light text-primary-grey'>Крипто-карась</div>}
-				rightName={
+				rightNode={
 					<Button type='secondary' onClick={() => {}}>
 						Upgrade
 					</Button>
 				}
 				isSingle
+				isMenuItem
 			/>
 
 			<div className='rounded-2xl bg-white'>
-				<Item
-					image={<Icon type='language' className='size-5' />}
-					name={'Language'}
-					rightName={<div className='font-light text-primary-grey'>English</div>}
-					onClick={() => {}}
-				/>
+				<Item image={<Icon type='language' />} name={'Language'} rightName={'English'} onClick={() => {}} isMenuItem />
 				<Item
 					image={<Icon type='theme' className='-mr-1' />}
 					name={'Theme'}
-					rightName={<div className='font-light text-primary-grey'>Light</div>}
+					rightName={'Light'}
 					onClick={() => {}}
+					isMenuItem
 				/>
 			</div>
 
 			<div className='rounded-2xl bg-white'>
-				<Item image={<Icon type='contactUs' className='size-5' />} name={'Contact us'} onClick={() => {}} />
-				<Item
-					image={<Icon type='logout' className='size-5 text-red-600' />}
-					name={APP_TEXT.logOut}
-					className='text-red-600'
-					onClick={() => logout()}
-					isSingle
-				/>
+				<Item image={<Icon type='contactUs' />} name={'Contact us'} onClick={() => {}} isMenuItem />
+				<Item image={<Icon type='logout' />} name={APP_TEXT.logOut} onClick={() => logout()} isDestructiveMenuItem />
 			</div>
 		</LeftPopup>
 	);
@@ -233,6 +226,7 @@ export function PortfolioSelectPopup(props: any) {
 		closePortfolioPopup,
 		period,
 		setPeriod,
+		options,
 	} = props;
 
 	const navigate = useNavigate();
@@ -252,7 +246,7 @@ export function PortfolioSelectPopup(props: any) {
 				/>
 			}
 		>
-			<SelectTabs value={period} onChange={setPeriod} options={PERIOD_OPTIONS} />
+			<SelectTabsField value={period} onChange={setPeriod} options={PERIOD_OPTIONS} />
 
 			<Item
 				image={<Icon type='portfolio' withBackground />}
@@ -260,10 +254,11 @@ export function PortfolioSelectPopup(props: any) {
 				description='35 assets'
 				rightName='25 653$'
 				rightDescription={<Profit />}
+				isSingle
 			/>
 
 			<List
-				items={portfolioOptions}
+				items={options as DefaultSelectOption<number>[]}
 				renderItem={({value, ...restPortfolioOption}) => {
 					return (
 						<Item

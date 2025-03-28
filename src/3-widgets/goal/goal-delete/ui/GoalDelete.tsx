@@ -1,6 +1,6 @@
 import {useParams} from 'react-router-dom';
 import {GoalModel} from '@entities/goal';
-import {DeleteItem, LoadingWrapper} from '@shared/ui';
+import {DestructItem, LoadingWrapper} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 
 export function GoalDelete() {
@@ -10,18 +10,18 @@ export function GoalDelete() {
 	const {goalDetails, isGoalDetailsLoading} = GoalModel.useItemDetails({id});
 
 	return (
-		<DeleteItem
+		<DestructItem
 			confirmationTitle={goalDetails?.name as string}
 			confirmationDescription={`${APP_TEXT.confirmation.deleteGoal} ${APP_TEXT.goal?.toLowerCase()}?`}
 			isPending={isDeleteGoalPending}
 			isSuccess={isDeleteGoalSuccess}
 			isError={isDeleteGoalError}
-			handleDelete={() => deleteGoal({params: {id: id!}})}
+			onDestruct={() => deleteGoal({params: {id: id!}})}
 			statusTextKey='deleteGoal'
 		>
 			<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>
 				{APP_TEXT.deleteGoal}
 			</LoadingWrapper>
-		</DeleteItem>
+		</DestructItem>
 	);
 }

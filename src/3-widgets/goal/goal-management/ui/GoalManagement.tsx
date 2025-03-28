@@ -1,4 +1,4 @@
-import {getSelectTitle, Item, ItemImageWithProgress, Management, TextSelectField} from '@shared/ui';
+import {CardSelectTitle, getSelectTitle, Item, ItemImageWithProgress, Management} from '@shared/ui';
 import {buttonConfigs, goalsDefaultFilter, goalStatusOptions} from '../config/GoalManagement.config.tsx';
 import {GoalModel} from '@entities/goal';
 import {TextHelpers, useFilter} from '@shared/lib';
@@ -31,16 +31,15 @@ export function GoalManagement() {
 				})(),
 			}))}
 			listTitle={
-				<TextSelectField
+				<CardSelectTitle
 					value={filter.status}
 					onChange={(value) => setFilter({...filter, status: value})}
 					options={goalStatusOptions}
 					isLoading={isLoading}
 					popupTitle={APP_TEXT.goals}
-					isCardTitle
 				>
 					{`${getSelectTitle(filter.status, goalStatusOptions)} ${APP_TEXT.goals.toLowerCase()}`}
-				</TextSelectField>
+				</CardSelectTitle>
 			}
 			listItems={goals}
 			renderListItem={(goal) => (
