@@ -34,7 +34,7 @@ export function SelectField<Value>(props: SelectFieldProps<Value>) {
 			</SelectTitle>
 
 			<SelectPopup
-				{...{...popupProps, popupTitle, closePopup, options, onChange, sortingValue, setSortingValue, value}}
+				{...{...popupProps, title: popupTitle, closePopup, options, onChange, sortingValue, setSortingValue, value}}
 			/>
 		</>
 	);

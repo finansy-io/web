@@ -37,7 +37,7 @@ export function CardSelectTitle<Value>(
 			</SelectTitle>
 
 			<SelectPopup
-				{...{...popupProps, popupTitle, closePopup, options, onChange, sortingValue, setSortingValue, value}}
+				{...{...popupProps, title: popupTitle, closePopup, options, onChange, sortingValue, setSortingValue, value}}
 			/>
 		</>
 	);
