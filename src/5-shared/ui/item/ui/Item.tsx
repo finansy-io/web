@@ -24,12 +24,15 @@ export function Item(props: ItemProps) {
 
 	const navigate = useNavigate();
 
-	const {isDesktop} = useResponsive();
+	const {isMobile, isTablet, isDesktop} = useResponsive();
 
 	const showIconCheckmark = isChecked && image;
 	const showRightCheckmark = isChecked && !image;
 
 	const isMenuItem = isMenuItemProp || isDestructiveMenuItem;
+
+	const withTouchState = onClick && (isMobile || isTablet);
+	const withClickState = onClick && isDesktop;
 
 	return (
 		<div
@@ -43,9 +46,8 @@ export function Item(props: ItemProps) {
 			<div
 				className={cn(
 					'flex w-full rounded-2xl p-3 text-left duration-300',
-					onClick && isDesktop
-						? 'group-hover:bg-on-white-hover group-active:bg-on-white-active'
-						: 'group-active:bg-on-white-hover',
+					withTouchState && 'group-active:bg-on-white-hover',
+					withClickState && 'group-hover:bg-on-white-hover group-active:bg-on-white-active',
 					isChecked && 'bg-light-grey',
 					className,
 				)}
@@ -59,9 +61,10 @@ export function Item(props: ItemProps) {
 						{(imageIcon || showIconCheckmark) && (
 							<div
 								className={cn(
-									'absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full border-2 border-solid border-white bg-primary-violet text-white transition duration-200 group-active:border-on-grey-active',
+									'absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full border-2 border-solid border-white bg-primary-violet text-white transition duration-200',
 									isChecked && 'border-light-grey',
-									isDesktop && 'group-hover:border-light-grey',
+									withTouchState && 'group-active:bg-on-white-hover',
+									withClickState && 'group-hover:border-on-white-hover group-active:border-on-white-active',
 								)}
 							>
 								{imageIcon && !isBoolean(imageIcon) && styleElement(imageIcon, 'size-2.5')}

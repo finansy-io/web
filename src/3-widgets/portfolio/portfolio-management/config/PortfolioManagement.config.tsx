@@ -23,11 +23,6 @@ export const assetSortingOptions = [
 		ascValue: 4,
 	},
 	{
-		name: APP_TEXT.marketCap,
-		descValue: 5,
-		ascValue: 6,
-	},
-	{
 		name: APP_TEXT.percentage,
 		descValue: 7,
 		ascValue: 8,
@@ -36,6 +31,11 @@ export const assetSortingOptions = [
 		name: APP_TEXT.money,
 		descValue: 9,
 		ascValue: 10,
+	},
+	{
+		name: APP_TEXT.marketCap,
+		descValue: 5,
+		ascValue: 6,
 	},
 	{
 		name: APP_TEXT.alphabetical,
