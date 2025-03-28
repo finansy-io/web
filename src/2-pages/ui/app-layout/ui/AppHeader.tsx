@@ -123,6 +123,7 @@ export function AppHeader() {
 					closePortfolioPopup,
 					period,
 					setPeriod,
+					options: portfolioOptions,
 				}}
 			/>
 
