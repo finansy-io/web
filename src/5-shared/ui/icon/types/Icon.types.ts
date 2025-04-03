@@ -7,4 +7,6 @@ export type IconProps = {
 	className?: string;
 	onClick?: () => void;
 	withBackground?: boolean;
+
+	isHeaderIcon?: boolean;
 };

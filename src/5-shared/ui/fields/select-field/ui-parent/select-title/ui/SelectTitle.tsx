@@ -6,7 +6,7 @@ import {Icon, LoadingWrapper} from '@shared/ui';
 export function SelectTitle<Value>(props: SelectTitleProps<Value>) {
 	const {value, options, onClick, type, isLoading, className, children, isChevronRight, isPopupOpen} = props;
 
-	const {isMobile, isTablet, isDesktop} = useResponsive();
+	const {isTouchable, isClickable} = useResponsive();
 
 	if (type === 'text') {
 		const title = getSelectTitle(value, options, children);
@@ -18,6 +18,7 @@ export function SelectTitle<Value>(props: SelectTitleProps<Value>) {
 					className={cn(
 						'flex w-fit cursor-pointer items-center gap-1.5 text-sm font-normal text-black transition duration-200',
 						isPopupOpen && 'text-primary-grey',
+						isTouchable && 'active:text-primary-grey',
 						className,
 					)}
 					onClick={onClick}
@@ -42,10 +43,10 @@ export function SelectTitle<Value>(props: SelectTitleProps<Value>) {
 		return (
 			<div
 				className={cn(
-					'flex cursor-pointer items-center gap-2 text-xl font-medium transition duration-200',
+					'flex cursor-pointer items-center gap-2 text-lg font-medium transition duration-200',
 					isPopupOpen && 'text-primary-grey',
-					(isMobile || isTablet) && 'active:text-primary-grey',
-					isDesktop && '-my-2 rounded-2xl px-3 py-2 hover:bg-on-grey-hover active:bg-on-grey-active',
+					isTouchable && 'active:text-primary-grey',
+					isClickable && '-my-2 rounded-2xl px-3 py-2 hover:bg-on-grey-hover active:bg-on-grey-active',
 				)}
 				onClick={onClick}
 			>

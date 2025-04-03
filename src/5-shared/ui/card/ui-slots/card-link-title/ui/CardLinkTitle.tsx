@@ -1,5 +1,6 @@
 import {useNavigate} from 'react-router-dom';
 import {type CardLinkTitleProps} from '../types/CardLinkTitle.types.ts';
+import {clickableTitleStyles, touchableTitleStyles} from '../../styles/CardSlots.styles.ts';
 import {Icon} from '@shared/ui';
 import {cn, useResponsive} from '@shared/lib';
 
@@ -8,14 +9,15 @@ export function CardLinkTitle(props: CardLinkTitleProps) {
 
 	const navigate = useNavigate();
 
-	const {isMobile, isTablet, isDesktop} = useResponsive();
+	const {isTouchable, isClickable} = useResponsive();
 
 	return (
 		<div
 			className={cn(
-				'group -m-[3px] flex w-fit cursor-pointer items-center gap-1 p-[3px] transition duration-200',
-				(isMobile || isTablet) && 'active:text-black',
-				isDesktop && '-mx-2.5 -my-1.5 rounded-[14px] px-2.5 py-1.5 hover:bg-on-white-hover active:bg-on-white-active',
+				'group flex cursor-pointer items-center gap-1 transition duration-200',
+				isTouchable && touchableTitleStyles,
+				isTouchable && 'active:text-black',
+				isClickable && clickableTitleStyles,
 			)}
 			onClick={() => navigate(path)}
 		>
@@ -23,10 +25,7 @@ export function CardLinkTitle(props: CardLinkTitleProps) {
 			<div>
 				<Icon
 					type='chevronRight'
-					className={cn(
-						'size-2.5 text-primary-grey transition duration-200',
-						(isMobile || isTablet) && 'group-active:text-black',
-					)}
+					className={cn('size-2.5 text-primary-grey transition duration-200', isTouchable && 'group-active:text-black')}
 				/>
 			</div>
 		</div>

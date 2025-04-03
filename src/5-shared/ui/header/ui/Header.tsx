@@ -5,19 +5,25 @@ import {cn, isNumber, styleElement} from '@shared/lib';
 
 export function Header(props: HeaderProps) {
 	const {
+		stepsCount,
+		activeStepIndex,
+
+		backPath,
+		handleBackButtonClick,
+		iconButtonConfigs,
+
 		title,
 		description,
 		subDescription,
+
 		image,
-		backPath,
-		handleBackButtonClick,
-		withBackButton = true,
-		withNoSpace,
-		stepsCount,
-		activeStepIndex,
-		className,
+
 		buttonConfigs,
+
+		className,
 		isLoading,
+		withNoSpace,
+		withBackButton = true,
 	} = props;
 
 	const navigate = useNavigate();
@@ -43,48 +49,51 @@ export function Header(props: HeaderProps) {
 				</div>
 			)}
 
-			{withBackButton && (
-				<Button
-					type='icon'
-					icon={
-						<div className='flex items-center justify-center'>
-							<Icon type='backButton' className='size-5' />
-						</div>
-					}
-					onClick={onBackButtonClick}
-					className={cn(
-						'ml-2',
-						withNoSpace && 'm-0 -ml-2',
-						// isDesktop && 'hover:bg-inherit active:bg-inherit active:text-primary-grey',
+			{(withBackButton || iconButtonConfigs) && (
+				<div className='flex justify-between px-2 pb-2'>
+					{withBackButton && (
+						<Button
+							type='icon'
+							icon={<Icon type='backButton' isHeaderIcon />}
+							onClick={onBackButtonClick}
+							className={cn(withNoSpace && 'm-0 -ml-2')}
+							// isDesktop && 'hover:bg-inherit active:bg-inherit active:text-primary-grey',
+						/>
 					)}
-				/>
-			)}
 
-			<div className={cn('flex items-start justify-between gap-4 px-4', withNoSpace && 'p-0')}>
-				<div>
-					<div className='flex flex-col items-start gap-4'>
-						{title && (
-							<div className='flex w-full items-center justify-between'>
-								<div className='text-3xl font-bold'>{title}</div>
-							</div>
-						)}
-						{description && <div className='font-medium'>{description}</div>}
-						{subDescription && <div className='text-sm font-light text-primary-grey'>{subDescription}</div>}
-					</div>
-
-					{buttonConfigs && (
-						<div className='mt-4 flex gap-2'>
-							{buttonConfigs.map(({name, ...restButtonConfig}, index) => (
-								<Button key={index} isLoading={isLoading} {...restButtonConfig}>
-									{name}
-								</Button>
+					{iconButtonConfigs && (
+						<div className='flex gap-1'>
+							{iconButtonConfigs.map((buttonConfig, index) => (
+								<Button type='icon' key={index} isLoading={isLoading} {...buttonConfig} />
 							))}
 						</div>
 					)}
 				</div>
+			)}
 
-				{image && styleElement(image, 'size-10')}
+			<div className={cn('flex items-start justify-between gap-2 px-4', withNoSpace && 'p-0')}>
+				<div className='flex flex-col gap-2'>
+					{title && (
+						<div className='flex w-full items-center justify-between'>
+							<div className='text-3xl font-bold'>{title}</div>
+						</div>
+					)}
+					{description && <div className='font-medium'>{description}</div>}
+					{subDescription && <div className='text-sm font-light text-primary-grey'>{subDescription}</div>}
+				</div>
+
+				{image && styleElement(image, 'size-14 text-xl')}
 			</div>
+
+			{buttonConfigs && (
+				<div className='flex gap-2 px-4 pt-4'>
+					{buttonConfigs.map(({name, ...restButtonConfig}, index) => (
+						<Button key={index} isLoading={isLoading} {...restButtonConfig}>
+							{name}
+						</Button>
+					))}
+				</div>
+			)}
 		</div>
 	);
 }

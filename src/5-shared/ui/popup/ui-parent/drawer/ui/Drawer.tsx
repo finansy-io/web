@@ -78,7 +78,7 @@ export function Drawer(props: DrawerProps) {
 
 						<div
 							className={cn(
-								title && 'relative',
+								'relative',
 								(title || leftTitle || rightTitle) && 'flex h-7 items-center justify-between px-2',
 								!!statusProgress && 'mb-2',
 							)}
@@ -87,7 +87,7 @@ export function Drawer(props: DrawerProps) {
 							<div className='flex-shrink-0'>{rightTitle}</div>
 
 							{/* Абсолютно позиционированный по центру Title */}
-							<div className='pointer-events-none absolute inset-0 flex items-center justify-center'>
+							<div className='absolute inset-0 flex items-center justify-center'>
 								<Title className={cn('text-center text-lg font-medium', !title && 'hidden')}>{title}</Title>
 							</div>
 						</div>

@@ -22,6 +22,7 @@ export const APP_PATH = {
 	},
 
 	portfolio: {
+		// list: '/portfolio/portfolio-id/assets',
 		list: '/portfolio-list',
 		create: '/portfolio-create',
 		details: '/portfolio',

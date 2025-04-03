@@ -46,6 +46,7 @@ export * from './loading/ui/LoadingWrapper.tsx';
 export * from './icon/ui/Icon.tsx';
 
 export * from './header/ui/Header.tsx';
+export {type HeaderButtonConfig, type HeaderIconButtonConfig} from './header/types/Header.types.ts';
 
 export * from './list/ui/List.tsx';
 
