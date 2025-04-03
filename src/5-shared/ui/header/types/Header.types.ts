@@ -23,8 +23,14 @@ export type HeaderProps = {
 	withBackButton?: boolean;
 };
 
-export type HeaderIconButtonConfig = Omit<ButtonConfig, 'type' | 'name' | 'className'>;
+export type HeaderIconButtonConfig = {
+	icon: ReactElement;
+	onClick: ButtonConfig['onClick'];
+};
 
-export type HeaderButtonConfig = Omit<ButtonConfig, 'className' | 'type'> & {
+export type HeaderButtonConfig = {
+	name: ButtonConfig['name'];
 	type: Extract<ButtonConfig['type'], 'primary' | 'secondary'>;
+	icon?: ReactElement;
+	onClick: ButtonConfig['onClick'];
 };

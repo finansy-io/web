@@ -63,8 +63,14 @@ export function Header(props: HeaderProps) {
 
 					{iconButtonConfigs && (
 						<div className='flex gap-1'>
-							{iconButtonConfigs.map((buttonConfig, index) => (
-								<Button type='icon' key={index} isLoading={isLoading} {...buttonConfig} />
+							{iconButtonConfigs.map(({icon, onClick}, index) => (
+								<Button
+									type='icon'
+									key={index}
+									isLoading={isLoading}
+									icon={styleElement(icon, 'size-5')}
+									onClick={onClick}
+								/>
 							))}
 						</div>
 					)}

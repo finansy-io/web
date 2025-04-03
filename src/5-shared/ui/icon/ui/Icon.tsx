@@ -3,7 +3,7 @@ import {IconProps} from '../types/Icon.types.ts';
 import {cn} from '@shared/lib';
 
 export function Icon(props: IconProps) {
-	const {type, className, withBackground, isHeaderIcon, ...rest} = props;
+	const {type, className, withBackground, ...rest} = props;
 
 	const Icon = ICON_MAP[type];
 
@@ -20,7 +20,7 @@ export function Icon(props: IconProps) {
 		);
 	}
 
-	return <Icon className={cn('shrink-0', isHeaderIcon && 'size-5', className)} {...rest} />;
+	return <Icon className={cn('shrink-0', className)} {...rest} />;
 }
 
 /**
