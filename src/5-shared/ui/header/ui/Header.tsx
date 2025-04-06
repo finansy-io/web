@@ -54,7 +54,7 @@ export function Header(props: HeaderProps) {
 					{withBackButton && (
 						<Button
 							type='icon'
-							icon={<Icon type='backButton' isHeaderIcon />}
+							icon={<Icon type='backButton' className='size-5' />}
 							onClick={onBackButtonClick}
 							className={cn(withNoSpace && 'm-0 -ml-2')}
 							// isDesktop && 'hover:bg-inherit active:bg-inherit active:text-primary-grey',
