@@ -1,7 +1,7 @@
 import {type ItemImageWithProgressProps} from '../types/ItemImageWithProgress.types.ts';
 
 export const ItemImageWithProgress = ({image, current, target}: ItemImageWithProgressProps) => {
-	const radius = 72;
+	const radius = 73;
 	const circumference = 2 * Math.PI * radius;
 	const progress = current / target;
 	const strokeDashoffset = circumference * (1 - progress);
@@ -23,6 +23,7 @@ export const ItemImageWithProgress = ({image, current, target}: ItemImageWithPro
 						strokeDasharray={circumference}
 						strokeDashoffset={strokeDashoffset}
 						transform='rotate(-90 100 100)'
+						strokeLinecap='round'
 					/>
 				</svg>
 			</div>
