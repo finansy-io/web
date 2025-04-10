@@ -30,6 +30,7 @@ export function DestructItem(props: DestructItemProps) {
 
 			<ConfirmationPopup
 				{...popupProps}
+				close={closePopup}
 				title={confirmationTitle}
 				description={confirmationDescription}
 				onActionClick={onDestruct}

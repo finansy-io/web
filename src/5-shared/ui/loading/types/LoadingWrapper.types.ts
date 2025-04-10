@@ -7,4 +7,8 @@ export type LoadingWrapperProps = {
 	loadingChildren?: ReactNode;
 	isCircular?: boolean;
 	isTextSm?: boolean;
+	isTextBase?: boolean;
+	isText3xl?: boolean;
+	isFilledButton?: boolean;
+	isIconButton?: boolean;
 };

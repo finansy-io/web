@@ -60,7 +60,11 @@ export function AppHeader() {
 	const {authUser} = AuthModel.useAuthUser();
 
 	const {popupProps: userPopupProps, openPopup: openUserPopup} = usePopupState();
-	const {popupProps: confirmationPopupProps, openPopup: openConfirmationPopup} = usePopupState();
+	const {
+		popupProps: confirmationPopupProps,
+		openPopup: openConfirmationPopup,
+		closePopup: closeConfirmationPopup,
+	} = usePopupState();
 	const {
 		popupProps: portfolioPopupProps,
 		openPopup: openPortfolioPopup,
@@ -152,6 +156,7 @@ export function AppHeader() {
 
 			<ConfirmationPopup
 				{...confirmationPopupProps}
+				close={closeConfirmationPopup}
 				title={getSelectTitle(selectedPortfolioValue, portfolioOptions)}
 				description={APP_TEXT.confirmation.deletePortfolio}
 				isActionPending={false}

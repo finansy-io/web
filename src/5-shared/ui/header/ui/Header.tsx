@@ -1,6 +1,6 @@
 import {useNavigate} from 'react-router-dom';
 import {HeaderProps} from '../types/Header.types.ts';
-import {Button, Icon} from '@shared/ui';
+import {Button, Icon, LoadingWrapper} from '@shared/ui';
 import {cn, isNumber, styleElement} from '@shared/lib';
 
 export function Header(props: HeaderProps) {
@@ -61,16 +61,10 @@ export function Header(props: HeaderProps) {
 						/>
 					)}
 
-					{iconButtonConfigs && (
+					{iconButtonConfigs && !isLoading && (
 						<div className='flex gap-1'>
 							{iconButtonConfigs.map(({icon, onClick}, index) => (
-								<Button
-									type='icon'
-									key={index}
-									isLoading={isLoading}
-									icon={styleElement(icon, 'size-5')}
-									onClick={onClick}
-								/>
+								<Button type='icon' key={index} icon={styleElement(icon, 'size-5')} onClick={onClick} />
 							))}
 						</div>
 					)}
@@ -80,15 +74,25 @@ export function Header(props: HeaderProps) {
 			<div className={cn('flex items-start justify-between gap-2 px-4', withNoSpace && 'p-0')}>
 				<div className='flex flex-col gap-2'>
 					{title && (
-						<div className='flex w-full items-center justify-between'>
-							<div className='text-3xl font-bold'>{title}</div>
-						</div>
+						<LoadingWrapper isLoading={!!isLoading} isText3xl>
+							<div className='flex w-full items-center justify-between'>
+								<div className='text-3xl font-bold'>{title}</div>
+							</div>
+						</LoadingWrapper>
 					)}
-					{description && <div className='font-medium'>{description}</div>}
+					{description && (
+						<LoadingWrapper isLoading={!!isLoading} isTextBase>
+							<div className='font-medium'>{description}</div>
+						</LoadingWrapper>
+					)}
 					{subDescription && <div className='text-sm font-light text-primary-grey'>{subDescription}</div>}
 				</div>
 
-				{image && styleElement(image, 'size-14 text-xl')}
+				{image && (
+					<LoadingWrapper isLoading={!!isLoading} isCircular className='size-14'>
+						{styleElement(image, 'size-14 text-xl')}
+					</LoadingWrapper>
+				)}
 			</div>
 
 			{buttonConfigs && (
