@@ -1,6 +1,7 @@
 import {APP_TEXT} from '@shared/constants';
 import {cn, TextHelpers} from '@shared/lib';
 import {Icon, type DetailsField} from '@shared/ui';
+import {hoverPadding, hoverRounded} from '@shared/styles';
 
 export class WalletDetailsConfig {
 	static getDetailsFields(props: {
@@ -22,7 +23,7 @@ export class WalletDetailsConfig {
 						className={cn(
 							'flex cursor-pointer items-center gap-1.5 transition duration-200',
 							(isMobile || isTablet) && 'active:text-primary-grey',
-							isDesktop && '-m-2 rounded-2xl p-2 hover:bg-on-white-hover active:bg-on-white-active',
+							isDesktop && cn(hoverPadding, hoverRounded, 'hover:bg-on-white-hover active:bg-on-white-active'),
 						)}
 						onClick={() => copy(value)}
 					>

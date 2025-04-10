@@ -5,6 +5,7 @@ import {type ButtonProps} from '../types/Button.types.ts';
 import {cn, styleElement, useKeyClick, useResponsive} from '@shared/lib';
 import {LoadingWrapper, Spinner} from '@shared/ui';
 import '../styles/Button.css';
+import {hoverPadding, hoverRounded} from '@shared/styles';
 
 export function Button(props: ButtonProps) {
 	const {
@@ -170,7 +171,9 @@ export function Button(props: ButtonProps) {
 					icon && 'flex items-center gap-2',
 					isDesktop &&
 						cn(
-							'-m-2 rounded-2xl p-2 transition duration-200',
+							hoverPadding,
+							hoverRounded,
+							'transition duration-200',
 							isTextButtonOnGrey
 								? 'hover:bg-on-grey-hover active:bg-on-grey-active'
 								: 'hover:bg-on-white-hover active:bg-on-white-active',
