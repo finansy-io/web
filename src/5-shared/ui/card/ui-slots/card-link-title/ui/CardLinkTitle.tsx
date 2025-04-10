@@ -16,7 +16,6 @@ export function CardLinkTitle(props: CardLinkTitleProps) {
 			className={cn(
 				'group flex cursor-pointer items-center gap-1 transition duration-200',
 				isTouchable && touchableTitleStyles,
-				isTouchable && 'active:text-black',
 				isClickable && clickableTitleStyles,
 			)}
 			onClick={() => navigate(path)}

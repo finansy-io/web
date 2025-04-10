@@ -24,15 +24,19 @@ export function Card(props: CardProps) {
 						role='card-title-in-card'
 						className='flex items-center justify-between px-4 py-3 text-sm font-medium text-primary-grey'
 					>
-						{titleInCard && (
-							<div>
+						<div>
+							{titleInCard && (
 								<LoadingWrapper isLoading={!!isLoading} isTextSm>
 									{titleInCard}
 								</LoadingWrapper>
-							</div>
-						)}
+							)}
+						</div>
 
-						{rightTitleInCard}
+						{rightTitleInCard && (
+							<LoadingWrapper isLoading={!!isLoading} isTextSm>
+								{rightTitleInCard}
+							</LoadingWrapper>
+						)}
 					</div>
 				)}
 

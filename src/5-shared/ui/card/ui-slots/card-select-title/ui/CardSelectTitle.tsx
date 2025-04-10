@@ -26,9 +26,7 @@ export function CardSelectTitle<Value>(
 					isRightTitle && 'gap-2 font-light',
 					popupProps.isOpen && 'text-black',
 					isTouchable && touchableTitleStyles,
-					isTouchable && 'active:text-black',
 					isClickable && clickableTitleStyles,
-					isClickable && '-mx-2 px-2',
 				)}
 				options={options}
 				onClick={openPopup}

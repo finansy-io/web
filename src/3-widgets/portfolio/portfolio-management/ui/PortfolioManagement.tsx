@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {GoalModel} from '@entities/goal';
-import {buttonConfigs, assetSortingOptions} from '../config/PortfolioManagement.config.tsx';
-import {getSelectTitle, Item, Management, Profit, SelectField, CardSelectTitle} from '@shared/ui';
+import {assetSortingOptions, buttonConfigs} from '../config/PortfolioManagement.config.tsx';
+import {CardSelectTitle, getSelectTitle, Item, Management, Profit, SelectField} from '@shared/ui';
 import {TextHelpers} from '@shared/lib';
 import {APP_TEXT, CURRENCY_SYMBOL, PERIOD_OPTIONS} from '@shared/constants';
 

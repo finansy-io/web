@@ -10,12 +10,11 @@ export function CardTitleButton({onClick}: {onClick: ButtonProps['onClick']}) {
 			type='icon'
 			onClick={onClick}
 			className={cn(
-				'transition duration-200',
+				'group transition duration-200',
 				isTouchable && touchableTitleStyles,
-				isTouchable && 'text-black',
-				isClickable && clickableTitleStyles,
+				isClickable && cn(clickableTitleStyles, '-mx-1.5 rounded-full px-1.5'),
 			)}
-			icon={<Icon type='plus' className='size-3.5 text-primary-grey' />}
+			icon={<Icon type='plus' className={cn('size-3.5 text-primary-grey', isTouchable && 'group-active:text-black')} />}
 		/>
 	);
 }
