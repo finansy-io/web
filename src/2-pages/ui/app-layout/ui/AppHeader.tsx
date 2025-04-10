@@ -258,21 +258,31 @@ export function PortfolioSelectPopup(props: any) {
 				isSingle
 			/>
 
-			<List
-				items={options as DefaultSelectOption<number>[]}
-				renderItem={({value, ...restPortfolioOption}) => {
-					return (
-						<Item
-							{...restPortfolioOption}
-							onClick={() => {
-								closePortfolioPopup();
-								PopupHelpers.runAfterPopupClosed(() => setSelectedPortfolioValue(value));
-							}}
-							isChecked={value === selectedPortfolioValue}
-						/>
-					);
-				}}
-			/>
+			{options.length ? (
+				<List
+					items={options as DefaultSelectOption<number>[]}
+					renderItem={({value, ...restPortfolioOption}) => {
+						return (
+							<Item
+								{...restPortfolioOption}
+								onClick={() => {
+									closePortfolioPopup();
+									PopupHelpers.runAfterPopupClosed(() => setSelectedPortfolioValue(value));
+								}}
+								isChecked={value === selectedPortfolioValue}
+							/>
+						);
+					}}
+				/>
+			) : (
+				<Item
+					image={<Icon type='portfolio' withBackground />}
+					imageIcon={<Icon type='plus' />}
+					name={APP_TEXT.createPortfolio}
+					onClick={({navigate}) => navigate(APP_PATH.portfolio.create)}
+					isSingle
+				/>
+			)}
 		</Popup>
 	);
 }
