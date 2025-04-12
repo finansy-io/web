@@ -57,7 +57,7 @@ export function Drawer(props: DrawerProps) {
 						'fixed bottom-0 left-0 right-0 outline-none transition-all duration-200',
 						isLeftDrawer
 							? 'h-screen max-h-screen bg-light-grey/60 backdrop-blur-lg'
-							: 'max-h-[94vh] rounded-t-[28px] bg-light-grey',
+							: 'max-h-[98vh] rounded-t-[28px] bg-light-grey',
 					)}
 				>
 					<div className='mx-auto flex h-full w-full max-w-md flex-col gap-4 p-2'>
@@ -86,7 +86,7 @@ export function Drawer(props: DrawerProps) {
 						<div
 							className={cn(
 								(title || leftTitle || rightTitle) && 'flex px-2',
-								isStatusDrawer ? 'mb-2 justify-center' : 'relative h-7 items-center justify-between',
+								isStatusDrawer ? 'mb-2 justify-center' : 'relative h-7 shrink-0 items-center justify-between',
 							)}
 						>
 							{!isStatusDrawer && <div className='flex-shrink-0'>{leftTitle}</div>}
@@ -99,9 +99,9 @@ export function Drawer(props: DrawerProps) {
 
 						{(children || actionButtonNode) && (
 							<div
-								className='flex max-h-[90vh] flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0 transition-[padding-bottom] duration-200'
+								className='flex flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0 transition-[padding-bottom] duration-200'
 								style={{
-									paddingBottom: isKeyboardActive ? keyboardOffset + 8 : 0, // клавиатра + отступ
+									paddingBottom: isKeyboardActive ? keyboardOffset : 0, // клавиатура + отступ
 								}}
 							>
 								{children}
