@@ -9,7 +9,7 @@ export function TotalBalance({totalBalance}: {totalBalance: Balance}) {
 
 	return (
 		<div>
-			<span className='text-3xl font-[600]'>
+			<span className='text-3xl font-bold'>
 				<span>{int}</span>
 				{!float && <span> {CURRENCY_SYMBOL[totalBalance.currency]}</span>}
 			</span>
