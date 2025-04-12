@@ -5,5 +5,7 @@ export function useResponsive() {
 	const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1023px)');
 	const isDesktop = useMediaQuery('(min-width: 1024px)');
 
-	return {isMobile, isTablet, isDesktop, isTouchable: isMobile || isTablet, isClickable: isDesktop};
+	const isIOS = /iPad|iPhone/.test(navigator.userAgent);
+
+	return {isMobile, isTablet, isDesktop, isTouchable: isMobile || isTablet, isClickable: isDesktop, isIOS};
 }

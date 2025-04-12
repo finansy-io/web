@@ -1,4 +1,4 @@
-import {FieldPopupProps} from '../types/FieldPopup.ts';
+import {FieldPopupProps} from '../types/FieldPopup.types.ts';
 import {Button} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 import {Drawer} from '@shared/ui/popup/ui-parent/drawer/ui/Drawer.tsx';
@@ -15,6 +15,7 @@ export function FieldPopup<V>(props: FieldPopupProps<V>) {
 		value,
 		isPending,
 		isKeyboardActive,
+		closeKeyboard,
 		children,
 	} = props;
 
@@ -40,6 +41,7 @@ export function FieldPopup<V>(props: FieldPopupProps<V>) {
 				</Button>
 			}
 			isKeyboardActive={isKeyboardActive}
+			onDrag={closeKeyboard}
 			isFullScreen
 		>
 			{children}
