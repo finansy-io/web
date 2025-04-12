@@ -82,26 +82,30 @@ export function Drawer(props: DrawerProps) {
 
 						{statusIcon && <div className='flex items-center justify-center'>{statusIcon}</div>}
 
-						<div
-							className={cn(
-								(title || leftTitle || rightTitle) && 'flex px-2',
-								isStatusDrawer ? 'mb-2 justify-center' : 'relative h-7 shrink-0 items-center justify-between',
-							)}
-						>
-							{!isStatusDrawer && <div className='flex-shrink-0'>{leftTitle}</div>}
-							{!isStatusDrawer && <div className='flex-shrink-0'>{rightTitle}</div>}
+						{title || leftTitle || rightTitle ? (
+							<div
+								className={cn(
+									(title || leftTitle || rightTitle) && 'flex h-7 px-2',
+									isStatusDrawer ? 'mb-2 justify-center' : 'relative shrink-0 items-center justify-between',
+								)}
+							>
+								{!isStatusDrawer && <div className='flex-shrink-0'>{leftTitle}</div>}
+								{!isStatusDrawer && <div className='flex-shrink-0'>{rightTitle}</div>}
 
-							<div className={cn(!isStatusDrawer && 'absolute left-1/2 top-0 -translate-x-1/2 text-center')}>
-								<Title className={cn('text-[17px] font-semibold', !title && 'hidden')}>{title}</Title>
+								<div className={cn(!isStatusDrawer && 'absolute left-1/2 top-0 -translate-x-1/2 text-center')}>
+									<Title className='text-[17px] font-semibold'>{title}</Title>
+								</div>
 							</div>
-						</div>
+						) : (
+							<Title className='hidden'>{title}</Title>
+						)}
 
 						{(children || actionButtonNode) && (
 							<div className='flex flex-1 flex-col p-2 pt-0'>
-								<div className='flex flex-1 flex-col gap-4 overflow-y-auto'>{children}</div>
-								{actionButtonNode && (
-									<div className='bg-light-grey py-2 transition-[padding] duration-300'>{actionButtonNode}</div>
+								{children && (
+									<div className='flex flex-shrink flex-grow flex-col gap-4 overflow-y-auto'>{children}</div>
 								)}
+								{actionButtonNode && <div className='bg-light-grey py-2'>{actionButtonNode}</div>}
 							</div>
 						)}
 					</div>

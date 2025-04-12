@@ -10,7 +10,7 @@ export const ItemImageWithProgress = ({image, current, target}: ItemImageWithPro
 		<div className='relative size-fit'>
 			{image}
 
-			<div className='absolute left-[-13.5px] top-[-13.5px]'>
+			<div className='absolute left-[-13.7px] top-[-13.7px]'>
 				<svg viewBox='0 0 300 300' width='100' height='100'>
 					<circle cx='100' cy='100' r={radius} fill='transparent' stroke='#DFE3E7' strokeWidth='9' />
 					<circle
