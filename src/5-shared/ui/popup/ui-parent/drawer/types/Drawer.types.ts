@@ -10,7 +10,8 @@ export type DrawerProps = {
 	actionButtonNode?: ReactNode;
 
 	direction?: 'left' | 'bottom';
-	statusDismissible?: boolean;
 	statusProgress?: number;
 	statusIcon?: ReactElement;
+	isFullScreen?: boolean;
+	isKeyboardActive?: boolean;
 };

@@ -5,9 +5,7 @@ import {APP_PATH} from '@shared/constants';
 export default function GoalTransferPage() {
 	const {goals, isGoalsLoading, hasNextGoalsPage, fetchNextGoalsPage} = GoalModel.useItems();
 
-	const {transferGoal, isTransferGoalPending, isTransferGoalSuccess, isTransferGoalError} = GoalModel.useTransfer({
-		isFromListPage: true,
-	});
+	const {transferGoal, isTransferGoalPending, isTransferGoalSuccess, isTransferGoalError} = GoalModel.useTransfer();
 
 	return (
 		<TransferPage
@@ -31,6 +29,7 @@ export default function GoalTransferPage() {
 			isTransferError={isTransferGoalError}
 			statusTextKey='transferGoal'
 			backPath={APP_PATH.goal.list}
+			onStatusPopupDismiss={(navigate) => navigate(APP_PATH.goal.list)}
 		/>
 	);
 }

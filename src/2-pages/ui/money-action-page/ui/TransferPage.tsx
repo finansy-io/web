@@ -28,6 +28,7 @@ export function TransferPage(props: TransferPageProps) {
 		isTransferError,
 		statusTextKey,
 		backPath,
+		onStatusPopupDismiss,
 	} = props;
 
 	const [fromActiveOption, setFromActiveOption] = useState<AmountFieldOption | null>(null);
@@ -162,7 +163,12 @@ export function TransferPage(props: TransferPageProps) {
 				</Button>
 			</PageActionButtonWrapper>
 
-			<StatusPopup isSuccess={isTransferSuccess} isError={isTransferError} statusTextKey={statusTextKey} />
+			<StatusPopup
+				isSuccess={isTransferSuccess}
+				isError={isTransferError}
+				statusTextKey={statusTextKey}
+				onDismiss={onStatusPopupDismiss}
+			/>
 		</>
 	);
 }

@@ -10,23 +10,11 @@ export type Props = {
 	};
 
 	useItemDetails: {
-		id?: number | string;
+		id?: string;
 	};
 
 	useItemTransactions: {
 		id?: string;
-	};
-
-	useFund: {
-		isFromListPage?: boolean;
-	};
-
-	useWithdraw: {
-		isFromListPage?: boolean;
-	};
-
-	useTransfer: {
-		isFromListPage?: boolean;
 	};
 };
 
@@ -42,7 +30,7 @@ export type MutationProps = {
 
 	useUpdateItem: {
 		params: {
-			id: string | number;
+			id: string;
 		};
 		payload: {
 			name: string;
@@ -54,13 +42,13 @@ export type MutationProps = {
 
 	useDeleteItem: {
 		params: {
-			id: string | number;
+			id: string;
 		};
 	};
 
 	useFund: {
 		params: {
-			id: string | number;
+			id: string;
 		};
 		payload: {
 			amount: number;
@@ -70,7 +58,7 @@ export type MutationProps = {
 
 	useWithdraw: {
 		params: {
-			id: string | number;
+			id: string;
 		};
 		payload: {
 			amount: number;

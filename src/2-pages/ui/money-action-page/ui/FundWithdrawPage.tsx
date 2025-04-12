@@ -28,6 +28,7 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 		isActionError,
 		statusTextKey,
 		backPath,
+		onStatusPopupDismiss,
 	} = props;
 
 	const [activeOption, setActiveOption] = useState<AmountFieldOption | null>(null);
@@ -113,6 +114,7 @@ export function FundWithdrawPage(props: FundWithdrawPageProps) {
 						name: activeOption.name,
 						amount: `${TextHelpers.getAmountWithCurrency(amount, activeOption.currency)}`,
 					}}
+					onDismiss={onStatusPopupDismiss}
 				/>
 			)}
 		</>

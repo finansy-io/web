@@ -21,6 +21,7 @@ export default function GoalDetailsFundPage() {
 			isActionError={isFundGoalError}
 			statusTextKey='fundGoal'
 			backPath={APP_PATH.goal.getItemDetailsPath(id)}
+			onStatusPopupDismiss={(navigate) => navigate(APP_PATH.goal.getItemDetailsPath(id))}
 		/>
 	);
 }

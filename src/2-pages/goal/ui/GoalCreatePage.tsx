@@ -23,7 +23,8 @@ export default function GoalCreatePage() {
 	const [targetAmount, setTargetAmount] = useState('');
 	const [deadline, setDeadline] = useState<Date | null>(null);
 
-	const {createGoal, isCreateGoalPending, isCreateGoalSuccess, isCreateGoalError} = GoalModel.useCreateItem();
+	const {createGoal, isCreateGoalPending, isCreateGoalSuccess, isCreateGoalError, createdGoalId} =
+		GoalModel.useCreateItem();
 
 	function handleCreateClick() {
 		createGoal({
@@ -125,6 +126,9 @@ export default function GoalCreatePage() {
 				isError={isCreateGoalError}
 				statusTextKey='createGoal'
 				statusTextProps={{name}}
+				onDismiss={(navigate, isSuccess) => {
+					navigate(isSuccess ? APP_PATH.goal.getItemDetailsPath(createdGoalId) : APP_PATH.goal.list);
+				}}
 			/>
 		</>
 	);

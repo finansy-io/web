@@ -1,30 +1,47 @@
-import {useEffect, useState} from 'react';
-import {Drawer} from '@shared/ui/popup/ui-parent/drawer/ui/Drawer.tsx';
-import {STATUS_POPUP_TEXT, statusDuration} from '@shared/ui/popup/ui/status-popup/constants/StatusPopup.constants.tsx';
+import {useEffect, useRef, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {type StatusPopupProps} from '../types/StatusPopup.types.ts';
+import {STATUS_POPUP_TEXT, statusDuration, statusManualCloseDelay} from '../constants/StatusPopup.constants.tsx';
+import {popupHelper} from '../../../helpers/Popup.helpers.ts';
+import {Drawer} from '../../../ui-parent/drawer/ui/Drawer.tsx';
 import {Icon} from '@shared/ui';
 import {cn} from '@shared/lib';
 
-export function StatusPopup({isSuccess, isError, statusTextKey, statusTextProps}: StatusPopupProps) {
+export function StatusPopup({isSuccess, isError, statusTextKey, statusTextProps, onDismiss}: StatusPopupProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [progress, setProgress] = useState(0);
-	const [isDismissible, setIsDismissible] = useState(false);
+	const navigate = useNavigate();
 
-	// Обновляем состояние попапа, когда изменяется статус
+	const closedByUserRef = useRef(false);
+	const autoDismissTimerIdRef = useRef<number | null>(null);
+
+	function handleDismiss() {
+		onDismiss?.(navigate, isSuccess);
+	}
+
 	useEffect(() => {
 		setIsOpen(isSuccess || isError);
+		closedByUserRef.current = false;
 	}, [isSuccess, isError]);
 
-	// Логика показа и скрытия попапа с задержкой
+	// Логика показа и скрытия попапа с автоматическим dismiss
 	useEffect(() => {
 		if (!isOpen) return;
 
-		const timeoutId = setTimeout(() => {
-			setIsDismissible(true);
+		const openTimeoutId = setTimeout(() => {
 			setIsOpen(false);
 		}, statusDuration + 200);
 
-		return () => clearTimeout(timeoutId);
+		autoDismissTimerIdRef.current = window.setTimeout(() => {
+			if (!closedByUserRef.current) {
+				handleDismiss();
+			}
+		}, statusDuration + 500);
+
+		return () => {
+			clearTimeout(openTimeoutId);
+			// Важно: здесь мы не очищаем autoDismissTimerIdRef.current,
+		};
 	}, [isOpen]);
 
 	// Анимация прогресса
@@ -45,15 +62,30 @@ export function StatusPopup({isSuccess, isError, statusTextKey, statusTextProps}
 		};
 
 		animationFrameId = requestAnimationFrame(animate);
-		return () => cancelAnimationFrame(animationFrameId);
+
+		return () => {
+			cancelAnimationFrame(animationFrameId);
+		};
 	}, [isOpen]);
 
 	return (
 		<Drawer
 			isOpen={isOpen}
-			setIsOpen={setIsOpen}
+			setIsOpen={(open) => {
+				if (!open && isOpen) {
+					closedByUserRef.current = true;
+					popupHelper.userClosedPopup();
+					if (autoDismissTimerIdRef.current) {
+						clearTimeout(autoDismissTimerIdRef.current);
+						autoDismissTimerIdRef.current = null;
+					}
+					setIsOpen(false);
+					setTimeout(handleDismiss, statusManualCloseDelay);
+				} else {
+					setIsOpen(open);
+				}
+			}}
 			title={STATUS_POPUP_TEXT[`${statusTextKey}${isSuccess ? 'Success' : 'Error'}`](statusTextProps)}
-			statusDismissible={isDismissible}
 			statusProgress={progress}
 			statusIcon={
 				<Icon

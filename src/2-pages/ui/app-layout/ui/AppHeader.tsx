@@ -11,7 +11,7 @@ import {
 	LeftPopup,
 	List,
 	Popup,
-	PopupHelpers,
+	popupHelper,
 	Profit,
 	SelectTabsField,
 	SelectTitle,
@@ -90,7 +90,7 @@ export function AppHeader() {
 				)}
 			/>
 
-			{location.pathname === APP_PATH.portfolio.list && (
+			{location.pathname !== APP_PATH.goal.list && (
 				<>
 					<SelectTitle
 						type='title'
@@ -143,7 +143,7 @@ export function AppHeader() {
 									settingConfig.onClick
 										? ({navigate}) => {
 												closePortfolioSettingsPopup();
-												PopupHelpers.runAfterPopupClosed(() => settingConfig.onClick!({navigate}));
+												popupHelper.runAfterPopupClosed(() => settingConfig.onClick!({navigate}));
 										  }
 										: undefined
 								}
@@ -247,7 +247,7 @@ export function PortfolioSelectPopup(props: any) {
 					icon={<Icon type='plus' />}
 					onClick={() => {
 						closePortfolioPopup();
-						PopupHelpers.runAfterPopupClosed(() => navigate(APP_PATH.portfolio.create));
+						popupHelper.runAfterPopupClosed(() => navigate(APP_PATH.portfolio.create));
 					}}
 				/>
 			}
@@ -272,7 +272,7 @@ export function PortfolioSelectPopup(props: any) {
 								{...restPortfolioOption}
 								onClick={() => {
 									closePortfolioPopup();
-									PopupHelpers.runAfterPopupClosed(() => setSelectedPortfolioValue(value));
+									popupHelper.runAfterPopupClosed(() => setSelectedPortfolioValue(value));
 								}}
 								isChecked={value === selectedPortfolioValue}
 							/>

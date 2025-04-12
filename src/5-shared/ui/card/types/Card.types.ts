@@ -7,4 +7,5 @@ export type CardProps = {
 	rightTitleInCard?: ReactNode;
 	children: ReactNode;
 	isLoading?: boolean;
+	isManagementCard?: boolean;
 };

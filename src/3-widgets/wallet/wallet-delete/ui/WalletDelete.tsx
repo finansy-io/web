@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {DestructItem} from '@shared/ui';
-import {APP_TEXT} from '@shared/constants';
+import {APP_PATH, APP_TEXT} from '@shared/constants';
 
 export function WalletDelete() {
 	const [isSuccess, setIsSuccess] = useState(false);
@@ -23,6 +23,7 @@ export function WalletDelete() {
 			isError={isError}
 			destructButtonText={APP_TEXT.disconnect}
 			onDestruct={handleDelete}
+			onStatusPopupDismiss={(navigate) => navigate(APP_PATH.wallet.list)}
 			statusTextKey='disconnectWallet'
 		>
 			{`${APP_TEXT.disconnect} ${APP_TEXT.wallet.toLowerCase()}`}

@@ -1,5 +1,5 @@
 import {SelectPopupProps} from '../types/SelectPopup.types.ts';
-import {Button, Icon, isSortingOption, Item, List, Popup, PopupHelpers} from '@shared/ui';
+import {Button, Icon, isSortingOption, Item, List, Popup, popupHelper} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 import {cn} from '@shared/lib';
 
@@ -15,7 +15,7 @@ export function SelectPopup<Value>(props: SelectPopupProps<Value>) {
 					<Button
 						type='primary'
 						onClick={() => {
-							PopupHelpers.runAfterPopupClosed(() => onChange(sortingValue));
+							popupHelper.runAfterPopupClosed(() => onChange(sortingValue));
 							closePopup();
 						}}
 					>
@@ -71,7 +71,7 @@ export function SelectPopup<Value>(props: SelectPopupProps<Value>) {
 							{...restOption}
 							name={name}
 							onClick={() => {
-								PopupHelpers.runAfterPopupClosed(() => onChange(optionValue));
+								popupHelper.runAfterPopupClosed(() => onChange(optionValue));
 								closePopup();
 							}}
 							isChecked={value === optionValue}

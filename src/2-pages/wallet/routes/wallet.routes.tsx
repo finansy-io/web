@@ -1,5 +1,5 @@
 import {APP_PATH} from '@shared/constants';
-import {PageFullScreenWrapper} from '@pages/ui';
+import {AppLayout, PageFullScreenWrapper} from '@pages/ui';
 import {PrivateRoute} from '@shared/lib';
 import {WalletConnectPage} from '../ui/WalletConnectPage.tsx';
 import {WalletListPage} from '../ui/WalletListPage.tsx';
@@ -11,7 +11,7 @@ const connectWalletRoute = {
 	element: <PrivateRoute page={<WalletConnectPage />} />,
 };
 
-const walletsRoute = {
+const walletListRoute = {
 	path: APP_PATH.wallet.list,
 	element: <PrivateRoute page={<WalletListPage />} />,
 };
@@ -27,8 +27,9 @@ const walletEditRoute = {
 };
 
 export const walletRoutes = [
+	{element: <AppLayout />, children: [walletListRoute]},
 	{
 		element: <PageFullScreenWrapper />,
-		children: [connectWalletRoute, walletsRoute, walletDetailsRoute, walletEditRoute],
+		children: [connectWalletRoute, walletDetailsRoute, walletEditRoute],
 	},
 ];

@@ -2,7 +2,7 @@ import {ReactNode} from 'react';
 import {CURRENCY} from '@shared/constants';
 
 export type AmountFieldOption = {
-	id?: number | string;
+	id?: string;
 	name: string;
 	amount?: number;
 	currency: CURRENCY;

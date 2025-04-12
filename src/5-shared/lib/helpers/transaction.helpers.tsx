@@ -2,7 +2,7 @@ import {APP_TEXT, CURRENCY, CURRENCY_SYMBOL, TRANSACTION_TYPE} from '@shared/con
 import {Icon} from '@shared/ui';
 import {cn, TextHelpers} from '@shared/lib';
 
-export type Transactions = {id: number; type: TRANSACTION_TYPE; amount: number}[];
+export type Transactions = {id: string; type: TRANSACTION_TYPE; amount: number}[];
 
 const monthsMap = new Map([
 	[0, 'Январь'],

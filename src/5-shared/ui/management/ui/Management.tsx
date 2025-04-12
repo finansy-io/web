@@ -1,27 +1,14 @@
 import {ManagementProps} from '@shared/ui/management/types/Management.types.ts';
-import {Button, Card, List, LoadingWrapper, TotalBalance} from '@shared/ui';
+import {Button, Card, LoadingWrapper, TotalBalance} from '@shared/ui';
 import {cn} from '@shared/lib';
 
-export function Management<ListItem>(props: ManagementProps<ListItem>) {
-	const {
-		isLoading,
-		totalBalance,
-		totalBalanceDescription,
-		rightNode,
-		buttonConfigs,
-		listTitle,
-		listRightTitle,
-		listItems,
-		renderListItem,
-		hasNextListPage,
-		fetchNextListPage,
-		emptyListTextKey,
-	} = props;
+export function Management(props: ManagementProps) {
+	const {isLoading, totalBalance, totalBalanceDescription, rightNode, buttonConfigs, children} = props;
 
 	return (
-		<>
-			<Card>
-				<div className='flex flex-col gap-4 p-4 pb-3'>
+		<Card>
+			<div className='flex flex-col gap-6'>
+				<div className='flex flex-col gap-4 p-4 pb-0'>
 					<div className='flex flex-col gap-1.5'>
 						<div className='flex items-center justify-between'>
 							<LoadingWrapper isLoading={isLoading} isText3xl>
@@ -50,22 +37,8 @@ export function Management<ListItem>(props: ManagementProps<ListItem>) {
 					</div>
 				</div>
 
-				<div className='flex justify-between px-4 py-3 text-sm font-medium text-primary-grey'>
-					<LoadingWrapper isLoading={isLoading} isTextSm>
-						<div>{listTitle}</div>
-						{listRightTitle && <div>{listRightTitle}</div>}
-					</LoadingWrapper>
-				</div>
-
-				<List
-					emptyTextKey={emptyListTextKey}
-					isLoading={isLoading}
-					items={listItems}
-					renderItem={renderListItem}
-					hasNextPage={hasNextListPage}
-					fetchNextPage={fetchNextListPage}
-				/>
-			</Card>
-		</>
+				{children}
+			</div>
+		</Card>
 	);
 }

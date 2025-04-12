@@ -1,6 +1,7 @@
+import {useEffect, useState} from 'react';
 import {Drawer as VaulDrawer} from 'vaul';
 import {DrawerProps} from '../types/Drawer.types.ts';
-import {cn} from '@shared/lib';
+import {cn, isUndefined} from '@shared/lib';
 import {Button, Icon} from '@shared/ui';
 
 const {Root, Trigger, Close, Overlay, Content, Portal, Title} = VaulDrawer;
@@ -24,16 +25,19 @@ export function Drawer(props: DrawerProps) {
 		children,
 		actionButtonNode,
 
-		statusDismissible,
 		statusProgress,
 		statusIcon,
 		direction = 'bottom',
+		isFullScreen,
+		isKeyboardActive,
 	} = props;
+	const keyboardOffset = useKeyboardOffset();
 
 	const isLeftDrawer = direction === 'left';
+	const isStatusDrawer = !isUndefined(statusProgress);
 
 	return (
-		<Root direction={direction} open={isOpen} onOpenChange={setIsOpen} dismissible={statusDismissible}>
+		<Root direction={direction} open={isOpen} onOpenChange={setIsOpen} dismissible={true}>
 			<Trigger asChild>
 				<button onClick={() => setIsOpen(true)} className='hidden' />
 			</Trigger>
@@ -45,7 +49,10 @@ export function Drawer(props: DrawerProps) {
 				<Overlay className={cn('fixed inset-0', !isLeftDrawer && 'bg-black/40')} />
 
 				<Content
-					style={isLeftDrawer ? undefined : {maxWidth: '496px', margin: '0 auto'}}
+					style={{
+						...(isLeftDrawer ? {} : {maxWidth: '496px', margin: '0 auto'}),
+						...(isFullScreen ? {height: '100vh'} : {}),
+					}}
 					className={cn(
 						'fixed bottom-0 left-0 right-0 outline-none transition-all duration-200',
 						isLeftDrawer
@@ -78,24 +85,28 @@ export function Drawer(props: DrawerProps) {
 
 						<div
 							className={cn(
-								'relative',
-								(title || leftTitle || rightTitle) && 'flex h-7 items-center justify-between px-2',
-								!!statusProgress && 'mb-2',
+								(title || leftTitle || rightTitle) && 'flex px-2',
+								isStatusDrawer ? 'mb-2 justify-center' : 'relative h-7 items-center justify-between',
 							)}
 						>
-							<div className='flex-shrink-0'>{leftTitle}</div>
-							<div className='flex-shrink-0'>{rightTitle}</div>
+							{!isStatusDrawer && <div className='flex-shrink-0'>{leftTitle}</div>}
+							{!isStatusDrawer && <div className='flex-shrink-0'>{rightTitle}</div>}
 
-							{/* Абсолютно позиционированный по центру Title */}
-							<div className='absolute left-1/2 top-0 -translate-x-1/2'>
-								<Title className={cn('text-center text-lg font-medium', !title && 'hidden')}>{title}</Title>
+							<div className={cn(!isStatusDrawer && 'absolute left-1/2 top-0 -translate-x-1/2')}>
+								<Title className={cn('text-[17px] font-semibold', !title && 'hidden')}>{title}</Title>
 							</div>
 						</div>
 
 						{(children || actionButtonNode) && (
-							<div className='flex max-h-[90vh] flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0'>
+							<div
+								className='flex max-h-[90vh] flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0 transition-[padding-bottom] duration-200'
+								style={{
+									paddingBottom: isKeyboardActive ? keyboardOffset + 8 : 0, // клавиатра + отступ
+								}}
+							>
 								{children}
-								{actionButtonNode && <div className='bg-light-grey py-2'>{actionButtonNode}</div>}
+
+								{actionButtonNode && <div className='mt-auto bg-light-grey py-2'>{actionButtonNode}</div>}
 							</div>
 						)}
 					</div>
@@ -103,4 +114,30 @@ export function Drawer(props: DrawerProps) {
 			</Portal>
 		</Root>
 	);
+}
+
+export function useKeyboardOffset() {
+	const [keyboardOffset, setKeyboardOffset] = useState(0);
+
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.visualViewport) {
+				const offset = window.innerHeight - window.visualViewport.height;
+				setKeyboardOffset(offset > 0 ? offset : 0);
+			}
+		};
+
+		if (window.visualViewport) {
+			window.visualViewport.addEventListener('resize', handleResize);
+			handleResize(); // Инициализация
+		}
+
+		return () => {
+			if (window.visualViewport) {
+				window.visualViewport.removeEventListener('resize', handleResize);
+			}
+		};
+	}, []);
+
+	return keyboardOffset;
 }

@@ -1,13 +1,25 @@
 import {FieldPopupProps} from '../types/FieldPopup.ts';
-import {Button, Popup} from '@shared/ui';
+import {Button} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
+import {Drawer} from '@shared/ui/popup/ui-parent/drawer/ui/Drawer.tsx';
 
 export function FieldPopup<V>(props: FieldPopupProps<V>) {
-	const {isEdit, entityName, popupProps, isChanged, setValue, initialValue, handleUpdate, value, isPending, children} =
-		props;
+	const {
+		isEdit,
+		entityName,
+		popupProps,
+		isChanged,
+		setValue,
+		initialValue,
+		handleUpdate,
+		value,
+		isPending,
+		isKeyboardActive,
+		children,
+	} = props;
 
 	return (
-		<Popup
+		<Drawer
 			title={isEdit ? APP_TEXT.edit + ' ' + entityName.toLowerCase() : entityName}
 			isOpen={popupProps.isOpen}
 			setIsOpen={(open) => {
@@ -27,8 +39,10 @@ export function FieldPopup<V>(props: FieldPopupProps<V>) {
 					{APP_TEXT.save}
 				</Button>
 			}
+			isKeyboardActive={isKeyboardActive}
+			isFullScreen
 		>
 			{children}
-		</Popup>
+		</Drawer>
 	);
 }

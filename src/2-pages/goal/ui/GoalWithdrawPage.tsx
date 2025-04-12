@@ -5,9 +5,7 @@ import {APP_PATH} from '@shared/constants';
 export default function GoalWithdrawPage() {
 	const {goals, isGoalsLoading, hasNextGoalsPage, fetchNextGoalsPage} = GoalModel.useItems();
 
-	const {withdrawGoal, isWithdrawGoalPending, isWithdrawGoalSuccess, isWithdrawGoalError} = GoalModel.useWithdraw({
-		isFromListPage: true,
-	});
+	const {withdrawGoal, isWithdrawGoalPending, isWithdrawGoalSuccess, isWithdrawGoalError} = GoalModel.useWithdraw();
 
 	return (
 		<FundWithdrawPage
@@ -22,6 +20,7 @@ export default function GoalWithdrawPage() {
 			isActionError={isWithdrawGoalError}
 			statusTextKey='withdrawGoal'
 			backPath={APP_PATH.goal.list}
+			onStatusPopupDismiss={(navigate) => navigate(APP_PATH.goal.list)}
 		/>
 	);
 }

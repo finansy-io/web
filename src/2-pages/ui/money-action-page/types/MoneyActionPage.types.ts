@@ -1,8 +1,9 @@
 import {CURRENCY} from '@shared/constants';
 import {type StatusTextKey} from '@shared/ui';
+import {onStatusPopupDismiss} from '@shared/ui/popup/ui/status-popup/types/StatusPopup.types.ts';
 
 type ActionProps = {
-	params: {id: number | string};
+	params: {id: string};
 	payload: {amount: number; date: string};
 };
 
@@ -17,7 +18,7 @@ type TransferProps = {
 };
 
 export type ItemData = {
-	id: number | string;
+	id: string;
 	name: string;
 	balance: {
 		amount: number;
@@ -33,6 +34,7 @@ type CommonProps = {
 	isItemDataLoading: boolean;
 	statusTextKey: StatusTextKey;
 	backPath: string;
+	onStatusPopupDismiss: onStatusPopupDismiss;
 };
 
 export type FundWithdrawPageProps = CommonProps & {

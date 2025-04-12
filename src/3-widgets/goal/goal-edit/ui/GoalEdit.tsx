@@ -21,19 +21,25 @@ export function GoalEdit() {
 	useEffect(() => {
 		if (!goalDetails) return;
 
-		const initialState = {
-			name: goalDetails.name,
-			targetAmount: String(goalDetails.targetAmount),
-			deadline: goalDetails.deadline ? new DateService(goalDetails.deadline).value : null,
-			currency: goalDetails.balance.currency,
-		};
+		const newName = goalDetails.name;
+		const newTargetAmount = String(goalDetails.targetAmount);
+		const newDeadline = goalDetails.deadline ? new DateService(goalDetails.deadline).value : null;
+		const newCurrency = goalDetails.balance.currency;
 
-		setInitialState(initialState);
+		if (newName !== name || newTargetAmount !== targetAmount || newDeadline !== deadline || newCurrency !== currency) {
+			const newState = {
+				name: newName,
+				targetAmount: newTargetAmount,
+				deadline: newDeadline,
+				currency: newCurrency,
+			};
 
-		setName(initialState.name);
-		setTargetAmount(initialState.targetAmount);
-		setDeadline(initialState.deadline);
-		setCurrency(initialState.currency);
+			setInitialState(newState);
+			setName(newState.name);
+			setTargetAmount(newState.targetAmount);
+			setDeadline(newState.deadline);
+			setCurrency(newState.currency);
+		}
 	}, [goalDetails]);
 
 	function handleUpdate() {
@@ -146,7 +152,10 @@ export function GoalEdit() {
 							title={APP_TEXT.targetAmount}
 							initialValue={initialState.targetAmount}
 							value={targetAmount}
-							onChange={setTargetAmount}
+							onChange={(value) => {
+								console.log('value', value);
+								setTargetAmount(value);
+							}}
 							isChanged={String(goalDetails?.targetAmount) !== targetAmount}
 							activeOption={
 								goalDetails && {

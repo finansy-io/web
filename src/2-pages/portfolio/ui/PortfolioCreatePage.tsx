@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
-import {Button, Header, Popup, PopupHelpers, Spinner, StatusPopup, TextField, usePopupState} from '@shared/ui';
+import {Button, Header, Popup, popupHelper, Spinner, StatusPopup, TextField, usePopupState} from '@shared/ui';
 import {cn} from '@shared/lib';
 import {APP_PATH, APP_TEXT, FORM} from '@shared/constants';
 
@@ -29,11 +29,10 @@ const emojiConfigs = [
 	{value: '🎉'},
 ].map((config, index) => ({
 	...config,
-	id: index,
+	id: String(index),
 }));
 
 export default function PortfolioCreatePage() {
-	const navigate = useNavigate();
 	const location = useLocation();
 
 	const isEditMode = location.pathname.includes('/edit');
@@ -84,10 +83,7 @@ export default function PortfolioCreatePage() {
 			<PageActionButtonWrapper>
 				<Button
 					type='primary'
-					onClick={() => {
-						setIsCreatePortfolioSuccess(true);
-						PopupHelpers.runAfterStatusPopupClosed(() => navigate(APP_PATH.portfolio.list));
-					}}
+					onClick={() => setIsCreatePortfolioSuccess(true)}
 					disabled={isEditMode ? name === 'Portfolio 1' : !name || isNameValidationPending || isNameValidationError}
 					isPending={isCreatePortfolioPending}
 				>
@@ -100,6 +96,7 @@ export default function PortfolioCreatePage() {
 				isError={isCreatePortfolioError}
 				statusTextKey='createPortfolio'
 				statusTextProps={{name}}
+				onDismiss={(navigate) => navigate(APP_PATH.portfolio.list)}
 			/>
 		</>
 	);
@@ -107,7 +104,7 @@ export default function PortfolioCreatePage() {
 
 type EmojiConfig = {
 	value: any;
-	id: number;
+	id: string;
 };
 type EmojiFieldProps = {
 	selectedEmojiConfig: EmojiConfig;
@@ -160,7 +157,7 @@ function EmojiField({selectedEmojiConfig, setSelectedEmojiConfig}: EmojiFieldPro
 					type='primary'
 					onClick={() => {
 						closePopup();
-						PopupHelpers.runAfterPopupClosed(() => setSelectedEmojiConfig(inPopupEmojiConfig));
+						popupHelper.runAfterPopupClosed(() => setSelectedEmojiConfig(inPopupEmojiConfig));
 					}}
 				>
 					{APP_TEXT.save}
