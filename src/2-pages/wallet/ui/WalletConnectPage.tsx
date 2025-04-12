@@ -1,7 +1,6 @@
 import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
 import {PageActionButtonWrapper, PageWidgetsWrapper} from '@pages/ui';
-import {Button, Header, PopupHelpers, Spinner, StatusPopup, TextField} from '@shared/ui';
+import {Button, Header, Spinner, StatusPopup, TextField} from '@shared/ui';
 import {APP_PATH, APP_TEXT, FORM} from '@shared/constants';
 
 /**
@@ -9,8 +8,6 @@ import {APP_PATH, APP_TEXT, FORM} from '@shared/constants';
  * */
 
 export function WalletConnectPage() {
-	const navigate = useNavigate();
-
 	const [activeStepIndex, setActiveStepIndex] = useState(0);
 
 	const [name, setName] = useState('');
@@ -97,10 +94,7 @@ export function WalletConnectPage() {
 					onClick={
 						activeStepIndex === 0
 							? () => setActiveStepIndex(activeStepIndex + 1)
-							: () => {
-									setIsConnectWalletSuccess(true);
-									PopupHelpers.runAfterStatusPopupClosed(() => navigate(APP_PATH.portfolio.list));
-							  }
+							: () => setIsConnectWalletSuccess(true)
 					}
 					disabled={
 						(activeStepIndex === 0 && (!name || isNameValidationPending || isNameValidationError)) ||
@@ -117,6 +111,7 @@ export function WalletConnectPage() {
 				isError={isConnectWalletError}
 				statusTextKey='connectWallet'
 				statusTextProps={{name}}
+				onDismiss={(navigate) => navigate(APP_PATH.portfolio.list)}
 			/>
 		</>
 	);

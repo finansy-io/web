@@ -1,11 +1,10 @@
 import {useInfiniteQuery, useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
-import {useNavigate} from 'react-router-dom';
 import {GoalApi} from './goal.api.ts';
 import {type MutationProps, type Props} from './goal.types.ts';
 import {AuthModel} from '@entities/auth';
-import {APP_PATH, TRANSACTION_TYPE} from '@shared/constants';
-import {PopupHelpers} from '@shared/ui';
-import {isUndefined} from '@shared/lib';
+import {TRANSACTION_TYPE} from '@shared/constants';
+import {popupHelper} from '@shared/ui';
+import {useState} from 'react';
 
 export class GoalModel {
 	static useItems(props: Props['useItems'] = {}) {
@@ -37,7 +36,9 @@ export class GoalModel {
 
 		return {
 			// Сливаем элементы всех страниц. В момент загрузки goals = null
-			goals: filteredPages?.length ? filteredPages.flatMap((page) => page && page.items) : null,
+			goals: filteredPages?.length
+				? filteredPages.flatMap((page) => page && page.items.map((item) => ({...item, id: String(item.id)})))
+				: null,
 			isGoalsLoading: isLoading || isBoardGoalIdLoading,
 			hasNextGoalsPage: hasNextPage,
 			fetchNextGoalsPage: fetchNextPage,
@@ -62,7 +63,7 @@ export class GoalModel {
 		});
 
 		return {
-			goalDetails: isUndefined(data) ? null : data,
+			goalDetails: !data ? null : {...data, id: String(data.id)},
 			isGoalDetailsLoading: isFetching || isBoardGoalIdLoading,
 		};
 	}
@@ -138,7 +139,7 @@ export class GoalModel {
 	static useCreateItem() {
 		const {boardGoalId} = this.useBoardGoalId();
 
-		const navigate = useNavigate();
+		const [createdGoalId, setCreatedGoalId] = useState<number | null>(null);
 
 		const {mutate, isPending, isError, isSuccess} = useMutation({
 			mutationKey: ['goal-create'],
@@ -156,15 +157,7 @@ export class GoalModel {
 					return;
 				}
 
-				PopupHelpers.runAfterStatusPopupClosed(() => {
-					navigate(APP_PATH.goal.getItemDetailsPath(goal.id));
-				});
-			},
-
-			onError: () => {
-				PopupHelpers.runAfterStatusPopupClosed(() => {
-					navigate(APP_PATH.goal.list);
-				});
+				setCreatedGoalId(goal.id);
 			},
 		});
 
@@ -173,6 +166,7 @@ export class GoalModel {
 			isCreateGoalPending: isPending,
 			isCreateGoalSuccess: isSuccess,
 			isCreateGoalError: isError,
+			createdGoalId,
 		};
 	}
 
@@ -192,7 +186,7 @@ export class GoalModel {
 			},
 
 			onSuccess: (data: any) => {
-				PopupHelpers.runAfterStatusPopupClosed(() => {
+				popupHelper.runAfterStatusPopupClosed(() => {
 					void queryClient.invalidateQueries({queryKey: [`goal-details-${data.id}`]});
 				});
 			},
@@ -209,8 +203,6 @@ export class GoalModel {
 	static useDeleteItem() {
 		const queryClient = useQueryClient();
 
-		const navigate = useNavigate();
-
 		const {boardGoalId} = this.useBoardGoalId();
 
 		const {mutate, isPending, isError, isSuccess} = useMutation({
@@ -223,9 +215,8 @@ export class GoalModel {
 			},
 
 			onSuccess: () => {
-				PopupHelpers.runAfterStatusPopupClosed(() => {
+				popupHelper.runAfterStatusPopupClosed(() => {
 					void queryClient.invalidateQueries({queryKey: ['goal-items']});
-					navigate(APP_PATH.goal.list);
 				});
 			},
 		});
@@ -238,11 +229,7 @@ export class GoalModel {
 		};
 	}
 
-	static useFund(props: Props['useFund'] = {}) {
-		const {isFromListPage = false} = props;
-
-		const navigate = useNavigate();
-
+	static useFund() {
 		const {boardGoalId} = this.useBoardGoalId();
 
 		const {mutate, isPending, isError, isSuccess} = useMutation({
@@ -252,17 +239,6 @@ export class GoalModel {
 				return GoalApi.fundItem({
 					params: {...props.params, boardGoalId: boardGoalId!},
 					payload: {...props.payload, type: TRANSACTION_TYPE.DEPOSIT},
-				});
-			},
-
-			onSettled: (goal) => {
-				if (!goal) {
-					console.error('Goal data is missing');
-					return;
-				}
-
-				PopupHelpers.runAfterStatusPopupClosed(() => {
-					navigate(isFromListPage ? APP_PATH.goal.list : APP_PATH.goal.getItemDetailsPath(goal.id));
 				});
 			},
 		});
@@ -275,11 +251,7 @@ export class GoalModel {
 		};
 	}
 
-	static useWithdraw(props: Props['useWithdraw'] = {}) {
-		const {isFromListPage = false} = props;
-
-		const navigate = useNavigate();
-
+	static useWithdraw() {
 		const {boardGoalId} = this.useBoardGoalId();
 
 		const {mutate, isPending, isError, isSuccess} = useMutation({
@@ -289,17 +261,6 @@ export class GoalModel {
 				return GoalApi.withdrawItem({
 					params: {...props.params, boardGoalId: boardGoalId!},
 					payload: {...props.payload, type: TRANSACTION_TYPE.WITHDRAW},
-				});
-			},
-
-			onSettled: (goal) => {
-				if (!goal) {
-					console.error('Goal data is missing');
-					return;
-				}
-
-				PopupHelpers.runAfterStatusPopupClosed(() => {
-					navigate(isFromListPage ? APP_PATH.goal.list : APP_PATH.goal.getItemDetailsPath(goal.id));
 				});
 			},
 		});
@@ -312,11 +273,7 @@ export class GoalModel {
 		};
 	}
 
-	static useTransfer(props: Props['useTransfer'] = {}) {
-		const {isFromListPage = false} = props;
-
-		const navigate = useNavigate();
-
+	static useTransfer() {
 		const {boardGoalId} = this.useBoardGoalId();
 
 		const {mutate, isPending, isError, isSuccess} = useMutation({
@@ -326,17 +283,6 @@ export class GoalModel {
 				return GoalApi.transferItem({
 					params: {boardGoalId: boardGoalId!},
 					payload: props.payload,
-				});
-			},
-
-			onSettled: (goal) => {
-				if (!goal) {
-					console.error('Goal data is missing');
-					return;
-				}
-
-				PopupHelpers.runAfterStatusPopupClosed(() => {
-					navigate(isFromListPage ? APP_PATH.goal.list : APP_PATH.goal.getItemDetailsPath(goal.id));
 				});
 			},
 		});

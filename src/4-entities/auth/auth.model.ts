@@ -2,7 +2,6 @@ import {useMutation, useQuery} from '@tanstack/react-query';
 import {useNavigate} from 'react-router-dom';
 import {AuthApi} from '@entities/auth';
 import {APP_PATH} from '@shared/constants';
-import {PopupHelpers} from '@shared/ui';
 
 // permissions
 // featureAccess
@@ -25,20 +24,10 @@ export class AuthModel {
 	}
 
 	static useSignup() {
-		const navigate = useNavigate();
-
 		const {mutate, isPending, isError, isSuccess} = useMutation({
 			mutationKey: ['signup'],
 			mutationFn: (payload: any) => {
 				return AuthApi.signup(payload);
-			},
-			onSuccess: () => {
-				PopupHelpers.runAfterStatusPopupClosed(() => {
-					navigate(APP_PATH.home);
-				});
-			},
-			onError: () => {
-				alert('Signup failed');
 			},
 		});
 

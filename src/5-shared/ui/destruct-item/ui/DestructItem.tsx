@@ -10,6 +10,7 @@ export function DestructItem(props: DestructItemProps) {
 		isPending,
 		destructButtonText,
 		onDestruct,
+		onStatusPopupDismiss,
 		isSuccess,
 		isError,
 		children,
@@ -38,7 +39,12 @@ export function DestructItem(props: DestructItemProps) {
 				actionButtonText={destructButtonText ?? APP_TEXT.delete}
 			/>
 
-			<StatusPopup isSuccess={isSuccess} isError={isError} statusTextKey={statusTextKey} />
+			<StatusPopup
+				isSuccess={isSuccess}
+				isError={isError}
+				statusTextKey={statusTextKey}
+				onDismiss={onStatusPopupDismiss}
+			/>
 		</>
 	);
 }

@@ -1,7 +1,7 @@
 import {useParams} from 'react-router-dom';
 import {GoalModel} from '@entities/goal';
 import {DestructItem, LoadingWrapper} from '@shared/ui';
-import {APP_TEXT} from '@shared/constants';
+import {APP_PATH, APP_TEXT} from '@shared/constants';
 
 export function GoalDelete() {
 	const {id} = useParams();
@@ -17,6 +17,7 @@ export function GoalDelete() {
 			isSuccess={isDeleteGoalSuccess}
 			isError={isDeleteGoalError}
 			onDestruct={() => deleteGoal({params: {id: id!}})}
+			onStatusPopupDismiss={(navigate) => navigate(APP_PATH.goal.list)}
 			statusTextKey='deleteGoal'
 		>
 			<LoadingWrapper isLoading={isGoalDetailsLoading} isTextSm>

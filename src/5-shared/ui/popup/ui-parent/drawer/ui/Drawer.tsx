@@ -1,6 +1,6 @@
 import {Drawer as VaulDrawer} from 'vaul';
 import {DrawerProps} from '../types/Drawer.types.ts';
-import {cn} from '@shared/lib';
+import {cn, isUndefined} from '@shared/lib';
 import {Button, Icon} from '@shared/ui';
 
 const {Root, Trigger, Close, Overlay, Content, Portal, Title} = VaulDrawer;
@@ -24,16 +24,16 @@ export function Drawer(props: DrawerProps) {
 		children,
 		actionButtonNode,
 
-		statusDismissible,
 		statusProgress,
 		statusIcon,
 		direction = 'bottom',
 	} = props;
 
 	const isLeftDrawer = direction === 'left';
+	const isStatusDrawer = !isUndefined(statusProgress);
 
 	return (
-		<Root direction={direction} open={isOpen} onOpenChange={setIsOpen} dismissible={statusDismissible}>
+		<Root direction={direction} open={isOpen} onOpenChange={setIsOpen} dismissible={true}>
 			<Trigger asChild>
 				<button onClick={() => setIsOpen(true)} className='hidden' />
 			</Trigger>
@@ -78,17 +78,15 @@ export function Drawer(props: DrawerProps) {
 
 						<div
 							className={cn(
-								'relative',
-								(title || leftTitle || rightTitle) && 'flex h-7 items-center justify-between px-2',
-								!!statusProgress && 'mb-2',
+								(title || leftTitle || rightTitle) && 'flex px-2',
+								isStatusDrawer ? 'mb-2 justify-center' : 'relative h-7 items-center justify-between',
 							)}
 						>
-							<div className='flex-shrink-0'>{leftTitle}</div>
-							<div className='flex-shrink-0'>{rightTitle}</div>
+							{!isStatusDrawer && <div className='flex-shrink-0'>{leftTitle}</div>}
+							{!isStatusDrawer && <div className='flex-shrink-0'>{rightTitle}</div>}
 
-							{/* Абсолютно позиционированный по центру Title */}
-							<div className='absolute left-1/2 top-0 -translate-x-1/2'>
-								<Title className={cn('text-center text-lg font-medium', !title && 'hidden')}>{title}</Title>
+							<div className={cn(!isStatusDrawer && 'absolute left-1/2 top-0 -translate-x-1/2')}>
+								<Title className={cn('text-lg font-medium', !title && 'hidden')}>{title}</Title>
 							</div>
 						</div>
 

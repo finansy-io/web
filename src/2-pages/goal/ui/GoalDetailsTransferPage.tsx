@@ -34,6 +34,7 @@ export default function GoalDetailsTransferPage() {
 			isTransferError={isTransferGoalError}
 			statusTextKey='transferGoal'
 			backPath={APP_PATH.goal.getItemDetailsPath(id)}
+			onStatusPopupDismiss={(navigate) => navigate(APP_PATH.goal.getItemDetailsPath(id))}
 		/>
 	);
 }

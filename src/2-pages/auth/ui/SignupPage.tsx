@@ -106,7 +106,12 @@ export default function SignupPage() {
 				</div>
 			</AuthLayout>
 
-			<StatusPopup isSuccess={isSignupSuccess} isError={isSignupError} statusTextKey='createAccount' />
+			<StatusPopup
+				isSuccess={isSignupSuccess}
+				isError={isSignupError}
+				onDismiss={(navigate) => navigate(APP_PATH.home)}
+				statusTextKey='createAccount'
+			/>
 		</>
 	);
 }

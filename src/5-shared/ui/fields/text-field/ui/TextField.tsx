@@ -144,18 +144,20 @@ export function TextField(props: TextFieldProps) {
 				)}
 			</div>
 
-			<div role='text-field-hints' className='flex flex-wrap gap-2'>
-				{hints?.map((hint, index) => (
-					<Button
-						type='secondary'
-						key={hint + index}
-						className='w-fit px-2.5 py-1.5 text-sm'
-						onClick={() => onChange(hint)}
-					>
-						{hint}
-					</Button>
-				))}
-			</div>
+			{!value && (
+				<div role='text-field-hints' className='flex flex-wrap gap-2'>
+					{hints?.map((hint, index) => (
+						<Button
+							type='secondary'
+							key={hint + index}
+							className='w-fit px-2.5 py-1.5 text-sm'
+							onClick={() => onChange(hint)}
+						>
+							{hint}
+						</Button>
+					))}
+				</div>
+			)}
 		</div>
 	);
 }

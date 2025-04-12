@@ -21,6 +21,7 @@ export default function GoalDetailsWithdrawPage() {
 			isActionError={isWithdrawGoalError}
 			statusTextKey='withdrawGoal'
 			backPath={APP_PATH.goal.getItemDetailsPath(id)}
+			onStatusPopupDismiss={(navigate) => navigate(APP_PATH.goal.getItemDetailsPath(id))}
 		/>
 	);
 }
