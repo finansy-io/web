@@ -27,7 +27,7 @@ export function Drawer(props: DrawerProps) {
 		statusIcon,
 		direction = 'bottom',
 		isFullScreen,
-		isKeyboardActive,
+		// isKeyboardActive,
 		onDrag,
 	} = props;
 	// const keyboardOffset = useKeyboardOffset();
@@ -100,12 +100,7 @@ export function Drawer(props: DrawerProps) {
 							<div className='relative flex flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0'>
 								{children}
 								{actionButtonNode && (
-									<div
-										className='absolute bottom-0 left-0 right-0 bg-light-grey py-2 transition-[margin] duration-300'
-										style={{
-											marginBottom: isKeyboardActive ? 300 : 0,
-										}}
-									>
+									<div className='absolute bottom-0 left-0 right-0 bg-light-grey py-2 transition duration-300'>
 										{actionButtonNode}
 									</div>
 								)}
