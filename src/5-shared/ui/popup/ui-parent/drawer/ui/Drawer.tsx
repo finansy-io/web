@@ -1,4 +1,3 @@
-import {useEffect, useState} from 'react';
 import {Drawer as VaulDrawer} from 'vaul';
 import {DrawerProps} from '../types/Drawer.types.ts';
 import {cn, isUndefined} from '@shared/lib';
@@ -32,7 +31,7 @@ export function Drawer(props: DrawerProps) {
 		isKeyboardActive,
 		onDrag,
 	} = props;
-	const keyboardOffset = useKeyboardOffset();
+	// const keyboardOffset = useKeyboardOffset();
 
 	const isLeftDrawer = direction === 'left';
 	const isStatusDrawer = !isUndefined(statusProgress);
@@ -100,11 +99,9 @@ export function Drawer(props: DrawerProps) {
 
 						{(children || actionButtonNode) && (
 							<div
-								className='flex flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0 transition-[padding] duration-300'
-								// клавиатура + отступ
+								className='flex flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0 transition-[padding-bottom] duration-300'
 								style={{
-									paddingBottom: isKeyboardActive ? keyboardOffset : 0,
-									// transform: isKeyboardActive ? `translateY(-${keyboardOffset}px)` : 'translateY(0)',
+									paddingBottom: isKeyboardActive ? 300 : 0,
 								}}
 							>
 								{children}
@@ -119,31 +116,31 @@ export function Drawer(props: DrawerProps) {
 	);
 }
 
-export function useKeyboardOffset() {
-	const [keyboardOffset, setKeyboardOffset] = useState(0);
-	const [initialHeight, setInitialHeight] = useState<number | null>(null);
-
-	useEffect(() => {
-		// Сохраняем исходную высоту экрана
-		setInitialHeight(window.innerHeight);
-
-		const handleResize = () => {
-			// Если visualViewport не работает корректно, используем window.innerHeight
-			const currentHeight = window.innerHeight;
-			if (initialHeight !== null) {
-				// Если текущее окно меньше исходного, считаем, что клавиатура открыта
-				const offset = initialHeight - currentHeight;
-				setKeyboardOffset(offset > 0 ? offset : 0);
-			}
-		};
-
-		window.addEventListener('resize', handleResize);
-		handleResize(); // Инициализация
-
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-	}, [initialHeight]);
-
-	return keyboardOffset;
-}
+// export function useKeyboardOffset() {
+// 	const [keyboardOffset, setKeyboardOffset] = useState(0);
+// 	const [initialHeight, setInitialHeight] = useState<number | null>(null);
+//
+// 	useEffect(() => {
+// 		// Сохраняем исходную высоту экрана
+// 		setInitialHeight(window.innerHeight);
+//
+// 		const handleResize = () => {
+// 			// Если visualViewport не работает корректно, используем window.innerHeight
+// 			const currentHeight = window.innerHeight;
+// 			if (initialHeight !== null) {
+// 				// Если текущее окно меньше исходного, считаем, что клавиатура открыта
+// 				const offset = initialHeight - currentHeight;
+// 				setKeyboardOffset(offset > 0 ? offset : 0);
+// 			}
+// 		};
+//
+// 		window.addEventListener('resize', handleResize);
+// 		handleResize(); // Инициализация
+//
+// 		return () => {
+// 			window.removeEventListener('resize', handleResize);
+// 		};
+// 	}, [initialHeight]);
+//
+// 	return keyboardOffset;
+// }
