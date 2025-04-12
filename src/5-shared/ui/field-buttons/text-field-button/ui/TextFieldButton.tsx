@@ -41,6 +41,7 @@ export function TextFieldButton(props: TextFieldEditButtonProps) {
 					isPending,
 					isEdit,
 					isKeyboardActive: isFocused && isTouchable,
+					closeKeyboard: () => setIsFocused(false),
 				}}
 			>
 				<TextField

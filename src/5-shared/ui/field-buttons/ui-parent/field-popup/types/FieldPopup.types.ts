@@ -11,5 +11,6 @@ export type FieldPopupProps<V> = {
 	value: V;
 	isPending: boolean;
 	isKeyboardActive: boolean;
+	closeKeyboard: () => void;
 	children: ReactNode;
 };

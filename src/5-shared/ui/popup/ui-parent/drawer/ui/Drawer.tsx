@@ -30,6 +30,7 @@ export function Drawer(props: DrawerProps) {
 		direction = 'bottom',
 		isFullScreen,
 		isKeyboardActive,
+		onDrag,
 	} = props;
 	const keyboardOffset = useKeyboardOffset();
 
@@ -37,7 +38,7 @@ export function Drawer(props: DrawerProps) {
 	const isStatusDrawer = !isUndefined(statusProgress);
 
 	return (
-		<Root direction={direction} open={isOpen} onOpenChange={setIsOpen} dismissible={true}>
+		<Root direction={direction} open={isOpen} onOpenChange={setIsOpen} onDrag={onDrag} dismissible={true}>
 			<Trigger asChild>
 				<button onClick={() => setIsOpen(true)} className='hidden' />
 			</Trigger>
@@ -99,11 +100,11 @@ export function Drawer(props: DrawerProps) {
 
 						{(children || actionButtonNode) && (
 							<div
-								className='flex flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0 transition duration-200'
+								className='flex flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0 transition-[padding] duration-300'
 								// клавиатура + отступ
 								style={{
-									// paddingBottom: isKeyboardActive ? keyboardOffset : 0,
-									transform: isKeyboardActive ? `translateY(-${keyboardOffset}px)` : 'translateY(0)',
+									paddingBottom: isKeyboardActive ? keyboardOffset : 0,
+									// transform: isKeyboardActive ? `translateY(-${keyboardOffset}px)` : 'translateY(0)',
 								}}
 							>
 								{children}
@@ -120,26 +121,29 @@ export function Drawer(props: DrawerProps) {
 
 export function useKeyboardOffset() {
 	const [keyboardOffset, setKeyboardOffset] = useState(0);
+	const [initialHeight, setInitialHeight] = useState<number | null>(null);
 
 	useEffect(() => {
+		// Сохраняем исходную высоту экрана
+		setInitialHeight(window.innerHeight);
+
 		const handleResize = () => {
-			if (window.visualViewport) {
-				const offset = window.innerHeight - window.visualViewport.height;
+			// Если visualViewport не работает корректно, используем window.innerHeight
+			const currentHeight = window.innerHeight;
+			if (initialHeight !== null) {
+				// Если текущее окно меньше исходного, считаем, что клавиатура открыта
+				const offset = initialHeight - currentHeight;
 				setKeyboardOffset(offset > 0 ? offset : 0);
 			}
 		};
 
-		if (window.visualViewport) {
-			window.visualViewport.addEventListener('resize', handleResize);
-			handleResize(); // Инициализация
-		}
+		window.addEventListener('resize', handleResize);
+		handleResize(); // Инициализация
 
 		return () => {
-			if (window.visualViewport) {
-				window.visualViewport.removeEventListener('resize', handleResize);
-			}
+			window.removeEventListener('resize', handleResize);
 		};
-	}, []);
+	}, [initialHeight]);
 
 	return keyboardOffset;
 }
