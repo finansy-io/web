@@ -43,7 +43,7 @@ export function SelectTitle<Value>(props: SelectTitleProps<Value>) {
 		return (
 			<div
 				className={cn(
-					'flex cursor-pointer items-center gap-2 text-[17px] font-[600] transition duration-200',
+					'flex cursor-pointer items-center gap-2 text-[17px] font-semibold transition duration-200',
 					isPopupOpen && 'text-primary-grey',
 					isTouchable && 'active:text-primary-grey',
 					isClickable && '-my-2 rounded-2xl px-3 py-2 hover:bg-on-grey-hover active:bg-on-grey-active',

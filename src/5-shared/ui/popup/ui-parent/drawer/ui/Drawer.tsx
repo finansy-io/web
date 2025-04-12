@@ -86,7 +86,7 @@ export function Drawer(props: DrawerProps) {
 							{!isStatusDrawer && <div className='flex-shrink-0'>{rightTitle}</div>}
 
 							<div className={cn(!isStatusDrawer && 'absolute left-1/2 top-0 -translate-x-1/2')}>
-								<Title className={cn('text-lg font-medium', !title && 'hidden')}>{title}</Title>
+								<Title className={cn('text-[17px] font-semibold', !title && 'hidden')}>{title}</Title>
 							</div>
 						</div>
 

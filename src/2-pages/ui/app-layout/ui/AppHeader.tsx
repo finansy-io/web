@@ -90,7 +90,7 @@ export function AppHeader() {
 				)}
 			/>
 
-			{location.pathname === APP_PATH.portfolio.list && (
+			{location.pathname !== APP_PATH.goal.list && (
 				<>
 					<SelectTitle
 						type='title'

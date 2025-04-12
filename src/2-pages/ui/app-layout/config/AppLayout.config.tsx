@@ -4,27 +4,34 @@ import {type SettingsConfigs} from '@shared/types';
 
 export function getSettingsConfigs(openConfirmationPopup: () => void) {
 	return [
-		[
-			{
-				name: 'Connected wallets',
-				image: <Icon type='wallet' />,
-				onClick: ({navigate}) => {
-					navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.list}});
-				},
-			},
-			// {
-			// 	name: 'Connected exchanges',
-			// 	image: <Icon types='wallet' className='size-5' />,
-			// 	onClick: ({navigate}) => {
-			// 		navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.list}});
-			// 	},
-			// },
-		],
+		// [
+		// 	{
+		// 		name: 'Connected wallets',
+		// 		image: <Icon type='wallet' />,
+		// 		onClick: ({navigate}) => {
+		// 			navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.list}});
+		// 		},
+		// 	},
+		// 	{
+		// 		name: 'Connected exchanges',
+		// 		image: <Icon types='wallet' className='size-5' />,
+		// 		onClick: ({navigate}) => {
+		// 			navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.list}});
+		// 		},
+		// 	},
+		// ],
 
 		// [
 		// 	{
 		// 		name: 'Currency',
-		// 		image: <Icon types='currency' className='size-5' />,
+		// 		image: <Icon type='currency' className='size-5' />,
+		// 	},
+		// ],
+		//
+		// [
+		// 	{
+		// 		name: 'Reorder tabs',
+		// 		image: <Icon type='arrowDown' className='size-5' />,
 		// 		rightNode: <div className='font-light text-primary-grey'>USD</div>,
 		// 	},
 		// ],
@@ -35,6 +42,21 @@ export function getSettingsConfigs(openConfirmationPopup: () => void) {
 				image: <Icon type='hide' />,
 				rightNode: 'switch',
 			},
+			// {
+			// 	name: 'Hide small balances',
+			// 	image: <Icon type='hide' />,
+			// 	rightNode: 'switch',
+			// },
+			// {
+			// 	name: 'Include DeFi in portfolio',
+			// 	image: <Icon type='calendar' />,
+			// 	rightNode: 'switch',
+			// },
+			// {
+			// 	name: 'Include NFT in portfolio',
+			// 	image: <Icon type='createGoal' />,
+			// 	rightNode: 'switch',
+			// },
 			{
 				name: 'Include in total portfolio',
 				image: <Icon type='portfolio' />,
@@ -67,6 +89,7 @@ export function getSettingsConfigs(openConfirmationPopup: () => void) {
 
 export const appTabConfigs = [
 	{name: APP_TEXT.assets, path: APP_PATH.portfolio.list},
+	{name: APP_TEXT.wallets, path: APP_PATH.wallet.list},
 	{name: APP_TEXT.goals, path: APP_PATH.goal.list},
 ] satisfies {name: string; path: string}[];
 

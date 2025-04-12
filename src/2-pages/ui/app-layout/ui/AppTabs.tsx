@@ -14,7 +14,7 @@ export function AppTabs() {
 				<div
 					key={index}
 					className={cn(
-						'rounded-3xl px-4 py-2 text-sm transition duration-200',
+						'rounded-3xl px-4 py-2 text-sm transition',
 						location.pathname === path ? 'bg-white' : 'cursor-pointer bg-inherit text-primary-grey',
 						(isMobile || isTablet) && 'active:text-black',
 						isDesktop && location.pathname !== path && 'hover:bg-on-grey-hover active:bg-on-grey-active',
