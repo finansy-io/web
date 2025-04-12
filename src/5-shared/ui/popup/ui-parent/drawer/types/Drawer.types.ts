@@ -12,4 +12,6 @@ export type DrawerProps = {
 	direction?: 'left' | 'bottom';
 	statusProgress?: number;
 	statusIcon?: ReactElement;
+	isFullScreen?: boolean;
+	isKeyboardActive?: boolean;
 };
