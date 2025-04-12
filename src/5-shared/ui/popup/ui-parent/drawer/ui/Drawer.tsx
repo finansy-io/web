@@ -27,7 +27,7 @@ export function Drawer(props: DrawerProps) {
 		statusIcon,
 		direction = 'bottom',
 		isFullScreen,
-		isKeyboardActive,
+		// isKeyboardActive,
 		onDrag,
 	} = props;
 	// const keyboardOffset = useKeyboardOffset();
