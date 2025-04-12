@@ -24,7 +24,7 @@ export function Management<ListItem>(props: ManagementProps<ListItem>) {
 				<div className='flex flex-col gap-4 p-4 pb-3'>
 					<div className='flex flex-col gap-1.5'>
 						<div className='flex items-center justify-between'>
-							<LoadingWrapper isLoading={isLoading} className='mb-1.5 mt-2 h-6 w-32'>
+							<LoadingWrapper isLoading={isLoading} isText3xl>
 								<TotalBalance totalBalance={totalBalance} />
 							</LoadingWrapper>
 
@@ -35,7 +35,7 @@ export function Management<ListItem>(props: ManagementProps<ListItem>) {
 							)}
 						</div>
 						<div className='text-sm font-light text-primary-grey'>
-							<LoadingWrapper isLoading={isLoading} className='my-0.5 h-[14px] w-16'>
+							<LoadingWrapper isLoading={isLoading} isTextSm className='w-16'>
 								{totalBalanceDescription}
 							</LoadingWrapper>
 						</div>

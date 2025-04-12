@@ -1,17 +1,18 @@
 import {ReactElement, ReactNode} from 'react';
 import {NavigateFunction} from 'react-router-dom';
 
-export interface ButtonConfig extends CommonButtonSettings {
-	name: string;
-}
-
-export interface CommonButtonSettings {
+export type CommonButtonSettings = {
 	icon?: ReactElement;
 	type: 'primary' | 'secondary' | 'text' | 'circle' | 'icon';
 	onClick: ({navigate}: {navigate: NavigateFunction}) => void;
 	className?: string;
-}
-export interface ButtonProps extends CommonButtonSettings {
+};
+
+export type ButtonConfig = CommonButtonSettings & {
+	name: string;
+};
+
+export type ButtonProps = CommonButtonSettings & {
 	children?: ReactNode;
 	disabled?: boolean;
 	isLoading?: boolean;
@@ -20,4 +21,4 @@ export interface ButtonProps extends CommonButtonSettings {
 	secondaryWithPrimaryStyles?: boolean;
 	primaryButtonSpinnerClassName?: string;
 	isTextButtonOnGrey?: boolean;
-}
+};

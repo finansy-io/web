@@ -11,7 +11,7 @@ export function SelectField<Value>(props: SelectFieldProps<Value>) {
 
 	const {sortingValue, setSortingValue} = useSelectSortingValue(popupProps.isOpen, value);
 
-	const {isMobile, isTablet, isDesktop} = useResponsive();
+	const {isTouchable, isClickable} = useResponsive();
 
 	return (
 		<>
@@ -20,8 +20,8 @@ export function SelectField<Value>(props: SelectFieldProps<Value>) {
 				value={value}
 				className={cn(
 					withBackground && 'rounded-2xl bg-light-grey p-2',
-					withBackground && (isMobile || isTablet) && 'active:text-primary-grey',
-					withBackground && isDesktop && 'hover:bg-on-grey-hover active:bg-on-grey-active',
+					withBackground && isTouchable && 'active:text-primary-grey',
+					withBackground && isClickable && 'hover:bg-on-grey-hover active:bg-on-grey-active',
 					className,
 				)}
 				options={options}

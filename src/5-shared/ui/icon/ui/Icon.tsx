@@ -2,7 +2,9 @@ import {ICON_MAP} from '../config/Icon.config.tsx';
 import {IconProps} from '../types/Icon.types.ts';
 import {cn} from '@shared/lib';
 
-export function Icon({type, className, withBackground, ...rest}: IconProps) {
+export function Icon(props: IconProps) {
+	const {type, className, withBackground, ...rest} = props;
+
 	const Icon = ICON_MAP[type];
 
 	if (withBackground) {

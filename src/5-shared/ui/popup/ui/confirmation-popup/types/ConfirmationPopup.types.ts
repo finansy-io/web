@@ -5,4 +5,5 @@ export type ConfirmationPopupProps = Pick<PopupProps, 'isOpen' | 'setIsOpen' | '
 	onActionClick: () => void;
 	isActionPending: boolean;
 	actionButtonText?: string;
+	close: () => void;
 };

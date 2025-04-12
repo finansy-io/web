@@ -5,6 +5,7 @@ import {type ButtonProps} from '../types/Button.types.ts';
 import {cn, styleElement, useKeyClick, useResponsive} from '@shared/lib';
 import {LoadingWrapper, Spinner} from '@shared/ui';
 import '../styles/Button.css';
+import {hoverPadding, hoverRounded} from '@shared/styles';
 
 export function Button(props: ButtonProps) {
 	const {
@@ -59,7 +60,7 @@ export function Button(props: ButtonProps) {
 	}
 
 	const buttonProps = {
-		onClick: disabled ? undefined : () => onClick({navigate}),
+		onClick: disabled || isLoading ? undefined : () => onClick({navigate}),
 		disabled,
 	};
 
@@ -93,7 +94,7 @@ export function Button(props: ButtonProps) {
 
 	if (type === 'secondary') {
 		return (
-			<LoadingWrapper isLoading={!!isLoading} className='my-2 h-6 w-24 rounded-3xl'>
+			<LoadingWrapper isLoading={!!isLoading} isFilledButton>
 				<button
 					{...buttonProps}
 					className={gcn(
@@ -146,16 +147,18 @@ export function Button(props: ButtonProps) {
 
 	if (type === 'icon' && icon) {
 		return (
-			<button
-				{...buttonProps}
-				className={gcn(
-					'flex items-center justify-center p-2 text-black brightness-100 transition duration-200',
-					(isMobile || isTablet) && 'active:text-primary-grey',
-					isDesktop && 'rounded-full hover:bg-on-grey-hover active:bg-on-grey-active',
-				)}
-			>
-				{icon}
-			</button>
+			<LoadingWrapper isLoading={!!isLoading} isIconButton>
+				<button
+					{...buttonProps}
+					className={gcn(
+						'flex items-center justify-center p-2 text-black brightness-100 transition duration-200',
+						(isMobile || isTablet) && 'active:text-primary-grey',
+						isDesktop && 'rounded-full hover:bg-on-grey-hover active:bg-on-grey-active',
+					)}
+				>
+					{icon}
+				</button>
+			</LoadingWrapper>
 		);
 	}
 
@@ -168,7 +171,9 @@ export function Button(props: ButtonProps) {
 					icon && 'flex items-center gap-2',
 					isDesktop &&
 						cn(
-							'-m-2 rounded-2xl p-2 transition duration-200',
+							hoverPadding,
+							hoverRounded,
+							'transition duration-200',
 							isTextButtonOnGrey
 								? 'hover:bg-on-grey-hover active:bg-on-grey-active'
 								: 'hover:bg-on-white-hover active:bg-on-white-active',

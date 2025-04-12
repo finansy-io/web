@@ -34,7 +34,6 @@ export * from './popup/ui/status-popup/ui/StatusPopup.tsx';
 export * from './popup/ui/left-popup/ui/LeftPopup.tsx';
 export * from './popup/ui/confirmation-popup/ui/ConfirmationPopup.tsx';
 
-export * from './item/ui-slots/item-image-with-progress/config/ItemImageWithProgress.config.ts';
 export * from './item/ui/Item.tsx';
 export * from './item/ui-slots/item-image-with-progress/ui/ItemImageWithProgress.tsx';
 export * from './destruct-item/ui/DestructItem.tsx';
@@ -46,6 +45,7 @@ export * from './loading/ui/LoadingWrapper.tsx';
 export * from './icon/ui/Icon.tsx';
 
 export * from './header/ui/Header.tsx';
+export {type HeaderButtonConfig, type HeaderIconButtonConfig} from './header/types/Header.types.ts';
 
 export * from './list/ui/List.tsx';
 

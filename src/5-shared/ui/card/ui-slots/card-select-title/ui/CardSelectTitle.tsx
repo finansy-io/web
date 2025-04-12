@@ -1,4 +1,5 @@
 import {SelectTitle, usePopupState} from '@shared/ui';
+import {clickableTitleStyles, touchableTitleStyles} from '../../styles/CardSlots.styles.ts';
 import {SelectPopup} from '@shared/ui/fields/select-field/ui-parent';
 import {useSelectSortingValue} from '@shared/ui/fields/select-field/hooks/SelectField.hooks.ts';
 import type {SelectFieldProps} from '@shared/ui/fields/select-field/types/SelectField.types.ts';
@@ -13,7 +14,7 @@ export function CardSelectTitle<Value>(
 
 	const {sortingValue, setSortingValue} = useSelectSortingValue(popupProps.isOpen, value);
 
-	const {isMobile, isTablet, isDesktop} = useResponsive();
+	const {isTouchable, isClickable} = useResponsive();
 
 	return (
 		<>
@@ -24,8 +25,8 @@ export function CardSelectTitle<Value>(
 					'font-medium text-primary-grey',
 					isRightTitle && 'gap-2 font-light',
 					popupProps.isOpen && 'text-black',
-					(isMobile || isTablet) && 'active:text-black',
-					isDesktop && '-m-2 rounded-2xl p-2 hover:bg-on-white-hover active:bg-on-white-active',
+					isTouchable && touchableTitleStyles,
+					isClickable && clickableTitleStyles,
 				)}
 				options={options}
 				onClick={openPopup}

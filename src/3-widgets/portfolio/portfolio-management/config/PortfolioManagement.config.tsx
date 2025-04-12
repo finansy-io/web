@@ -18,7 +18,7 @@ export const assetSortingOptions = [
 		ascValue: 2,
 	},
 	{
-		name: APP_TEXT.investAmount,
+		name: APP_TEXT.investedAmount,
 		descValue: 3,
 		ascValue: 4,
 	},

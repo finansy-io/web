@@ -60,7 +60,11 @@ export function AppHeader() {
 	const {authUser} = AuthModel.useAuthUser();
 
 	const {popupProps: userPopupProps, openPopup: openUserPopup} = usePopupState();
-	const {popupProps: confirmationPopupProps, openPopup: openConfirmationPopup} = usePopupState();
+	const {
+		popupProps: confirmationPopupProps,
+		openPopup: openConfirmationPopup,
+		closePopup: closeConfirmationPopup,
+	} = usePopupState();
 	const {
 		popupProps: portfolioPopupProps,
 		openPopup: openPortfolioPopup,
@@ -152,6 +156,7 @@ export function AppHeader() {
 
 			<ConfirmationPopup
 				{...confirmationPopupProps}
+				close={closeConfirmationPopup}
 				title={getSelectTitle(selectedPortfolioValue, portfolioOptions)}
 				description={APP_TEXT.confirmation.deletePortfolio}
 				isActionPending={false}
@@ -258,21 +263,31 @@ export function PortfolioSelectPopup(props: any) {
 				isSingle
 			/>
 
-			<List
-				items={options as DefaultSelectOption<number>[]}
-				renderItem={({value, ...restPortfolioOption}) => {
-					return (
-						<Item
-							{...restPortfolioOption}
-							onClick={() => {
-								closePortfolioPopup();
-								PopupHelpers.runAfterPopupClosed(() => setSelectedPortfolioValue(value));
-							}}
-							isChecked={value === selectedPortfolioValue}
-						/>
-					);
-				}}
-			/>
+			{options.length ? (
+				<List
+					items={options as DefaultSelectOption<number>[]}
+					renderItem={({value, ...restPortfolioOption}) => {
+						return (
+							<Item
+								{...restPortfolioOption}
+								onClick={() => {
+									closePortfolioPopup();
+									PopupHelpers.runAfterPopupClosed(() => setSelectedPortfolioValue(value));
+								}}
+								isChecked={value === selectedPortfolioValue}
+							/>
+						);
+					}}
+				/>
+			) : (
+				<Item
+					image={<Icon type='portfolio' withBackground />}
+					imageIcon={<Icon type='plus' />}
+					name={APP_TEXT.createPortfolio}
+					onClick={({navigate}) => navigate(APP_PATH.portfolio.create)}
+					isSingle
+				/>
+			)}
 		</Popup>
 	);
 }
