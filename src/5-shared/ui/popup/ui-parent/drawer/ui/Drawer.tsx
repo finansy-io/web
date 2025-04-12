@@ -92,16 +92,18 @@ export function Drawer(props: DrawerProps) {
 							{!isStatusDrawer && <div className='flex-shrink-0'>{leftTitle}</div>}
 							{!isStatusDrawer && <div className='flex-shrink-0'>{rightTitle}</div>}
 
-							<div className={cn(!isStatusDrawer && 'absolute left-1/2 top-0 -translate-x-1/2')}>
+							<div className={cn(!isStatusDrawer && 'absolute left-1/2 top-0 -translate-x-1/2 text-center')}>
 								<Title className={cn('text-[17px] font-semibold', !title && 'hidden')}>{title}</Title>
 							</div>
 						</div>
 
 						{(children || actionButtonNode) && (
 							<div
-								className='flex flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0 transition-[padding-bottom] duration-200'
+								className='flex flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0 transition duration-200'
+								// клавиатура + отступ
 								style={{
-									paddingBottom: isKeyboardActive ? keyboardOffset : 0, // клавиатура + отступ
+									// paddingBottom: isKeyboardActive ? keyboardOffset : 0,
+									transform: isKeyboardActive ? `translateY(-${keyboardOffset}px)` : 'translateY(0)',
 								}}
 							>
 								{children}
