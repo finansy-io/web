@@ -97,9 +97,11 @@ export function Drawer(props: DrawerProps) {
 						</div>
 
 						{(children || actionButtonNode) && (
-							<div className='relative flex flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0'>
-								<div className='flex-1'>{children}</div>
-								{actionButtonNode && <div className='bg-light-grey py-2'>{actionButtonNode}</div>}
+							<div className='flex flex-1 flex-col p-2 pt-0'>
+								<div className='flex flex-1 flex-col gap-4 overflow-y-auto'>{children}</div>
+								{actionButtonNode && (
+									<div className='bg-light-grey py-2 transition-[padding] duration-300'>{actionButtonNode}</div>
+								)}
 							</div>
 						)}
 					</div>

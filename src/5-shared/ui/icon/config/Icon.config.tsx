@@ -25,7 +25,7 @@ import {
 } from 'react-icons/fa6';
 import {FaCamera, FaEye, FaEyeSlash, FaSignOutAlt} from 'react-icons/fa';
 import {cn} from '@shared/lib';
-import {BsFillQuestionCircleFill, BsThreeDotsVertical, BsTriangleFill} from 'react-icons/bs';
+import {BsFillQuestionCircleFill, BsThreeDots, BsTriangleFill} from 'react-icons/bs';
 import {AiFillDollarCircle} from 'react-icons/ai';
 import {IoIosColorPalette} from 'react-icons/io';
 import {HiMiniMegaphone} from 'react-icons/hi2';
@@ -75,7 +75,7 @@ export const ICON_MAP = {
 	chevronLeft: FaChevronLeft,
 	chevronRight: FaChevronRight,
 	info: FaInfo,
-	settings: BsThreeDotsVertical,
+	settings: BsThreeDots,
 	dollar: FaDollarSign,
 	wallet: FaWallet,
 	share: FaShare,
