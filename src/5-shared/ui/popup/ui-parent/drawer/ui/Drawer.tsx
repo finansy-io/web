@@ -101,9 +101,9 @@ export function Drawer(props: DrawerProps) {
 								{children}
 								{actionButtonNode && (
 									<div
-										className='absolute bottom-0 left-0 right-0 bg-light-grey py-2 transition-transform duration-300'
+										className='absolute bottom-0 left-0 right-0 bg-light-grey py-2 transition-[margin] duration-300'
 										style={{
-											transform: isKeyboardActive ? 'translateY(-300px)' : 'translateY(0)',
+											marginBottom: isKeyboardActive ? 300 : 0,
 										}}
 									>
 										{actionButtonNode}
