@@ -3,7 +3,7 @@ import {cn} from '@shared/lib';
 import {LoadingWrapper} from '@shared/ui';
 
 export function Card(props: CardProps) {
-	const {title, rightTitle, titleInCard, rightTitleInCard, children, isLoading} = props;
+	const {title, rightTitle, titleInCard, rightTitleInCard, children, isLoading, isManagementCard} = props;
 
 	return (
 		<div role='card'>
@@ -22,7 +22,10 @@ export function Card(props: CardProps) {
 				{(titleInCard || rightTitleInCard) && (
 					<div
 						role='card-title-in-card'
-						className='flex items-center justify-between px-4 py-3 text-sm font-medium text-primary-grey'
+						className={cn(
+							'flex items-center justify-between px-4 py-3 text-sm font-medium text-primary-grey',
+							isManagementCard && 'pt-0',
+						)}
 					>
 						<div>
 							{titleInCard && (
@@ -32,11 +35,7 @@ export function Card(props: CardProps) {
 							)}
 						</div>
 
-						{rightTitleInCard && (
-							<LoadingWrapper isLoading={!!isLoading} isTextSm>
-								{rightTitleInCard}
-							</LoadingWrapper>
-						)}
+						{!isLoading && rightTitleInCard}
 					</div>
 				)}
 

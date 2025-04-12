@@ -1,4 +1,4 @@
-import {CardSelectTitle, getSelectTitle, Item, ItemImageWithProgress, Management} from '@shared/ui';
+import {Card, CardSelectTitle, getSelectTitle, Item, ItemImageWithProgress, List, Management} from '@shared/ui';
 import {buttonConfigs, goalsDefaultFilter, goalStatusOptions} from '../config/GoalManagement.config.tsx';
 import {GoalModel} from '@entities/goal';
 import {TextHelpers, useFilter} from '@shared/lib';
@@ -30,46 +30,54 @@ export function GoalManagement() {
 					}
 				})(),
 			}))}
-			listTitle={
-				<CardSelectTitle
-					value={filter.status}
-					onChange={(value) => setFilter({...filter, status: value})}
-					options={goalStatusOptions}
+		>
+			<Card
+				titleInCard={
+					<CardSelectTitle
+						value={filter.status}
+						onChange={(value) => setFilter({...filter, status: value})}
+						options={goalStatusOptions}
+						isLoading={isLoading}
+						popupTitle={APP_TEXT.goals}
+					>
+						{`${getSelectTitle(filter.status, goalStatusOptions)} ${APP_TEXT.goals.toLowerCase()}`}
+					</CardSelectTitle>
+				}
+				isManagementCard
+			>
+				<List
+					emptyTextKey='goals'
 					isLoading={isLoading}
-					popupTitle={APP_TEXT.goals}
-				>
-					{`${getSelectTitle(filter.status, goalStatusOptions)} ${APP_TEXT.goals.toLowerCase()}`}
-				</CardSelectTitle>
-			}
-			listItems={goals}
-			renderListItem={(goal) => (
-				<Item
-					image={
-						goal.targetAmount ? (
-							<ItemImageWithProgress
-								image={<div className='size-10 rounded-full bg-green-200' />}
-								current={goal.balance.amount}
-								target={goal.targetAmount}
-							/>
-						) : (
-							<div className='size-10 rounded-full bg-green-200' />
-						)
-					}
-					name={goal.name}
-					description={
-						goal.targetAmount && goal.targetAmount > goal.balance.amount
-							? `${APP_TEXT.left}: ${TextHelpers.getAmount(goal.targetAmount - goal.balance.amount)} ${
-									CURRENCY_SYMBOL[goal.balance.currency]
-							  }`
-							: APP_TEXT.goalAchieved
-					}
-					rightName={`${TextHelpers.getAmount(goal.balance.amount)} ${CURRENCY_SYMBOL[goal.balance.currency]}`}
-					onClick={({navigate}) => navigate(APP_PATH.goal.getItemDetailsPath(goal.id))}
+					items={goals}
+					renderItem={(goal) => (
+						<Item
+							image={
+								goal.targetAmount ? (
+									<ItemImageWithProgress
+										image={<div className='size-10 rounded-full bg-green-200' />}
+										current={goal.balance.amount}
+										target={goal.targetAmount}
+									/>
+								) : (
+									<div className='size-10 rounded-full bg-green-200' />
+								)
+							}
+							name={goal.name}
+							description={
+								goal.targetAmount && goal.targetAmount > goal.balance.amount
+									? `${APP_TEXT.left}: ${TextHelpers.getAmount(goal.targetAmount - goal.balance.amount)} ${
+											CURRENCY_SYMBOL[goal.balance.currency]
+									  }`
+									: APP_TEXT.goalAchieved
+							}
+							rightName={`${TextHelpers.getAmount(goal.balance.amount)} ${CURRENCY_SYMBOL[goal.balance.currency]}`}
+							onClick={({navigate}) => navigate(APP_PATH.goal.getItemDetailsPath(goal.id))}
+						/>
+					)}
+					hasNextPage={hasNextGoalsPage}
+					fetchNextPage={fetchNextGoalsPage}
 				/>
-			)}
-			fetchNextListPage={fetchNextGoalsPage}
-			hasNextListPage={hasNextGoalsPage}
-			emptyListTextKey='goals'
-		/>
+			</Card>
+		</Management>
 	);
 }

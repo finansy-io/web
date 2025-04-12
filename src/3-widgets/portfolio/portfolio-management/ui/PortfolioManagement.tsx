@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {GoalModel} from '@entities/goal';
 import {assetSortingOptions, buttonConfigs} from '../config/PortfolioManagement.config.tsx';
-import {CardSelectTitle, getSelectTitle, Item, Management, Profit, SelectField} from '@shared/ui';
+import {Card, CardSelectTitle, getSelectTitle, Item, List, Management, Profit, SelectField} from '@shared/ui';
 import {TextHelpers} from '@shared/lib';
 import {APP_TEXT, CURRENCY_SYMBOL, PERIOD_OPTIONS} from '@shared/constants';
 
@@ -31,32 +31,41 @@ export function PortfolioManagement() {
 				/>
 			}
 			buttonConfigs={buttonConfigs}
-			listTitle={APP_TEXT.assets}
-			listRightTitle={
-				<CardSelectTitle
-					value={assetSorting}
-					onChange={setAssetSorting}
-					options={assetSortingOptions}
-					popupTitle={APP_TEXT.sortBy}
-					isRightTitle
-				>
-					{`${APP_TEXT.by} ${String(getSelectTitle(assetSorting, assetSortingOptions)).toLowerCase()}`}
-				</CardSelectTitle>
-			}
-			listItems={goals}
-			renderListItem={(goal) => (
-				<Item
-					image={<div className='size-10 rounded-full bg-green-200' />}
-					imageIcon={<div className='size-2 bg-secondary-violet' />}
-					name={goal.name}
-					description='0.1354 $'
-					rightName={`${TextHelpers.getAmount(goal.balance.amount)} ${CURRENCY_SYMBOL[goal.balance.currency]}`}
-					rightDescription={<Profit />}
+		>
+			<Card
+				isLoading={isLoading}
+				titleInCard={APP_TEXT.assets}
+				rightTitleInCard={
+					<CardSelectTitle
+						value={assetSorting}
+						onChange={setAssetSorting}
+						options={assetSortingOptions}
+						popupTitle={APP_TEXT.sortBy}
+						isRightTitle
+					>
+						{`${APP_TEXT.by} ${String(getSelectTitle(assetSorting, assetSortingOptions)).toLowerCase()}`}
+					</CardSelectTitle>
+				}
+				isManagementCard
+			>
+				<List
+					emptyTextKey='assets'
+					isLoading={isLoading}
+					items={goals}
+					renderItem={(goal) => (
+						<Item
+							image={<div className='size-10 rounded-full bg-green-200' />}
+							imageIcon={<div className='size-2 bg-secondary-violet' />}
+							name={goal.name}
+							description='0.1354 $'
+							rightName={`${TextHelpers.getAmount(goal.balance.amount)} ${CURRENCY_SYMBOL[goal.balance.currency]}`}
+							rightDescription={<Profit />}
+						/>
+					)}
+					hasNextPage={hasNextGoalsPage}
+					fetchNextPage={fetchNextGoalsPage}
 				/>
-			)}
-			fetchNextListPage={fetchNextGoalsPage}
-			hasNextListPage={hasNextGoalsPage}
-			emptyListTextKey='assets'
-		/>
+			</Card>
+		</Management>
 	);
 }
