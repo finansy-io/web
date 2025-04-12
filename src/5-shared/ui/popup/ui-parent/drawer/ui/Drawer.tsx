@@ -23,7 +23,6 @@ export function Drawer(props: DrawerProps) {
 		rightTitle,
 		children,
 		actionButtonNode,
-
 		statusProgress,
 		statusIcon,
 		direction = 'bottom',
@@ -60,7 +59,7 @@ export function Drawer(props: DrawerProps) {
 							: 'max-h-[98vh] rounded-t-[28px] bg-light-grey',
 					)}
 				>
-					<div className='mx-auto flex h-full w-full max-w-md flex-col gap-4 p-2'>
+					<div className='relative mx-auto flex h-full w-full max-w-md flex-col gap-4 p-2'>
 						{isLeftDrawer ? (
 							<Button
 								type='icon'
@@ -98,15 +97,18 @@ export function Drawer(props: DrawerProps) {
 						</div>
 
 						{(children || actionButtonNode) && (
-							<div
-								className='flex flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0 transition-[padding-bottom] duration-300'
-								style={{
-									paddingBottom: isKeyboardActive ? 300 : 0,
-								}}
-							>
+							<div className='relative flex flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0'>
 								{children}
-
-								{actionButtonNode && <div className='mt-auto bg-light-grey py-2'>{actionButtonNode}</div>}
+								{actionButtonNode && (
+									<div
+										className='absolute bottom-0 left-0 right-0 bg-light-grey py-2 transition-transform duration-300'
+										style={{
+											transform: isKeyboardActive ? 'translateY(-300px)' : 'translateY(0)',
+										}}
+									>
+										{actionButtonNode}
+									</div>
+								)}
 							</div>
 						)}
 					</div>
