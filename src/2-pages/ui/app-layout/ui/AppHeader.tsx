@@ -85,7 +85,7 @@ export function AppHeader() {
 				icon={<Icon type='user' withBackground className='size-10' />}
 				onClick={openUserPopup}
 				className={cn(
-					'p-0 transition duration-200 hover:bg-inherit active:brightness-90',
+					'transition duration-200 hover:bg-inherit active:brightness-90',
 					isDesktop && 'hover:brightness-95',
 				)}
 			/>
@@ -101,7 +101,6 @@ export function AppHeader() {
 					/>
 
 					<Button
-						className='size-10'
 						type='icon'
 						icon={
 							<Icon
@@ -113,6 +112,7 @@ export function AppHeader() {
 							/>
 						}
 						onClick={openPortfolioSettingsPopup}
+						className='size-10'
 					/>
 				</>
 			)}
