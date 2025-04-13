@@ -13,6 +13,5 @@ export type DrawerProps = {
 	statusProgress?: number;
 	statusIcon?: ReactElement;
 	isFullScreen?: boolean;
-	isKeyboardActive?: boolean;
 	onDrag?: () => void;
 };

@@ -27,10 +27,8 @@ export function Drawer(props: DrawerProps) {
 		statusIcon,
 		direction = 'bottom',
 		isFullScreen,
-		// isKeyboardActive,
 		onDrag,
 	} = props;
-	// const keyboardOffset = useKeyboardOffset();
 
 	const isLeftDrawer = direction === 'left';
 	const isStatusDrawer = !isUndefined(statusProgress);
@@ -70,7 +68,7 @@ export function Drawer(props: DrawerProps) {
 						) : (
 							<div
 								className={cn(
-									'mx-auto h-[3px] w-10 rounded-full',
+									'mx-auto h-[3px] w-10 shrink-0 rounded-full',
 									statusProgress ? 'bg-secondary-grey' : 'bg-[#BAC3CA]',
 								)}
 							>
@@ -100,10 +98,11 @@ export function Drawer(props: DrawerProps) {
 							<Title className='hidden'>{title}</Title>
 						)}
 
-						{(children || actionButtonNode) && (
-							<div className='flex flex-1 flex-col gap-4 overflow-y-auto p-2 pt-0'>
-								<div className='flex-1'>{children}</div>
-								{actionButtonNode && <div className='bg-light-grey py-2'>{actionButtonNode}</div>}
+						{children && <div className='flex-grow overflow-y-auto px-2 pb-20'>{children}</div>}
+
+						{actionButtonNode && (
+							<div className='fixed bottom-0 left-0 right-0 z-10 mx-auto max-w-md bg-light-grey px-4 py-4'>
+								{actionButtonNode}
 							</div>
 						)}
 					</div>
@@ -112,32 +111,3 @@ export function Drawer(props: DrawerProps) {
 		</Root>
 	);
 }
-
-// export function useKeyboardOffset() {
-// 	const [keyboardOffset, setKeyboardOffset] = useState(0);
-// 	const [initialHeight, setInitialHeight] = useState<number | null>(null);
-//
-// 	useEffect(() => {
-// 		// Сохраняем исходную высоту экрана
-// 		setInitialHeight(window.innerHeight);
-//
-// 		const handleResize = () => {
-// 			// Если visualViewport не работает корректно, используем window.innerHeight
-// 			const currentHeight = window.innerHeight;
-// 			if (initialHeight !== null) {
-// 				// Если текущее окно меньше исходного, считаем, что клавиатура открыта
-// 				const offset = initialHeight - currentHeight;
-// 				setKeyboardOffset(offset > 0 ? offset : 0);
-// 			}
-// 		};
-//
-// 		window.addEventListener('resize', handleResize);
-// 		handleResize(); // Инициализация
-//
-// 		return () => {
-// 			window.removeEventListener('resize', handleResize);
-// 		};
-// 	}, [initialHeight]);
-//
-// 	return keyboardOffset;
-// }
