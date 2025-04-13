@@ -105,7 +105,7 @@ export function Drawer(props: DrawerProps) {
 
 						{children && <div className='flex flex-grow flex-col gap-4 overflow-y-auto'>{children}</div>}
 
-						{actionButtonNode && <div className='bg-light-grey'>{actionButtonNode}</div>}
+						{actionButtonNode && <div className='-mx-2 -mb-2 mt-2 bg-light-grey px-2 pb-2'>{actionButtonNode}</div>}
 					</div>
 				</Content>
 			</Portal>

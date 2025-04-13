@@ -20,6 +20,7 @@ export function WalletList() {
 			<TextField value={search} onChange={setSearch} placeholder={APP_TEXT.search} isSearch />
 
 			<List
+				emptyTextKey='wallets'
 				isLoading={isWalletsLoading}
 				loadingItemWithRightName={false}
 				items={wallets}
@@ -32,6 +33,7 @@ export function WalletList() {
 				)}
 				hasNextPage={hasNextWalletsPage}
 				fetchNextPage={fetchNextWalletsPage}
+				bottomNode={'3 wallets connected'}
 			/>
 		</>
 	);

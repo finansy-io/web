@@ -14,6 +14,7 @@ export function List<R>(props: ListProps<R>) {
 		fetchNextPage,
 		hasNextPage,
 		loadingItemWithRightName = true,
+		bottomNode,
 	} = props;
 
 	if (isLoading) {
@@ -21,18 +22,22 @@ export function List<R>(props: ListProps<R>) {
 	}
 
 	return (
-		<div role='list' className='rounded-2xl bg-white'>
-			<InfiniteScroll fetchNextPage={fetchNextPage} hasNextPage={hasNextPage}>
-				{items?.length ? (
-					items.map((row, index) => <Fragment key={index}>{renderItem(row, index)}</Fragment>)
-				) : (
-					<Item
-						name={emptyTextKey ? getEmptyText(emptyTextKey) : APP_TEXT.noData}
-						isNameText
-						className='text-primary-grey'
-					/>
-				)}
-			</InfiniteScroll>
+		<div role='list' className='flex flex-col gap-2'>
+			<div className='rounded-2xl bg-white'>
+				<InfiniteScroll fetchNextPage={fetchNextPage} hasNextPage={hasNextPage}>
+					{items?.length ? (
+						items.map((row, index) => <Fragment key={index}>{renderItem(row, index)}</Fragment>)
+					) : (
+						<Item
+							name={emptyTextKey ? getEmptyText(emptyTextKey) : APP_TEXT.noData}
+							isNameText
+							className='text-primary-grey'
+						/>
+					)}
+				</InfiniteScroll>
+			</div>
+
+			{bottomNode && <div className='self-center text-sm font-light text-primary-grey'>{bottomNode}</div>}
 		</div>
 	);
 }
