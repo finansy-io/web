@@ -57,13 +57,18 @@ export function Drawer(props: DrawerProps) {
 							: 'max-h-[98vh] rounded-t-[28px] bg-light-grey',
 					)}
 				>
-					<div className='relative mx-auto flex h-full w-full max-w-md flex-col gap-4 p-2'>
+					<div
+						className={cn(
+							'relative mx-auto flex h-full w-full max-w-md flex-col gap-4 p-4 pt-2',
+							isLeftDrawer && 'pt-4',
+						)}
+					>
 						{isLeftDrawer ? (
 							<Button
 								type='icon'
 								onClick={() => setIsOpen(false)}
 								icon={<Icon type='x' className='size-5' />}
-								className='self-start'
+								className='-m-2 self-start p-2'
 							/>
 						) : (
 							<div
@@ -83,8 +88,8 @@ export function Drawer(props: DrawerProps) {
 						{title || leftTitle || rightTitle ? (
 							<div
 								className={cn(
-									(title || leftTitle || rightTitle) && 'flex h-7 px-2',
-									isStatusDrawer ? 'mb-2 justify-center' : 'relative shrink-0 items-center justify-between',
+									(title || leftTitle || rightTitle) && 'flex h-[25.5px]',
+									isStatusDrawer ? 'justify-center' : 'relative shrink-0 items-center justify-between',
 								)}
 							>
 								{!isStatusDrawer && <div className='flex-shrink-0'>{leftTitle}</div>}
@@ -98,13 +103,9 @@ export function Drawer(props: DrawerProps) {
 							<Title className='hidden'>{title}</Title>
 						)}
 
-						{children && <div className='flex-grow overflow-y-auto px-2 pb-20'>{children}</div>}
+						{children && <div className='flex flex-grow flex-col gap-4 overflow-y-auto'>{children}</div>}
 
-						{actionButtonNode && (
-							<div className='fixed bottom-0 left-0 right-0 z-10 mx-auto max-w-md bg-light-grey px-4 py-4'>
-								{actionButtonNode}
-							</div>
-						)}
+						{actionButtonNode && <div className='bg-light-grey'>{actionButtonNode}</div>}
 					</div>
 				</Content>
 			</Portal>

@@ -50,13 +50,12 @@ export function Header(props: HeaderProps) {
 			)}
 
 			{(withBackButton || iconButtonConfigs) && (
-				<div className='flex justify-between px-2 pb-2'>
+				<div className={cn('flex justify-between px-4 pb-4 pt-2', withNoSpace && 'px-0 pt-0')}>
 					{withBackButton && (
 						<Button
 							type='icon'
 							icon={<Icon type='backButton' className='size-5' />}
 							onClick={onBackButtonClick}
-							className={cn(withNoSpace && 'm-0 -ml-2')}
 							// isDesktop && 'hover:bg-inherit active:bg-inherit active:text-primary-grey',
 						/>
 					)}

@@ -7,6 +7,8 @@ import {Drawer} from '../../../ui-parent/drawer/ui/Drawer.tsx';
 import {Icon} from '@shared/ui';
 import {cn} from '@shared/lib';
 
+const isStaticForTesting = false;
+
 export function StatusPopup({isSuccess, isError, statusTextKey, statusTextProps, onDismiss}: StatusPopupProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [progress, setProgress] = useState(0);
@@ -26,7 +28,7 @@ export function StatusPopup({isSuccess, isError, statusTextKey, statusTextProps,
 
 	// Логика показа и скрытия попапа с автоматическим dismiss
 	useEffect(() => {
-		if (!isOpen) return;
+		if (!isOpen || isStaticForTesting) return;
 
 		const openTimeoutId = setTimeout(() => {
 			setIsOpen(false);
