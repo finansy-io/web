@@ -20,11 +20,11 @@ export function WalletHeader() {
 			subDescription={
 				<div
 					className={cn(
-						'flex cursor-pointer items-center gap-1.5 transition duration-200',
+						'flex w-fit cursor-pointer items-center gap-1.5 transition duration-200',
 						isTouchable && 'active:text-black',
 						isClickable && 'hover:text-black',
 					)}
-					onClick={() => copy(address)}
+					onClick={isCopied ? undefined : () => copy(address)}
 				>
 					<div>{TextHelpers.getShortenWalletAddress(address)}</div>
 					<Icon type={isCopied ? 'check' : 'copy'} />
