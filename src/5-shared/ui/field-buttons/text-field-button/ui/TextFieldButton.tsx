@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {TextFieldEditButtonProps} from '../types/TextFieldEditButton.types.ts';
 import {FieldButton, FieldPopup} from '../../ui-parent';
 import {TextField, usePopupState} from '@shared/ui';
-import {checkIfTextChanged, useResponsive} from '@shared/lib';
+import {checkIfTextChanged} from '@shared/lib';
 
 export function TextFieldButton(props: TextFieldEditButtonProps) {
 	const {children, entityName, maxLength, initialValue, handleUpdate, isLoading, isPending, isSuccess, isError} = props;
@@ -11,8 +11,6 @@ export function TextFieldButton(props: TextFieldEditButtonProps) {
 	const [isFocused, setIsFocused] = useState(false);
 
 	const {popupProps, openPopup, closePopup} = usePopupState();
-
-	const {isTouchable} = useResponsive();
 
 	useEffect(() => {
 		if (isSuccess || isError) {
@@ -40,7 +38,6 @@ export function TextFieldButton(props: TextFieldEditButtonProps) {
 					isChanged,
 					isPending,
 					isEdit,
-					isKeyboardActive: isFocused && isTouchable,
 					closeKeyboard: () => setIsFocused(false),
 				}}
 			>

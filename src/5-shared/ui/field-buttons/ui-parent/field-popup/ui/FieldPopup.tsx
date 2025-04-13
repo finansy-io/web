@@ -14,7 +14,6 @@ export function FieldPopup<V>(props: FieldPopupProps<V>) {
 		handleUpdate,
 		value,
 		isPending,
-		isKeyboardActive,
 		closeKeyboard,
 		children,
 	} = props;
@@ -40,7 +39,6 @@ export function FieldPopup<V>(props: FieldPopupProps<V>) {
 					{APP_TEXT.save}
 				</Button>
 			}
-			isKeyboardActive={isKeyboardActive}
 			onDrag={closeKeyboard}
 			isFullScreen
 		>

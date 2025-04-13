@@ -10,7 +10,6 @@ export type FieldPopupProps<V> = {
 	handleUpdate: (value: V) => void;
 	value: V;
 	isPending: boolean;
-	isKeyboardActive: boolean;
 	closeKeyboard: () => void;
 	children: ReactNode;
 };
