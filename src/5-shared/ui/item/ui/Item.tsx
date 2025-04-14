@@ -24,15 +24,15 @@ export function Item(props: ItemProps) {
 
 	const navigate = useNavigate();
 
-	const {isMobile, isTablet, isDesktop} = useResponsive();
+	const {isTouchable, isClickable} = useResponsive();
 
 	const showIconCheckmark = isChecked && image;
 	const showRightCheckmark = isChecked && !image;
 
 	const isMenuItem = isMenuItemProp || isDestructiveMenuItem;
 
-	const withTouchState = onClick && (isMobile || isTablet);
-	const withClickState = onClick && isDesktop;
+	const withTouchState = onClick && isTouchable;
+	const withClickState = onClick && isClickable;
 
 	return (
 		<div
@@ -63,7 +63,7 @@ export function Item(props: ItemProps) {
 								className={cn(
 									'absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full border-2 border-solid border-white bg-primary-violet text-white transition duration-200',
 									isChecked && 'border-light-grey',
-									withTouchState && 'group-active:bg-on-white-hover',
+									withTouchState && 'group-active:border-on-white-hover',
 									withClickState && 'group-hover:border-on-white-hover group-active:border-on-white-active',
 								)}
 							>
