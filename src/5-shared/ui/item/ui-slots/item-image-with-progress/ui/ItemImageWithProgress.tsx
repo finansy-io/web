@@ -3,7 +3,7 @@ import {type ItemImageWithProgressProps} from '../types/ItemImageWithProgress.ty
 export const ItemImageWithProgress = ({image, current, target}: ItemImageWithProgressProps) => {
 	const radius = 72;
 	const circumference = 2 * Math.PI * radius;
-	const progress = current / target;
+	const progress = Math.min(current / target, 1); // Ограничиваем прогресс до 1 (100%)
 	const strokeDashoffset = circumference * (1 - progress);
 
 	return (
@@ -18,7 +18,7 @@ export const ItemImageWithProgress = ({image, current, target}: ItemImageWithPro
 						cy='100'
 						r={radius}
 						fill='transparent'
-						stroke='#805CF5'
+						stroke={progress === 1 ? '#16A34A' : '#805CF5'}
 						strokeWidth='9'
 						strokeDasharray={circumference}
 						strokeDashoffset={strokeDashoffset}

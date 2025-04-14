@@ -10,4 +10,5 @@ export type ListProps<R> = {
 	hasNextPage?: boolean;
 	emptyTextKey?: EmptyTextKey;
 	loadingItemWithRightName?: boolean;
+	bottomNode?: ReactNode;
 };

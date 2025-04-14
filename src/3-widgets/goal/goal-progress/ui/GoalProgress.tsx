@@ -74,7 +74,14 @@ export function GoalProgress() {
 				</div>
 			</div>
 
-			<Popup {...popupProps}>
+			<Popup
+				{...popupProps}
+				actionButtonNode={
+					<Button type='primary' onClick={closePopup}>
+						{APP_TEXT.kaif}
+					</Button>
+				}
+			>
 				<div className='flex flex-col items-center justify-center'>
 					<Icon type='congratulations' className='my-2 text-3xl' />
 
@@ -89,10 +96,6 @@ export function GoalProgress() {
 						достигнете!
 					</div>
 				</div>
-
-				<Button className='mt-2' type='primary' onClick={closePopup}>
-					{APP_TEXT.kaif}
-				</Button>
 			</Popup>
 		</Card>
 	);
