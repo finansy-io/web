@@ -33,6 +33,7 @@ export const APP_TEXT = {
 	withdraw: 'Withdraw',
 	continue: 'Continue',
 	search: 'Search',
+	searchByNameOrAddress: 'Search by name or address',
 	amount: 'Amount',
 	targetAmount: 'Target amount',
 	addTargetAmount: 'Add target amount',

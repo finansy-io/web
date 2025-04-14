@@ -25,14 +25,14 @@ export function getSettingsConfigs(openConfirmationPopup: () => void) {
 		// 	{
 		// 		name: 'Currency',
 		// 		image: <Icon type='currency' className='size-5' />,
+		// 		rightNode: <div className='font-light text-primary-grey'>USD</div>,
 		// 	},
 		// ],
-		//
+
 		// [
 		// 	{
 		// 		name: 'Reorder tabs',
 		// 		image: <Icon type='arrowDown' className='size-5' />,
-		// 		rightNode: <div className='font-light text-primary-grey'>USD</div>,
 		// 	},
 		// ],
 
@@ -42,6 +42,9 @@ export function getSettingsConfigs(openConfirmationPopup: () => void) {
 				image: <Icon type='hide' />,
 				rightNode: 'switch',
 			},
+		],
+
+		[
 			// {
 			// 	name: 'Hide small balances',
 			// 	image: <Icon type='hide' />,

@@ -17,7 +17,7 @@ export function WalletList() {
 
 	return (
 		<>
-			<TextField value={search} onChange={setSearch} placeholder={APP_TEXT.search} isSearch />
+			<TextField value={search} onChange={setSearch} placeholder={APP_TEXT.searchByNameOrAddress} isSearch />
 
 			<List
 				emptyTextKey='wallets'

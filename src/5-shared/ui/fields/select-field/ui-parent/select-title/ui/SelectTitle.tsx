@@ -51,7 +51,7 @@ export function SelectTitle<Value>(props: SelectTitleProps<Value>) {
 				onClick={onClick}
 			>
 				<div>{getSelectTitle(value, options)}</div>
-				<Icon type='chevronDown' className='size-3 flex-shrink-0' />
+				<Icon type='chevronDown' className='size-2.5 flex-shrink-0' />
 			</div>
 		);
 	}

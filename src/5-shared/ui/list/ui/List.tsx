@@ -22,7 +22,7 @@ export function List<R>(props: ListProps<R>) {
 	}
 
 	return (
-		<div role='list' className='flex flex-col gap-2'>
+		<div role='list' className='flex flex-col gap-4'>
 			<div className='rounded-2xl bg-white'>
 				<InfiniteScroll fetchNextPage={fetchNextPage} hasNextPage={hasNextPage}>
 					{items?.length ? (
