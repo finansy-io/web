@@ -1,6 +1,6 @@
 export const APP_PATH = {
 	root: '/',
-	home: '/portfolio-list',
+	home: '/portfolio-assets',
 	pageNotFound: '/page-not-found',
 	login: '/log-in',
 	signup: '/sign-up',
@@ -22,19 +22,23 @@ export const APP_PATH = {
 	},
 
 	portfolio: {
-		// list: '/portfolio/portfolio-id/assets',
-		list: '/portfolio-list',
+		// assets: '/portfolio/portfolio-id/assets',
+		assets: '/portfolio-assets',
 		create: '/portfolio-create',
 		details: '/portfolio',
+		transactions: '/portfolio-transactions',
+		wallets: '/portfolio-wallets',
+		connectWallet: '/portfolio-connect-wallet',
 
 		getItemEditPath: (id: any) => `${APP_PATH.portfolio.details}/${id}/edit`,
+
+		getWalletDetailsPath: (id: any) => `${APP_PATH.portfolio.wallets}/${id}`,
+		getWalletEditPath: (id: any) => `${APP_PATH.portfolio.wallets}/${id}/edit`,
 	},
 
-	wallet: {
-		connectWallet: '/connect-wallet',
-		list: '/wallets',
-
-		getItemDetailsPath: (id: any) => `${APP_PATH.wallet.list}/${id}`,
-		getItemEditPath: (id: any) => `${APP_PATH.wallet.list}/${id}/edit`,
-	},
+	// wallet: {
+	// list: '/wallets',
+	// getItemDetailsPath: (id: any) => `${APP_PATH.wallet.list}/${id}`,
+	// getItemEditPath: (id: any) => `${APP_PATH.wallet.list}/${id}/edit`,
+	// },
 };

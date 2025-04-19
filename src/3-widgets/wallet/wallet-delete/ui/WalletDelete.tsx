@@ -23,7 +23,7 @@ export function WalletDelete() {
 			isError={isError}
 			destructButtonText={APP_TEXT.disconnect}
 			onDestruct={handleDelete}
-			onStatusPopupDismiss={(navigate) => navigate(APP_PATH.wallet.list)}
+			onStatusPopupDismiss={(navigate) => navigate(APP_PATH.portfolio.wallets)}
 			statusTextKey='disconnectWallet'
 		>
 			{`${APP_TEXT.disconnect} ${APP_TEXT.wallet.toLowerCase()}`}

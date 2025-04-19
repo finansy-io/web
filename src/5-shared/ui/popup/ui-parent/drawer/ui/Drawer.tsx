@@ -96,7 +96,7 @@ export function Drawer(props: DrawerProps) {
 								{!isStatusDrawer && <div className='flex-shrink-0'>{rightTitle}</div>}
 
 								<div className={cn(!isStatusDrawer && 'absolute left-1/2 top-0 -translate-x-1/2 text-center')}>
-									<Title className='text-[17px] font-semibold'>{title}</Title>
+									<Title className='font-semibold'>{title}</Title>
 								</div>
 							</div>
 						) : (

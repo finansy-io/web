@@ -9,14 +9,14 @@ export function getSettingsConfigs(openConfirmationPopup: () => void) {
 		// 		name: 'Connected wallets',
 		// 		image: <Icon type='wallet' />,
 		// 		onClick: ({navigate}) => {
-		// 			navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.list}});
+		// 			navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.assets}});
 		// 		},
 		// 	},
 		// 	{
 		// 		name: 'Connected exchanges',
 		// 		image: <Icon types='wallet' className='size-5' />,
 		// 		onClick: ({navigate}) => {
-		// 			navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.list}});
+		// 			navigate(APP_PATH.wallet.list, {state: {from: APP_PATH.portfolio.assets}});
 		// 		},
 		// 	},
 		// ],
@@ -91,8 +91,9 @@ export function getSettingsConfigs(openConfirmationPopup: () => void) {
 }
 
 export const appTabConfigs = [
-	{name: APP_TEXT.assets, path: APP_PATH.portfolio.list},
-	{name: APP_TEXT.wallets, path: APP_PATH.wallet.list},
+	{name: APP_TEXT.assets, path: APP_PATH.portfolio.assets},
+	{name: APP_TEXT.transactions, path: APP_PATH.portfolio.transactions},
+	{name: APP_TEXT.wallets, path: APP_PATH.portfolio.wallets},
 	{name: APP_TEXT.goals, path: APP_PATH.goal.list},
 ] satisfies {name: string; path: string}[];
 

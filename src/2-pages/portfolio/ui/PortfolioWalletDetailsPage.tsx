@@ -1,7 +1,7 @@
 import {PageWidgetsWrapper} from '@pages/ui';
 import {WalletDelete, WalletHeader} from '@widgets/wallet';
 
-export function WalletDetailsPage() {
+export function PortfolioWalletDetailsPage() {
 	return (
 		<>
 			<WalletHeader />
