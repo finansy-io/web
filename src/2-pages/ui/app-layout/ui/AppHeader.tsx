@@ -160,10 +160,7 @@ export function AppHeader() {
 				title={getSelectTitle(selectedPortfolioValue, portfolioOptions)}
 				description={APP_TEXT.confirmation.deletePortfolio}
 				isActionPending={false}
-				onActionClick={() => {
-					setIsSuccess(true);
-					//change portfolio-selector to total portfolio, when all portfolios are deleted
-				}}
+				onActionClick={() => setIsSuccess(true)}
 			/>
 
 			<StatusPopup isSuccess={isSuccess} isError={false} statusTextKey='deletePortfolio' />

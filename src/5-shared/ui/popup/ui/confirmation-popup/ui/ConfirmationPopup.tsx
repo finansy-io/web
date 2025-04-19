@@ -1,5 +1,5 @@
 import {type ConfirmationPopupProps} from '../types/ConfirmationPopup.types.ts';
-import {Button, Popup} from '@shared/ui';
+import {Button, Popup, popupHelper} from '@shared/ui';
 import {APP_TEXT} from '@shared/constants';
 
 export function ConfirmationPopup(props: ConfirmationPopupProps) {
@@ -14,7 +14,10 @@ export function ConfirmationPopup(props: ConfirmationPopupProps) {
 				</Button>
 				<Button
 					type='primary'
-					onClick={onActionClick}
+					onClick={() => {
+						close();
+						popupHelper.runAfterPopupClosed(onActionClick);
+					}}
 					isPending={isActionPending}
 					className='bg-red-100 text-red-600 shadow-none'
 					primaryButtonSpinnerClassName='text-red-600'
