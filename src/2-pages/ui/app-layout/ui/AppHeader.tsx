@@ -131,7 +131,7 @@ export function AppHeader() {
 				}}
 			/>
 
-			<Popup {...portfolioSettingsPopupProps} title={APP_TEXT.managePortfolio}>
+			<Popup {...portfolioSettingsPopupProps}>
 				{getSettingsConfigs(openConfirmationPopup).map((settingsConfig, index) => (
 					<List
 						key={index}
