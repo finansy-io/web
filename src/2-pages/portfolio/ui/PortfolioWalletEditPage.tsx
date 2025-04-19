@@ -4,13 +4,13 @@ import {WalletEdit} from '@widgets/wallet';
 import {Header} from '@shared/ui';
 import {APP_PATH, APP_TEXT} from '@shared/constants';
 
-export function WalletEditPage() {
+export function PortfolioWalletEditPage() {
 	const {id} = useParams();
 
 	return (
 		<>
 			<Header
-				backPath={APP_PATH.wallet.getItemDetailsPath(id)}
+				backPath={APP_PATH.portfolio.getWalletDetailsPath(id)}
 				title={`${APP_TEXT.edit} ${APP_TEXT.wallet.toLowerCase()}`}
 			/>
 			<PageWidgetsWrapper>

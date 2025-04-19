@@ -7,7 +7,7 @@ import {APP_PATH, APP_TEXT, FORM} from '@shared/constants';
  * Фронтовая логика валидации: 1 get запрос на лист с фильтром name={name}
  * */
 
-export function WalletConnectPage() {
+export function PortfolioWalletConnectPage() {
 	const [activeStepIndex, setActiveStepIndex] = useState(0);
 
 	const [name, setName] = useState('');
@@ -31,7 +31,7 @@ export function WalletConnectPage() {
 			<Header
 				title={activeStepIndex === 0 ? APP_TEXT.enterWalletName : APP_TEXT.enterWalletAddress}
 				subDescription={activeStepIndex === 1 && APP_TEXT.connectWalletDisclaimer}
-				backPath={APP_PATH.portfolio.list}
+				backPath={APP_PATH.portfolio.assets}
 				stepsCount={2}
 				activeStepIndex={activeStepIndex}
 				handleBackButtonClick={activeStepIndex === 0 ? undefined : () => setActiveStepIndex(activeStepIndex - 1)}
@@ -111,7 +111,7 @@ export function WalletConnectPage() {
 				isError={isConnectWalletError}
 				statusTextKey='connectWallet'
 				statusTextProps={{name}}
-				onDismiss={(navigate) => navigate(APP_PATH.portfolio.list)}
+				onDismiss={(navigate) => navigate(APP_PATH.portfolio.assets)}
 			/>
 		</>
 	);

@@ -9,7 +9,7 @@ export class WalletHeaderConfig {
 				type: 'secondary',
 				icon: <Icon type='edit' />,
 				onClick: ({navigate}) => {
-					navigate(APP_PATH.wallet.getItemEditPath('1'));
+					navigate(APP_PATH.portfolio.getWalletEditPath('1'));
 				},
 			},
 		];

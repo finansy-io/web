@@ -13,6 +13,16 @@
     background: none !important;
 }
 
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE и Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+/* Скрыть скроллбар для WebKit-браузеров */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
 /* shadcn UI */
 @layer base {
   :root {

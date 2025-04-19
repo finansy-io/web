@@ -52,7 +52,7 @@ export default function PortfolioCreatePage() {
 
 	return (
 		<>
-			<Header title={APP_TEXT.createPortfolio} backPath={APP_PATH.portfolio.list} />
+			<Header title={APP_TEXT.createPortfolio} backPath={APP_PATH.portfolio.assets} />
 
 			<PageWidgetsWrapper>
 				<EmojiField {...{selectedEmojiConfig, setSelectedEmojiConfig}} />
@@ -96,7 +96,7 @@ export default function PortfolioCreatePage() {
 				isError={isCreatePortfolioError}
 				statusTextKey='createPortfolio'
 				statusTextProps={{name}}
-				onDismiss={(navigate) => navigate(APP_PATH.portfolio.list)}
+				onDismiss={(navigate) => navigate(APP_PATH.portfolio.assets)}
 			/>
 		</>
 	);

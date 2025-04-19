@@ -1,7 +1,7 @@
 import {PageWidgetsWrapper} from '@pages/ui';
 import {WalletList} from '@widgets/wallet';
 
-export function WalletListPage() {
+export function PortfolioWalletsPage() {
 	return (
 		<>
 			<PageWidgetsWrapper>

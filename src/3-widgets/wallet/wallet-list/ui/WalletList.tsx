@@ -28,7 +28,7 @@ export function WalletList() {
 					<Item
 						{...wallet}
 						image={<Icon type='wallet' withBackground />}
-						onClick={() => navigate(APP_PATH.wallet.getItemDetailsPath('1'))}
+						onClick={() => navigate(APP_PATH.portfolio.getWalletDetailsPath('1'))}
 					/>
 				)}
 				hasNextPage={hasNextWalletsPage}

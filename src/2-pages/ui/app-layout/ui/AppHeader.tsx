@@ -86,7 +86,7 @@ export function AppHeader() {
 				onClick={openUserPopup}
 				className={cn(
 					'transition duration-200 hover:bg-inherit active:brightness-90',
-					isDesktop && 'hover:brightness-95',
+					isDesktop && 'hover:brightness-95 active:bg-inherit',
 				)}
 			/>
 
